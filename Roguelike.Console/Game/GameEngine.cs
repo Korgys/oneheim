@@ -1,0 +1,104 @@
+﻿using Roguelike.Console.Configuration;
+using Roguelike.Console.Game.Characters.Enemies;
+using Roguelike.Console.Game.Characters.Enemies.Bosses;
+using Roguelike.Console.Game.Characters.Players;
+using Roguelike.Console.Game.Levels;
+using Roguelike.Console.Game.Systems;
+using Roguelike.Console.Rendering;
+
+namespace Roguelike.Console.Game;
+
+public class GameEngine
+{
+    private GameSettings _gameSettings;
+    private LevelManager _levelManager;
+    private PlayerController _playerController;
+    private EnemyManager _enemyManager;
+    private DifficultyManager _difficultyManager;
+    private StructureSiegeSystem _siegeSystem;
+    private TurnSystemRunner _runner;
+
+    private string _gameMessage = string.Empty;
+    private bool _isGameEnded = false;
+
+    public void StartNewGame()
+    {
+        _gameSettings = ConfigurationReader.LoadGameSettings();
+        _levelManager = new LevelManager(_gameSettings);
+        _playerController = new PlayerController(_levelManager, _gameSettings);
+        _difficultyManager = new DifficultyManager(_gameSettings.DifficultySettings.Difficulty);
+
+        // Register systems
+        _runner = new TurnSystemRunner();
+        _siegeSystem = new StructureSiegeSystem();
+        _runner.Register(_siegeSystem);
+        _runner.Register(new WaveAndFogSystem());
+
+        _enemyManager = new EnemyManager(_levelManager, _siegeSystem); // EnemyManager uses siege info
+
+
+        while (!_isGameEnded)
+        {
+            ConsoleRenderer.RenderGrid(_levelManager, _gameSettings, _playerController.HasUsedKey, _gameMessage, _isGameEnded);
+            _playerController.ReadAndProcessUserInput();
+            _gameMessage = _playerController.GameMessage;
+
+            if (_playerController.IsGameEnded)
+            {
+                _isGameEnded = true;
+                break;
+            }
+
+            _enemyManager.MoveEnemies();
+            _gameMessage = _enemyManager.CombatMessage ?? _gameMessage;
+
+            ApplyGameEventsIfNeeded();
+        }
+
+        ConsoleRenderer.RenderGrid(_levelManager, _gameSettings, true, _gameMessage, _isGameEnded);
+    }
+
+    private void ApplyGameEventsIfNeeded()
+    {
+        // Player death
+        if (_levelManager.Player.LifePoint <= 0)
+        {
+            _isGameEnded = true;
+            return;
+        }
+
+        if (_levelManager.Player.Steps == 6)
+        {
+            _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
+            _gameMessage = "Be carefull, you are not safe here ...";
+        }
+
+        // New enemies/boss wave
+        if (_levelManager.Player.Steps > 0 
+            && _levelManager.Player.Steps < 1001 
+            && _levelManager.Player.Steps % 100 == 0)
+        {
+            if (_levelManager.Player.Steps % 500 == 0)
+            {
+                _levelManager.PlaceBoss();
+                _levelManager.Player.SetPlayerVisionAfterFogArrival();
+                _gameMessage = "A boss arrives";
+            }
+            else
+            {
+                _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
+                _levelManager.PlaceTreasures(_difficultyManager.GetTreasuresNumber());
+                _levelManager.Player.SetPlayerVisionAfterFogArrival();
+                _gameMessage = "The fog intensifies. New enemies and treasures have appeared!";
+            }  
+        }
+
+        // Endgame if all bosses are dead and level steps = 10
+        if (_levelManager.Player.Steps > 1000 && !_levelManager.Enemies.Any(e => e is Boss))
+        {
+            _gameMessage = "You defeated all bosses. Now it's peacefull. Thanks for playing this game ! :)";
+            _isGameEnded = true;
+        }
+    }
+}
+

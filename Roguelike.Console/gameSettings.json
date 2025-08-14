@@ -1,0 +1,13 @@
+﻿{
+	"Difficulty": "Hell",
+	"Controls": {
+		"MoveUp": "Z",
+		"MoveDown": "S",
+		"MoveLeft": "Q",
+		"MoveRight": "D",
+		"Choice1": "W",
+		"Choice2": "X",
+		"Choice3": "C",
+		"Exit": "Escape"
+	}
+}

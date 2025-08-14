@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Roguelike.Console": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+﻿namespace Roguelike.Console.Rendering;
+
+using Roguelike.Console.Configuration;
+using Roguelike.Console.Game.Characters.Players;
+using Roguelike.Console.Game.Collectables;
+using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Game.Levels;
+using System;
+
+public static class ConsoleRenderer
+{
+    private static string _lastGameMessage = null;
+
+    public static void RenderGrid(
+        LevelManager level,
+        GameSettings settings,
+        bool hasPlayerUsedAValidKey,
+        string gameMessage,
+        bool isGameEnded)
+    {
+        Console.Clear();
+        var player = level.Player;
+
+        for (int y = 0; y < LevelManager.GridHeight; y++)
+        {
+            for (int x = 0; x < LevelManager.GridWidth; x++)
+            {
+                // 1) Borders
+                if (x == 0 || y == 0 || x == LevelManager.GridWidth - 1 || y == LevelManager.GridHeight - 1)
+                {
+                    Console.Write('=');
+                    continue;
+                }
+
+                // 2) Fog of war
+                if (Math.Abs(x - player.X) > player.Vision || Math.Abs(y - player.Y) > player.Vision)
+                {
+                    Console.Write('.');
+                    continue;
+                }
+
+                // 3) Structure walls
+                var structure = level.Structures.FirstOrDefault(s => s.Contains(x, y));
+                if (structure != null && structure.IsWall(x, y))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write('X');
+                    Console.ResetColor();
+                    continue;
+                }
+
+                // 4) Player
+                if (x == player.X && y == player.Y)
+                {
+                    Console.Write(Player.Character);
+                    continue;
+                }
+
+                // 5) NPCs
+                var npc = level.Npcs.FirstOrDefault(n => n.X == x && n.Y == y);
+                if (npc != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(npc.Character);
+                    Console.ResetColor();
+                    continue;
+                }
+
+                // 6) Treasures
+                var treasure = level.Treasures.FirstOrDefault(t => t.X == x && t.Y == y);
+                if (treasure != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(Treasure.Character);
+                    Console.ResetColor();
+                    continue;
+                }
+
+                // 7) Enemies
+                var enemy = level.Enemies.FirstOrDefault(e => e.X == x && e.Y == y);
+                if (enemy != null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(enemy.Character);
+                    Console.ResetColor();
+                    continue;
+                }
+
+                // 8) Interior of structure or empty space
+                if (structure != null)
+                {
+                    Console.Write(' '); // interior floor
+                }
+                else
+                {
+                    Console.Write(' '); // empty floor
+                }
+            }
+            Console.WriteLine();
+        }
+
+        // Display base HP
+        var baseStructure = level.Structures.FirstOrDefault(s => s.Name == "Base Camp");
+        if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3)
+        {
+            Console.WriteLine();
+            Console.Write("Base Camp HP: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{baseStructure.Hp}/{baseStructure.MaxHp}");
+            Console.ResetColor();
+            Console.WriteLine();
+        }
+
+        // Display game messages
+        if (string.IsNullOrEmpty(gameMessage) && !string.IsNullOrEmpty(_lastGameMessage))
+        {
+            gameMessage = _lastGameMessage;
+        }
+        if (!string.IsNullOrEmpty(gameMessage))
+        {
+            // Danger in red
+            if (gameMessage.Contains("Be carefull, you are not safe here ...")
+                || gameMessage.Contains("under attack")
+                || gameMessage.Contains("Base Camp has been destroyed")
+                || gameMessage.Contains("A boss arrives"))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(gameMessage);
+                Console.ResetColor();
+            }
+            // Good things in green
+            else if (gameMessage.Contains("You defeated all bosses"))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(gameMessage);
+                Console.ResetColor();
+            }
+            // Normal
+            else
+            {
+                Console.WriteLine(gameMessage);
+            }
+
+            _lastGameMessage = gameMessage;
+        }
+
+        // Player info
+        Console.Write($"Steps: {player.Steps} | Lvl: {player.Level}");
+        if (player.XP > 0) Console.Write($" | XP: {player.XP}/{player.GetNextLevelXP()}");
+        if (player.Gold > 0) Console.Write($" | Gold: {player.Gold}");
+        Console.WriteLine();
+        Console.WriteLine(
+            $"HP: {player.LifePoint}/{player.MaxLifePoint} | " +
+            $"Strengh: {player.Strength} | Armor: {player.Armor} | " +
+            $"Speed: {player.Speed} | Vision: {player.Vision}");
+
+        if (player.Inventory.Any())
+        {
+            Console.WriteLine($"Inventory: {player.Inventory.Count}/{player.MaxInventorySize}");
+            foreach (var item in player.Inventory)
+            {
+                ItemManager.WriteColored($"- {item.Name} ({item.EffectDescription})", item.Rarity);
+                Console.WriteLine();
+            }
+        }
+
+        // End game or controls help
+        if (isGameEnded)
+        {
+            Console.WriteLine(gameMessage);
+
+            if (gameMessage.Contains("You defeated all bosses"))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The End! Press Enter to exit.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Game Over! Press Enter to exit.");
+            }
+
+            Console.ResetColor();
+            Console.ReadLine();
+        }
+        else
+        {
+            if (!hasPlayerUsedAValidKey)
+            {
+                var keys = settings.ControlsSettings;
+                Console.WriteLine(
+                    $"Move: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
+                    $"Choices: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
+                    $"Quit: {keys.ExitGame}");
+            }
+        }
+    }
+}

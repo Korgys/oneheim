@@ -1,0 +1,18 @@
+﻿namespace Roguelike.Console.Game.Collectables.Items;
+
+public enum ItemId
+{
+    CapeOfInvisibility = 1,
+    DaggerLifeSteal = 2,
+    GlassesOfClairvoyance = 3,
+    BootsOfEchoStep = 4,
+    TalismanOfTheLastBreath = 5,
+    ThornBreastplate = 6,
+    FeathersOfHope = 7,
+    RoyalGuardGauntlet = 8,
+    RoyalGuardShield = 9,
+    BerserkerNecklace = 10,
+    PaladinNecklace = 11,
+    HolyBible = 12,
+    SacredCrucifix = 13,
+}
