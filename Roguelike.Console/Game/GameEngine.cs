@@ -4,6 +4,7 @@ using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Game.Systems;
+using Roguelike.Console.Properties.i18n;
 using Roguelike.Console.Rendering;
 
 namespace Roguelike.Console.Game;
@@ -26,7 +27,7 @@ public class GameEngine
         _gameSettings = ConfigurationReader.LoadGameSettings();
         _levelManager = new LevelManager(_gameSettings);
         _playerController = new PlayerController(_levelManager, _gameSettings);
-        _difficultyManager = new DifficultyManager(_gameSettings.DifficultySettings.Difficulty);
+        _difficultyManager = new DifficultyManager(_gameSettings.Difficulty);
 
         // Register systems
         _runner = new TurnSystemRunner();
@@ -70,7 +71,7 @@ public class GameEngine
         if (_levelManager.Player.Steps == 6)
         {
             _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
-            _gameMessage = "Be carefull, you are not safe here ...";
+            _gameMessage = Messages.BeCarefullYouAreNotSafeHere;
         }
 
         // New enemies/boss wave
@@ -82,14 +83,14 @@ public class GameEngine
             {
                 _levelManager.PlaceBoss();
                 _levelManager.Player.SetPlayerVisionAfterFogArrival();
-                _gameMessage = "A boss arrives";
+                _gameMessage = Messages.ABossArrives;
             }
             else
             {
                 _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
                 _levelManager.PlaceTreasures(_difficultyManager.GetTreasuresNumber());
                 _levelManager.Player.SetPlayerVisionAfterFogArrival();
-                _gameMessage = "The fog intensifies. New enemies and treasures have appeared!";
+                _gameMessage = Messages.TheFogIntensifies;
             }  
         }
 

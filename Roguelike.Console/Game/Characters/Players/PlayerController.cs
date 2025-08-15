@@ -24,6 +24,8 @@ public class PlayerController
 
     public void ReadAndProcessUserInput()
     {
+        if (_level.PlayerInCombat) return;
+
         if (_level.Player.LifePoint <= 0)
         {
             IsGameEnded = true;
@@ -42,15 +44,15 @@ public class PlayerController
             int newX = player.X;
             int newY = player.Y;
 
-            if (key == _settings.ControlsSettings.MoveUp)
+            if (key == _settings.Controls.MoveUp)
                 newY--;
-            else if (key == _settings.ControlsSettings.MoveDown)
+            else if (key == _settings.Controls.MoveDown)
                 newY++;
-            else if (key == _settings.ControlsSettings.MoveLeft)
+            else if (key == _settings.Controls.MoveLeft)
                 newX--;
-            else if (key == _settings.ControlsSettings.MoveRight)
+            else if (key == _settings.Controls.MoveRight)
                 newX++;
-            else if (key == _settings.ControlsSettings.ExitGame)
+            else if (key == _settings.Controls.Exit)
             {
                 IsGameEnded = true;
                 return;

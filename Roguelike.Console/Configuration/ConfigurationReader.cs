@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Text.Json;
 
 namespace Roguelike.Console.Configuration;
 
@@ -16,9 +17,16 @@ public class ConfigurationReader
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true
+            };
+
+            // Deserialize JSON to GameSettings object
             try
             {
-                _gameSettings = JsonSerializer.Deserialize<GameSettings>(json);
+                _gameSettings = JsonSerializer.Deserialize<GameSettings>(json, options);
             }
             catch (Exception)
             {
@@ -27,29 +35,15 @@ public class ConfigurationReader
         }
 
         // Ensure that game settings are not null
-        if (_gameSettings?.ControlsSettings?.ExitGame == null)
-        {
-            // Default game settings
-            _gameSettings = new GameSettings
-            {
-                DifficultySettings = new DifficultySettings
-                {
-                    Difficulty = DifficultyLevel.Normal,
-                },
-                ControlsSettings = new ControlsSettings
-                {
-                    ExitGame = "ESCAPE",
-                    MoveUp = "Z",
-                    MoveDown = "S",
-                    MoveLeft = "Q",
-                    MoveRight = "D",
-                    Choice1 = "W",
-                    Choice2 = "X",
-                    Choice3 = "C",
-                }
-            };
-        }
-            
+        if (_gameSettings?.Controls?.Exit == null)
+            _gameSettings = new GameSettings();
+
+        // Language settings
+        if (_gameSettings.Language.ToUpper() == "FR")
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr-FR");
+        else
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
         return _gameSettings;
     }
 }

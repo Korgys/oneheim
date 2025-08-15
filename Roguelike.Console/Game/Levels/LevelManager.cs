@@ -19,13 +19,14 @@ public class LevelManager
     public List<Enemy> Enemies { get; } = new();
     public List<Npc> Npcs { get; } = new();
     public List<Structure> Structures { get; } = new();
+    public bool PlayerInCombat { get; set; } = false;
 
     private readonly DifficultyManager _difficultyManager;
     private readonly Random _random = new();
 
     public LevelManager(GameSettings settings)
     {
-        _difficultyManager = new DifficultyManager(settings.DifficultySettings.Difficulty);
+        _difficultyManager = new DifficultyManager(settings.Difficulty);
         InitializeLevel();
     }
 

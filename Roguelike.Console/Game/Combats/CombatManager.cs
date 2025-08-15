@@ -5,6 +5,7 @@ using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Game.Rendering;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public class CombatManager
@@ -22,6 +23,7 @@ public class CombatManager
 
     public void StartCombat(Enemy enemy)
     {
+        _level.PlayerInCombat = true;
         CombatRendering.BlinkConsole(enemy is Boss);
 
         var player = _level.Player;
@@ -87,11 +89,12 @@ public class CombatManager
         }
 
         CombatRendering.RenderEndFight(enemy, player, _fightLog);
+        _level.PlayerInCombat = false;
     }
 
     private static string FormatPlayerAttack(AttackOutcome r)
     {
-        if (r.Dodged) return "The enemy dodged your attack!";
+        if (r.Dodged) return Messages.TheEnemyDodgedYourAttack;
 
         var parts = new List<string> { $"You deal {r.Damage} damage" };
         if (r.Crit) parts[0] += " (crit)";
@@ -106,7 +109,7 @@ public class CombatManager
         if (r.Dodged)
         {
             if (r.LifeStolen > 0) return $"You dodged the enemy's attack and gain {r.LifeStolen} HP !";
-            else return "You dodged the enemy's attack!";
+            else return Messages.YouDodgedTheEnemyAttack;
         }
         
 

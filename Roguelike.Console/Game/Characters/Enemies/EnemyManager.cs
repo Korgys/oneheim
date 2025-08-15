@@ -3,6 +3,7 @@ using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Combat;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Game.Systems;
+using Roguelike.Console.Properties.i18n;
 
 namespace Roguelike.Console.Game.Characters.Enemies;
 
@@ -68,12 +69,12 @@ public class EnemyManager
 
             if (player.LifePoint <= 0)
             {
-                CombatMessage = $"You were killed by {enemy.Name}";
+                CombatMessage = string.Format(Messages.YouWereKilledBy, enemy.Name);
                 break;
             }
             else
             {
-                CombatMessage = "You were attacked and you defeated your enemy !";
+                CombatMessage = Messages.YouWereAttackedAndDefeatedYourEnemy;
             }
         }
     }

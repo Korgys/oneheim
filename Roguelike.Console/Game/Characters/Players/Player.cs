@@ -37,9 +37,9 @@ public class Player : Character
     }
 
     /// <summary>
-    /// Set the player vision when the for arrives. The fog minus 2 vision of the player, except some specific rules.
+    /// Set the player vision when the for arrives. The fog minus 1 vision of the player, except some specific rules.
     /// </summary>
-    public void SetPlayerVisionAfterFogArrival(int fogVisionMalus = 2)
+    public void SetPlayerVisionAfterFogArrival(int fogVisionMalus = 1)
     {
         // cannot go below 1, or below the minimal requirement of the GlassesOfClairvoyance
         var glassesOfClairvoyance = Inventory.FirstOrDefault(i => i.Id == ItemId.GlassesOfClairvoyance);

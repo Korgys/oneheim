@@ -1,6 +1,6 @@
 ﻿namespace Roguelike.Console.Configuration;
 
-public enum DifficultyLevel
+public enum Difficulty
 {
     Normal,
     Hard,

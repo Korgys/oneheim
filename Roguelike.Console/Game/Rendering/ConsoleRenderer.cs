@@ -5,6 +5,7 @@ using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public static class ConsoleRenderer
@@ -104,7 +105,7 @@ public static class ConsoleRenderer
         if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3)
         {
             Console.WriteLine();
-            Console.Write("Base Camp HP: ");
+            Console.Write(Messages.BaseCampHp);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"{baseStructure.Hp}/{baseStructure.MaxHp}");
             Console.ResetColor();
@@ -119,7 +120,7 @@ public static class ConsoleRenderer
         if (!string.IsNullOrEmpty(gameMessage))
         {
             // Danger in red
-            if (gameMessage.Contains("Be carefull, you are not safe here ...")
+            if (gameMessage.Contains(Messages.BeCarefullYouAreNotSafeHere)
                 || gameMessage.Contains("under attack")
                 || gameMessage.Contains("Base Camp has been destroyed")
                 || gameMessage.Contains("A boss arrives"))
@@ -129,7 +130,7 @@ public static class ConsoleRenderer
                 Console.ResetColor();
             }
             // Good things in green
-            else if (gameMessage.Contains("You defeated all bosses"))
+            else if (gameMessage.Contains(Messages.YouDefeatedAllBosses))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(gameMessage);
@@ -145,7 +146,7 @@ public static class ConsoleRenderer
         }
 
         // Player info
-        Console.Write($"Steps: {player.Steps} | Lvl: {player.Level}");
+        Console.Write(string.Format(Messages.StepAndLevel, player.Steps, player.Level));
         if (player.XP > 0) Console.Write($" | XP: {player.XP}/{player.GetNextLevelXP()}");
         if (player.Gold > 0) Console.Write($" | Gold: {player.Gold}");
         Console.WriteLine();
@@ -167,17 +168,15 @@ public static class ConsoleRenderer
         // End game or controls help
         if (isGameEnded)
         {
-            Console.WriteLine(gameMessage);
-
-            if (gameMessage.Contains("You defeated all bosses"))
+            if (gameMessage.Contains(Messages.YouDefeatedAllBosses))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The End! Press Enter to exit.");
+                Console.WriteLine(Messages.TheEndPressEnterToExit);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Game Over! Press Enter to exit.");
+                Console.WriteLine(Messages.GameOverPressEnterToExit);
             }
 
             Console.ResetColor();
@@ -187,11 +186,11 @@ public static class ConsoleRenderer
         {
             if (!hasPlayerUsedAValidKey)
             {
-                var keys = settings.ControlsSettings;
+                var keys = settings.Controls;
                 Console.WriteLine(
                     $"Move: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
                     $"Choices: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
-                    $"Quit: {keys.ExitGame}");
+                    $"Quit: {keys.Exit}");
             }
         }
     }

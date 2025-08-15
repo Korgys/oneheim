@@ -145,7 +145,7 @@ public static class TreasureSelector
 
         Console.WriteLine("You found a treasure! Choose your bonus:");
 
-        var keys = new List<string> { settings.ControlsSettings.Choice1, settings.ControlsSettings.Choice2, settings.ControlsSettings.Choice3 };
+        var keys = new List<string> { settings.Controls.Choice1, settings.Controls.Choice2, settings.Controls.Choice3 };
         for (int i = 0; i < choices.Count; i++)
         {
             var b = choices[i];
@@ -202,8 +202,8 @@ public static class TreasureSelector
     {
         player.MaxLifePoint += value;
 
-        var gameDifficulty = ConfigurationReader.LoadGameSettings().DifficultySettings.Difficulty;
-        if (gameDifficulty != DifficultyLevel.Hell)
+        var gameDifficulty = ConfigurationReader.LoadGameSettings().Difficulty;
+        if (gameDifficulty != Difficulty.Hell)
         {
             player.LifePoint += value;
         }

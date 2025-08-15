@@ -63,10 +63,10 @@ public static class InventoryManager
 
         var keys = new List<string>
         {
-            settings.ControlsSettings.Choice1,
-            settings.ControlsSettings.Choice2,
-            settings.ControlsSettings.Choice3,
-            settings.ControlsSettings.ExitGame
+            settings.Controls.Choice1,
+            settings.Controls.Choice2,
+            settings.Controls.Choice3,
+            settings.Controls.Exit
         };
 
         for (int i = 0; i < player.Inventory.Count && i < keys.Count; i++)

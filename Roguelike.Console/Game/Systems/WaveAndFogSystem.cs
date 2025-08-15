@@ -1,6 +1,7 @@
 ﻿namespace Roguelike.Console.Game.Systems;
 
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
+using Roguelike.Console.Properties.i18n;
 
 public sealed class WaveAndFogSystem : ITurnSystem
 {
@@ -17,10 +18,10 @@ public sealed class WaveAndFogSystem : ITurnSystem
         if (player.LifePoint <= 0) return;
 
         // First trigger
-        if (player.Steps == 6)
+        if (player.Steps == 8)
         {
             level.PlaceEnemies(ctx.Difficulty.GetEnemiesNumber());
-            LastMessage = "Be careful, you are not safe here ...";
+            LastMessage = Messages.BeCarefullYouAreNotSafeHere;
             return;
         }
 

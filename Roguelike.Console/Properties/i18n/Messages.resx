@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABossArrives" xml:space="preserve">
+    <value>A boss arrives</value>
+  </data>
+  <data name="ArminFirstMeeting" xml:space="preserve">
+    <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
+  </data>
+  <data name="ArminMeeting" xml:space="preserve">
+    <value>Back again? The wilds look harsh today. Tell me, friend, what may I do for you?</value>
+  </data>
+  <data name="ArminMeetingBaseCampUnderAttack" xml:space="preserve">
+    <value>To arms! The shadows breach our palisades! Hold fast! We shall not yield!</value>
+  </data>
+  <data name="ArminMeetingFirstBossComing" xml:space="preserve">
+    <value>I heard ghastly cries beyond the walls, freezing the blood in my veins. Some foul creature prowls in the shadows. Beware, traveler.</value>
+  </data>
+  <data name="ArminMeetingFirstBossDefeated" xml:space="preserve">
+    <value>Word has spread, you have vanquished that dreadful beast. Never had I imagined such strength in you. It is a true blessing to have you among us! Accept my eternal gratitude. Tell me, how might I repay such a debt?</value>
+  </data>
+  <data name="ArminMeetingFirstBossHere" xml:space="preserve">
+    <value>Travelers speak of a mighty foe haunting these lands. If only a valiant soul were strong enough to deliver us from this bane… May the camp’s palisades hold until then.</value>
+  </data>
+  <data name="ArminMeetingPlayerLowLife" xml:space="preserve">
+    <value>By the gods, you look on the brink of collapse! Rest a while. This camp was meant as a haven for the weary.</value>
+  </data>
+  <data name="ArminMeetingPlayerRich" xml:space="preserve">
+    <value>That is a heavy purse you carry. May it serve to raise Oneheim anew and kindle fresh hopes.</value>
+  </data>
+  <data name="BaseCampHp" xml:space="preserve">
+    <value>Base Camp HP: </value>
+  </data>
+  <data name="BeCarefullYouAreNotSafeHere" xml:space="preserve">
+    <value>Be carefull, you are not safe here ...</value>
+  </data>
+  <data name="CampAlreadyRepair" xml:space="preserve">
+    <value>The camp is already in perfect shape.</value>
+  </data>
+  <data name="CanYouHealMe" xml:space="preserve">
+    <value>Can you heal me?</value>
+  </data>
+  <data name="CanYouRepairTheCamp" xml:space="preserve">
+    <value>Can you repair the camp?</value>
+  </data>
+  <data name="GameOverPressEnterToExit" xml:space="preserve">
+    <value>Game Over! Press Enter to exit.</value>
+  </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Goodbye.</value>
+  </data>
+  <data name="MaybeLater" xml:space="preserve">
+    <value>Maybe later.</value>
+  </data>
+  <data name="NeedHealing" xml:space="preserve">
+    <value>I need healing.</value>
+  </data>
+  <data name="NoCampToRepair" xml:space="preserve">
+    <value>No camp to repair</value>
+  </data>
+  <data name="NotEnoughGold" xml:space="preserve">
+    <value>You do not have enough gold.</value>
+  </data>
+  <data name="NothingToRepair" xml:space="preserve">
+    <value>There is nothing to repair here.</value>
+  </data>
+  <data name="PayAndRepair" xml:space="preserve">
+    <value>Pay and repair</value>
+  </data>
+  <data name="RepairTheCamp" xml:space="preserve">
+    <value>Repair the camp.</value>
+  </data>
+  <data name="StepAndLevel" xml:space="preserve">
+    <value>Steps: {0} | Lvl: {1}</value>
+  </data>
+  <data name="TheCampIsAlreadyFullyRepair" xml:space="preserve">
+    <value>The camp is already fully repaired.</value>
+  </data>
+  <data name="TheEndPressEnterToExit" xml:space="preserve">
+    <value>The End! Press Enter to exit.</value>
+  </data>
+  <data name="TheEnemyDodgedYourAttack" xml:space="preserve">
+    <value>The enemy dodged your attack!</value>
+  </data>
+  <data name="TheFogIntensifies" xml:space="preserve">
+    <value>The fog intensifies. New enemies and treasures have appeared!</value>
+  </data>
+  <data name="YouDefeatedAllBosses" xml:space="preserve">
+    <value>You defeated all bosses</value>
+  </data>
+  <data name="YouDodgedTheEnemyAttack" xml:space="preserve">
+    <value>You dodged the enemy's attack!</value>
+  </data>
+  <data name="YouWereAttackedAndDefeatedYourEnemy" xml:space="preserve">
+    <value>You were attacked and you defeated your enemy !</value>
+  </data>
+  <data name="YouWereKilledBy" xml:space="preserve">
+    <value>You were killed by {0}.</value>
+  </data>
+</root>

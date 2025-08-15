@@ -35,9 +35,9 @@ public static class NpcDialogManager
             // Render options with Choice1/2/3 mapping
             var map = new[]
             {
-                settings.ControlsSettings.Choice1,
-                settings.ControlsSettings.Choice2,
-                settings.ControlsSettings.Choice3
+                settings.Controls.Choice1,
+                settings.Controls.Choice2,
+                settings.Controls.Choice3
             };
 
             for (int i = 0; i < node.Options.Count && i < map.Length; i++)

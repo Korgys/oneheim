@@ -1,5 +1,6 @@
 ﻿{
-	"Difficulty": "Hell",
+	"Language": "FR",
+	"Difficulty": "Normal",
 	"Controls": {
 		"MoveUp": "Z",
 		"MoveDown": "S",

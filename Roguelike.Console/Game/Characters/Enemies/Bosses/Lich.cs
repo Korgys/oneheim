@@ -8,9 +8,9 @@ public class Lich : Boss
     {
         LifePoint = 8 * level * level;
         MaxLifePoint = LifePoint;
-        Armor = 20 * level;
-        Strength = 20 * level;
-        Speed = 20 * level;
+        Armor = 18 * level;
+        Strength = 18 * level;
+        Speed = 18 * level;
         Vision = 30; // Boss vision range
         Name = "The Elder Lich";
         Category = EnemyType.Undead;

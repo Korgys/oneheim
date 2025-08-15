@@ -1,7 +1,13 @@
-﻿namespace Roguelike.Console.Configuration;
+﻿using System.Text.Json.Serialization;
+
+namespace Roguelike.Console.Configuration;
 
 public class GameSettings
 {
-    public DifficultySettings DifficultySettings { get; set; } = new();
-    public ControlsSettings ControlsSettings { get; set; } = new();
+    public string Language { get; set; } = "EN"; // Default language is English
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public Difficulty Difficulty { get; set; } = Difficulty.Normal; // Default difficulty is Normal
+
+    public ControlsSettings Controls { get; set; } = new();
 }

@@ -32,4 +32,9 @@ public abstract class Character
         int minValue = Math.Max(1, (Level + Strength + Armor + Speed) / 2);
         return random.Next(minValue, minValue * 2);
     }
+
+    public float GetLifeRatio()
+    {
+        return (float)LifePoint / (float)MaxLifePoint;
+    }
 }

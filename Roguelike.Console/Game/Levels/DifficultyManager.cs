@@ -4,9 +4,9 @@ namespace Roguelike.Console.Game.Levels;
 
 public class DifficultyManager
 {
-    public DifficultyLevel DifficultyLevel { get; set; }
+    public Difficulty DifficultyLevel { get; set; }
 
-    public DifficultyManager (DifficultyLevel difficultyLevel)
+    public DifficultyManager (Difficulty difficultyLevel)
     {
         DifficultyLevel = difficultyLevel;
     }
@@ -15,11 +15,11 @@ public class DifficultyManager
     {
         switch (DifficultyLevel)
         {
-            case DifficultyLevel.Normal:
+            case Difficulty.Normal:
                 return 16;
-            case DifficultyLevel.Hard:
+            case Difficulty.Hard:
                 return 14;
-            case DifficultyLevel.Hell:
+            case Difficulty.Hell:
                 return 12;
             default:
                 return 1;
@@ -30,11 +30,11 @@ public class DifficultyManager
     {
         switch (DifficultyLevel)
         {
-            case DifficultyLevel.Normal:
+            case Difficulty.Normal:
                 return 16;
-            case DifficultyLevel.Hard:
+            case Difficulty.Hard:
                 return 20;
-            case DifficultyLevel.Hell:
+            case Difficulty.Hell:
                 return 24;
             default:
                 return 100;
