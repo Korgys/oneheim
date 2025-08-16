@@ -36,7 +36,7 @@ public class EnemyFactory
             EnemyId.WildBear => new WildBear(x, y, level),
             EnemyId.Zombie => new Zombie(x, y, level),
             EnemyId.ArmoredZombie => new ArmoredZombie(x, y, level),
-            EnemyId.GiantSpider => new GiantSpider(x, y, level),
+            EnemyId.GiantSpider => new SpiderNest(x, y, level),
             EnemyId.PlagueGhoul => new PlagueGhoul(x, y, level),
             EnemyId.Revenant => new Revenant(x, y, level),
             EnemyId.Wolf => new Wolf(x, y, level),

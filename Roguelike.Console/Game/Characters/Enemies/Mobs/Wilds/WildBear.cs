@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
 
 public class WildBear : Enemy
 {
@@ -10,7 +12,7 @@ public class WildBear : Enemy
         Strength = (3 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (5 + _random.Next(0, 2)) * level + (level - 1);
         Vision = 1;
-        Name = "Wild Bear";
+        Name = Messages.WildBear;
         Category = EnemyType.Wild;
         StepsPerTurn = 1;
     }

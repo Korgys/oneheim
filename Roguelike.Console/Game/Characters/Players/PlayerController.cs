@@ -4,6 +4,7 @@ using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.NPCs.Dialogues;
 using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Levels;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public class PlayerController
@@ -64,7 +65,7 @@ public class PlayerController
             if (npc != null)
             {
                 NpcDialogManager.StartDialogue(npc, _level, _settings);
-                GameMessage = $"You talked with {npc.Name}.";
+                GameMessage = string.Format(Messages.YouTalkedWith, npc.Name);
                 keyRecognized = true;
                 continue;
             }
@@ -120,7 +121,7 @@ public class PlayerController
         {
             var combat = new Combat.CombatManager(_level);
             combat.StartCombat(enemy);
-            GameMessage = "Combat occurred!";
+            GameMessage = Messages.CombatOccurred;
         }
     }
 

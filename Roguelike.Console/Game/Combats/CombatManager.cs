@@ -32,6 +32,7 @@ public class CombatManager
             : player.Speed > enemy.Speed;
 
         float waitTimeInTurn = _initialWaitTimeInTurn; // 1s
+        if (enemy is Boss) waitTimeInTurn *= 2.5f; // Bosses have a longer wait time
 
         // items logic before combat
         if (enemy.Category == EnemyType.Undead)
@@ -39,13 +40,13 @@ public class CombatManager
             var holyBible = player.Inventory.FirstOrDefault(i => i.Id == ItemId.HolyBible);
             if (holyBible != null)
             {
-                enemy.Strength -= holyBible.Value;
+                enemy.Strength = Math.Max(0, enemy.Strength - holyBible.Value);
             }
 
             var sacredCrucifix = player.Inventory.FirstOrDefault(i => i.Id == ItemId.SacredCrucifix);
             if (sacredCrucifix != null)
             {
-                enemy.Armor -= sacredCrucifix.Value;
+                enemy.Armor = Math.Max(0, enemy.Armor - sacredCrucifix.Value);
             }
         }
 
@@ -68,17 +69,17 @@ public class CombatManager
                 AddLog(FormatEnemyAttack(outcome));
 
                 if (outcome.DefenderSavedByTalisman)
-                    AddLog("You survived a fatal blow with your talisman but it has been destroyed.");
+                    AddLog(Messages.YouSurvivedAFatalBlowWithYourTalisman);
                 else if (player.LifePoint <= 0)
                 {
-                    AddLog("You died...");
+                    AddLog(Messages.YouDied);
                     break;
                 }
             }
 
             if (enemy.LifePoint <= 0)
             {
-                AddLog("Enemy defeated!");
+                AddLog(Messages.EnemyDefeated);
                 _level.Enemies.Remove(enemy);
                 break;
             }
@@ -96,29 +97,29 @@ public class CombatManager
     {
         if (r.Dodged) return Messages.TheEnemyDodgedYourAttack;
 
-        var parts = new List<string> { $"You deal {r.Damage} damage" };
+        var parts = new List<string> { string.Format(Messages.YouDealDamage, r.Damage) };
         if (r.Crit) parts[0] += " (crit)";
-        if (r.ArmorShredded > 0) parts.Add($"shred {r.ArmorShredded} armor");
-        if (r.LifeStolen > 0) parts.Add($"steal {r.LifeStolen} HP");
-        if (r.ThornsReflected > 0) parts.Add($"and takes {r.ThornsReflected} thorns damage");
-        return string.Join(" and ", parts) + ".";
+        if (r.ArmorShredded > 0) parts.Add(string.Format(Messages.ShredArmor, r.ArmorShredded));
+        if (r.LifeStolen > 0) parts.Add(string.Format(Messages.StealHp, r.LifeStolen));
+        if (r.ThornsReflected > 0) parts.Add(string.Format(Messages.AndTakeThornsDamage, r.ThornsReflected));
+        return string.Join($" {Messages.And} ", parts) + ".";
     }
 
     private static string FormatEnemyAttack(AttackOutcome r)
     {
         if (r.Dodged)
         {
-            if (r.LifeStolen > 0) return $"You dodged the enemy's attack and gain {r.LifeStolen} HP !";
+            if (r.LifeStolen > 0) return string.Format(Messages.YouDodgedTheEnemyAttackAndGainHp, r.LifeStolen);
             else return Messages.YouDodgedTheEnemyAttack;
         }
         
 
-        var parts = new List<string> { $"The enemy deals {r.Damage} damage to you" };
+        var parts = new List<string> { string.Format(Messages.TheEnemyDealDamageToYou, r.Damage) };
         if (r.Crit) parts[0] += " (crit)";
-        if (r.ArmorShredded > 0) parts.Add($"shred {r.ArmorShredded} armor");
-        if (r.LifeStolen > 0) parts.Add($"steal {r.LifeStolen} HP");
-        if (r.ThornsReflected > 0) parts.Add($"and takes {r.ThornsReflected} thorns damage");
-        return string.Join(" and ", parts) + ".";
+        if (r.ArmorShredded > 0) parts.Add(string.Format(Messages.ShredArmor, r.ArmorShredded));
+        if (r.LifeStolen > 0) parts.Add(string.Format(Messages.StealHp, r.LifeStolen));
+        if (r.ThornsReflected > 0) parts.Add(string.Format(Messages.AndTakeThornsDamage, r.ThornsReflected));
+        return string.Join($" {Messages.And} ", parts) + ".";
     }
 
     private void AddLog(string line)

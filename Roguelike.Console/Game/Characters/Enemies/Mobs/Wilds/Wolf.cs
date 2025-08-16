@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
 
 public class Wolf : Enemy
 {
@@ -10,7 +12,7 @@ public class Wolf : Enemy
         Strength = (6 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (8 + _random.Next(0, 2)) * level + (level - 1);
         Vision = 3; // Wolves have a good vision range
-        Name = "Wolf";
+        Name = Messages.Wolf;
         Category = EnemyType.Wild;
         StepsPerTurn = 2; // move really fast
     }

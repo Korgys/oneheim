@@ -7,7 +7,6 @@ namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
 public static class NpcDialogues
 {
-    // Build (or rebuild) the dialogue tree for a given NPC and current game context
     public static void BuildForArmin(Npc npc, LevelManager level, GameSettings settings)
     {
         var player = level.Player;
@@ -15,147 +14,131 @@ public static class NpcDialogues
         // Costs and effects
         const int healCost = 15;
         const int healAmount = 5;
-
         const int repairCost = 100;
         const int repairAmount = 100;
 
-        // Find your first base (or null if none)
         var baseCamp = level.Structures.FirstOrDefault();
+        bool hasBoss = level.Enemies.Any(e => e is Boss);
+        int steps = player.Steps;
 
-        // Intro nodes
-        var firstIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminFirstMeeting
-        };
-        var returningIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeeting
-        };
-        var firstBossComingIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingFirstBossComing
-        };
-        var firstBossHereIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingFirstBossHere
-        };
-        var firstBossDefeatedIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingFirstBossDefeated
-        };
-        var playerLowLifeIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingPlayerLowLife
-        };
-        var playerRichIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingPlayerRich
-        };
-        var baseCampUnderAttackIntro = new DialogueNode
-        {
-            Text = () => Messages.ArminMeetingBaseCampUnderAttack
-        };
 
-        // Action: heal player for gold
-        var healNode = new DialogueNode
+        DialogueNode Intro(Func<string> textFactory) => new DialogueNode { Text = textFactory };
+
+        void AddStandardOptions(DialogueNode node, DialogueNode heal, DialogueNode repair, DialogueNode? goodbyeNext = null)
         {
-            Text = () => $"I can patch you up for {healCost} gold. You will recover up to +{healAmount} HP."
-        };
-        healNode.Options.Add(new DialogueOption
-        {
-            Label = "Pay and heal",
-            Action = () =>
-            {
-                if (player.Gold < healCost) return "You do not have enough gold.";
-                if (player.LifePoint >= player.MaxLifePoint) return "You are already at full health.";
-
-                player.Gold -= healCost;
-                int before = player.LifePoint;
-                player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + healAmount);
-                int healed = player.LifePoint - before;
-                return $"Healed {healed} HP for {healCost} gold.";
-            },
-            Next = returningIntro
-        });
-        healNode.Options.Add(new DialogueOption { Label = "Maybe later.", Next = returningIntro });
-
-        // Action: repair base for gold
-        var repairNode = new DialogueNode
-        {
-            Text = () =>
-            {
-                if (baseCamp == null) return Messages.NothingToRepair;
-                int missing = baseCamp.MaxHp - baseCamp.Hp;
-                return missing <= 0
-                    ? Messages.TheCampIsAlreadyFullyRepair
-                    : $"I can repair the camp for {repairCost} gold (+{repairAmount} HP).";
-            }
-        };
-        repairNode.Options.Add(new DialogueOption
-        {
-            Label = Messages.PayAndRepair,
-            Action = () =>
-            {
-                if (baseCamp == null) return Messages.NoCampToRepair;
-                if (baseCamp.Hp >= baseCamp.MaxHp) return Messages.NoCampToRepair;
-                if (player.Gold < repairCost) return Messages.NotEnoughGold;
-
-                player.Gold -= repairCost;
-                int before = baseCamp.Hp;
-                baseCamp.Hp += Math.Min(baseCamp.MaxHp, repairAmount); // negative damage = repair
-                int repaired = baseCamp.Hp - before;
-                return $"Repaired camp for +{repaired} HP (cost {repairCost} gold).";
-            },
-            Next = returningIntro
-        });
-        repairNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = returningIntro });
-
-        // First intro options
-        firstIntro.Options.Add(new DialogueOption { Label = Messages.CanYouHealMe, Next = healNode });
-        firstIntro.Options.Add(new DialogueOption { Label = Messages.CanYouRepairTheCamp, Next = repairNode });
-        firstIntro.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = null });
-
-        // Returning intro options (slightly different flavor)
-        returningIntro.Options.Add(new DialogueOption { Label = Messages.NeedHealing, Next = healNode });
-        returningIntro.Options.Add(new DialogueOption { Label = Messages.RepairTheCamp, Next = repairNode });
-        returningIntro.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = null });
-
-        // Choose the proper root depending on NPC memory
-        if (npc.HasMet)
-        {
-            if (player.GetLifeRatio() <= 0.2)
-            {
-                npc.Root = playerLowLifeIntro;
-            }
-            else if (player.Gold > 1000)
-            {
-                npc.Root = playerRichIntro;
-            }
-            else if (player.Steps <= 370)
-            {
-                npc.Root = returningIntro;
-            }
-            else if (player.Steps > 370 && player.Steps < 500)
-            {
-                npc.Root = firstBossComingIntro;
-            }
-            else if (player.Steps >= 500 && level.Enemies.Any(e => e is Boss))
-            {
-                npc.Root = firstBossHereIntro;
-            }
-            else if (player.Steps >= 500 && !level.Enemies.Any(e => e is Boss))
-            {
-                npc.Root = firstBossDefeatedIntro;
-            }
-            else
-            {
-                npc.Root = returningIntro;
-            }
+            node.Options.Add(new DialogueOption { Label = Messages.NeedHealing, Next = heal });
+            node.Options.Add(new DialogueOption { Label = Messages.RepairTheCamp, Next = repair });
+            node.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = goodbyeNext });
         }
-        else // First time meeting
+
+        DialogueNode MakeHealNode(DialogueNode backNode)
         {
-            npc.Root = firstIntro;
+            var healNode = new DialogueNode
+            {
+                Text = () => string.Format(Messages.ArminHealPitch, healCost, healAmount)
+            };
+
+            healNode.Options.Add(new DialogueOption
+            {
+                Label = Messages.PayAndHeal,
+                Action = () =>
+                {
+                    if (player.Gold < healCost) return Messages.NotEnoughGold;
+                    if (player.LifePoint >= player.MaxLifePoint) return Messages.AlreadyFullHealth;
+
+                    player.Gold -= healCost;
+                    int before = player.LifePoint;
+                    player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + healAmount);
+                    int healed = player.LifePoint - before;
+                    return string.Format(Messages.HealedHpForGold, healed, healCost);
+                },
+                Next = backNode
+            });
+
+            healNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = backNode });
+            return healNode;
         }
+
+        DialogueNode MakeRepairNode(DialogueNode backNode)
+        {
+            var repairNode = new DialogueNode
+            {
+                Text = () =>
+                {
+                    if (baseCamp is null) return Messages.NothingToRepair;
+                    int missing = baseCamp.MaxHp - baseCamp.Hp;
+                    return missing <= 0
+                        ? Messages.TheCampIsAlreadyFullyRepair
+                        : string.Format(Messages.ArminRepairPitch, repairCost, repairAmount);
+                }
+            };
+
+            repairNode.Options.Add(new DialogueOption
+            {
+                Label = Messages.PayAndRepair,
+                Action = () =>
+                {
+                    if (baseCamp is null) return Messages.NoCampToRepair;
+                    if (baseCamp.Hp >= baseCamp.MaxHp) return Messages.NoCampToRepair;
+                    if (player.Gold < repairCost) return Messages.NotEnoughGold;
+
+                    player.Gold -= repairCost;
+                    int before = baseCamp.Hp;
+                    baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + repairAmount); // clamp correct
+                    int repaired = baseCamp.Hp - before;
+                    return string.Format(Messages.RepairedCampForHpCost, repaired, repairCost);
+                },
+                Next = backNode
+            });
+
+            repairNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = backNode });
+            return repairNode;
+        }
+
+        // Nodes
+        var firstIntro = Intro(() => Messages.ArminFirstMeeting);
+        var returningIntro = Intro(() => Messages.ArminMeeting);
+        var firstBossComingIntro = Intro(() => Messages.ArminMeetingFirstBossComing);
+        var firstBossHereIntro = Intro(() => Messages.ArminMeetingFirstBossHere);
+        var firstBossDefeatedIntro = Intro(() => Messages.ArminMeetingFirstBossDefeated);
+        var playerLowLifeIntro = Intro(() => Messages.ArminMeetingPlayerLowLife);
+        var playerRichIntro = Intro(() => Messages.ArminMeetingPlayerRich);
+        var baseCampUnderAttackIntro = Intro(() => Messages.ArminMeetingBaseCampUnderAttack);
+
+        DialogueNode PickRoot()
+        {
+            if (!npc.HasMet) return firstIntro;
+
+            // Priorités de contexte (ex. low life > rich > boss states > default)
+            if (baseCamp != null && level.IsBaseCampUnderAttack()) return baseCampUnderAttackIntro;
+            if (player.GetLifeRatio() <= 0.20) return playerLowLifeIntro;
+            if (player.Gold > 1000) return playerRichIntro;
+
+            // Étapes/boss
+            if (steps <= 370) return returningIntro;
+            if (steps is > 370 and < 500) return firstBossComingIntro;
+            if (steps >= 500 && hasBoss) return firstBossHereIntro;
+            if (steps >= 500 && !hasBoss) return firstBossDefeatedIntro;
+
+            return returningIntro;
+        }
+
+        // Les nœuds d’action doivent renvoyer vers leur "écran" d’origine
+        // On fabrique d’abord les intros, puis on crée les nœuds d’action en les pointant vers returningIntro
+        var healNode = MakeHealNode(returningIntro);
+        var repairNode = MakeRepairNode(returningIntro);
+
+        // Ajout des 3 mêmes options à tous les écrans d’intro
+        AddStandardOptions(firstIntro, healNode, repairNode);
+        AddStandardOptions(returningIntro, healNode, repairNode);
+        AddStandardOptions(firstBossComingIntro, healNode, repairNode);
+        AddStandardOptions(firstBossHereIntro, healNode, repairNode);
+        AddStandardOptions(firstBossDefeatedIntro, healNode, repairNode);
+        AddStandardOptions(playerLowLifeIntro, healNode, repairNode);
+        AddStandardOptions(playerRichIntro, healNode, repairNode);
+        AddStandardOptions(baseCampUnderAttackIntro, healNode, repairNode);
+
+        // Finale selection
+        npc.Root = PickRoot();
     }
 }
-

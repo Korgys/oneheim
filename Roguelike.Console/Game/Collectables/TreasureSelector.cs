@@ -3,6 +3,7 @@
 using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public static class TreasureSelector
@@ -132,18 +133,20 @@ public static class TreasureSelector
     public static Treasure PromptPlayerForBonus(List<Treasure> choices, Player player, GameSettings settings)
     {
         Console.Clear();
-        Console.WriteLine($"HP: {player.LifePoint}/{player.MaxLifePoint} | Strengh: {player.Strength} | Armor: {player.Armor} | Speed: {player.Speed} | Vision: {player.Vision}");
+        Console.WriteLine($"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} | " +
+            $"{Messages.Strength}: {player.Strength} | {Messages.Armor}: {player.Armor} | " +
+            $"{Messages.Speed}: {player.Speed} | {Messages.Vision}: {player.Vision}");
         Console.WriteLine();
 
         if (player.Inventory.Any())
         {
-            Console.WriteLine("Inventory:");
+            Console.WriteLine($"{Messages.Inventory}:");
             foreach (var item in player.Inventory)
                 Console.WriteLine($"- {item.Name} ({item.EffectDescription})");
             Console.WriteLine();
         }
 
-        Console.WriteLine("You found a treasure! Choose your bonus:");
+        Console.WriteLine(Messages.YouFoundATreasureChooseABonus);
 
         var keys = new List<string> { settings.Controls.Choice1, settings.Controls.Choice2, settings.Controls.Choice3 };
         for (int i = 0; i < choices.Count; i++)
@@ -151,7 +154,7 @@ public static class TreasureSelector
             var b = choices[i];
             string desc = b.Type == BonusType.Item
                 ? FormatItemDescription((ItemId)b.Value, player)
-                : $"+{b.Value} {b.Type}";
+                : $"+{b.Value} {Messages.ResourceManager.GetString(b.Type.ToString()) ?? b.Type.ToString()}";
             Console.WriteLine($"{keys[i]}. {desc}");
         }
 
@@ -195,7 +198,7 @@ public static class TreasureSelector
     {
         int healed = Math.Min(player.MaxLifePoint - player.LifePoint, value);
         player.LifePoint += healed;
-        return $"+{healed} HP";
+        return $"+{healed} {Messages.HP}";
     }
 
     private static string ApplyMaxLifePointBonus(Player player, int value)
@@ -208,7 +211,7 @@ public static class TreasureSelector
             player.LifePoint += value;
         }
 
-        return $"+{value} Max HP";
+        return $"+{value} {Messages.MaxHp}";
     }
 
     private static string ApplyStatBonus(Player player, string statName, int value)
@@ -221,7 +224,9 @@ public static class TreasureSelector
             case nameof(player.Vision): player.Vision += value; break;
         }
 
-        return $"+{value} {statName}";
+        string label = Messages.ResourceManager.GetString(statName) ?? statName; // Translate stat name
+
+        return $"+{value} {label}";
     }
 
     private static string ApplyItemBonus(Player player, GameSettings settings, ItemId itemId)

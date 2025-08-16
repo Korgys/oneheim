@@ -32,21 +32,21 @@ public sealed class WaveAndFogSystem : ITurnSystem
             {
                 level.PlaceBoss();
                 player.SetPlayerVisionAfterFogArrival();
-                LastMessage = "A boss arrives";
+                LastMessage = Messages.ABossArrives;
             }
             else
             {
                 level.PlaceEnemies(ctx.Difficulty.GetEnemiesNumber());
                 level.PlaceTreasures(ctx.Difficulty.GetTreasuresNumber());
                 player.SetPlayerVisionAfterFogArrival();
-                LastMessage = "The fog intensifies. New enemies and treasures have appeared!";
+                LastMessage = Messages.TheFogIntensifies;
             }
         }
 
         // Endgame condition
         if (player.Steps > 1000 && !level.Enemies.Any(e => e is Boss))
         {
-            LastMessage = "You defeated all bosses. Now it's peaceful. Thanks for playing!";
+            LastMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
         }
     }
 }

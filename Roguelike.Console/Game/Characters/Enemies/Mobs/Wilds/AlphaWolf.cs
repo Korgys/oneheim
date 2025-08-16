@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
 
 public class AlphaWolf : Enemy
 {
@@ -7,10 +9,10 @@ public class AlphaWolf : Enemy
         LifePoint = (12 + _random.Next(0, 4)) * level + (level - 1);
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (10 + _random.Next(0, 4)) * level + (level - 1);
+        Strength = (12 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (12 + _random.Next(0, 4)) * level + (level - 1);
         Vision = 4; // Wolves have a good vision range
-        Name = "Alpha Wolf";
+        Name = Messages.AlphaWolf;
         Category = EnemyType.Wild;
         StepsPerTurn = 2; // move really fast
     }

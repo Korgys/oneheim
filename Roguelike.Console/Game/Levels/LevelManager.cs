@@ -2,10 +2,12 @@
 
 using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies;
+using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Characters.NPCs;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Structures;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public class LevelManager
@@ -30,57 +32,43 @@ public class LevelManager
         InitializeLevel();
     }
 
-    private void InitializeLevel()
+    public bool IsBaseCampUnderAttack()
     {
-        InitializeGrid();
-        PlacePayer();
-        PlaceBaseCamp();
-        PlaceNpcs();
-        PlaceTreasures(_difficultyManager.GetTreasuresNumber() + 4);
-        // Enemies only appears after 6 steps in the game events GameEngine
-    }
+        var baseCamp = Structures.FirstOrDefault(s => s.Name == "Base Camp");
+        if (baseCamp == null) return false;
 
-    private void InitializeGrid()
-    {
-        for (int y = 0; y < GridHeight; y++)
+        // Collect walls once
+        var walls = baseCamp.WallTiles().ToArray();
+        if (walls.Length == 0) return false;
+
+        int attackers = 0;
+        bool bossAdjacent = false;
+
+        foreach (var e in Enemies)
         {
-            for (int x = 0; x < GridWidth; x++)
+            // Ignore enemies that are inside the structure
+            if (baseCamp.IsInterior(e.X, e.Y)) continue;
+
+            // Adjacent to any wall tile? (4-neighborhood)
+            for (int i = 0; i < walls.Length; i++)
             {
-                Grid[y, x] = '.';
+                var w = walls[i];
+                if (Math.Abs(e.X - w.x) + Math.Abs(e.Y - w.y) == 1)
+                {
+                    attackers++;
+                    if (e is Boss) bossAdjacent = true;
+                    break;
+                }
             }
         }
 
-        for (int x = 0; x < GridWidth; x++)
-        {
-            Grid[0, x] = '=';
-            Grid[GridHeight - 1, x] = '=';
-        }
-
-        for (int y = 0; y < GridHeight; y++)
-        {
-            Grid[y, 0] = '=';
-            Grid[y, GridWidth - 1] = '=';
-        }
+        // Rule: at least 3 attackers or any boss adjacent
+        return attackers >= 3 || bossAdjacent;
     }
 
-    /// <summary>
-    /// Place a player a the center
-    /// </summary>
-    public void PlacePayer()
+    public void PlaceNpc(NpcId npcId, int x, int y)
     {
-        Player = PlayerFactory.CreatePlayer(GridWidth / 2, GridHeight / 2);
-    }
-
-    public void PlaceBaseCamp()
-    {
-        // Place base camp somewhere safe (adjust the position to the map)
-        var baseCamp = BaseCampFactory.CreateBaseCamp((GridWidth / 2) - 4, (GridHeight / 2) - 3, 1000);
-        Structures.Add(baseCamp);
-    }
-
-    public void PlaceNpcs()
-    {
-        Npcs.Add(NpcFactory.CreateNpc(NpcId.Armin, GridWidth / 2 + 1, GridHeight / 2 - 2));
+        Npcs.Add(NpcFactory.CreateNpc(npcId, x, y));
     }
 
     public void PlaceTreasures(int count)
@@ -151,6 +139,57 @@ public class LevelManager
 
         var boss = EnemyFactory.CreateFromBag(bossBagProbability, x, y, level);
         Enemies.Add(boss);
+    }
+
+    /// <summary>
+    /// Initialize the level with grid, structures, npcs, treasures, player, etc.
+    /// </summary>
+    private void InitializeLevel()
+    {
+        InitializeGrid();
+        PlacePayer();
+        PlaceBaseCamp();
+        PlaceNpc(NpcId.Armin, GridWidth / 2 + 1, GridHeight / 2 - 2);
+        PlaceTreasures(_difficultyManager.GetTreasuresNumber() + 4);
+        // Enemies only appears after 6 steps in the game events GameEngine
+    }
+
+    private void InitializeGrid()
+    {
+        for (int y = 0; y < GridHeight; y++)
+        {
+            for (int x = 0; x < GridWidth; x++)
+            {
+                Grid[y, x] = '.';
+            }
+        }
+
+        for (int x = 0; x < GridWidth; x++)
+        {
+            Grid[0, x] = '=';
+            Grid[GridHeight - 1, x] = '=';
+        }
+
+        for (int y = 0; y < GridHeight; y++)
+        {
+            Grid[y, 0] = '=';
+            Grid[y, GridWidth - 1] = '=';
+        }
+    }
+
+    /// <summary>
+    /// Place a player a the center
+    /// </summary>
+    private void PlacePayer()
+    {
+        Player = PlayerFactory.CreatePlayer(GridWidth / 2, GridHeight / 2);
+    }
+
+    private void PlaceBaseCamp()
+    {
+        // Place base camp somewhere safe (adjust the position to the map)
+        var baseCamp = BaseCampFactory.CreateBaseCamp((GridWidth / 2) - 4, (GridHeight / 2) - 3, 1000);
+        Structures.Add(baseCamp);
     }
 
     /// <summary>

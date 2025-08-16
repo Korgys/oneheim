@@ -1,4 +1,5 @@
 ﻿using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Properties.i18n;
 
 namespace Roguelike.Console.Game.Characters.Enemies.Bosses;
 
@@ -12,7 +13,7 @@ public class Lich : Boss
         Strength = 18 * level;
         Speed = 18 * level;
         Vision = 30; // Boss vision range
-        Name = "The Elder Lich";
+        Name = Messages.TheElderLich;
         Category = EnemyType.Undead;
         Inventory = new List<Item>
         {

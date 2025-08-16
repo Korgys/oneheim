@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Collectables.Items;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Collectables.Items;
 
 public class ItemFactory
 {
@@ -9,40 +11,40 @@ public class ItemFactory
             ItemId.DaggerLifeSteal => new Item
             {
                 Id = id,
-                Name = "Dagger of life steal",
-                Effect = "60% chances to steal up to {0} life points from the enemy on hit.",
+                Name = Messages.DaggerOfLifeSteal,
+                Effect = Messages.DaggerOfLifeStealDescription,
                 Value = 1,
                 UpgradableIncrementValue = 1
             },
             ItemId.CapeOfInvisibility => new Item
             {
                 Id = id,
-                Name = "Cape Of Invisibility",
-                Effect = "Decrease by {0} enemies vision range",
+                Name = Messages.CapeOfInvisibility,
+                Effect = Messages.CapeOfInvisibilityDescription,
                 Value = 1,
                 UpgradableIncrementValue = 1
             },
             ItemId.GlassesOfClairvoyance => new Item
             {
                 Id = id,
-                Name = "Glasses of Clairvoyance",
-                Effect = "Your vision range cannot go below {0}",
+                Name = Messages.GlassesOfClairvoyance,
+                Effect = Messages.GlassesOfClairvoyanceDescription,
                 Value = 1,
                 UpgradableIncrementValue = 1
             },
             ItemId.BootsOfEchoStep => new Item
             {
                 Id = id,
-                Name = "Boots of Echo Step",
-                Effect = "Dodge increased by {0}% if your faster than you opponent",
+                Name = Messages.BootsOfEchoStep,
+                Effect = Messages.BootsOfEchoStepDescription,
                 Value = 5,
                 UpgradableIncrementValue = 5
             },
             ItemId.TalismanOfTheLastBreath => new Item
             {
                 Id = id,
-                Name = "Talisman of the Last Breath",
-                Effect = "Survive only once to fatal blow",
+                Name = Messages.TalismanOfTheLastBreath,
+                Effect = Messages.TalismanOfTheLastBreathDescription,
                 Value = 1,
                 UpgradableIncrementValue = 0,
                 Rarity = ItemRarity.Rare
@@ -50,64 +52,64 @@ public class ItemFactory
             ItemId.ThornBreastplate => new Item
             {
                 Id = id,
-                Name = "Thorn Breastplate",
-                Effect = "60% chances that enemies take {0} damage if they hit you",
+                Name = Messages.ThornBreastplate,
+                Effect = Messages.ThornBreastplateDescription,
                 Value = 1,
                 UpgradableIncrementValue = 1
             },
             ItemId.FeathersOfHope => new Item
             {
                 Id = id,
-                Name = "Feathers Of Hope",
-                Effect = "Gain {0}% HP on dodge",
+                Name = Messages.FeathersOfHope,
+                Effect = Messages.FeathersOfHopeDescription,
                 Value = 1,
                 UpgradableIncrementValue = 1
             },
             ItemId.RoyalGuardGauntlet => new Item
             {
                 Id = id,
-                Name = "Royal Guard Gauntlet",
-                Effect = "+{0}% critical chance",
+                Name = Messages.RoyalGuardGauntlet,
+                Effect = Messages.RoyalGuardGauntletDescription,
                 Value = 2,
                 UpgradableIncrementValue = 1
             },
             ItemId.RoyalGuardShield => new Item
             {
                 Id = id,
-                Name = "Royal Guard Shield",
-                Effect = "Reduce enemies critical chance by {0}%",
+                Name = Messages.RoyalGuardShield,
+                Effect = Messages.RoyalGuardShieldDescription,
                 Value = 3,
                 UpgradableIncrementValue = 1
             },
             ItemId.BerserkerNecklace => new Item
             {
                 Id = id,
-                Name = "Berserker Necklace",
-                Effect = "+{0}% critical damage",
+                Name = Messages.BerserkerNecklace,
+                Effect = Messages.BerserkerNecklaceDescription,
                 Value = 15,
                 UpgradableIncrementValue = 5
             },
             ItemId.PaladinNecklace => new Item
             {
                 Id = id,
-                Name = "Paladin Necklace",
-                Effect = "Reduce enemies critical chance by {0}%",
+                Name = Messages.PaladinNecklace,
+                Effect = Messages.PaladinNecklaceDescription,
                 Value = 20,
                 UpgradableIncrementValue = 5
             },
             ItemId.HolyBible => new Item
             {
                 Id = id,
-                Name = "Holy Bible",
-                Effect = "Reduce undead strengh by {0}",
+                Name = Messages.HolyBible,
+                Effect = Messages.HolyBibleDescription,
                 Value = 3,
                 UpgradableIncrementValue = 3
             },
             ItemId.SacredCrucifix => new Item
             {
                 Id = id,
-                Name = "Sacred Crucifix",
-                Effect = "Reduce undead armor by {0}",
+                Name = Messages.SacredCrucifix,
+                Effect = Messages.SacredCrucifixDescription,
                 Value = 3,
                 UpgradableIncrementValue = 3
             },

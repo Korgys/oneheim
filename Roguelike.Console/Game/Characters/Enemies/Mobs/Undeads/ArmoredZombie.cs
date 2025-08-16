@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
 
 public class ArmoredZombie : Enemy
 {
@@ -10,7 +12,7 @@ public class ArmoredZombie : Enemy
         Strength = (7 + _random.Next(0, 3)) * level + (level - 1); // Lvl1: 6-8, Lvl2: 12-16, Lvl3: 18-24
         Speed = 3 * level + (level - 1); // Zombies are slow
         Vision = 2; // Limited vision range
-        Name = "Armored Zombie";
+        Name = Messages.ArmoredZombie;
         Category = EnemyType.Undead;
     }
 }

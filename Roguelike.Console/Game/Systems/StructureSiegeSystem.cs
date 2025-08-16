@@ -1,6 +1,7 @@
 ﻿using Roguelike.Console.Game.Characters.Enemies;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Levels;
+using Roguelike.Console.Properties.i18n;
 
 namespace Roguelike.Console.Game.Systems;
 
@@ -19,7 +20,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
         _lastAttackers.Clear();
 
         var level = ctx.Level;
-        var structure = level.Structures.FirstOrDefault(s => s.Name == "Base Camp");
+        var structure = level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (structure == null) return;
 
         // Collect attackers (adjacent to walls, not inside)
@@ -40,12 +41,12 @@ public sealed class StructureSiegeSystem : ITurnSystem
             if (structure.Hp <= 0)
             {
                 level.Structures.Remove(structure);
-                LastMessage = $"{structure.Name} has been destroyed!";
+                LastMessage = string.Format(Messages.HasBeenDestroy, structure.Name);
                 _lastAttackers.Clear();
             }
             else
             {
-                LastMessage = $"{structure.Name} is under attack! HP:{structure.Hp}/{structure.MaxHp}";
+                LastMessage = string.Format(Messages.StructureUnderAttack, structure.Name, structure.Hp, structure.MaxHp);
             }
         }
     }

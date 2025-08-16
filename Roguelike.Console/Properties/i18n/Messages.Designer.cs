@@ -70,11 +70,56 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Alpha Wolf.
+        /// </summary>
+        internal static string AlphaWolf {
+            get {
+                return ResourceManager.GetString("AlphaWolf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You are already full life.
+        /// </summary>
+        internal static string AlreadyFullHealth {
+            get {
+                return ResourceManager.GetString("AlreadyFullHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à and.
+        /// </summary>
+        internal static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à and takes {0} thorns damage.
+        /// </summary>
+        internal static string AndTakeThornsDamage {
+            get {
+                return ResourceManager.GetString("AndTakeThornsDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step..
         /// </summary>
         internal static string ArminFirstMeeting {
             get {
                 return ResourceManager.GetString("ArminFirstMeeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à I can patch you up for {0} gold. You will recover up to +{1} HP..
+        /// </summary>
+        internal static string ArminHealPitch {
+            get {
+                return ResourceManager.GetString("ArminHealPitch", resourceCulture);
             }
         }
         
@@ -142,6 +187,42 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à I can repair the camp for {0} gold (+{1} HP)..
+        /// </summary>
+        internal static string ArminRepairPitch {
+            get {
+                return ResourceManager.GetString("ArminRepairPitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Armor.
+        /// </summary>
+        internal static string Armor {
+            get {
+                return ResourceManager.GetString("Armor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Armored Zombie.
+        /// </summary>
+        internal static string ArmoredZombie {
+            get {
+                return ResourceManager.GetString("ArmoredZombie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Base Camp.
+        /// </summary>
+        internal static string BaseCamp {
+            get {
+                return ResourceManager.GetString("BaseCamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Base Camp HP: .
         /// </summary>
         internal static string BaseCampHp {
@@ -156,6 +237,42 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string BeCarefullYouAreNotSafeHere {
             get {
                 return ResourceManager.GetString("BeCarefullYouAreNotSafeHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Berserker Necklace.
+        /// </summary>
+        internal static string BerserkerNecklace {
+            get {
+                return ResourceManager.GetString("BerserkerNecklace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}% critical damage.
+        /// </summary>
+        internal static string BerserkerNecklaceDescription {
+            get {
+                return ResourceManager.GetString("BerserkerNecklaceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Boots of Echo Step.
+        /// </summary>
+        internal static string BootsOfEchoStep {
+            get {
+                return ResourceManager.GetString("BootsOfEchoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dodge increased by {0}% if your faster than you opponent.
+        /// </summary>
+        internal static string BootsOfEchoStepDescription {
+            get {
+                return ResourceManager.GetString("BootsOfEchoStepDescription", resourceCulture);
             }
         }
         
@@ -187,11 +304,146 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cape Of Invisibility.
+        /// </summary>
+        internal static string CapeOfInvisibility {
+            get {
+                return ResourceManager.GetString("CapeOfInvisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Decrease by {0} enemies vision range.
+        /// </summary>
+        internal static string CapeOfInvisibilityDescription {
+            get {
+                return ResourceManager.GetString("CapeOfInvisibilityDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choices.
+        /// </summary>
+        internal static string Choices {
+            get {
+                return ResourceManager.GetString("Choices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Combat occurred!.
+        /// </summary>
+        internal static string CombatOccurred {
+            get {
+                return ResourceManager.GetString("CombatOccurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dagger of life steal.
+        /// </summary>
+        internal static string DaggerOfLifeSteal {
+            get {
+                return ResourceManager.GetString("DaggerOfLifeSteal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 60% chances to steal up to {0} life points from the enemy on hit..
+        /// </summary>
+        internal static string DaggerOfLifeStealDescription {
+            get {
+                return ResourceManager.GetString("DaggerOfLifeStealDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dropped.
+        /// </summary>
+        internal static string Dropped {
+            get {
+                return ResourceManager.GetString("Dropped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enemy defeated!.
+        /// </summary>
+        internal static string EnemyDefeated {
+            get {
+                return ResourceManager.GetString("EnemyDefeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Feathers Of Hope.
+        /// </summary>
+        internal static string FeathersOfHope {
+            get {
+                return ResourceManager.GetString("FeathersOfHope", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Gain {0}% HP on dodge.
+        /// </summary>
+        internal static string FeathersOfHopeDescription {
+            get {
+                return ResourceManager.GetString("FeathersOfHopeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fight !.
+        /// </summary>
+        internal static string Fight {
+            get {
+                return ResourceManager.GetString("Fight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Found item: {0} – {1}.
+        /// </summary>
+        internal static string FoundItem {
+            get {
+                return ResourceManager.GetString("FoundItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Game Over! Press Enter to exit..
         /// </summary>
         internal static string GameOverPressEnterToExit {
             get {
                 return ResourceManager.GetString("GameOverPressEnterToExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Glasses of Clairvoyance.
+        /// </summary>
+        internal static string GlassesOfClairvoyance {
+            get {
+                return ResourceManager.GetString("GlassesOfClairvoyance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Your vision range cannot go below {0}.
+        /// </summary>
+        internal static string GlassesOfClairvoyanceDescription {
+            get {
+                return ResourceManager.GetString("GlassesOfClairvoyanceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Gold.
+        /// </summary>
+        internal static string Gold {
+            get {
+                return ResourceManager.GetString("Gold", resourceCulture);
             }
         }
         
@@ -205,11 +457,119 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} has been destroyed!.
+        /// </summary>
+        internal static string HasBeenDestroy {
+            get {
+                return ResourceManager.GetString("HasBeenDestroy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Healed {0} HP for {1} gold..
+        /// </summary>
+        internal static string HealedHpForGold {
+            get {
+                return ResourceManager.GetString("HealedHpForGold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Holy Bible.
+        /// </summary>
+        internal static string HolyBible {
+            get {
+                return ResourceManager.GetString("HolyBible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce undead strengh by {0}.
+        /// </summary>
+        internal static string HolyBibleDescription {
+            get {
+                return ResourceManager.GetString("HolyBibleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à HP.
+        /// </summary>
+        internal static string HP {
+            get {
+                return ResourceManager.GetString("HP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventory.
+        /// </summary>
+        internal static string Inventory {
+            get {
+                return ResourceManager.GetString("Inventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventory full. Choose item to drop:.
+        /// </summary>
+        internal static string InventoryFull {
+            get {
+                return ResourceManager.GetString("InventoryFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Keep current inventory.
+        /// </summary>
+        internal static string KeepCurrentInventory {
+            get {
+                return ResourceManager.GetString("KeepCurrentInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Legless Zombie.
+        /// </summary>
+        internal static string LeglessZombie {
+            get {
+                return ResourceManager.GetString("LeglessZombie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Max HP.
+        /// </summary>
+        internal static string MaxHp {
+            get {
+                return ResourceManager.GetString("MaxHp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à MaxLifePoint.
+        /// </summary>
+        internal static string MaxLifePoint {
+            get {
+                return ResourceManager.GetString("MaxLifePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Maybe later..
         /// </summary>
         internal static string MaybeLater {
             get {
                 return ResourceManager.GetString("MaybeLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Move.
+        /// </summary>
+        internal static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
             }
         }
         
@@ -250,11 +610,83 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Paladin Necklace.
+        /// </summary>
+        internal static string PaladinNecklace {
+            get {
+                return ResourceManager.GetString("PaladinNecklace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce enemies critical damage by {0}%.
+        /// </summary>
+        internal static string PaladinNecklaceDescription {
+            get {
+                return ResourceManager.GetString("PaladinNecklaceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pay and heal.
+        /// </summary>
+        internal static string PayAndHeal {
+            get {
+                return ResourceManager.GetString("PayAndHeal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Pay and repair.
         /// </summary>
         internal static string PayAndRepair {
             get {
                 return ResourceManager.GetString("PayAndRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à picked.
+        /// </summary>
+        internal static string Picked {
+            get {
+                return ResourceManager.GetString("Picked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Plague Ghoul.
+        /// </summary>
+        internal static string PlagueGhoul {
+            get {
+                return ResourceManager.GetString("PlagueGhoul", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Press any key to continue....
+        /// </summary>
+        internal static string PressAnyKeyToContinue {
+            get {
+                return ResourceManager.GetString("PressAnyKeyToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Quit.
+        /// </summary>
+        internal static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Repaired camp for +{0} HP (cost {1} gold)..
+        /// </summary>
+        internal static string RepairedCampForHpCost {
+            get {
+                return ResourceManager.GetString("RepairedCampForHpCost", resourceCulture);
             }
         }
         
@@ -268,11 +700,155 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Revenant.
+        /// </summary>
+        internal static string Revenant {
+            get {
+                return ResourceManager.GetString("Revenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rewards :.
+        /// </summary>
+        internal static string Rewards {
+            get {
+                return ResourceManager.GetString("Rewards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Royal Guard Gauntlet.
+        /// </summary>
+        internal static string RoyalGuardGauntlet {
+            get {
+                return ResourceManager.GetString("RoyalGuardGauntlet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}% critical chance.
+        /// </summary>
+        internal static string RoyalGuardGauntletDescription {
+            get {
+                return ResourceManager.GetString("RoyalGuardGauntletDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Royal Guard Shield.
+        /// </summary>
+        internal static string RoyalGuardShield {
+            get {
+                return ResourceManager.GetString("RoyalGuardShield", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce enemies critical chance by {0}%.
+        /// </summary>
+        internal static string RoyalGuardShieldDescription {
+            get {
+                return ResourceManager.GetString("RoyalGuardShieldDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sacred Crucifix.
+        /// </summary>
+        internal static string SacredCrucifix {
+            get {
+                return ResourceManager.GetString("SacredCrucifix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce undead armor by {0}.
+        /// </summary>
+        internal static string SacredCrucifixDescription {
+            get {
+                return ResourceManager.GetString("SacredCrucifixDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à shred {0} armor.
+        /// </summary>
+        internal static string ShredArmor {
+            get {
+                return ResourceManager.GetString("ShredArmor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Speed.
+        /// </summary>
+        internal static string Speed {
+            get {
+                return ResourceManager.GetString("Speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Spider Nest.
+        /// </summary>
+        internal static string SpiderNest {
+            get {
+                return ResourceManager.GetString("SpiderNest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à steal {0} HP.
+        /// </summary>
+        internal static string StealHp {
+            get {
+                return ResourceManager.GetString("StealHp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Steps: {0} | Lvl: {1}.
         /// </summary>
         internal static string StepAndLevel {
             get {
                 return ResourceManager.GetString("StepAndLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Strength.
+        /// </summary>
+        internal static string Strength {
+            get {
+                return ResourceManager.GetString("Strength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} is under attack! HP:{1}/{2}.
+        /// </summary>
+        internal static string StructureUnderAttack {
+            get {
+                return ResourceManager.GetString("StructureUnderAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Talisman Of The Last Breath‎.
+        /// </summary>
+        internal static string TalismanOfTheLastBreath {
+            get {
+                return ResourceManager.GetString("TalismanOfTheLastBreath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Survive only once to fatal blow.
+        /// </summary>
+        internal static string TalismanOfTheLastBreathDescription {
+            get {
+                return ResourceManager.GetString("TalismanOfTheLastBreathDescription", resourceCulture);
             }
         }
         
@@ -286,11 +862,29 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The Elder Lich.
+        /// </summary>
+        internal static string TheElderLich {
+            get {
+                return ResourceManager.GetString("TheElderLich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The End! Press Enter to exit..
         /// </summary>
         internal static string TheEndPressEnterToExit {
             get {
                 return ResourceManager.GetString("TheEndPressEnterToExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The enemy deals {0} damage to you.
+        /// </summary>
+        internal static string TheEnemyDealDamageToYou {
+            get {
+                return ResourceManager.GetString("TheEnemyDealDamageToYou", resourceCulture);
             }
         }
         
@@ -313,6 +907,96 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Thorn Breastplate.
+        /// </summary>
+        internal static string ThornBreastplate {
+            get {
+                return ResourceManager.GetString("ThornBreastplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 60% chances that enemies take {0} damage if they hit you.
+        /// </summary>
+        internal static string ThornBreastplateDescription {
+            get {
+                return ResourceManager.GetString("ThornBreastplateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Upgraded {0} to value {1}.
+        /// </summary>
+        internal static string UpgradedItemTo {
+            get {
+                return ResourceManager.GetString("UpgradedItemTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vision.
+        /// </summary>
+        internal static string Vision {
+            get {
+                return ResourceManager.GetString("Vision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Werewolf.
+        /// </summary>
+        internal static string Werewolf {
+            get {
+                return ResourceManager.GetString("Werewolf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Wild Bear.
+        /// </summary>
+        internal static string WildBear {
+            get {
+                return ResourceManager.GetString("WildBear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Wolf.
+        /// </summary>
+        internal static string Wolf {
+            get {
+                return ResourceManager.GetString("Wolf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XP.
+        /// </summary>
+        internal static string XP {
+            get {
+                return ResourceManager.GetString("XP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You already own {0}, not upgradable..
+        /// </summary>
+        internal static string YouAlreadyOwnItemNotUpgradable {
+            get {
+                return ResourceManager.GetString("YouAlreadyOwnItemNotUpgradable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You deal {0} damage.
+        /// </summary>
+        internal static string YouDealDamage {
+            get {
+                return ResourceManager.GetString("YouDealDamage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à You defeated all bosses.
         /// </summary>
         internal static string YouDefeatedAllBosses {
@@ -322,11 +1006,74 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à You defeated all bosses. Now it&apos;s peaceful. Thanks for playing!.
+        /// </summary>
+        internal static string YouDefeatedAllBossesThanksForPlaying {
+            get {
+                return ResourceManager.GetString("YouDefeatedAllBossesThanksForPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You died ....
+        /// </summary>
+        internal static string YouDied {
+            get {
+                return ResourceManager.GetString("YouDied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à You dodged the enemy&apos;s attack!.
         /// </summary>
         internal static string YouDodgedTheEnemyAttack {
             get {
                 return ResourceManager.GetString("YouDodgedTheEnemyAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You dodged the enemy&apos;s attack and gain {0} HP !.
+        /// </summary>
+        internal static string YouDodgedTheEnemyAttackAndGainHp {
+            get {
+                return ResourceManager.GetString("YouDodgedTheEnemyAttackAndGainHp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You found a treasure! Choose your bonus:.
+        /// </summary>
+        internal static string YouFoundATreasureChooseABonus {
+            get {
+                return ResourceManager.GetString("YouFoundATreasureChooseABonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You leveled up to level {0} !.
+        /// </summary>
+        internal static string YouLeveledUp {
+            get {
+                return ResourceManager.GetString("YouLeveledUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You survived a fatal blow with your talisman but it has been destroyed..
+        /// </summary>
+        internal static string YouSurvivedAFatalBlowWithYourTalisman {
+            get {
+                return ResourceManager.GetString("YouSurvivedAFatalBlowWithYourTalisman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You talked with {0}..
+        /// </summary>
+        internal static string YouTalkedWith {
+            get {
+                return ResourceManager.GetString("YouTalkedWith", resourceCulture);
             }
         }
         
@@ -345,6 +1092,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string YouWereKilledBy {
             get {
                 return ResourceManager.GetString("YouWereKilledBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Zombie.
+        /// </summary>
+        internal static string Zombie {
+            get {
+                return ResourceManager.GetString("Zombie", resourceCulture);
             }
         }
     }

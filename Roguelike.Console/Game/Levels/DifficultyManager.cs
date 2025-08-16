@@ -11,6 +11,10 @@ public class DifficultyManager
         DifficultyLevel = difficultyLevel;
     }
 
+    /// <summary>
+    /// Get the number of treasures at each wave.
+    /// </summary>
+    /// <returns></returns>
     public int GetTreasuresNumber()
     {
         switch (DifficultyLevel)
@@ -26,6 +30,10 @@ public class DifficultyManager
         }
     }
 
+    /// <summary>
+    /// Get the number of enemies at each wave.
+    /// </summary>
+    /// <returns></returns>
     public int GetEnemiesNumber()
     {
         switch (DifficultyLevel)

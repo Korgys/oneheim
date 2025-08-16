@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Structures;
+﻿using System.Reflection.Emit;
+
+namespace Roguelike.Console.Game.Structures;
 
 public class Structure
 {
@@ -43,7 +45,6 @@ public class Structure
     public bool Contains(int gx, int gy) => IsWall(gx, gy) || IsInterior(gx, gy);
     public void TakeDamage(int amount) => Hp = Math.Max(0, Hp - Math.Max(0, amount));
     public bool IsSeverelyEndomaged() => (Hp * 100) / MaxHp <= 10;
-
     public IEnumerable<(int x, int y)> WallTiles() => _walls;
 }
 

@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
 
 public class LeglessZombie : Enemy
 {
@@ -10,7 +12,7 @@ public class LeglessZombie : Enemy
         Strength = (3 + _random.Next(0, 2)) * level + (level - 1);
         Speed = 1 * level + (level - 1); // Slowest enemy in the game
         Vision = 1; // Limited vision range
-        Name = "Legless Zombie";
+        Name = Messages.LeglessZombie;
         Category = EnemyType.Undead;
     }
 }

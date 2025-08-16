@@ -101,7 +101,7 @@ public static class ConsoleRenderer
         }
 
         // Display base HP
-        var baseStructure = level.Structures.FirstOrDefault(s => s.Name == "Base Camp");
+        var baseStructure = level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3)
         {
             Console.WriteLine();
@@ -121,9 +121,9 @@ public static class ConsoleRenderer
         {
             // Danger in red
             if (gameMessage.Contains(Messages.BeCarefullYouAreNotSafeHere)
-                || gameMessage.Contains("under attack")
-                || gameMessage.Contains("Base Camp has been destroyed")
-                || gameMessage.Contains("A boss arrives"))
+                || gameMessage.Contains(Messages.StructureUnderAttack)
+                || gameMessage.Contains(string.Format(Messages.HasBeenDestroy, Messages.BaseCamp))
+                || gameMessage.Contains(Messages.ABossArrives))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(gameMessage);
@@ -147,17 +147,17 @@ public static class ConsoleRenderer
 
         // Player info
         Console.Write(string.Format(Messages.StepAndLevel, player.Steps, player.Level));
-        if (player.XP > 0) Console.Write($" | XP: {player.XP}/{player.GetNextLevelXP()}");
-        if (player.Gold > 0) Console.Write($" | Gold: {player.Gold}");
+        if (player.XP > 0) Console.Write($" | {Messages.XP}: {player.XP}/{player.GetNextLevelXP()}");
+        if (player.Gold > 0) Console.Write($" | {Messages.Gold}: {player.Gold}");
         Console.WriteLine();
         Console.WriteLine(
-            $"HP: {player.LifePoint}/{player.MaxLifePoint} | " +
-            $"Strengh: {player.Strength} | Armor: {player.Armor} | " +
-            $"Speed: {player.Speed} | Vision: {player.Vision}");
+            $"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} | " +
+            $"{Messages.Strength}: {player.Strength} | {Messages.Armor}: {player.Armor} | " +
+            $"{Messages.Speed}: {player.Speed} | {Messages.Vision}: {player.Vision}");
 
         if (player.Inventory.Any())
         {
-            Console.WriteLine($"Inventory: {player.Inventory.Count}/{player.MaxInventorySize}");
+            Console.WriteLine($"{Messages.Inventory}: {player.Inventory.Count}/{player.MaxInventorySize}");
             foreach (var item in player.Inventory)
             {
                 ItemManager.WriteColored($"- {item.Name} ({item.EffectDescription})", item.Rarity);
@@ -188,9 +188,9 @@ public static class ConsoleRenderer
             {
                 var keys = settings.Controls;
                 Console.WriteLine(
-                    $"Move: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
-                    $"Choices: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
-                    $"Quit: {keys.Exit}");
+                    $"{Messages.Move}: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
+                    $"{Messages.Choices}: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
+                    $"{Messages.Quit}: {keys.Exit}");
             }
         }
     }

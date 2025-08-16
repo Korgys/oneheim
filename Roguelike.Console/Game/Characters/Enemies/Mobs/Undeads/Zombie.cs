@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
 
 public class Zombie : Enemy
 {
@@ -10,7 +12,7 @@ public class Zombie : Enemy
         Strength = (5 + _random.Next(0, 2)) * level + (level - 1);
         Speed = 2 * level + (level - 1); // Zombies are slow
         Vision = 1; // Limited vision range
-        Name = "Zombie";
+        Name = Messages.Zombie;
         Category = EnemyType.Undead;
     }
 }

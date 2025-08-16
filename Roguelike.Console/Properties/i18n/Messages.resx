@@ -120,8 +120,23 @@
   <data name="ABossArrives" xml:space="preserve">
     <value>A boss arrives</value>
   </data>
+  <data name="AlphaWolf" xml:space="preserve">
+    <value>Alpha Wolf</value>
+  </data>
+  <data name="AlreadyFullHealth" xml:space="preserve">
+    <value>You are already full life</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="AndTakeThornsDamage" xml:space="preserve">
+    <value>and takes {0} thorns damage</value>
+  </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
     <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
+  </data>
+  <data name="ArminHealPitch" xml:space="preserve">
+    <value>I can patch you up for {0} gold. You will recover up to +{1} HP.</value>
   </data>
   <data name="ArminMeeting" xml:space="preserve">
     <value>Back again? The wilds look harsh today. Tell me, friend, what may I do for you?</value>
@@ -144,11 +159,35 @@
   <data name="ArminMeetingPlayerRich" xml:space="preserve">
     <value>That is a heavy purse you carry. May it serve to raise Oneheim anew and kindle fresh hopes.</value>
   </data>
+  <data name="ArminRepairPitch" xml:space="preserve">
+    <value>I can repair the camp for {0} gold (+{1} HP).</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Armor</value>
+  </data>
+  <data name="ArmoredZombie" xml:space="preserve">
+    <value>Armored Zombie</value>
+  </data>
+  <data name="BaseCamp" xml:space="preserve">
+    <value>Base Camp</value>
+  </data>
   <data name="BaseCampHp" xml:space="preserve">
     <value>Base Camp HP: </value>
   </data>
   <data name="BeCarefullYouAreNotSafeHere" xml:space="preserve">
     <value>Be carefull, you are not safe here ...</value>
+  </data>
+  <data name="BerserkerNecklace" xml:space="preserve">
+    <value>Berserker Necklace</value>
+  </data>
+  <data name="BerserkerNecklaceDescription" xml:space="preserve">
+    <value>+{0}% critical damage</value>
+  </data>
+  <data name="BootsOfEchoStep" xml:space="preserve">
+    <value>Boots of Echo Step</value>
+  </data>
+  <data name="BootsOfEchoStepDescription" xml:space="preserve">
+    <value>Dodge increased by {0}% if your faster than you opponent</value>
   </data>
   <data name="CampAlreadyRepair" xml:space="preserve">
     <value>The camp is already in perfect shape.</value>
@@ -159,14 +198,95 @@
   <data name="CanYouRepairTheCamp" xml:space="preserve">
     <value>Can you repair the camp?</value>
   </data>
+  <data name="CapeOfInvisibility" xml:space="preserve">
+    <value>Cape Of Invisibility</value>
+  </data>
+  <data name="CapeOfInvisibilityDescription" xml:space="preserve">
+    <value>Decrease by {0} enemies vision range</value>
+  </data>
+  <data name="Choices" xml:space="preserve">
+    <value>Choices</value>
+  </data>
+  <data name="CombatOccurred" xml:space="preserve">
+    <value>Combat occurred!</value>
+  </data>
+  <data name="DaggerOfLifeSteal" xml:space="preserve">
+    <value>Dagger of life steal</value>
+  </data>
+  <data name="DaggerOfLifeStealDescription" xml:space="preserve">
+    <value>60% chances to steal up to {0} life points from the enemy on hit.</value>
+  </data>
+  <data name="Dropped" xml:space="preserve">
+    <value>Dropped</value>
+  </data>
+  <data name="EnemyDefeated" xml:space="preserve">
+    <value>Enemy defeated!</value>
+  </data>
+  <data name="FeathersOfHope" xml:space="preserve">
+    <value>Feathers Of Hope</value>
+  </data>
+  <data name="FeathersOfHopeDescription" xml:space="preserve">
+    <value>Gain {0}% HP on dodge</value>
+  </data>
+  <data name="Fight" xml:space="preserve">
+    <value>Fight !</value>
+  </data>
+  <data name="FoundItem" xml:space="preserve">
+    <value>Found item: {0} – {1}</value>
+  </data>
   <data name="GameOverPressEnterToExit" xml:space="preserve">
     <value>Game Over! Press Enter to exit.</value>
+  </data>
+  <data name="GlassesOfClairvoyance" xml:space="preserve">
+    <value>Glasses of Clairvoyance</value>
+  </data>
+  <data name="GlassesOfClairvoyanceDescription" xml:space="preserve">
+    <value>Your vision range cannot go below {0}</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Gold</value>
   </data>
   <data name="Goodbye" xml:space="preserve">
     <value>Goodbye.</value>
   </data>
+  <data name="HasBeenDestroy" xml:space="preserve">
+    <value>{0} has been destroyed!</value>
+  </data>
+  <data name="HealedHpForGold" xml:space="preserve">
+    <value>Healed {0} HP for {1} gold.</value>
+  </data>
+  <data name="HolyBible" xml:space="preserve">
+    <value>Holy Bible</value>
+  </data>
+  <data name="HolyBibleDescription" xml:space="preserve">
+    <value>Reduce undead strengh by {0}</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="InventoryFull" xml:space="preserve">
+    <value>Inventory full. Choose item to drop:</value>
+  </data>
+  <data name="KeepCurrentInventory" xml:space="preserve">
+    <value>Keep current inventory</value>
+  </data>
+  <data name="LeglessZombie" xml:space="preserve">
+    <value>Legless Zombie</value>
+  </data>
+  <data name="MaxHp" xml:space="preserve">
+    <value>Max HP</value>
+  </data>
+  <data name="MaxLifePoint" xml:space="preserve">
+    <value>MaxLifePoint</value>
+  </data>
   <data name="MaybeLater" xml:space="preserve">
     <value>Maybe later.</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
   </data>
   <data name="NeedHealing" xml:space="preserve">
     <value>I need healing.</value>
@@ -180,20 +300,98 @@
   <data name="NothingToRepair" xml:space="preserve">
     <value>There is nothing to repair here.</value>
   </data>
+  <data name="PaladinNecklace" xml:space="preserve">
+    <value>Paladin Necklace</value>
+  </data>
+  <data name="PaladinNecklaceDescription" xml:space="preserve">
+    <value>Reduce enemies critical damage by {0}%</value>
+  </data>
+  <data name="PayAndHeal" xml:space="preserve">
+    <value>Pay and heal</value>
+  </data>
   <data name="PayAndRepair" xml:space="preserve">
     <value>Pay and repair</value>
+  </data>
+  <data name="Picked" xml:space="preserve">
+    <value>picked</value>
+  </data>
+  <data name="PlagueGhoul" xml:space="preserve">
+    <value>Plague Ghoul</value>
+  </data>
+  <data name="PressAnyKeyToContinue" xml:space="preserve">
+    <value>Press any key to continue...</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="RepairedCampForHpCost" xml:space="preserve">
+    <value>Repaired camp for +{0} HP (cost {1} gold).</value>
   </data>
   <data name="RepairTheCamp" xml:space="preserve">
     <value>Repair the camp.</value>
   </data>
+  <data name="Revenant" xml:space="preserve">
+    <value>Revenant</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Rewards :</value>
+  </data>
+  <data name="RoyalGuardGauntlet" xml:space="preserve">
+    <value>Royal Guard Gauntlet</value>
+  </data>
+  <data name="RoyalGuardGauntletDescription" xml:space="preserve">
+    <value>+{0}% critical chance</value>
+  </data>
+  <data name="RoyalGuardShield" xml:space="preserve">
+    <value>Royal Guard Shield</value>
+  </data>
+  <data name="RoyalGuardShieldDescription" xml:space="preserve">
+    <value>Reduce enemies critical chance by {0}%</value>
+  </data>
+  <data name="SacredCrucifix" xml:space="preserve">
+    <value>Sacred Crucifix</value>
+  </data>
+  <data name="SacredCrucifixDescription" xml:space="preserve">
+    <value>Reduce undead armor by {0}</value>
+  </data>
+  <data name="ShredArmor" xml:space="preserve">
+    <value>shred {0} armor</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="SpiderNest" xml:space="preserve">
+    <value>Spider Nest</value>
+  </data>
+  <data name="StealHp" xml:space="preserve">
+    <value>steal {0} HP</value>
+  </data>
   <data name="StepAndLevel" xml:space="preserve">
     <value>Steps: {0} | Lvl: {1}</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+  <data name="StructureUnderAttack" xml:space="preserve">
+    <value>{0} is under attack! HP:{1}/{2}</value>
+  </data>
+  <data name="TalismanOfTheLastBreath" xml:space="preserve">
+    <value>Talisman Of The Last Breath‎</value>
+  </data>
+  <data name="TalismanOfTheLastBreathDescription" xml:space="preserve">
+    <value>Survive only once to fatal blow</value>
   </data>
   <data name="TheCampIsAlreadyFullyRepair" xml:space="preserve">
     <value>The camp is already fully repaired.</value>
   </data>
+  <data name="TheElderLich" xml:space="preserve">
+    <value>The Elder Lich</value>
+  </data>
   <data name="TheEndPressEnterToExit" xml:space="preserve">
     <value>The End! Press Enter to exit.</value>
+  </data>
+  <data name="TheEnemyDealDamageToYou" xml:space="preserve">
+    <value>The enemy deals {0} damage to you</value>
   </data>
   <data name="TheEnemyDodgedYourAttack" xml:space="preserve">
     <value>The enemy dodged your attack!</value>
@@ -201,16 +399,70 @@
   <data name="TheFogIntensifies" xml:space="preserve">
     <value>The fog intensifies. New enemies and treasures have appeared!</value>
   </data>
+  <data name="ThornBreastplate" xml:space="preserve">
+    <value>Thorn Breastplate</value>
+  </data>
+  <data name="ThornBreastplateDescription" xml:space="preserve">
+    <value>60% chances that enemies take {0} damage if they hit you</value>
+  </data>
+  <data name="UpgradedItemTo" xml:space="preserve">
+    <value>Upgraded {0} to value {1}</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Vision</value>
+  </data>
+  <data name="Werewolf" xml:space="preserve">
+    <value>Werewolf</value>
+  </data>
+  <data name="WildBear" xml:space="preserve">
+    <value>Wild Bear</value>
+  </data>
+  <data name="Wolf" xml:space="preserve">
+    <value>Wolf</value>
+  </data>
+  <data name="XP" xml:space="preserve">
+    <value>XP</value>
+  </data>
+  <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
+    <value>You already own {0}, not upgradable.</value>
+  </data>
+  <data name="YouDealDamage" xml:space="preserve">
+    <value>You deal {0} damage</value>
+  </data>
   <data name="YouDefeatedAllBosses" xml:space="preserve">
     <value>You defeated all bosses</value>
   </data>
+  <data name="YouDefeatedAllBossesThanksForPlaying" xml:space="preserve">
+    <value>You defeated all bosses. Now it's peaceful. Thanks for playing!</value>
+  </data>
+  <data name="YouDied" xml:space="preserve">
+    <value>You died ...</value>
+  </data>
   <data name="YouDodgedTheEnemyAttack" xml:space="preserve">
     <value>You dodged the enemy's attack!</value>
+  </data>
+  <data name="YouDodgedTheEnemyAttackAndGainHp" xml:space="preserve">
+    <value>You dodged the enemy's attack and gain {0} HP !</value>
+  </data>
+  <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
+    <value>You found a treasure! Choose your bonus:</value>
+  </data>
+  <data name="YouLeveledUp" xml:space="preserve">
+    <value>You leveled up to level {0} !</value>
+  </data>
+  <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
+    <value>You survived a fatal blow with your talisman but it has been destroyed.</value>
+  </data>
+  <data name="YouTalkedWith" xml:space="preserve">
+    <value>You talked with {0}.</value>
   </data>
   <data name="YouWereAttackedAndDefeatedYourEnemy" xml:space="preserve">
     <value>You were attacked and you defeated your enemy !</value>
   </data>
   <data name="YouWereKilledBy" xml:space="preserve">
     <value>You were killed by {0}.</value>
+  </data>
+  <data name="Zombie" xml:space="preserve">
+    <value>Zombie</value>
   </data>
 </root>

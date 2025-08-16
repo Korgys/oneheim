@@ -75,8 +75,8 @@ public class GameEngine
         }
 
         // New enemies/boss wave
-        if (_levelManager.Player.Steps > 0 
-            && _levelManager.Player.Steps < 1001 
+        if (_levelManager.Player.Steps > 0
+            && _levelManager.Player.Steps < 1001
             && _levelManager.Player.Steps % 100 == 0)
         {
             if (_levelManager.Player.Steps % 500 == 0)
@@ -91,13 +91,13 @@ public class GameEngine
                 _levelManager.PlaceTreasures(_difficultyManager.GetTreasuresNumber());
                 _levelManager.Player.SetPlayerVisionAfterFogArrival();
                 _gameMessage = Messages.TheFogIntensifies;
-            }  
+            }
         }
 
         // Endgame if all bosses are dead and level steps = 10
         if (_levelManager.Player.Steps > 1000 && !_levelManager.Enemies.Any(e => e is Boss))
         {
-            _gameMessage = "You defeated all bosses. Now it's peacefull. Thanks for playing this game ! :)";
+            _gameMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
             _isGameEnded = true;
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
 
 public class Revenant : Enemy
 {
@@ -10,7 +12,7 @@ public class Revenant : Enemy
         Strength = (11 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (4 + _random.Next(0, 2)) * level + (level - 1); // Revenants are faster than regular zombies but still slower than most enemies
         Vision = 3; // Enhanced vision range
-        Name = "Revenant";
+        Name = Messages.Revenant;
         Category = EnemyType.Undead;
     }
 }

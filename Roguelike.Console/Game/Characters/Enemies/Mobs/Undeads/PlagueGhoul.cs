@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+﻿using Roguelike.Console.Properties.i18n;
+
+namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
 
 public class PlagueGhoul : Enemy
 {
@@ -9,7 +11,7 @@ public class PlagueGhoul : Enemy
         Armor = (2 + _random.Next(0, 3)) * level + (level - 1);
         Strength = (15 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (2 + _random.Next(0, 2)) * level + (level - 1);
-        Name = "Plague Ghoul";
+        Name = Messages.PlagueGhoul;
         Category = EnemyType.Undead;
         StepsPerTurn = 0; // static
     }

@@ -3,6 +3,7 @@
 using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Properties.i18n;
 using System;
 
 public static class InventoryManager
@@ -29,11 +30,11 @@ public static class InventoryManager
                     player.Vision = existing.Value;
                 }
 
-                return $"Upgraded {item.Name} to value {existing.Value}";
+                return string.Format(Messages.UpgradedItemTo, item.Name, existing.Value);
             }
             else
             {
-                return $"You already own {item.Name}, not upgradable.";
+                return string.Format(Messages.YouAlreadyOwnItemNotUpgradable, item.Name);
             }
         }
 
@@ -54,12 +55,12 @@ public static class InventoryManager
 
         // Add the item to the inventory
         player.Inventory.Add(item);
-        return $"Found item: {item.Name} – {item.EffectDescription}";
+        return string.Format(Messages.FoundItem, item.Name, item.EffectDescription);
     }
 
     private static string HandleFullInventory(Player player, Item newItem, GameSettings settings)
     {
-        Console.WriteLine("Inventory full. Choose item to drop:");
+        Console.WriteLine(Messages.InventoryFull);
 
         var keys = new List<string>
         {
@@ -76,7 +77,7 @@ public static class InventoryManager
         }
 
         ItemManager.WriteColored($"{keys.Last()}. {newItem.Name} ({newItem.EffectDescription}).", newItem.Rarity);
-        Console.WriteLine(" (Keep current inventory).");
+        Console.WriteLine($" ({Messages.KeepCurrentInventory}).");
 
         int chosenItemToDrop = -1;
         while (chosenItemToDrop == -1)
@@ -90,11 +91,11 @@ public static class InventoryManager
             var dropped = player.Inventory[chosenItemToDrop];
             player.Inventory.RemoveAt(chosenItemToDrop);
             player.Inventory.Add(newItem);
-            return $"Dropped {dropped.Name}, picked {newItem.Name}.";
+            return $"{Messages.Dropped} {dropped.Name}, {Messages.Picked} {newItem.Name}.";
         }
         else
         {
-            return "Kept current inventory.";
+            return Messages.KeepCurrentInventory;
         }
     }
 }
