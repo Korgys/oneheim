@@ -4,16 +4,10 @@
 var game = new GameEngine();
 game.StartNewGame();
 
-// TODO: traduction fr
 // TODO: better dialogue system / show inventory like hp and gold
 // TODO: more dialogue options
 // TODO: implement menu system
 // TODO: color on treasure selector to identify rarity
-// TODO: new item : +1 HP when starting a combat
-// TODO: new item : +2 ATK against bosses
-// TODO: new item : +2 ARMOR against bosses
-// TODO: new item : decrease atk of beasts
-// TODO: new item : decrease armor of beasts
 // TODO: new item : 10% more gold on combat victory
 // TODO: new item : 10% more xp on combat victory
 // TODO: new item : more chance to find chests
@@ -31,3 +25,6 @@ game.StartNewGame();
 // TODO: new npc : ÿ (upgrade items, appear at 550 steps + 1st boss dead)
 
 // TODO: new enemy category : humans
+
+// TODO: fix bug : enemy can move in the base
+// TODO: fix bug : enemy can move on the same tile as another enemy

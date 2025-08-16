@@ -183,6 +183,12 @@
   <data name="BerserkerNecklaceDescription" xml:space="preserve">
     <value>+{0}% de dommage des coups critiques</value>
   </data>
+  <data name="BladeOfHeroes" xml:space="preserve">
+    <value>Lame des héros</value>
+  </data>
+  <data name="BladeOfHeroesDescription" xml:space="preserve">
+    <value>Inflige +{0} d'attaque supplémentaires contre les boss</value>
+  </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Bottes de pas léger</value>
   </data>
@@ -222,6 +228,12 @@
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Ennemi vaincu !</value>
   </data>
+  <data name="EngravedFangs" xml:space="preserve">
+    <value>Crocs gravés</value>
+  </data>
+  <data name="EngravedFangsDescription" xml:space="preserve">
+    <value>Affaiblit l’armure de {0} des bêtes rencontrées</value>
+  </data>
   <data name="FeathersOfHope" xml:space="preserve">
     <value>Plumes de l'espoir</value>
   </data>
@@ -230,6 +242,12 @@
   </data>
   <data name="Fight" xml:space="preserve">
     <value>Combat</value>
+  </data>
+  <data name="FluteOfHunter" xml:space="preserve">
+    <value>Flûte du chasseur</value>
+  </data>
+  <data name="FluteOfHunterDescription" xml:space="preserve">
+    <value>Réduit de {0} l’ATQ des bêtes affrontées</value>
   </data>
   <data name="FoundItem" xml:space="preserve">
     <value>Objet trouvé: {0} - {1}</value>
@@ -336,6 +354,12 @@
   <data name="Rewards" xml:space="preserve">
     <value>Récompenses :</value>
   </data>
+  <data name="RingOfEndurance" xml:space="preserve">
+    <value>Anneau d'endurance</value>
+  </data>
+  <data name="RingOfEnduranceDescription" xml:space="preserve">
+    <value>Confère +{0} de vie au début de chaque combat</value>
+  </data>
   <data name="RoyalGuardGauntlet" xml:space="preserve">
     <value>Gant de la Garde Royale</value>
   </data>
@@ -353,6 +377,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Réduit l'armure des morts-vivants de {0}</value>
+  </data>
+  <data name="ShieldOfChampion" xml:space="preserve">
+    <value>Bouclier des champions</value>
+  </data>
+  <data name="ShieldOfChampionDescription" xml:space="preserve">
+    <value>Accorde +{0} d'armure supplémentaires face aux boss.</value>
   </data>
   <data name="ShredArmor" xml:space="preserve">
     <value>détruit {0} d'armure</value>

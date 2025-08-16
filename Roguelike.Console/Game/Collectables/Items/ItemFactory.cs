@@ -113,6 +113,46 @@ public class ItemFactory
                 Value = 3,
                 UpgradableIncrementValue = 3
             },
+            ItemId.RingOfEndurance => new Item
+            {
+                Id = id,
+                Name = Messages.RingOfEndurance,
+                Effect = Messages.RingOfEnduranceDescription,
+                Value = 1,
+                UpgradableIncrementValue = 0 // This item does not upgrade, so increment value is 0
+            },
+            ItemId.BladeOfHeroes => new Item
+            {
+                Id = id,
+                Name = Messages.BladeOfHeroes,
+                Effect = Messages.BladeOfHeroesDescription,
+                Value = 5,
+                UpgradableIncrementValue = 5
+            },
+            ItemId.ShieldOfChampion => new Item
+            {
+                Id = id,
+                Name = Messages.ShieldOfChampion,
+                Effect = Messages.ShieldOfChampionDescription,
+                Value = 5,
+                UpgradableIncrementValue = 5
+            },
+            ItemId.FluteOfHunter => new Item
+            {
+                Id = id,
+                Name = Messages.FluteOfHunter,
+                Effect = Messages.FluteOfHunterDescription,
+                Value = 3,
+                UpgradableIncrementValue = 3
+            },
+            ItemId.EngravedFangs => new Item
+            {
+                Id = id,
+                Name = Messages.EngravedFangs,
+                Effect = Messages.EngravedFangsDescription,
+                Value = 3,
+                UpgradableIncrementValue = 3
+            },
             _ => throw new ArgumentException("Unknown item type")
         };
     }

@@ -259,6 +259,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Blade Of Heroes.
+        /// </summary>
+        internal static string BladeOfHeroes {
+            get {
+                return ResourceManager.GetString("BladeOfHeroes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Deals +{0} strengh against bosses.
+        /// </summary>
+        internal static string BladeOfHeroesDescription {
+            get {
+                return ResourceManager.GetString("BladeOfHeroesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Boots of Echo Step.
         /// </summary>
         internal static string BootsOfEchoStep {
@@ -376,6 +394,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Engraved Fangs.
+        /// </summary>
+        internal static string EngravedFangs {
+            get {
+                return ResourceManager.GetString("EngravedFangs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduces by {0} the ARMOR of beasts.
+        /// </summary>
+        internal static string EngravedFangsDescription {
+            get {
+                return ResourceManager.GetString("EngravedFangsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Feathers Of Hope.
         /// </summary>
         internal static string FeathersOfHope {
@@ -399,6 +435,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string Fight {
             get {
                 return ResourceManager.GetString("Fight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hunter&apos;s Flute.
+        /// </summary>
+        internal static string FluteOfHunter {
+            get {
+                return ResourceManager.GetString("FluteOfHunter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Decreases by {0} the ATK of beasts.
+        /// </summary>
+        internal static string FluteOfHunterDescription {
+            get {
+                return ResourceManager.GetString("FluteOfHunterDescription", resourceCulture);
             }
         }
         
@@ -718,6 +772,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ring Of Endurance.
+        /// </summary>
+        internal static string RingOfEndurance {
+            get {
+                return ResourceManager.GetString("RingOfEndurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Grants +{0} HP at the start of each battle.
+        /// </summary>
+        internal static string RingOfEnduranceDescription {
+            get {
+                return ResourceManager.GetString("RingOfEnduranceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Royal Guard Gauntlet.
         /// </summary>
         internal static string RoyalGuardGauntlet {
@@ -768,6 +840,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string SacredCrucifixDescription {
             get {
                 return ResourceManager.GetString("SacredCrucifixDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Champion’s Shield.
+        /// </summary>
+        internal static string ShieldOfChampion {
+            get {
+                return ResourceManager.GetString("ShieldOfChampion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Provides +{0} armor against bosses..
+        /// </summary>
+        internal static string ShieldOfChampionDescription {
+            get {
+                return ResourceManager.GetString("ShieldOfChampionDescription", resourceCulture);
             }
         }
         

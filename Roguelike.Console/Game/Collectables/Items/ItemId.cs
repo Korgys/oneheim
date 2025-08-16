@@ -15,4 +15,9 @@ public enum ItemId
     PaladinNecklace = 11,
     HolyBible = 12,
     SacredCrucifix = 13,
+    RingOfEndurance = 14,
+    BladeOfHeroes = 15,
+    ShieldOfChampion = 16,
+    FluteOfHunter = 17,
+    EngravedFangs = 18
 }

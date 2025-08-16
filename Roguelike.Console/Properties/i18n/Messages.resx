@@ -183,6 +183,12 @@
   <data name="BerserkerNecklaceDescription" xml:space="preserve">
     <value>+{0}% critical damage</value>
   </data>
+  <data name="BladeOfHeroes" xml:space="preserve">
+    <value>Blade Of Heroes</value>
+  </data>
+  <data name="BladeOfHeroesDescription" xml:space="preserve">
+    <value>Deals +{0} strengh against bosses</value>
+  </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Boots of Echo Step</value>
   </data>
@@ -222,6 +228,12 @@
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Enemy defeated!</value>
   </data>
+  <data name="EngravedFangs" xml:space="preserve">
+    <value>Engraved Fangs</value>
+  </data>
+  <data name="EngravedFangsDescription" xml:space="preserve">
+    <value>Reduces by {0} the ARMOR of beasts</value>
+  </data>
   <data name="FeathersOfHope" xml:space="preserve">
     <value>Feathers Of Hope</value>
   </data>
@@ -230,6 +242,12 @@
   </data>
   <data name="Fight" xml:space="preserve">
     <value>Fight !</value>
+  </data>
+  <data name="FluteOfHunter" xml:space="preserve">
+    <value>Hunter's Flute</value>
+  </data>
+  <data name="FluteOfHunterDescription" xml:space="preserve">
+    <value>Decreases by {0} the ATK of beasts</value>
   </data>
   <data name="FoundItem" xml:space="preserve">
     <value>Found item: {0} – {1}</value>
@@ -336,6 +354,12 @@
   <data name="Rewards" xml:space="preserve">
     <value>Rewards :</value>
   </data>
+  <data name="RingOfEndurance" xml:space="preserve">
+    <value>Ring Of Endurance</value>
+  </data>
+  <data name="RingOfEnduranceDescription" xml:space="preserve">
+    <value>Grants +{0} HP at the start of each battle</value>
+  </data>
   <data name="RoyalGuardGauntlet" xml:space="preserve">
     <value>Royal Guard Gauntlet</value>
   </data>
@@ -353,6 +377,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Reduce undead armor by {0}</value>
+  </data>
+  <data name="ShieldOfChampion" xml:space="preserve">
+    <value>Champion’s Shield</value>
+  </data>
+  <data name="ShieldOfChampionDescription" xml:space="preserve">
+    <value>Provides +{0} armor against bosses.</value>
   </data>
   <data name="ShredArmor" xml:space="preserve">
     <value>shred {0} armor</value>

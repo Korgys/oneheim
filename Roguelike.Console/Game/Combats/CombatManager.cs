@@ -49,6 +49,39 @@ public class CombatManager
                 enemy.Armor = Math.Max(0, enemy.Armor - sacredCrucifix.Value);
             }
         }
+        else if (enemy.Category == EnemyType.Wild)
+        {
+            var fluteOfHunter = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FluteOfHunter);
+            if (fluteOfHunter != null)
+            {
+                enemy.Strength = Math.Max(0, enemy.Strength - fluteOfHunter.Value);
+            }
+            var engravedFangs = player.Inventory.FirstOrDefault(i => i.Id == ItemId.EngravedFangs);
+            if (engravedFangs != null)
+            {
+                enemy.Armor = Math.Max(0, enemy.Armor - engravedFangs.Value);
+            }
+        }
+        else if (enemy is Boss)
+        {
+            var bladeOfHeroes = player.Inventory.FirstOrDefault(i => i.Id == ItemId.BladeOfHeroes);
+            if (bladeOfHeroes != null)
+            {
+                enemy.Strength = Math.Max(0, enemy.Strength - bladeOfHeroes.Value);
+            }
+            var shieldOfChampion = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ShieldOfChampion);
+            if (shieldOfChampion != null)
+            {
+                enemy.Armor = Math.Max(0, enemy.Armor - shieldOfChampion.Value);
+            }
+        }
+
+        // Ring of Endurance logic: increase player life points at the start of combat
+        var ringOfEndurance = player.Inventory.FirstOrDefault(i => i.Id == ItemId.RingOfEndurance);
+        if (ringOfEndurance != null)
+        {
+            player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + ringOfEndurance.Value);
+        }
 
         while (player.LifePoint > 0 && enemy.LifePoint > 0)
         {
@@ -112,7 +145,7 @@ public class CombatManager
             if (r.LifeStolen > 0) return string.Format(Messages.YouDodgedTheEnemyAttackAndGainHp, r.LifeStolen);
             else return Messages.YouDodgedTheEnemyAttack;
         }
-        
+
 
         var parts = new List<string> { string.Format(Messages.TheEnemyDealDamageToYou, r.Damage) };
         if (r.Crit) parts[0] += " (crit)";
