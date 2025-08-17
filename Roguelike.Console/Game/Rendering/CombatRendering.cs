@@ -4,6 +4,7 @@ namespace Roguelike.Console.Game.Rendering;
 
 using Roguelike.Console.Game.Characters.Enemies;
 using Roguelike.Console.Game.Characters.Players;
+using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Properties.i18n;
 using System;
 
@@ -81,10 +82,29 @@ public class CombatRendering
         Console.ResetColor();
         int gold = e.GetGoldValue();
         int xp = e.GetXpValue();
+
         p.Gold += gold;
         p.GainXP(xp);
         Console.WriteLine($"- {gold} {Messages.Gold}");
+        // EnchantedPouch logic: increase gold
+        var enchantedPouch = p.Inventory.FirstOrDefault(i => i.Id == ItemId.EnchantedPouch);
+        if (enchantedPouch != null)
+        {
+            var goldFromEnchantedPouch = Math.Max(1, gold * enchantedPouch.Value / 100);
+            p.Gold += goldFromEnchantedPouch;
+            Console.WriteLine($"- {goldFromEnchantedPouch} {Messages.Gold} ({Messages.EnchantedPouch})");
+        }
+
         Console.WriteLine($"- {xp} {Messages.XP}");
+        // SealOfWisdom logic: increase xp
+        var sealOfWisdom = p.Inventory.FirstOrDefault(i => i.Id == ItemId.SealOfWisdom);
+        if (sealOfWisdom != null)
+        {
+            var xpFromSealOfWisdom = Math.Max(1, xp * sealOfWisdom.Value / 100);
+            p.GainXP(xpFromSealOfWisdom);
+            Console.WriteLine($"- {xpFromSealOfWisdom} {Messages.XP} ({Messages.SealOfWisdom})");
+        }
+
         Console.WriteLine();
     }
 

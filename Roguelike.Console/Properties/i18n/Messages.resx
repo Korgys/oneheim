@@ -225,6 +225,12 @@
   <data name="Dropped" xml:space="preserve">
     <value>Dropped</value>
   </data>
+  <data name="EnchantedPouch" xml:space="preserve">
+    <value>Enchanted Pouch</value>
+  </data>
+  <data name="EnchantedPouchDescription" xml:space="preserve">
+    <value>+{0}% more gold after each victory</value>
+  </data>
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Enemy defeated!</value>
   </data>
@@ -269,6 +275,12 @@
   </data>
   <data name="HasBeenDestroy" xml:space="preserve">
     <value>{0} has been destroyed!</value>
+  </data>
+  <data name="HawkEye" xml:space="preserve">
+    <value>Hawk Eye</value>
+  </data>
+  <data name="HawkEyeDescription" xml:space="preserve">
+    <value>{0}% chance of finding better bonus vision in chests</value>
   </data>
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Healed {0} HP for {1} gold.</value>
@@ -339,6 +351,12 @@
   <data name="PressAnyKeyToContinue" xml:space="preserve">
     <value>Press any key to continue...</value>
   </data>
+  <data name="ProspectorKey" xml:space="preserve">
+    <value>Prospector's Key</value>
+  </data>
+  <data name="ProspectorKeyDescription" xml:space="preserve">
+    <value>+{0} treasure chests at each wave</value>
+  </data>
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
   </data>
@@ -377,6 +395,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Reduce undead armor by {0}</value>
+  </data>
+  <data name="SealOfWisdom" xml:space="preserve">
+    <value>Seal Of Wisdom</value>
+  </data>
+  <data name="SealOfWisdomDescription" xml:space="preserve">
+    <value>+{0}% more experience from battles</value>
   </data>
   <data name="ShieldOfChampion" xml:space="preserve">
     <value>Champion’s Shield</value>

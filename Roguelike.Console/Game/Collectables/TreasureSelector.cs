@@ -10,6 +10,7 @@ public static class TreasureSelector
 {
     private static List<ItemId> _selectedItemPool = new();
     private static readonly Random _random = new();
+    private static readonly int _numberOfItemInPool = 9; // Number of items to randomly select from the full item pool
 
     public static List<Treasure> GenerateBonusChoices(Player player, GameSettings settings)
     {
@@ -23,8 +24,8 @@ public static class TreasureSelector
         if (hpRatio > 0.5)
             types.Remove(BonusType.LifePoint);
 
-        // Do not offer Vision once it's already high (cap ~8; offer stops at >=7)
-        if (player.Vision >= 7)
+        // Do not offer Vision once it's already high (cap ~10; offer stops at >=9)
+        if (player.Vision >= 9)
             types.Remove(BonusType.Vision);
 
         var result = new List<Treasure>();
@@ -95,9 +96,11 @@ public static class TreasureSelector
                 {
                     // Exclude player items already in inventory not upgradable
                     var existing = player.Inventory.FirstOrDefault(i => i.Id == itemId);
-                    if (existing == null) return true;
-                    if (existing.UpgradableIncrementValue == 0) return false;
-                    if (existing.Rarity >= ItemRarity.Legendary) return false;
+                    if (existing != null)
+                    {
+                        if (existing.UpgradableIncrementValue == 0) return false;
+                        if (existing.Rarity >= ItemRarity.Legendary) return false;
+                    }
 
                     // Exclude items already in treasure selection
                     if (treasuresSelection?.Any(t => t.Type == BonusType.Item && (ItemId)t.Value == itemId) == true) return false;
@@ -111,7 +114,15 @@ public static class TreasureSelector
 
                 return (int)validItems[_random.Next(validItems.Count)];
             case BonusType.Vision:
-                return 1;
+                // hawkEye item logic
+                var hawkEye = player.Inventory.FirstOrDefault(i => i.Id == ItemId.HawkEye);
+                if (hawkEye != null && _random.NextDouble() <= (float)hawkEye.Value/100)
+                {
+                    if (_random.NextDouble() <= 0.1) // 10% chance to double the effect
+                        return 3;
+                    else return 2;
+                }
+                else return 1;
             case BonusType.LifePoint:
                 return (int)((player.MaxLifePoint - player.LifePoint) * 0.6);
             case BonusType.MaxLifePoint:
@@ -126,7 +137,7 @@ public static class TreasureSelector
         if (_selectedItemPool.Count == 0)
         {
             var all = Enum.GetValues<ItemId>().ToList();
-            _selectedItemPool = all.OrderBy(_ => _random.Next()).Take(7).ToList();
+            _selectedItemPool = all.OrderBy(_ => _random.Next()).Take(_numberOfItemInPool).ToList();
         }
     }
 

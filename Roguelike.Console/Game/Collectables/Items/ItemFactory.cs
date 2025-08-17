@@ -119,7 +119,7 @@ public class ItemFactory
                 Name = Messages.RingOfEndurance,
                 Effect = Messages.RingOfEnduranceDescription,
                 Value = 1,
-                UpgradableIncrementValue = 0 // This item does not upgrade, so increment value is 0
+                UpgradableIncrementValue = 1
             },
             ItemId.BladeOfHeroes => new Item
             {
@@ -152,6 +152,39 @@ public class ItemFactory
                 Effect = Messages.EngravedFangsDescription,
                 Value = 3,
                 UpgradableIncrementValue = 3
+            },
+            ItemId.EnchantedPouch => new Item
+            {
+                Id = id,
+                Name = Messages.EnchantedPouch,
+                Effect = Messages.EnchantedPouchDescription,
+                Value = 10,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.SealOfWisdom => new Item
+            {
+                Id = id,
+                Name = Messages.SealOfWisdom,
+                Effect = Messages.SealOfWisdomDescription,
+                Value = 10,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.ProspectorKey => new Item
+            {
+                Id = id,
+                Name = Messages.ProspectorKey,
+                Effect = Messages.ProspectorKeyDescription,
+                Value = 2,
+                UpgradableIncrementValue = 2
+            },
+            ItemId.HawkEye => new Item
+            {
+                Id = id,
+                Name = Messages.HawkEye,
+                Effect = Messages.HawkEyeDescription,
+                Value = 30,
+                UpgradableIncrementValue = 20,
+                Rarity = ItemRarity.Uncommon
             },
             _ => throw new ArgumentException("Unknown item type")
         };

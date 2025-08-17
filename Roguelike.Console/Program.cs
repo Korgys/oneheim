@@ -8,10 +8,7 @@ game.StartNewGame();
 // TODO: more dialogue options
 // TODO: implement menu system
 // TODO: color on treasure selector to identify rarity
-// TODO: new item : 10% more gold on combat victory
-// TODO: new item : 10% more xp on combat victory
-// TODO: new item : more chance to find chests
-// TODO: new item : better vision bonus
+
 // TODO: new item : slighty more chance to find better bonus in chests
 // TODO: new item : 10% discount with merchants
 // TODO: new item : more chance to find enemies

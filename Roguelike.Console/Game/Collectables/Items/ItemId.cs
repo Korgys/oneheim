@@ -19,5 +19,9 @@ public enum ItemId
     BladeOfHeroes = 15,
     ShieldOfChampion = 16,
     FluteOfHunter = 17,
-    EngravedFangs = 18
+    EngravedFangs = 18,
+    EnchantedPouch = 19,
+    SealOfWisdom = 20,
+    ProspectorKey = 21,
+    HawkEye = 22
 }

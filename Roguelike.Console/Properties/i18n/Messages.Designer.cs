@@ -385,6 +385,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enchanted Pouch.
+        /// </summary>
+        internal static string EnchantedPouch {
+            get {
+                return ResourceManager.GetString("EnchantedPouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}% more gold after each victory.
+        /// </summary>
+        internal static string EnchantedPouchDescription {
+            get {
+                return ResourceManager.GetString("EnchantedPouchDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Enemy defeated!.
         /// </summary>
         internal static string EnemyDefeated {
@@ -516,6 +534,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string HasBeenDestroy {
             get {
                 return ResourceManager.GetString("HasBeenDestroy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hawk Eye.
+        /// </summary>
+        internal static string HawkEye {
+            get {
+                return ResourceManager.GetString("HawkEye", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0}% chance of finding better bonus vision in chests.
+        /// </summary>
+        internal static string HawkEyeDescription {
+            get {
+                return ResourceManager.GetString("HawkEyeDescription", resourceCulture);
             }
         }
         
@@ -727,6 +763,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Prospector&apos;s Key.
+        /// </summary>
+        internal static string ProspectorKey {
+            get {
+                return ResourceManager.GetString("ProspectorKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0} treasure chests at each wave.
+        /// </summary>
+        internal static string ProspectorKeyDescription {
+            get {
+                return ResourceManager.GetString("ProspectorKeyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Quit.
         /// </summary>
         internal static string Quit {
@@ -840,6 +894,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string SacredCrucifixDescription {
             get {
                 return ResourceManager.GetString("SacredCrucifixDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Seal Of Wisdom.
+        /// </summary>
+        internal static string SealOfWisdom {
+            get {
+                return ResourceManager.GetString("SealOfWisdom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}% more experience from battles.
+        /// </summary>
+        internal static string SealOfWisdomDescription {
+            get {
+                return ResourceManager.GetString("SealOfWisdomDescription", resourceCulture);
             }
         }
         

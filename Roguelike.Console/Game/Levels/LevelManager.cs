@@ -6,6 +6,7 @@ using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Characters.NPCs;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables;
+using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Structures;
 using Roguelike.Console.Properties.i18n;
 using System;
@@ -73,6 +74,10 @@ public class LevelManager
 
     public void PlaceTreasures(int count)
     {
+        // ProspectorKey item logic
+        var prospectorKey = Player.Inventory.FirstOrDefault(i => i.Id == ItemId.ProspectorKey);
+        if (prospectorKey != null) count += prospectorKey.Value;
+
         for (int i = 0; i < count; i++)
         {
             int attempts = 0;

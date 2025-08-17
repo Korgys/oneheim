@@ -225,6 +225,12 @@
   <data name="Dropped" xml:space="preserve">
     <value>Lâche</value>
   </data>
+  <data name="EnchantedPouch" xml:space="preserve">
+    <value>Bourse enchantée</value>
+  </data>
+  <data name="EnchantedPouchDescription" xml:space="preserve">
+    <value>+{0}% d’or supplémentaire après chaque victoire</value>
+  </data>
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Ennemi vaincu !</value>
   </data>
@@ -269,6 +275,12 @@
   </data>
   <data name="HasBeenDestroy" xml:space="preserve">
     <value>Le {0} a été détruit !</value>
+  </data>
+  <data name="HawkEye" xml:space="preserve">
+    <value>Pendentif d'oeil de faucon</value>
+  </data>
+  <data name="HawkEyeDescription" xml:space="preserve">
+    <value>{0}% de chance de trouver de meilleurs bonus de vision</value>
   </data>
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Soigné de {0} de vie contre {1} d'or.</value>
@@ -325,7 +337,7 @@
     <value>Réduit les dégâts de coup critique de l'adversaire de {0}%</value>
   </data>
   <data name="PayAndHeal" xml:space="preserve">
-    <value>Payer et se faire soigner</value>
+    <value>_</value>
   </data>
   <data name="PayAndRepair" xml:space="preserve">
     <value>Payer et réparer</value>
@@ -338,6 +350,12 @@
   </data>
   <data name="PressAnyKeyToContinue" xml:space="preserve">
     <value>Appuyez sur n'importe quelle touche pour quitter ...</value>
+  </data>
+  <data name="ProspectorKey" xml:space="preserve">
+    <value>Clé du prospecteur</value>
+  </data>
+  <data name="ProspectorKeyDescription" xml:space="preserve">
+    <value>+{0} coffre(s) à chaque vague</value>
   </data>
   <data name="Quit" xml:space="preserve">
     <value>Quitter</value>
@@ -377,6 +395,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Réduit l'armure des morts-vivants de {0}</value>
+  </data>
+  <data name="SealOfWisdom" xml:space="preserve">
+    <value>Sceau de sagesse</value>
+  </data>
+  <data name="SealOfWisdomDescription" xml:space="preserve">
+    <value>+{0}% d’expérience supplémentaire en combat</value>
   </data>
   <data name="ShieldOfChampion" xml:space="preserve">
     <value>Bouclier des champions</value>
