@@ -7,6 +7,7 @@ using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
 using System;
+using System.Numerics;
 
 public static class ConsoleRenderer
 {
@@ -155,15 +156,7 @@ public static class ConsoleRenderer
             $"{Messages.Strength}: {player.Strength} | {Messages.Armor}: {player.Armor} | " +
             $"{Messages.Speed}: {player.Speed} | {Messages.Vision}: {player.Vision}");
 
-        if (player.Inventory.Any())
-        {
-            Console.WriteLine($"{Messages.Inventory}: {player.Inventory.Count}/{player.MaxInventorySize}");
-            foreach (var item in player.Inventory)
-            {
-                ItemManager.WriteColored($"- {item.Name} ({item.EffectDescription})", item.Rarity);
-                Console.WriteLine();
-            }
-        }
+        RenderPlayerInventory(player);
 
         // End game or controls help
         if (isGameEnded)
@@ -191,6 +184,26 @@ public static class ConsoleRenderer
                     $"{Messages.Move}: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
                     $"{Messages.Choices}: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
                     $"{Messages.Quit}: {keys.Exit}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Renders the player's inventory to the console, displaying item details and inventory capacity.
+    /// </summary>
+    /// <remarks>This method outputs the player's inventory items, including their names, effects, and rarity,
+    /// along with the current and maximum inventory capacity. If the inventory is empty, no output is
+    /// produced.</remarks>
+    /// <param name="player">The player whose inventory will be rendered.</param>
+    public static void RenderPlayerInventory(Player player)
+    {
+        if (player != null && player.Inventory.Any())
+        {
+            Console.WriteLine($"{Messages.Inventory}: {player.Inventory.Count}/{player.MaxInventorySize}");
+            foreach (var item in player.Inventory)
+            {
+                ItemManager.WriteColored($"- {item.Name} ({item.EffectDescription})", item.Rarity);
+                Console.WriteLine();
             }
         }
     }

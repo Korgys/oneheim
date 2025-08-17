@@ -306,6 +306,9 @@
   <data name="LeglessZombie" xml:space="preserve">
     <value>Legless Zombie</value>
   </data>
+  <data name="LifePoint" xml:space="preserve">
+    <value>LifePoint</value>
+  </data>
   <data name="MaxHp" xml:space="preserve">
     <value>Max HP</value>
   </data>
@@ -500,6 +503,9 @@
   </data>
   <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
     <value>You found a treasure! Choose your bonus:</value>
+  </data>
+  <data name="YouHealWithYourRingOfEndurance" xml:space="preserve">
+    <value>You heal {0} HP with your ring of endurance.</value>
   </data>
   <data name="YouLeveledUp" xml:space="preserve">
     <value>You leveled up to level {0} !</value>

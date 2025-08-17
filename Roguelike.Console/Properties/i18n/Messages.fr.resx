@@ -306,6 +306,9 @@
   <data name="LeglessZombie" xml:space="preserve">
     <value>Zombie rampant</value>
   </data>
+  <data name="LifePoint" xml:space="preserve">
+    <value>Vie</value>
+  </data>
   <data name="MaxHp" xml:space="preserve">
     <value>Vie max</value>
   </data>
@@ -337,7 +340,7 @@
     <value>Réduit les dégâts de coup critique de l'adversaire de {0}%</value>
   </data>
   <data name="PayAndHeal" xml:space="preserve">
-    <value>_</value>
+    <value>Payer et se soigner</value>
   </data>
   <data name="PayAndRepair" xml:space="preserve">
     <value>Payer et réparer</value>
@@ -500,6 +503,9 @@
   </data>
   <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
     <value>Vous avez trouvé un trésor ! Choisissez un bonus :</value>
+  </data>
+  <data name="YouHealWithYourRingOfEndurance" xml:space="preserve">
+    <value>Vous vous soignez de {0} vie grâce à votre anneau.</value>
   </data>
   <data name="YouLeveledUp" xml:space="preserve">
     <value>Vous êtes passé niveau {0} !</value>

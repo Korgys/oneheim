@@ -628,6 +628,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à LifePoint.
+        /// </summary>
+        internal static string LifePoint {
+            get {
+                return ResourceManager.GetString("LifePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Max HP.
         /// </summary>
         internal static string MaxHp {
@@ -1209,6 +1218,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string YouFoundATreasureChooseABonus {
             get {
                 return ResourceManager.GetString("YouFoundATreasureChooseABonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You heal {0} HP with your ring of endurance..
+        /// </summary>
+        internal static string YouHealWithYourRingOfEndurance {
+            get {
+                return ResourceManager.GetString("YouHealWithYourRingOfEndurance", resourceCulture);
             }
         }
         

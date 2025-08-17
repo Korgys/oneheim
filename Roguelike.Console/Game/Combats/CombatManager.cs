@@ -80,7 +80,10 @@ public class CombatManager
         var ringOfEndurance = player.Inventory.FirstOrDefault(i => i.Id == ItemId.RingOfEndurance);
         if (ringOfEndurance != null)
         {
+            var playerLifePointBeforeHealing = player.LifePoint;
             player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + ringOfEndurance.Value);
+            if (player.LifePoint > playerLifePointBeforeHealing)
+            AddLog(string.Format(Messages.YouHealWithYourRingOfEndurance, player.LifePoint - playerLifePointBeforeHealing));
         }
 
         while (player.LifePoint > 0 && enemy.LifePoint > 0)
