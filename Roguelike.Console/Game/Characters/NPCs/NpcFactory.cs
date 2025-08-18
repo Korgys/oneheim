@@ -14,6 +14,14 @@ public static class NpcFactory
                 X = x,
                 Y = y
             },
+            NpcId.Ichem => new Npc
+            {
+                Id = id,
+                Name = NpcId.Ichem.ToString(),
+                Character = 'î',
+                X = x,
+                Y = y
+            },
             _ => throw new ArgumentException("Unknown npc type")
         };
     }

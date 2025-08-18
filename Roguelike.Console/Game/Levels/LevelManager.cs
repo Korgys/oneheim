@@ -72,6 +72,42 @@ public class LevelManager
         Npcs.Add(NpcFactory.CreateNpc(npcId, x, y));
     }
 
+    public void PlaceNpc(NpcId id)
+    {
+        // Try inside first if a structure exists
+        var inside = FindFreeTile(preferInterior: true);
+        var (x, y) = inside ?? FindFreeTile(preferInterior: false) ?? (GridWidth / 2, GridHeight / 2);
+        Npcs.Add(NpcFactory.CreateNpc(id, x, y));
+    }
+
+    private (int x, int y)? FindFreeTile(bool preferInterior)
+    {
+        var tries = 200;
+        var rnd = _random; // assume you already have _random
+        var s = Structures.FirstOrDefault();
+
+        while (tries-- > 0)
+        {
+            int x = rnd.Next(1, GridWidth - 1);
+            int y = rnd.Next(1, GridHeight - 1);
+
+            bool inInterior = s != null && s.IsInterior(x, y);
+
+            if (preferInterior && s != null && !inInterior) continue;
+            if (!preferInterior && s != null && s.Contains(x, y)) continue; // avoid walls when outside
+
+            bool blocked =
+                Enemies.Any(e => e.X == x && e.Y == y) ||
+                Treasures.Any(t => t.X == x && t.Y == y) ||
+                Npcs.Any(n => n.X == x && n.Y == y) ||
+                x <= 0 || x >= GridWidth - 1 || y <= 0 || y >= GridHeight - 1;
+
+            if (!blocked) return (x, y);
+        }
+        return null;
+    }
+
+
     public void PlaceTreasures(int count)
     {
         // ProspectorKey item logic

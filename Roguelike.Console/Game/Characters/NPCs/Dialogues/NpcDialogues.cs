@@ -1,5 +1,6 @@
 ﻿using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
+using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
 
@@ -140,5 +141,51 @@ public static class NpcDialogues
 
         // Finale selection
         npc.Root = PickRoot();
+    }
+
+    public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings)
+    {
+        var player = level.Player;
+        const int price = 100;
+
+        DialogueNode Intro(Func<string> f) => new DialogueNode { Text = f };
+
+        var firstIntro = Intro(() => "Greetings, wanderer. Care to buy a boon for 100 gold?");
+        var returning = Intro(() => "Back again? My boons still cost 100 gold.");
+
+        DialogueNode shop = new DialogueNode
+        {
+            Text = () => $"I sell powerful boons for {price} gold. Choose wisely."
+        };
+
+        shop.Options.Add(new DialogueOption
+        {
+            Label = "Show me your boons (100 gold)",
+            Action = () =>
+            {
+                if (player.Gold < price) return "You do not have enough gold.";
+
+                // Generate 3 choices and let player pick one
+                var choices = TreasureSelector.GenerateBonusChoices(player, settings);
+                var chosen = TreasureSelector.PromptPlayerForBonus(choices, player, settings);
+
+                // Pay then apply
+                player.Gold -= price;
+                var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
+                return $"Purchased: {msg}";
+            },
+            Next = returning
+        });
+
+        shop.Options.Add(new DialogueOption { Label = "Maybe later.", Next = returning });
+
+        // Entrées
+        firstIntro.Options.Add(new DialogueOption { Label = "Let me see your boons.", Next = shop });
+        firstIntro.Options.Add(new DialogueOption { Label = "Goodbye.", Next = null });
+
+        returning.Options.Add(new DialogueOption { Label = "Let me see your boons.", Next = shop });
+        returning.Options.Add(new DialogueOption { Label = "Goodbye.", Next = null });
+
+        npc.Root = npc.HasMet ? returning : firstIntro;
     }
 }

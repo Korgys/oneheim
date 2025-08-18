@@ -1,6 +1,7 @@
 ﻿namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
 using Roguelike.Console.Configuration;
+using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using System;
 
@@ -9,8 +10,10 @@ public static class NpcDialogManager
     public static void StartDialogue(Npc npc, LevelManager level, GameSettings settings)
     {
         // Build (or refresh) the tree for this NPC
-        if (npc.Name.Equals(NpcId.Armin.ToString(), StringComparison.OrdinalIgnoreCase))
+        if (npc.Id == NpcId.Armin)
             NpcDialogues.BuildForArmin(npc, level, settings);
+        else if (npc.Id == NpcId.Ichem)
+            NpcDialogues.BuildForIchem(npc, level, settings);
 
         var node = npc.Root;
         if (node == null) return;
@@ -70,6 +73,9 @@ public static class NpcDialogManager
                 Console.ReadKey(true);
             }
 
+            // Display player HUD
+            RenderPlayerHud(level);
+
             // Next node (null = end)
             node = opt.Next;
             if (node == null) end = true;
@@ -78,6 +84,26 @@ public static class NpcDialogManager
         // Update NPC memory
         npc.HasMet = true;
         npc.TimesTalked++;
+    }
+
+    private static void RenderPlayerHud(LevelManager level)
+    {
+        var p = level.Player;
+
+        Console.WriteLine();
+        Console.WriteLine(new string('-', 50));
+        Console.WriteLine($"Gold: {p.Gold} | XP: {p.XP}/{p.GetNextLevelXP()} | Lv: {p.Level}");
+        Console.WriteLine($"HP: {p.LifePoint}/{p.MaxLifePoint} | STR: {p.Strength} | ARM: {p.Armor} | SPD: {p.Speed} | VIS: {p.Vision}");
+
+        if (p.Inventory.Any())
+        {
+            Console.WriteLine("Inventory:");
+            foreach (var it in p.Inventory)
+            {
+                ItemManager.WriteColored($"- {it.Name} ({it.EffectDescription})", it.Rarity);
+                Console.WriteLine();
+            }
+        }
     }
 }
 

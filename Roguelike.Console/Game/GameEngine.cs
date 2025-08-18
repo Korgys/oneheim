@@ -1,6 +1,7 @@
 ﻿using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
+using Roguelike.Console.Game.Characters.NPCs;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Game.Systems;
@@ -92,6 +93,14 @@ public class GameEngine
                 _levelManager.Player.SetPlayerVisionAfterFogArrival();
                 _gameMessage = Messages.TheFogIntensifies;
             }
+        }
+
+        // Spawn Ichem (shop NPC) at 150 steps
+        if (_levelManager.Player.Steps == 150 && !_levelManager.Npcs.Any(n => n.Id == NpcId.Ichem) 
+            && _levelManager.Structures.Any(s => s.Name == Messages.BaseCamp))
+        {
+            _levelManager.PlaceNpc(NpcId.Ichem);
+            _gameMessage = "A new traveler comes to the base camp";
         }
 
         // Endgame if all bosses are dead and level steps = 10
