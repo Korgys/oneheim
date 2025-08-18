@@ -448,6 +448,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fidelity Card.
+        /// </summary>
+        internal static string FidelityCard {
+            get {
+                return ResourceManager.GetString("FidelityCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0}% discount with merchants.
+        /// </summary>
+        internal static string FidelityCardDescription {
+            get {
+                return ResourceManager.GetString("FidelityCardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Fight !.
         /// </summary>
         internal static string Fight {

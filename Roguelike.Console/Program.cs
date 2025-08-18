@@ -9,7 +9,6 @@ game.StartNewGame();
 // TODO: implement menu system
 
 // TODO: new item : slighty more chance to find better bonus in chests
-// TODO: new item : 10% discount with merchants
 // TODO: new item : more chance to find enemies
 // TODO: new item : less chance to find enemies
 // TODO: new item : chance that steps doesn't count

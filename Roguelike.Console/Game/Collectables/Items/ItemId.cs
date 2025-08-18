@@ -23,5 +23,6 @@ public enum ItemId
     EnchantedPouch = 19,
     SealOfWisdom = 20,
     ProspectorKey = 21,
-    HawkEye = 22
+    HawkEye = 22,
+    FidelityCard = 23
 }

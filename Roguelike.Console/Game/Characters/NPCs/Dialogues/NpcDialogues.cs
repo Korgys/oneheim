@@ -1,13 +1,17 @@
 ﻿using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Collectables;
+using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
+using System;
 
 namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
 public static class NpcDialogues
 {
+    private static Random _random = new Random();
+
     public static void BuildForArmin(Npc npc, LevelManager level, GameSettings settings)
     {
         var player = level.Player;
@@ -146,46 +150,73 @@ public static class NpcDialogues
     public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings)
     {
         var player = level.Player;
-        const int price = 100;
+        int price = 50; // chest price
 
-        DialogueNode Intro(Func<string> f) => new DialogueNode { Text = f };
-
-        var firstIntro = Intro(() => "Greetings, wanderer. Care to buy a boon for 100 gold?");
-        var returning = Intro(() => "Back again? My boons still cost 100 gold.");
-
-        DialogueNode shop = new DialogueNode
+        // Fidelity card item logic
+        var fidelityCard = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FidelityCard);
+        if (fidelityCard != null)
         {
-            Text = () => $"I sell powerful boons for {price} gold. Choose wisely."
+            float discountRate = fidelityCard.Value / 100f;
+            price = (int)MathF.Round(price * (1 - discountRate));
+        }
+
+        // Helpers
+        DialogueNode Node(Func<string> text) => new DialogueNode { Text = text };
+
+        // Small talks
+        string[] smallTalkLines =
+        {
+            "These lands change you. Sometimes for the better.",
+            "Gold comes and goes. Choices linger.",
+            "I once sold a boon that saved a kingdom. Or so they say.",
+            "Storm’s coming. You can feel it in the stone.",
+            "Power is a weight; spend it wisely."
         };
+        var talk = Node(() => smallTalkLines[_random.Next(smallTalkLines.Length)]);
+        talk.Options.Add(new DialogueOption { Label = "Back", Next = null });
 
-        shop.Options.Add(new DialogueOption
+        DialogueNode? mainMenu = null;
+
+        // --- Menu principal (3 options : acheter / discuter / quitter) ---
+        mainMenu = Node(() =>
         {
-            Label = "Show me your boons (100 gold)",
+            var intro = npc.HasMet
+                ? "Back again, wanderer?"
+                : "Greetings, wanderer.";
+            return $"{intro} Care to buy a boon for {price} gold?";
+        });
+
+        mainMenu.Options.Add(new DialogueOption
+        {
+            Label = $"Buy a boon ({price} gold)",
             Action = () =>
             {
+                // Check if player has enough gold
                 if (player.Gold < price) return "You do not have enough gold.";
 
-                // Generate 3 choices and let player pick one
+                // 3 choices like treasure chest
                 var choices = TreasureSelector.GenerateBonusChoices(player, settings);
                 var chosen = TreasureSelector.PromptPlayerForBonus(choices, player, settings);
 
-                // Pay then apply
+                // Pay and apply bonus
                 player.Gold -= price;
                 var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
                 return $"Purchased: {msg}";
             },
-            Next = returning
+            Next = mainMenu // go back to main menu
+        });
+        mainMenu.Options.Add(new DialogueOption
+        {
+            Label = "Just chat",
+            Next = talk
+        });
+        mainMenu.Options.Add(new DialogueOption
+        {
+            Label = "Goodbye",
+            Next = null
         });
 
-        shop.Options.Add(new DialogueOption { Label = "Maybe later.", Next = returning });
-
-        // Entrées
-        firstIntro.Options.Add(new DialogueOption { Label = "Let me see your boons.", Next = shop });
-        firstIntro.Options.Add(new DialogueOption { Label = "Goodbye.", Next = null });
-
-        returning.Options.Add(new DialogueOption { Label = "Let me see your boons.", Next = shop });
-        returning.Options.Add(new DialogueOption { Label = "Goodbye.", Next = null });
-
-        npc.Root = npc.HasMet ? returning : firstIntro;
+        // Root directement sur le menu principal
+        npc.Root = mainMenu;
     }
 }

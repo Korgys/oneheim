@@ -246,6 +246,12 @@
   <data name="FeathersOfHopeDescription" xml:space="preserve">
     <value>Gain {0}% HP on dodge</value>
   </data>
+  <data name="FidelityCard" xml:space="preserve">
+    <value>Fidelity Card</value>
+  </data>
+  <data name="FidelityCardDescription" xml:space="preserve">
+    <value>{0}% discount with merchants</value>
+  </data>
   <data name="Fight" xml:space="preserve">
     <value>Fight !</value>
   </data>

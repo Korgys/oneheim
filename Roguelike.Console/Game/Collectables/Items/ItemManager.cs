@@ -12,9 +12,9 @@ public static class ItemManager
         {
             ItemRarity.Broken => ConsoleColor.DarkGray,
             ItemRarity.Common => ConsoleColor.White,
-            ItemRarity.Uncommon => ConsoleColor.Cyan,
-            ItemRarity.Rare => ConsoleColor.Green,
-            ItemRarity.Epic => ConsoleColor.Magenta,
+            ItemRarity.Uncommon => ConsoleColor.DarkCyan,
+            ItemRarity.Rare => ConsoleColor.Blue,
+            ItemRarity.Epic => ConsoleColor.Green,
             ItemRarity.Legendary => ConsoleColor.Yellow,
             _ => original
         };

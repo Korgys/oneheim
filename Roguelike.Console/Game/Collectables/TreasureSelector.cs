@@ -252,7 +252,7 @@ public static class TreasureSelector
             ? existing.Value + existing.UpgradableIncrementValue
             : item.Value;
 
-        itemRarity = existing?.Rarity ?? item.Rarity;
+        itemRarity = existing?.Rarity != null ? existing.Rarity + 1 : item.Rarity;
 
         return $"{item.Name} : {item.GetEffectDescription(displayValue)}";
     }

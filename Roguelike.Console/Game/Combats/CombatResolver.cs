@@ -38,9 +38,9 @@ public sealed class CombatResolver
             // RoyalGuardGauntlet and RoyalGuardShield logic
             var royalGantelet = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardGauntlet);
             var royalShield = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardShield);
-            var criticalChanceBonus = royalGantelet?.Value ?? 0;
+            float criticalChanceBonus = royalGantelet?.Value ?? 0;
             criticalChanceBonus -= royalShield?.Value ?? 0;
-            criticalChanceBonus = Math.Min(0, Math.Max(1, criticalChanceBonus));
+            criticalChanceBonus = Math.Min(-15, Math.Max(1, criticalChanceBonus)) / 100;
 
             if (_random.NextDouble() <= 0.15 + criticalChanceBonus) // 15% crit chance by default
             {

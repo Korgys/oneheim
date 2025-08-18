@@ -70,32 +70,32 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.RoyalGuardGauntlet,
                 Effect = Messages.RoyalGuardGauntletDescription,
-                Value = 2,
-                UpgradableIncrementValue = 1
+                Value = 10,
+                UpgradableIncrementValue = 2
             },
             ItemId.RoyalGuardShield => new Item
             {
                 Id = id,
                 Name = Messages.RoyalGuardShield,
                 Effect = Messages.RoyalGuardShieldDescription,
-                Value = 3,
-                UpgradableIncrementValue = 1
+                Value = 10,
+                UpgradableIncrementValue = 2
             },
             ItemId.BerserkerNecklace => new Item
             {
                 Id = id,
                 Name = Messages.BerserkerNecklace,
                 Effect = Messages.BerserkerNecklaceDescription,
-                Value = 15,
-                UpgradableIncrementValue = 5
+                Value = 30,
+                UpgradableIncrementValue = 15
             },
             ItemId.PaladinNecklace => new Item
             {
                 Id = id,
                 Name = Messages.PaladinNecklace,
                 Effect = Messages.PaladinNecklaceDescription,
-                Value = 20,
-                UpgradableIncrementValue = 5
+                Value = 50,
+                UpgradableIncrementValue = 10
             },
             ItemId.HolyBible => new Item
             {
@@ -185,6 +185,14 @@ public class ItemFactory
                 Value = 30,
                 UpgradableIncrementValue = 20,
                 Rarity = ItemRarity.Uncommon
+            },
+            ItemId.FidelityCard => new Item
+            {
+                Id = id,
+                Name = Messages.FidelityCard,
+                Effect = Messages.FidelityCardDescription,
+                Value = 10,
+                UpgradableIncrementValue = 10,
             },
             _ => throw new ArgumentException("Unknown item type")
         };

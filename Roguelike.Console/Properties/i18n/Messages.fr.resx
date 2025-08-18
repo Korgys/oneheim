@@ -246,6 +246,12 @@
   <data name="FeathersOfHopeDescription" xml:space="preserve">
     <value>Gagne {0}% de vie par esquive.</value>
   </data>
+  <data name="FidelityCard" xml:space="preserve">
+    <value>Carte de fidélité</value>
+  </data>
+  <data name="FidelityCardDescription" xml:space="preserve">
+    <value>{0}% de réduction chez les marchands</value>
+  </data>
   <data name="Fight" xml:space="preserve">
     <value>Combat</value>
   </data>

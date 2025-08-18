@@ -128,7 +128,9 @@ public class EnemyManager
             return false;
         }
 
-        if (CanMoveTo(newX, newY))
+        // Prevent enemies to move in walls or inside the structure 
+        if (CanMoveTo(newX, newY) 
+            && _level.Structures.Any(s => !s.IsSeverelyEndomaged() && !s.IsInterior(newX, newY)))
         {
             enemy.X = newX;
             enemy.Y = newY;
