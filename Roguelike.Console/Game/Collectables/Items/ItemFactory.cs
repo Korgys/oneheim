@@ -193,6 +193,7 @@ public class ItemFactory
                 Effect = Messages.FidelityCardDescription,
                 Value = 10,
                 UpgradableIncrementValue = 10,
+                Rarity = ItemRarity.Common // with this, max reduction is 50%, which is already pretty good
             },
             _ => throw new ArgumentException("Unknown item type")
         };

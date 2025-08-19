@@ -7,12 +7,11 @@ public class Lich : Boss
 {
     public Lich(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = 8 * level * level;
+        LifePoint = 10 * level * level; // lvl5: 250HP, lvl10: 1000HP
         MaxLifePoint = LifePoint;
-        Armor = 18 * level;
-        Strength = 18 * level;
-        Speed = 18 * level;
-        Vision = 30; // Boss vision range
+        Armor = 14 * level;             // lvl5: 70, lvl10: 150
+        Strength = 18 * level;          // lvl5: 90, lvl10: 180
+        Speed = 10 * level;             // lvl5: 50, lvl10: 100
         Name = Messages.TheElderLich;
         Category = EnemyType.Undead;
         Inventory = new List<Item>
@@ -29,7 +28,7 @@ public class Lich : Boss
                 Id = ItemId.TalismanOfTheLastBreath,
                 Name = "Talisman of the Last Breath",
                 Effect = "Cannot be instant kill",
-                Value = 2 * level * level
+                Value = 4 * level * level // lvl5: 100, lvl10: 400
             }
         };
     }

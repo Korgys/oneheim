@@ -43,6 +43,7 @@ public class EnemyFactory
             EnemyId.AlphaWolf => new AlphaWolf(x, y, level),
             EnemyId.Werewolf => new Werewolf(x, y, level),
             EnemyId.Lich => new Lich(x, y, level),
+            EnemyId.Wyvern => new Wyvern(x, y, level),
             _ => throw new ArgumentOutOfRangeException(nameof(EnemyId), enemyId, null)
         };
     }

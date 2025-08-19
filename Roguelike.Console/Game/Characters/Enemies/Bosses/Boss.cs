@@ -8,6 +8,7 @@ public class Boss : Enemy
         X = x;
         Y = y;
         Character = 'B';
+        Vision = 30; // Boss vision range
         StepsPerTurn = 2; // boss can move 2 cases per turn
     }
 }

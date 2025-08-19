@@ -462,6 +462,9 @@
   <data name="TheFogIntensifies" xml:space="preserve">
     <value>Le brouillard s'épaissit ! De nouveaux ennemis et trésors sont apparus !</value>
   </data>
+  <data name="TheJuvenileGreenWyvern" xml:space="preserve">
+    <value>La Juvénile Wyvern Verte</value>
+  </data>
   <data name="ThornBreastplate" xml:space="preserve">
     <value>Plastron d'épines</value>
   </data>

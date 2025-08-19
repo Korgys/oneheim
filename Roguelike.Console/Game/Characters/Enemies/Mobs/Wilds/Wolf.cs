@@ -9,7 +9,7 @@ public class Wolf : Enemy
         LifePoint = (10 + _random.Next(0, 4)) * level + (level - 1);
         MaxLifePoint = LifePoint;
         Armor = (2 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (5 + _random.Next(0, 4)) * level + (level - 1);
+        Strength = (4 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (7 + _random.Next(0, 2)) * level + (level - 1);
         Vision = 3; // Wolves have a good vision range
         Name = Messages.Wolf;

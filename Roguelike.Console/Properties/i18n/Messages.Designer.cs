@@ -1096,6 +1096,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à The Juvenile Green Wyvern.
+        /// </summary>
+        internal static string TheJuvenileGreenWyvern {
+            get {
+                return ResourceManager.GetString("TheJuvenileGreenWyvern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Thorn Breastplate.
         /// </summary>
         internal static string ThornBreastplate {

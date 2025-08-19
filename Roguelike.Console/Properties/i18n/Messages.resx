@@ -462,6 +462,9 @@
   <data name="TheFogIntensifies" xml:space="preserve">
     <value>The fog intensifies. New enemies and treasures have appeared!</value>
   </data>
+  <data name="TheJuvenileGreenWyvern" xml:space="preserve">
+    <value>The Juvenile Green Wyvern</value>
+  </data>
   <data name="ThornBreastplate" xml:space="preserve">
     <value>Thorn Breastplate</value>
   </data>

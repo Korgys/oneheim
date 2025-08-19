@@ -23,6 +23,7 @@ public class LevelManager
     public List<Npc> Npcs { get; } = new();
     public List<Structure> Structures { get; } = new();
     public bool PlayerInCombat { get; set; } = false;
+    public int ChestPrice { get; set; } = 50;
 
     private readonly DifficultyManager _difficultyManager;
     private readonly Random _random = new();

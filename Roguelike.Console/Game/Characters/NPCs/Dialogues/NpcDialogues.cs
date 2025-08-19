@@ -4,7 +4,6 @@ using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
-using System;
 
 namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
@@ -150,7 +149,7 @@ public static class NpcDialogues
     public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings)
     {
         var player = level.Player;
-        int price = 50; // chest price
+        var price = level.ChestPrice;
 
         // Fidelity card item logic
         var fidelityCard = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FidelityCard);
@@ -200,8 +199,9 @@ public static class NpcDialogues
 
                 // Pay and apply bonus
                 player.Gold -= price;
+                level.ChestPrice += 2; // increase chest price to avoid exploit with fidelity card
                 var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
-                return $"Purchased: {msg}";
+                return $"Purchased: {msg}\nChest price is now more expensive.";
             },
             Next = mainMenu // go back to main menu
         });

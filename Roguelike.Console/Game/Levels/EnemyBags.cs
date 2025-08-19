@@ -24,8 +24,8 @@ public static class EnemyBags
 
     public static Dictionary<EnemyId, int>  Level1 = new Dictionary<EnemyId, int>
     {
-        { EnemyId.LeglessZombie,100 },
-        { EnemyId.WildBear,     100 },
+        { EnemyId.LeglessZombie,200 },
+        { EnemyId.WildBear,     200 },
         { EnemyId.Zombie,        20 },
         { EnemyId.Wolf,          10 },
         { EnemyId.ArmoredZombie,  2 },
@@ -38,8 +38,8 @@ public static class EnemyBags
 
     public static Dictionary<EnemyId, int> Level2 = new Dictionary<EnemyId, int>
     {
-        { EnemyId.LeglessZombie, 50 },
-        { EnemyId.WildBear,      50 },
+        { EnemyId.LeglessZombie, 90 },
+        { EnemyId.WildBear,      90 },
         { EnemyId.Zombie,        20 },
         { EnemyId.Wolf,          10 },
         { EnemyId.ArmoredZombie,  2 },
@@ -53,14 +53,14 @@ public static class EnemyBags
     public static Dictionary<EnemyId, int> Level3 = new Dictionary<EnemyId, int>
     {
         { EnemyId.LeglessZombie, 10 },
-        { EnemyId.WildBear,      10 },
-        { EnemyId.Zombie,        10 },
-        { EnemyId.Wolf,         100 },
-        { EnemyId.ArmoredZombie,  5 },
+        { EnemyId.WildBear,       5 },
+        { EnemyId.Zombie,        90 },
+        { EnemyId.Wolf,          10 },
+        { EnemyId.ArmoredZombie, 40 },
         { EnemyId.GiantSpider,    5 },
         { EnemyId.PlagueGhoul,    5 },
-        { EnemyId.AlphaWolf,     20 },
-        { EnemyId.Werewolf,      10 },
+        { EnemyId.AlphaWolf,      2 },
+        { EnemyId.Werewolf,       1 },
         { EnemyId.Revenant,       1 }
     };
 
@@ -68,13 +68,13 @@ public static class EnemyBags
     {
         { EnemyId.LeglessZombie, 10 },
         { EnemyId.WildBear,      10 },
-        { EnemyId.Zombie,        40 },
-        { EnemyId.Wolf,          10 },
+        { EnemyId.Zombie,        25 },
+        { EnemyId.Wolf,          95 },
         { EnemyId.ArmoredZombie, 25 },
-        { EnemyId.GiantSpider,    5 },
-        { EnemyId.PlagueGhoul,    5 },
-        { EnemyId.AlphaWolf,      2 },
-        { EnemyId.Werewolf,       2 },
+        { EnemyId.GiantSpider,   10 },
+        { EnemyId.PlagueGhoul,   10 },
+        { EnemyId.AlphaWolf,     15 },
+        { EnemyId.Werewolf,      10 },
         { EnemyId.Revenant,       2 }
     };
 

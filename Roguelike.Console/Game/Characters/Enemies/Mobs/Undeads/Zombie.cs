@@ -8,7 +8,7 @@ public class Zombie : Enemy
     {
         LifePoint = (10 + _random.Next(0, 3)) * level + (level - 1);
         MaxLifePoint = LifePoint;
-        Armor = (5 + _random.Next(0, 2)) * level + (level - 1);
+        Armor = (4 + _random.Next(0, 2)) * level + (level - 1);
         Strength = (5 + _random.Next(0, 2)) * level + (level - 1);
         Speed = 2 * level + (level - 1); // Zombies are slow
         Vision = 1; // Limited vision range

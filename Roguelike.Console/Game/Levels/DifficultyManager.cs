@@ -20,11 +20,11 @@ public class DifficultyManager
         switch (DifficultyLevel)
         {
             case Difficulty.Normal:
-                return 16;
+                return 20;
             case Difficulty.Hard:
-                return 14;
+                return 18;
             case Difficulty.Hell:
-                return 12;
+                return 16;
             default:
                 return 1;
         }
