@@ -210,6 +210,9 @@
   <data name="CapeOfInvisibilityDescription" xml:space="preserve">
     <value>Réduit de {0} la vision des ennemis.</value>
   </data>
+  <data name="CaveTroll" xml:space="preserve">
+    <value>Troll des cavernes</value>
+  </data>
   <data name="Choices" xml:space="preserve">
     <value>Choix</value>
   </data>
@@ -233,6 +236,9 @@
   </data>
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Ennemi vaincu !</value>
+  </data>
+  <data name="EnemyIsUnderTrollMushroomEffect" xml:space="preserve">
+    <value>L'ennemi est sous l'effet du champignon des trolls, il ne peut pas attaquer pour le moment.</value>
   </data>
   <data name="EngravedFangs" xml:space="preserve">
     <value>Crocs gravés</value>
@@ -306,6 +312,9 @@
   <data name="InventoryFull" xml:space="preserve">
     <value>Inventaire plein. Choisis un objet à lâcher :</value>
   </data>
+  <data name="IsUnderAttack" xml:space="preserve">
+    <value>est attaqué</value>
+  </data>
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Garder l'inventaire actuel</value>
   </data>
@@ -338,6 +347,12 @@
   </data>
   <data name="NothingToRepair" xml:space="preserve">
     <value>Il n'y a rien à réparer.</value>
+  </data>
+  <data name="OldGiantWoodenClub" xml:space="preserve">
+    <value>Vieux gourdin géant en bois</value>
+  </data>
+  <data name="OldGiantWoodenClubDescription" xml:space="preserve">
+    <value>Casse {0} d'armure quand moins de force que l'armure de l'adversaire</value>
   </data>
   <data name="PaladinNecklace" xml:space="preserve">
     <value>Pendentif du paladin</value>
@@ -471,6 +486,12 @@
   <data name="ThornBreastplateDescription" xml:space="preserve">
     <value>60% de chances que l'adversaire prenne {0} de dégâts si touché</value>
   </data>
+  <data name="TrollMushroom" xml:space="preserve">
+    <value>Champignon de troll</value>
+  </data>
+  <data name="TrollMushroomDescription" xml:space="preserve">
+    <value>Attaque un tour sur 2, +{0}% de dégâts</value>
+  </data>
   <data name="UpgradedItemTo" xml:space="preserve">
     <value>Améliore l'effet de {0} à {1}</value>
   </data>
@@ -491,6 +512,9 @@
   </data>
   <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
     <value>Vous possédez déjà {0}, il n'est pas améliorable.</value>
+  </data>
+  <data name="YouAreUnderTrollMushroomEffect" xml:space="preserve">
+    <value>Vous êtes sous l'effet du champignon des trolls. Vous ne pouvez pas attaquer maintenant.</value>
   </data>
   <data name="YouDealDamage" xml:space="preserve">
     <value>Vous infligez {0} de dégâts</value>

@@ -3,13 +3,22 @@
 using Roguelike.Console.Game.Characters;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Game.Combats;
 
 public sealed class CombatResolver
 {
     private readonly Random _random = new Random();
 
-    public AttackOutcome ExecuteAttack(Character attacker, Character defender)
+    public AttackOutcome ExecuteAttack(Character attacker, Character defender, int round)
     {
+        // TrollMushroom item logic 
+        var trollMushroom = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.TrollMushroom);
+        if (trollMushroom != null && round % 2 == 1)
+        {
+            // Cannot attack on odd rounds
+            return AttackOutcome.UnderTrollMushroomEffect();
+        }
+
         // 1) Compute defender dodge chance (with boots if any)
         if (TryDodge(attacker, defender, out double dodgeChance)
             && _random.NextDouble() < dodgeChance)
@@ -28,7 +37,16 @@ public sealed class CombatResolver
         }
 
         // 2) Compute base damage (after armor). Min damage is 1.
-        int damage = Math.Max(1, attacker.Strength - defender.Armor);
+        int baseDamage = Math.Max(0, attacker.Strength - defender.Armor);
+        int minDamage = 1;
+        decimal multiplier = 1m;
+        if (trollMushroom != null)
+        {
+            multiplier *= trollMushroom.Value / 100m;
+            minDamage = 2;
+        }
+
+        int damage = Math.Max(minDamage, (int)Math.Ceiling(baseDamage * multiplier));
 
         // 3) Roll crit + armor break (only if attacker’s Strength > defender’s Strength)
         bool isCrit = false;
@@ -55,6 +73,19 @@ public sealed class CombatResolver
                 damage = (int)Math.Ceiling(damage * criticalDamageBonus); 
                 armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.10, MidpointRounding.AwayFromZero)); // -5% armor
                 defender.Armor = Math.Max(0, defender.Armor - armorShred);
+            }
+        }
+
+        // OldGiantWoodenClub item logic
+        var oldGiantWoodenClub = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.OldGiantWoodenClub);
+        if (oldGiantWoodenClub != null)
+        {
+            // Breaks armor when less strength than opponent's armor
+            if (attacker.Strength < defender.Armor)
+            {
+                var defenderArmorBeforeBreak = defender.Armor;
+                defender.Armor = Math.Max(attacker.Strength, defender.Armor - oldGiantWoodenClub.Value);
+                armorShred += defenderArmorBeforeBreak - defender.Armor;
             }
         }
 
@@ -133,20 +164,4 @@ public sealed class CombatResolver
         chance = Math.Min(max, slope * speedDiff + bootsBonus);
         return chance > 0;
     }
-}
-
-/// <summary>
-/// Represent the result of a single resolved attack.
-/// </summary>
-public readonly record struct AttackOutcome(
-    bool Dodged,
-    int Damage,
-    bool Crit,
-    int ArmorShredded,
-    int LifeStolen,
-    int ThornsReflected,
-    bool DefenderSavedByTalisman
-)
-{
-    public static AttackOutcome HasDodged(int restauredLife) => new(true, 0, false, 0, restauredLife, 0, false);
 }

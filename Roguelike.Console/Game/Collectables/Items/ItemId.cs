@@ -24,5 +24,7 @@ public enum ItemId
     SealOfWisdom = 20,
     ProspectorKey = 21,
     HawkEye = 22,
-    FidelityCard = 23
+    FidelityCard = 23,
+    TrollMushroom = 24,
+    OldGiantWoodenClub = 25
 }

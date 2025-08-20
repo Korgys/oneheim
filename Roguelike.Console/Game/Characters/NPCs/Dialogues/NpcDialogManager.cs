@@ -1,5 +1,6 @@
 ﻿namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
+using Microsoft.VisualBasic.FileIO;
 using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
@@ -35,18 +36,18 @@ public static class NpcDialogManager
                 break;
             }
 
-            // Render options with Choice1/2/3 mapping
+            // Render options with Choice 1/2/3 mapping
             var map = new[]
             {
                 settings.Controls.Choice1,
                 settings.Controls.Choice2,
                 settings.Controls.Choice3
             };
-
-            for (int i = 0; i < node.Options.Count && i < map.Length; i++)
-                Console.WriteLine($"{map[i]}: {node.Options[i].Label}");
-            if (node.Options.Count > map.Length)
-                Console.WriteLine("(More options exist but only 3 can be mapped here)");
+            for (int i = 0; i < node.Options.Count && i < map.Length; i++) // Be careful with the length, only 3 choices are supported
+            {
+                var label = node.Options[i].LabelFactory?.Invoke() ?? node.Options[i].Label;
+                Console.WriteLine($"{map[i]}. {label}");
+            }
 
             // Read input
             int choice = -1;

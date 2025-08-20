@@ -174,7 +174,7 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.ProspectorKey,
                 Effect = Messages.ProspectorKeyDescription,
-                Value = 2,
+                Value = 3,
                 UpgradableIncrementValue = 2
             },
             ItemId.HawkEye => new Item
@@ -194,6 +194,22 @@ public class ItemFactory
                 Value = 10,
                 UpgradableIncrementValue = 10,
                 Rarity = ItemRarity.Common // with this, max reduction is 50%, which is already pretty good
+            },
+            ItemId.TrollMushroom => new Item
+            {
+                Id = id,
+                Name = Messages.TrollMushroom,
+                Effect = Messages.TrollMushroomDescription,
+                Value = 125,
+                UpgradableIncrementValue = 25
+            },
+            ItemId.OldGiantWoodenClub => new Item
+            {
+                Id = id,
+                Name = Messages.OldGiantWoodenClub,
+                Effect = Messages.OldGiantWoodenClubDescription,
+                Value = 1,
+                UpgradableIncrementValue = 1
             },
             _ => throw new ArgumentException("Unknown item type")
         };

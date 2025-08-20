@@ -13,5 +13,6 @@ public enum EnemyId
     AlphaWolf,
     Werewolf,
     Lich,
-    Wyvern
+    Wyvern,
+    Troll
 }

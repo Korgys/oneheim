@@ -340,6 +340,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cave Troll.
+        /// </summary>
+        internal static string CaveTroll {
+            get {
+                return ResourceManager.GetString("CaveTroll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choices.
         /// </summary>
         internal static string Choices {
@@ -408,6 +417,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string EnemyDefeated {
             get {
                 return ResourceManager.GetString("EnemyDefeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enemy is under troll mushroom effect. He cannot attack now..
+        /// </summary>
+        internal static string EnemyIsUnderTrollMushroomEffect {
+            get {
+                return ResourceManager.GetString("EnemyIsUnderTrollMushroomEffect", resourceCulture);
             }
         }
         
@@ -628,6 +646,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à is under attack.
+        /// </summary>
+        internal static string IsUnderAttack {
+            get {
+                return ResourceManager.GetString("IsUnderAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Keep current inventory.
         /// </summary>
         internal static string KeepCurrentInventory {
@@ -723,6 +750,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string NothingToRepair {
             get {
                 return ResourceManager.GetString("NothingToRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Old Giant Wooden Club.
+        /// </summary>
+        internal static string OldGiantWoodenClub {
+            get {
+                return ResourceManager.GetString("OldGiantWoodenClub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Breaks {0} armor when less strength than opponent&apos;s armor.
+        /// </summary>
+        internal static string OldGiantWoodenClubDescription {
+            get {
+                return ResourceManager.GetString("OldGiantWoodenClubDescription", resourceCulture);
             }
         }
         
@@ -1123,6 +1168,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Troll&apos;s Mushroom.
+        /// </summary>
+        internal static string TrollMushroom {
+            get {
+                return ResourceManager.GetString("TrollMushroom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Attack every 2 turns, +{0}% damage.
+        /// </summary>
+        internal static string TrollMushroomDescription {
+            get {
+                return ResourceManager.GetString("TrollMushroomDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Upgraded {0} to value {1}.
         /// </summary>
         internal static string UpgradedItemTo {
@@ -1182,6 +1245,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string YouAlreadyOwnItemNotUpgradable {
             get {
                 return ResourceManager.GetString("YouAlreadyOwnItemNotUpgradable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You are under troll mushroom effect. You cannot attack now..
+        /// </summary>
+        internal static string YouAreUnderTrollMushroomEffect {
+            get {
+                return ResourceManager.GetString("YouAreUnderTrollMushroomEffect", resourceCulture);
             }
         }
         

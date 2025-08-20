@@ -101,9 +101,9 @@ public static class ConsoleRenderer
             Console.WriteLine();
         }
 
-        // Display base HP
+        // Display base HP only if severly damaged and not under attack
         var baseStructure = level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
-        if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3)
+        if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3 && !level.IsBaseCampUnderAttack())
         {
             Console.WriteLine();
             Console.Write(Messages.BaseCampHp);
@@ -122,7 +122,7 @@ public static class ConsoleRenderer
         {
             // Danger in red
             if (gameMessage.Contains(Messages.BeCarefullYouAreNotSafeHere)
-                || gameMessage.Contains(Messages.StructureUnderAttack)
+                || gameMessage.Contains(Messages.IsUnderAttack)
                 || gameMessage.Contains(string.Format(Messages.HasBeenDestroy, Messages.BaseCamp))
                 || gameMessage.Contains(Messages.ABossArrives))
             {

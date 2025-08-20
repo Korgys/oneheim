@@ -51,8 +51,22 @@ public class GameEngine
                 break;
             }
 
+            // Inside game loop, after player input
+            var ctx = new TurnContext(_levelManager);
+
+            // Run systems before enemies move
+            var beforeMsgs = _runner.Run(TurnPhase.BeforeEnemiesMove, ctx);
+            if (beforeMsgs.Any())
+                _gameMessage = string.Join("\n", beforeMsgs);
+
+            // Enemy movement & combat
             _enemyManager.MoveEnemies();
             _gameMessage = _enemyManager.CombatMessage ?? _gameMessage;
+
+            // Run systems after enemies move
+            var afterMsgs = _runner.Run(TurnPhase.AfterEnemiesMove, ctx);
+            if (afterMsgs.Any())
+                _gameMessage = string.Join("\n", afterMsgs);
 
             ApplyGameEventsIfNeeded();
         }

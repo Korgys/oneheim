@@ -210,6 +210,9 @@
   <data name="CapeOfInvisibilityDescription" xml:space="preserve">
     <value>Decrease by {0} enemies vision range</value>
   </data>
+  <data name="CaveTroll" xml:space="preserve">
+    <value>Cave Troll</value>
+  </data>
   <data name="Choices" xml:space="preserve">
     <value>Choices</value>
   </data>
@@ -233,6 +236,9 @@
   </data>
   <data name="EnemyDefeated" xml:space="preserve">
     <value>Enemy defeated!</value>
+  </data>
+  <data name="EnemyIsUnderTrollMushroomEffect" xml:space="preserve">
+    <value>Enemy is under troll mushroom effect. He cannot attack now.</value>
   </data>
   <data name="EngravedFangs" xml:space="preserve">
     <value>Engraved Fangs</value>
@@ -306,6 +312,9 @@
   <data name="InventoryFull" xml:space="preserve">
     <value>Inventory full. Choose item to drop:</value>
   </data>
+  <data name="IsUnderAttack" xml:space="preserve">
+    <value>is under attack</value>
+  </data>
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Keep current inventory</value>
   </data>
@@ -338,6 +347,12 @@
   </data>
   <data name="NothingToRepair" xml:space="preserve">
     <value>There is nothing to repair here.</value>
+  </data>
+  <data name="OldGiantWoodenClub" xml:space="preserve">
+    <value>Old Giant Wooden Club</value>
+  </data>
+  <data name="OldGiantWoodenClubDescription" xml:space="preserve">
+    <value>Breaks {0} armor when less strength than opponent's armor</value>
   </data>
   <data name="PaladinNecklace" xml:space="preserve">
     <value>Paladin Necklace</value>
@@ -471,6 +486,12 @@
   <data name="ThornBreastplateDescription" xml:space="preserve">
     <value>60% chances that enemies take {0} damage if they hit you</value>
   </data>
+  <data name="TrollMushroom" xml:space="preserve">
+    <value>Troll's Mushroom</value>
+  </data>
+  <data name="TrollMushroomDescription" xml:space="preserve">
+    <value>Attack every 2 turns, +{0}% damage</value>
+  </data>
   <data name="UpgradedItemTo" xml:space="preserve">
     <value>Upgraded {0} to value {1}</value>
   </data>
@@ -491,6 +512,9 @@
   </data>
   <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
     <value>You already own {0}, not upgradable.</value>
+  </data>
+  <data name="YouAreUnderTrollMushroomEffect" xml:space="preserve">
+    <value>You are under troll mushroom effect. You cannot attack now.</value>
   </data>
   <data name="YouDealDamage" xml:space="preserve">
     <value>You deal {0} damage</value>

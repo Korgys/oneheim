@@ -64,9 +64,14 @@ public class EnemyManager
         // 4) Resolve queued combats
         foreach (var enemy in enemiesToFight.Distinct())
         {
-            var combat = new CombatManager(_level);
-            combat.StartCombat(enemy);
+            // Only fight if player is alive
+            if (player.LifePoint > 0)
+            {
+                var combat = new CombatManager(_level);
+                combat.StartCombat(enemy);
+            }
 
+            // Combat result
             if (player.LifePoint <= 0)
             {
                 CombatMessage = string.Format(Messages.YouWereKilledBy, enemy.Name);

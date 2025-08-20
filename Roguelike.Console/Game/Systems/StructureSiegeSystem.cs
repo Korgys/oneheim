@@ -22,6 +22,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
         var level = ctx.Level;
         var structure = level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (structure == null) return;
+        if (level.Player.Steps <= 175) return; // No siege before 175 steps
 
         // Collect attackers (adjacent to walls, not inside)
         var walls = structure.WallTiles().ToArray();
@@ -32,10 +33,10 @@ public sealed class StructureSiegeSystem : ITurnSystem
                 _lastAttackers.Add(e);
         }
 
-        // Rule: ≥3 attackers OR any boss
-        if (_lastAttackers.Count >= 3 || _lastAttackers.Any(a => a is Boss))
+        // Rule: ≥4 attackers OR any boss
+        if (_lastAttackers.Count >= 4 || _lastAttackers.Any(a => a is Boss))
         {
-            int damage = Math.Max(1, _lastAttackers.Sum(a => a.Strength) / 2);
+            int damage = Math.Max(1, _lastAttackers.Sum(a => a.Strength) / 4);
             structure.TakeDamage(damage);
 
             if (structure.Hp <= 0)

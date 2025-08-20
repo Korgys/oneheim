@@ -1,9 +1,11 @@
 ﻿using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
+using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
+using System.Reflection.Emit;
 
 namespace Roguelike.Console.Game.Characters.NPCs.Dialogues;
 
@@ -149,20 +151,20 @@ public static class NpcDialogues
     public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings)
     {
         var player = level.Player;
-        var price = level.ChestPrice;
 
-        // Fidelity card item logic
-        var fidelityCard = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FidelityCard);
-        if (fidelityCard != null)
+        int GetCurrentPrice()
         {
-            float discountRate = fidelityCard.Value / 100f;
-            price = (int)MathF.Round(price * (1 - discountRate));
+            int basePrice = level.ChestPrice;
+            var fidelityCard = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FidelityCard);
+            if (fidelityCard == null) return basePrice;
+
+            float discountRate = Math.Clamp(fidelityCard.Value / 100f, 0f, 0.95f);
+            int discounted = (int)MathF.Round(basePrice * (1 - discountRate));
+            return Math.Max(1, discounted);
         }
 
-        // Helpers
         DialogueNode Node(Func<string> text) => new DialogueNode { Text = text };
 
-        // Small talks
         string[] smallTalkLines =
         {
             "These lands change you. Sometimes for the better.",
@@ -171,52 +173,52 @@ public static class NpcDialogues
             "Storm’s coming. You can feel it in the stone.",
             "Power is a weight; spend it wisely."
         };
+
         var talk = Node(() => smallTalkLines[_random.Next(smallTalkLines.Length)]);
         talk.Options.Add(new DialogueOption { Label = "Back", Next = null });
 
         DialogueNode? mainMenu = null;
 
-        // --- Menu principal (3 options : acheter / discuter / quitter) ---
         mainMenu = Node(() =>
         {
-            var intro = npc.HasMet
-                ? "Back again, wanderer?"
-                : "Greetings, wanderer.";
-            return $"{intro} Care to buy a boon for {price} gold?";
+            var intro = npc.HasMet ? "Back again, wanderer?" : "Greetings, wanderer.";
+            return $"{intro} Care to buy a boon for {GetCurrentPrice()} gold?";
         });
 
+        // Shop
         mainMenu.Options.Add(new DialogueOption
         {
-            Label = $"Buy a boon ({price} gold)",
+            LabelFactory = () => $"Buy a boon ({GetCurrentPrice()} gold)",
             Action = () =>
             {
-                // Check if player has enough gold
+                int price = GetCurrentPrice();
+
                 if (player.Gold < price) return "You do not have enough gold.";
 
-                // 3 choices like treasure chest
                 var choices = TreasureSelector.GenerateBonusChoices(player, settings);
                 var chosen = TreasureSelector.PromptPlayerForBonus(choices, player, settings);
 
-                // Pay and apply bonus
                 player.Gold -= price;
-                level.ChestPrice += 2; // increase chest price to avoid exploit with fidelity card
+                level.ChestPrice += 2; // inflation anti-exploit
                 var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
-                return $"Purchased: {msg}\nChest price is now more expensive.";
+
+                return $"Purchased: {msg}\nChest price has increased.";
             },
-            Next = mainMenu // go back to main menu
+            Next = mainMenu
         });
+
         mainMenu.Options.Add(new DialogueOption
         {
             Label = "Just chat",
             Next = talk
         });
+
         mainMenu.Options.Add(new DialogueOption
         {
             Label = "Goodbye",
             Next = null
         });
 
-        // Root directement sur le menu principal
         npc.Root = mainMenu;
     }
 }
