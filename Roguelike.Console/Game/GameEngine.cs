@@ -52,7 +52,7 @@ public class GameEngine
             }
 
             // Inside game loop, after player input
-            var ctx = new TurnContext(_levelManager);
+            var ctx = new TurnContext(_levelManager, _gameSettings, _difficultyManager);
 
             // Run systems before enemies move
             var beforeMsgs = _runner.Run(TurnPhase.BeforeEnemiesMove, ctx);
@@ -76,52 +76,12 @@ public class GameEngine
 
     private void ApplyGameEventsIfNeeded()
     {
-        // Player death
-        if (_levelManager.Player.LifePoint <= 0)
-        {
-            _isGameEnded = true;
-            return;
-        }
-
-        if (_levelManager.Player.Steps == 6)
-        {
-            _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
-            _gameMessage = Messages.BeCarefullYouAreNotSafeHere;
-        }
-
-        // New enemies/boss wave
-        if (_levelManager.Player.Steps > 0
-            && _levelManager.Player.Steps < 1001
-            && _levelManager.Player.Steps % 100 == 0)
-        {
-            if (_levelManager.Player.Steps % 500 == 0)
-            {
-                _levelManager.PlaceBoss();
-                _levelManager.Player.SetPlayerVisionAfterFogArrival();
-                _gameMessage = Messages.ABossArrives;
-            }
-            else
-            {
-                _levelManager.PlaceEnemies(_difficultyManager.GetEnemiesNumber());
-                _levelManager.PlaceTreasures(_difficultyManager.GetTreasuresNumber());
-                _levelManager.Player.SetPlayerVisionAfterFogArrival();
-                _gameMessage = Messages.TheFogIntensifies;
-            }
-        }
-
         // Spawn Ichem (shop NPC) at 150 steps
         if (_levelManager.Player.Steps == 150 && !_levelManager.Npcs.Any(n => n.Id == NpcId.Ichem) 
             && _levelManager.Structures.Any(s => s.Name == Messages.BaseCamp))
         {
             _levelManager.PlaceNpc(NpcId.Ichem);
             _gameMessage = "A new traveler comes to the base camp";
-        }
-
-        // Endgame if all bosses are dead and level steps = 10
-        if (_levelManager.Player.Steps > 1000 && !_levelManager.Enemies.Any(e => e is Boss))
-        {
-            _gameMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
-            _isGameEnded = true;
         }
     }
 }

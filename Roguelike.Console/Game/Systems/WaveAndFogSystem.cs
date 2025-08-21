@@ -5,7 +5,7 @@ using Roguelike.Console.Properties.i18n;
 
 public sealed class WaveAndFogSystem : ITurnSystem
 {
-    public TurnPhase Phase => TurnPhase.EndOfTurn;
+    public TurnPhase Phase => TurnPhase.AfterEnemiesMove;
     public string? LastMessage { get; private set; }
 
     public void Update(TurnContext ctx)

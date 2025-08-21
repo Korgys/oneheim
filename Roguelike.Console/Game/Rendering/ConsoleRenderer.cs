@@ -105,7 +105,6 @@ public static class ConsoleRenderer
         var baseStructure = level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (baseStructure != null && ((double)baseStructure.Hp / (double)baseStructure.MaxHp) <= 0.3 && !level.IsBaseCampUnderAttack())
         {
-            Console.WriteLine();
             Console.Write(Messages.BaseCampHp);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"{baseStructure.Hp}/{baseStructure.MaxHp}");

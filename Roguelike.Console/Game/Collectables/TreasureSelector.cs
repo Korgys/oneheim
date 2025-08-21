@@ -130,13 +130,17 @@ public static class TreasureSelector
                 return Math.Min(roll, cap);
 
             default: // Strength, Armor, Speed
+                // LuckyMillorLeftHand item logic
+                int bonus = 0;
+                var luckyMillorLeftHand = player.Inventory.FirstOrDefault(i => i.Id == ItemId.LuckyMillorLeftHand);
+                if (luckyMillorLeftHand != null && _random.NextDouble() <= (double)(luckyMillorLeftHand.Value / 100m)) bonus = 1;
                 // Scale small stat bumps with progression, but keep them modest.
                 // Early: +1~2, Mid: +2~3, Late: +3~4
                 int s;
                 if (player.Steps < 200) s = _random.Next(1, 3);
                 else if (player.Steps < 600) s = _random.Next(2, 4);
                 else s = _random.Next(3, 5);
-                return s;
+                return s + bonus;
         }
     }
 

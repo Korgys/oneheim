@@ -8,9 +8,6 @@ game.StartNewGame();
 // TODO: more dialogue options
 // TODO: implement menu system
 
-// TODO: new item : slighty more chance to find better bonus in chests
-// TODO: new item : more chance to find enemies
-// TODO: new item : less chance to find enemies
 // TODO: new item : chance that steps doesn't count
 
 // TODO: new npc : é (mercenary, hire guards, appear at 250 steps)
@@ -20,5 +17,4 @@ game.StartNewGame();
 
 // TODO: new enemy category : humans
 
-// TODO: fix bug : enemy can move in the base
 // TODO: fix bug : enemy can move on the same tile as another enemy

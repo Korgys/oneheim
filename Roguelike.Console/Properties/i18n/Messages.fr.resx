@@ -285,6 +285,12 @@
   <data name="Goodbye" xml:space="preserve">
     <value>Au revoir.</value>
   </data>
+  <data name="GrolMokbarRing" xml:space="preserve">
+    <value>Anneau de Grol Mokbar</value>
+  </data>
+  <data name="GrolMokbarRingDescription" xml:space="preserve">
+    <value>+{0} ennemis à chaque vague</value>
+  </data>
   <data name="HasBeenDestroy" xml:space="preserve">
     <value>Le {0} a été détruit !</value>
   </data>
@@ -323,6 +329,12 @@
   </data>
   <data name="LifePoint" xml:space="preserve">
     <value>Vie</value>
+  </data>
+  <data name="LuckyMillorLeftHand" xml:space="preserve">
+    <value>Main Gauche de Millor</value>
+  </data>
+  <data name="LuckyMillorLeftHandDescription" xml:space="preserve">
+    <value>+{0}% de chance de trouver de meilleurs bonus</value>
   </data>
   <data name="MaxHp" xml:space="preserve">
     <value>Vie max</value>
@@ -452,6 +464,12 @@
   </data>
   <data name="StructureUnderAttack" xml:space="preserve">
     <value>Le {0} est attaqué ! Etat: {1}/{2}</value>
+  </data>
+  <data name="TalismanOfPeace" xml:space="preserve">
+    <value>Talisman de la paix</value>
+  </data>
+  <data name="TalismanOfPeaceDescription" xml:space="preserve">
+    <value>-{0} ennemis à chaque vague</value>
   </data>
   <data name="TalismanOfTheLastBreath" xml:space="preserve">
     <value>Talisman du dernier souffle</value>

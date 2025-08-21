@@ -56,10 +56,10 @@ public sealed class CombatResolver
             // RoyalGuardGauntlet and RoyalGuardShield logic
             var royalGantelet = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardGauntlet);
             var royalShield = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardShield);
-            float criticalChanceBonus = royalGantelet?.Value ?? 0;
-            criticalChanceBonus -= royalShield?.Value ?? 0;
+            decimal criticalChanceBonus = royalGantelet?.Value / 100m ?? 0;
+            criticalChanceBonus -= royalShield?.Value / 100m ?? 0;
 
-            if (_random.NextDouble() <= 0.15 + criticalChanceBonus) // 15% crit chance by default
+            if (_random.NextDouble() <= 0.15 + (double)criticalChanceBonus) // 15% crit chance by default
             {
                 // BerserkerNecklace and PaladinNecklace logic
                 var berserkerNecklace = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.BerserkerNecklace);

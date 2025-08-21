@@ -565,6 +565,24 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Grol Mokbar&apos;s Ring.
+        /// </summary>
+        internal static string GrolMokbarRing {
+            get {
+                return ResourceManager.GetString("GrolMokbarRing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0} enemies each wave.
+        /// </summary>
+        internal static string GrolMokbarRingDescription {
+            get {
+                return ResourceManager.GetString("GrolMokbarRingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} has been destroyed!.
         /// </summary>
         internal static string HasBeenDestroy {
@@ -678,6 +696,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string LifePoint {
             get {
                 return ResourceManager.GetString("LifePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lucky Millor&apos;s Left Hand.
+        /// </summary>
+        internal static string LuckyMillorLeftHand {
+            get {
+                return ResourceManager.GetString("LuckyMillorLeftHand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}% chance to find better bonuses.
+        /// </summary>
+        internal static string LuckyMillorLeftHandDescription {
+            get {
+                return ResourceManager.GetString("LuckyMillorLeftHandDescription", resourceCulture);
             }
         }
         
@@ -1065,6 +1101,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string StructureUnderAttack {
             get {
                 return ResourceManager.GetString("StructureUnderAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Talisman of peace.
+        /// </summary>
+        internal static string TalismanOfPeace {
+            get {
+                return ResourceManager.GetString("TalismanOfPeace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à -{0} enemies each wave.
+        /// </summary>
+        internal static string TalismanOfPeaceDescription {
+            get {
+                return ResourceManager.GetString("TalismanOfPeaceDescription", resourceCulture);
             }
         }
         

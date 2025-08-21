@@ -161,7 +161,14 @@ public class LevelManager
         int level = Math.Max(1, Player.Steps / 100); // Level scaling
         var enemyBagProbability = EnemyBags.GetByLevel(level); // Weighted bag
 
-        for (int i = 0; i < count; i++)
+        // GrolMokbarRing and TalismanOfPeace items logic
+        int variance = 0;
+        var grolMokbarRing = Player.Inventory.FirstOrDefault(i => i.Id == ItemId.GrolMokbarRing);
+        var talismanOfPeace = Player.Inventory.FirstOrDefault(i => i.Id == ItemId.TalismanOfPeace);
+        if (grolMokbarRing != null) variance += grolMokbarRing.Value;
+        if (talismanOfPeace != null) variance = Math.Max(1, variance - talismanOfPeace.Value);
+
+        for (int i = 0; i < count + variance; i++)
         {
             if (!TryFindEnemySpawnTile(out int x, out int y, false))
                 break;

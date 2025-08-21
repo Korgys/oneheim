@@ -285,6 +285,12 @@
   <data name="Goodbye" xml:space="preserve">
     <value>Goodbye.</value>
   </data>
+  <data name="GrolMokbarRing" xml:space="preserve">
+    <value>Grol Mokbar's Ring</value>
+  </data>
+  <data name="GrolMokbarRingDescription" xml:space="preserve">
+    <value>+{0} enemies each wave</value>
+  </data>
   <data name="HasBeenDestroy" xml:space="preserve">
     <value>{0} has been destroyed!</value>
   </data>
@@ -323,6 +329,12 @@
   </data>
   <data name="LifePoint" xml:space="preserve">
     <value>LifePoint</value>
+  </data>
+  <data name="LuckyMillorLeftHand" xml:space="preserve">
+    <value>Lucky Millor's Left Hand</value>
+  </data>
+  <data name="LuckyMillorLeftHandDescription" xml:space="preserve">
+    <value>+{0}% chance to find better bonuses</value>
   </data>
   <data name="MaxHp" xml:space="preserve">
     <value>Max HP</value>
@@ -452,6 +464,12 @@
   </data>
   <data name="StructureUnderAttack" xml:space="preserve">
     <value>{0} is under attack! HP:{1}/{2}</value>
+  </data>
+  <data name="TalismanOfPeace" xml:space="preserve">
+    <value>Talisman of peace</value>
+  </data>
+  <data name="TalismanOfPeaceDescription" xml:space="preserve">
+    <value>-{0} enemies each wave</value>
   </data>
   <data name="TalismanOfTheLastBreath" xml:space="preserve">
     <value>Talisman Of The Last Breath‎</value>

@@ -26,5 +26,8 @@ public enum ItemId
     HawkEye = 22,
     FidelityCard = 23,
     TrollMushroom = 24,
-    OldGiantWoodenClub = 25
+    OldGiantWoodenClub = 25,
+    LuckyMillorLeftHand = 26,
+    GrolMokbarRing = 27,
+    TalismanOfPeace = 28
 }

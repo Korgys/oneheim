@@ -208,8 +208,32 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.OldGiantWoodenClub,
                 Effect = Messages.OldGiantWoodenClubDescription,
-                Value = 1,
+                Value = 3,
                 UpgradableIncrementValue = 1
+            },
+            ItemId.LuckyMillorLeftHand => new Item
+            {
+                Id = id,
+                Name = Messages.LuckyMillorLeftHand,
+                Effect = Messages.LuckyMillorLeftHandDescription,
+                Value = 10,
+                UpgradableIncrementValue = 5
+            },
+            ItemId.GrolMokbarRing => new Item
+            {
+                Id = id,
+                Name = Messages.GrolMokbarRing,
+                Effect = Messages.GrolMokbarRingDescription,
+                Value = 5,
+                UpgradableIncrementValue = 5
+            },
+            ItemId.TalismanOfPeace => new Item
+            {
+                Id = id,
+                Name = Messages.TalismanOfPeace,
+                Effect = Messages.TalismanOfPeaceDescription,
+                Value = 4,
+                UpgradableIncrementValue = 4
             },
             _ => throw new ArgumentException("Unknown item type")
         };
