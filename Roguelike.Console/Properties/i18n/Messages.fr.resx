@@ -160,7 +160,7 @@
     <value>Voilà une bourse bien lourde que tu portes là. Puisse-t-elle servir à relever Oneheim et à bâtir de nouvelles espérances.</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
-    <value>Je peux réparer le camp pour {0} d'or (+{1} de vie du camp}.</value>
+    <value>Je peux réparer le camp pour {0} d'or (+{1} de vie du camp).</value>
   </data>
   <data name="Armor" xml:space="preserve">
     <value>Armure</value>
@@ -187,7 +187,7 @@
     <value>Lame des héros</value>
   </data>
   <data name="BladeOfHeroesDescription" xml:space="preserve">
-    <value>Inflige +{0} d'attaque supplémentaires contre les boss</value>
+    <value>+{0} de force contre les boss</value>
   </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Bottes de pas léger</value>
@@ -250,7 +250,7 @@
     <value>Plumes de l'espoir</value>
   </data>
   <data name="FeathersOfHopeDescription" xml:space="preserve">
-    <value>Gagne {0}% de vie par esquive.</value>
+    <value>Gagne {0} vie par esquive.</value>
   </data>
   <data name="FidelityCard" xml:space="preserve">
     <value>Carte de fidélité</value>
@@ -430,7 +430,7 @@
     <value>Bouclier des champions</value>
   </data>
   <data name="ShieldOfChampionDescription" xml:space="preserve">
-    <value>Accorde +{0} d'armure supplémentaires face aux boss.</value>
+    <value>+{0} d'armure contre les boss.</value>
   </data>
   <data name="ShredArmor" xml:space="preserve">
     <value>détruit {0} d'armure</value>
@@ -457,7 +457,7 @@
     <value>Talisman du dernier souffle</value>
   </data>
   <data name="TalismanOfTheLastBreathDescription" xml:space="preserve">
-    <value>Survit une fois à un coup mortel</value>
+    <value>Survit une fois par combat à un coup mortel</value>
   </data>
   <data name="TheCampIsAlreadyFullyRepair" xml:space="preserve">
     <value>Le camp est déjà complètement réparé.</value>
@@ -544,7 +544,7 @@
     <value>Vous êtes passé niveau {0} !</value>
   </data>
   <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
-    <value>Vous avez survécu à un coup fatal avec votre talisman mais celui-ci s'est détruit.</value>
+    <value>Vous avez survécu à un coup fatal avec votre talisman mais celui-ci s'est épuisé.</value>
   </data>
   <data name="YouTalkedWith" xml:space="preserve">
     <value>Vous avez parlé à {0}.</value>

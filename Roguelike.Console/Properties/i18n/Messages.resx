@@ -187,7 +187,7 @@
     <value>Blade Of Heroes</value>
   </data>
   <data name="BladeOfHeroesDescription" xml:space="preserve">
-    <value>Deals +{0} strengh against bosses</value>
+    <value>+{0} strengh against bosses</value>
   </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Boots of Echo Step</value>
@@ -250,7 +250,7 @@
     <value>Feathers Of Hope</value>
   </data>
   <data name="FeathersOfHopeDescription" xml:space="preserve">
-    <value>Gain {0}% HP on dodge</value>
+    <value>Gain {0} HP on dodge</value>
   </data>
   <data name="FidelityCard" xml:space="preserve">
     <value>Fidelity Card</value>
@@ -457,7 +457,7 @@
     <value>Talisman Of The Last Breath‎</value>
   </data>
   <data name="TalismanOfTheLastBreathDescription" xml:space="preserve">
-    <value>Survive only once to fatal blow</value>
+    <value>Survive once per combat to fatal blow</value>
   </data>
   <data name="TheCampIsAlreadyFullyRepair" xml:space="preserve">
     <value>The camp is already fully repaired.</value>
@@ -544,7 +544,7 @@
     <value>You leveled up to level {0} !</value>
   </data>
   <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
-    <value>You survived a fatal blow with your talisman but it has been destroyed.</value>
+    <value>You survived a fatal blow with your talisman but it has run out for this combat.</value>
   </data>
   <data name="YouTalkedWith" xml:space="preserve">
     <value>You talked with {0}.</value>

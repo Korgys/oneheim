@@ -9,9 +9,9 @@ public class AlphaWolf : Enemy
         LifePoint = (12 + _random.Next(0, 4)) * level + (level - 1);
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (12 + _random.Next(0, 4)) * level + (level - 1);
+        Strength = (9 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (12 + _random.Next(0, 4)) * level + (level - 1);
-        Vision = 4; // Wolves have a good vision range
+        Vision = 3; // Wolves have a good vision range
         Name = Messages.AlphaWolf;
         Category = EnemyType.Wild;
         StepsPerTurn = 2; // move really fast

@@ -37,7 +37,7 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.BootsOfEchoStep,
                 Effect = Messages.BootsOfEchoStepDescription,
-                Value = 5,
+                Value = 10,
                 UpgradableIncrementValue = 5
             },
             ItemId.TalismanOfTheLastBreath => new Item
@@ -71,7 +71,7 @@ public class ItemFactory
                 Name = Messages.RoyalGuardGauntlet,
                 Effect = Messages.RoyalGuardGauntletDescription,
                 Value = 10,
-                UpgradableIncrementValue = 2
+                UpgradableIncrementValue = 3
             },
             ItemId.RoyalGuardShield => new Item
             {
@@ -79,7 +79,7 @@ public class ItemFactory
                 Name = Messages.RoyalGuardShield,
                 Effect = Messages.RoyalGuardShieldDescription,
                 Value = 10,
-                UpgradableIncrementValue = 2
+                UpgradableIncrementValue = 3
             },
             ItemId.BerserkerNecklace => new Item
             {
@@ -102,16 +102,16 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.HolyBible,
                 Effect = Messages.HolyBibleDescription,
-                Value = 3,
-                UpgradableIncrementValue = 3
+                Value = 5,
+                UpgradableIncrementValue = 4
             },
             ItemId.SacredCrucifix => new Item
             {
                 Id = id,
                 Name = Messages.SacredCrucifix,
                 Effect = Messages.SacredCrucifixDescription,
-                Value = 3,
-                UpgradableIncrementValue = 3
+                Value = 5,
+                UpgradableIncrementValue = 4
             },
             ItemId.RingOfEndurance => new Item
             {
@@ -126,7 +126,7 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.BladeOfHeroes,
                 Effect = Messages.BladeOfHeroesDescription,
-                Value = 5,
+                Value = 10,
                 UpgradableIncrementValue = 5
             },
             ItemId.ShieldOfChampion => new Item
@@ -134,7 +134,7 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.ShieldOfChampion,
                 Effect = Messages.ShieldOfChampionDescription,
-                Value = 5,
+                Value = 10,
                 UpgradableIncrementValue = 5
             },
             ItemId.FluteOfHunter => new Item
@@ -142,16 +142,16 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.FluteOfHunter,
                 Effect = Messages.FluteOfHunterDescription,
-                Value = 3,
-                UpgradableIncrementValue = 3
+                Value = 5,
+                UpgradableIncrementValue = 4
             },
             ItemId.EngravedFangs => new Item
             {
                 Id = id,
                 Name = Messages.EngravedFangs,
                 Effect = Messages.EngravedFangsDescription,
-                Value = 3,
-                UpgradableIncrementValue = 3
+                Value = 5,
+                UpgradableIncrementValue = 4
             },
             ItemId.EnchantedPouch => new Item
             {
@@ -175,14 +175,14 @@ public class ItemFactory
                 Name = Messages.ProspectorKey,
                 Effect = Messages.ProspectorKeyDescription,
                 Value = 3,
-                UpgradableIncrementValue = 2
+                UpgradableIncrementValue = 3
             },
             ItemId.HawkEye => new Item
             {
                 Id = id,
                 Name = Messages.HawkEye,
                 Effect = Messages.HawkEyeDescription,
-                Value = 30,
+                Value = 40,
                 UpgradableIncrementValue = 20,
                 Rarity = ItemRarity.Uncommon
             },

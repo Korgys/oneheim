@@ -8,6 +8,7 @@ using Roguelike.Console.Game.Combats;
 public sealed class CombatResolver
 {
     private readonly Random _random = new Random();
+    private readonly Dictionary<string, bool> _talismanUsed = new Dictionary<string, bool>();
 
     public AttackOutcome ExecuteAttack(Character attacker, Character defender, int round)
     {
@@ -29,8 +30,7 @@ public sealed class CombatResolver
             if (feathersOfHope != null)
             {
                 var initialLifePoint = defender.LifePoint;
-                var stealPoints = feathersOfHope.Value * defender.MaxLifePoint / 100;
-                defender.LifePoint = Math.Min(defender.MaxLifePoint, defender.LifePoint + stealPoints);
+                defender.LifePoint = Math.Min(defender.MaxLifePoint, defender.LifePoint + feathersOfHope.Value);
                 restoredLife = defender.LifePoint - initialLifePoint;
             }
             return AttackOutcome.HasDodged(restoredLife);
@@ -58,7 +58,6 @@ public sealed class CombatResolver
             var royalShield = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardShield);
             float criticalChanceBonus = royalGantelet?.Value ?? 0;
             criticalChanceBonus -= royalShield?.Value ?? 0;
-            criticalChanceBonus = Math.Min(-15, Math.Max(1, criticalChanceBonus)) / 100;
 
             if (_random.NextDouble() <= 0.15 + criticalChanceBonus) // 15% crit chance by default
             {
@@ -94,13 +93,14 @@ public sealed class CombatResolver
 
         // Talisman logic
         bool savedByTalisman = false;
-        if (defender.LifePoint <= 0 && defender.Inventory.Any(i => i.Id == ItemId.TalismanOfTheLastBreath))
+        if (defender.LifePoint <= 0
+            && defender.Inventory.Any(i => i.Id == ItemId.TalismanOfTheLastBreath)
+            && _talismanUsed.ContainsKey(defender.ToString()) && _talismanUsed[defender.ToString()] == true)
         {
             var talisman = defender.Inventory.First(i => i.Id == ItemId.TalismanOfTheLastBreath);
             defender.LifePoint = Math.Min(defender.MaxLifePoint, talisman.Value);
             savedByTalisman = true;
-            // Consume talisman → remove from inventory          
-            defender.Inventory.Remove(talisman);
+            _talismanUsed.Add(defender.ToString(), savedByTalisman);
         }
 
         // 5) Apply on-hit lifesteal for attacker (dagger)
@@ -150,7 +150,7 @@ public sealed class CombatResolver
         }
 
         // Tune slopes/caps depending on who defends (keep your previous values)
-        double slope = 0.02;
+        double slope = 0.025;
         double max = 0.75;
 
         // Boots add a flat percentage to player's dodge chance while defending

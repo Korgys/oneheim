@@ -268,7 +268,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Deals +{0} strengh against bosses.
+        ///   Recherche une chaîne localisée semblable à +{0} strengh against bosses.
         /// </summary>
         internal static string BladeOfHeroesDescription {
             get {
@@ -457,7 +457,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Gain {0}% HP on dodge.
+        ///   Recherche une chaîne localisée semblable à Gain {0} HP on dodge.
         /// </summary>
         internal static string FeathersOfHopeDescription {
             get {
@@ -1078,7 +1078,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Survive only once to fatal blow.
+        ///   Recherche une chaîne localisée semblable à Survive once per combat to fatal blow.
         /// </summary>
         internal static string TalismanOfTheLastBreathDescription {
             get {
@@ -1339,7 +1339,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à You survived a fatal blow with your talisman but it has been destroyed..
+        ///   Recherche une chaîne localisée semblable à You survived a fatal blow with your talisman but it has run out for this combat..
         /// </summary>
         internal static string YouSurvivedAFatalBlowWithYourTalisman {
             get {

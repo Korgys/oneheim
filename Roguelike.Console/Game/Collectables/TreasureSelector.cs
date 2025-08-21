@@ -19,9 +19,9 @@ public static class TreasureSelector
 
         var types = Enum.GetValues<BonusType>().ToList();
 
-        // Avoid life refill if HP ratio > 50%
+        // Avoid life refill if HP ratio >= 50%
         double hpRatio = player.MaxLifePoint > 0 ? (double)player.LifePoint / player.MaxLifePoint : 0;
-        if (hpRatio > 0.5) types.Remove(BonusType.LifePoint);
+        if (hpRatio >= 0.5) types.Remove(BonusType.LifePoint);
 
         // Stop offering vision if already high (>= 9)
         if (player.Vision >= 9) types.Remove(BonusType.Vision);
@@ -111,8 +111,8 @@ public static class TreasureSelector
                 return vision;
 
             case BonusType.LifePoint:
-                // Heal ~60% of missing HP (as before).
-                return (int)((player.MaxLifePoint - player.LifePoint) * 0.6);
+                // Heal ~70% of missing HP (as before).
+                return (int)((player.MaxLifePoint - player.LifePoint) * 0.7);
 
             case BonusType.MaxLifePoint:
                 // Calibrate Max HP gain by progression: make it meaningful but not explosive.
