@@ -25,7 +25,7 @@ public static class EnemyBags
     public static Dictionary<EnemyId, int>  Level1 = new Dictionary<EnemyId, int>
     {
         { EnemyId.LeglessZombie,200 },
-        { EnemyId.WildBear,     200 },
+        { EnemyId.WildBear,     160 },
         { EnemyId.Zombie,        20 },
         { EnemyId.Wolf,          10 },
         { EnemyId.ArmoredZombie,  2 },
@@ -39,7 +39,7 @@ public static class EnemyBags
     public static Dictionary<EnemyId, int> Level2 = new Dictionary<EnemyId, int>
     {
         { EnemyId.LeglessZombie, 90 },
-        { EnemyId.WildBear,      90 },
+        { EnemyId.WildBear,      80 },
         { EnemyId.Zombie,        20 },
         { EnemyId.Wolf,          10 },
         { EnemyId.ArmoredZombie,  2 },

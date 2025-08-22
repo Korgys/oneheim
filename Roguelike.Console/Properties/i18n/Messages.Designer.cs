@@ -124,6 +124,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à I can heal you. Come again when you will be damaged..
+        /// </summary>
+        internal static string ArminHealPitchPlayerFullLife {
+            get {
+                return ResourceManager.GetString("ArminHealPitchPlayerFullLife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Back again? The wilds look harsh today. Tell me, friend, what may I do for you?.
         /// </summary>
         internal static string ArminMeeting {
@@ -1087,6 +1096,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Steps.
+        /// </summary>
+        internal static string Steps {
+            get {
+                return ResourceManager.GetString("Steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Strength.
         /// </summary>
         internal static string Strength {
@@ -1263,6 +1281,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string Werewolf {
             get {
                 return ResourceManager.GetString("Werewolf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à What else can I do ?.
+        /// </summary>
+        internal static string WhatElseCanIDo {
+            get {
+                return ResourceManager.GetString("WhatElseCanIDo", resourceCulture);
             }
         }
         

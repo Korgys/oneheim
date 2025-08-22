@@ -4,9 +4,9 @@
 var game = new GameEngine();
 game.StartNewGame();
 
-// TODO: better dialogue system / show inventory like hp and gold
 // TODO: more dialogue options
 // TODO: implement menu system
+// TODO: implement quest system
 
 // TODO: new item : chance that steps doesn't count
 
@@ -17,4 +17,9 @@ game.StartNewGame();
 
 // TODO: new enemy category : humans
 
+// TODO: new npc : ḃ (give gold is specific enemy is dead, is at the west-south)
+// TODO: new structure : dungeon on the east-north
+
 // TODO: fix bug : enemy can move on the same tile as another enemy
+
+// TODO: fill readme.md

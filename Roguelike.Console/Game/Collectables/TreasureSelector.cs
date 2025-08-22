@@ -3,6 +3,7 @@
 using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables.Items;
+using Roguelike.Console.Game.Rendering;
 using Roguelike.Console.Properties.i18n;
 using Roguelike.Console.Rendering;
 using System;
@@ -210,12 +211,9 @@ public static class TreasureSelector
     public static Treasure PromptPlayerForBonus(List<Treasure> choices, Player player, GameSettings settings)
     {
         Console.Clear();
-        Console.WriteLine($"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} | " +
-            $"{Messages.Strength}: {player.Strength} | {Messages.Armor}: {player.Armor} | " +
-            $"{Messages.Speed}: {player.Speed} | {Messages.Vision}: {player.Vision}");
+        PlayerRenderer.RendererPlayerStats(player);
         Console.WriteLine();
-
-        ConsoleRenderer.RenderPlayerInventory(player);
+        PlayerRenderer.RenderPlayerInventory(player);
 
         Console.WriteLine();
         Console.WriteLine(Messages.YouFoundATreasureChooseABonus);

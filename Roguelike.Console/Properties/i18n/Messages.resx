@@ -138,6 +138,9 @@
   <data name="ArminHealPitch" xml:space="preserve">
     <value>I can patch you up for {0} gold. You will recover up to +{1} HP.</value>
   </data>
+  <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
+    <value>I can heal you. Come again when you will be damaged.</value>
+  </data>
   <data name="ArminMeeting" xml:space="preserve">
     <value>Back again? The wilds look harsh today. Tell me, friend, what may I do for you?</value>
   </data>
@@ -459,6 +462,9 @@
   <data name="StepAndLevel" xml:space="preserve">
     <value>Steps: {0} | Lvl: {1}</value>
   </data>
+  <data name="Steps" xml:space="preserve">
+    <value>Steps</value>
+  </data>
   <data name="Strength" xml:space="preserve">
     <value>Strength</value>
   </data>
@@ -518,6 +524,9 @@
   </data>
   <data name="Werewolf" xml:space="preserve">
     <value>Werewolf</value>
+  </data>
+  <data name="WhatElseCanIDo" xml:space="preserve">
+    <value>What else can I do ?</value>
   </data>
   <data name="WildBear" xml:space="preserve">
     <value>Wild Bear</value>
