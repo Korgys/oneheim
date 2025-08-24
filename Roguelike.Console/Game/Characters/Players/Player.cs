@@ -26,14 +26,14 @@ public class Player : Character
     public void LevelUp()
     {
         Level++;
-        var gain = 1 + Level / 4;
+        int gain = 1 + Level / 4;
 
         if (Armor >= Strength && Armor >= Speed) Armor += gain; // Increase Armor if it's the highest stat
         else if (Speed >= Armor && Speed >= Strength) Speed += gain; // Increase Speed if it's the highest stat
         else Strength += gain; // Otherwise, increase Strength
 
-        MaxLifePoint += (int)(gain * 1.5); // Increase max HP on level up
-        LifePoint += (int)(gain * 1.5);
+        MaxLifePoint += gain * 2; // Increase max HP on level up
+        LifePoint += gain * 2;
     }
 
     /// <summary>

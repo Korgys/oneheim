@@ -86,21 +86,21 @@ public class PlayerController
 
         if (playerMoved)
         {
-            // do NOT increment steps if inside any structure
-            if (!insideStructure)
+            GameMessage = string.Empty;
+
+            bool hasLootedChest = CheckTreasureUnderPlayer();
+            bool hasFightEnemy = CheckEnemyUnderPlayer();
+
+            // do NOT increment steps if inside any structure or if he just looted chest or entered in combat
+            if (!insideStructure && !hasLootedChest && !hasFightEnemy)
             {
                 // increment steps
                 _level.Player.Steps++;
             }
-
-            GameMessage = string.Empty;
-
-            CheckTreasureUnderPlayer();
-            CheckEnemyUnderPlayer();
         }
     }
 
-    private void CheckTreasureUnderPlayer()
+    private bool CheckTreasureUnderPlayer()
     {
         var player = _level.Player;
         var treasure = _level.Treasures.FirstOrDefault(t => t.X == player.X && t.Y == player.Y);
@@ -111,9 +111,10 @@ public class PlayerController
             GameMessage = TreasureSelector.ApplyBonus(selected, player, _settings);
             _level.Treasures.Remove(treasure);
         }
+        return treasure != null;
     }
 
-    private void CheckEnemyUnderPlayer()
+    private bool CheckEnemyUnderPlayer()
     {
         var player = _level.Player;
         var enemy = _level.Enemies.FirstOrDefault(e => e.X == player.X && e.Y == player.Y);
@@ -123,6 +124,7 @@ public class PlayerController
             combat.StartCombat(enemy);
             GameMessage = Messages.CombatOccurred;
         }
+        return enemy != null;
     }
 
     private bool CanMoveTo(int x, int y, bool allowMoveOnTreasure, bool allowMoveOnEnemy, bool allowMoveOnNpc)

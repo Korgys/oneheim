@@ -19,8 +19,13 @@ public static class NpcDialogues
         int steps = player.Steps;
 
         // Cost/amount helpers (re-evaluated at runtime for dynamic values)
-        int GetHealAmount() => Math.Min(player.Gold, player.MaxLifePoint - player.LifePoint);
-        int GetHealCost() => GetHealAmount() * 3;
+        int GetHealAmount()
+        {
+            return player.Gold > player.MaxLifePoint - player.LifePoint
+                ? player.MaxLifePoint - player.LifePoint
+                : player.Gold;
+        }
+        int GetHealCost() => GetHealAmount();
         int GetRepairAmount() => baseCamp != null ? Math.Min(player.Gold, baseCamp.MaxHp - baseCamp.Hp) : 0;
         int GetRepairCost() => GetRepairAmount();
 
@@ -30,7 +35,7 @@ public static class NpcDialogues
         {
             node.Options.Add(new DialogueOption { Label = Messages.NeedHealing, Next = heal });
             node.Options.Add(new DialogueOption { Label = Messages.RepairTheCamp, Next = repair });
-            node.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = null });
+            node.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = goodbyeNext });
         }
 
         // ---- Build all intro nodes (never mutate their Text later)
@@ -53,7 +58,6 @@ public static class NpcDialogues
                 ? string.Format(Messages.ArminHealPitch, GetHealCost(), GetHealAmount())
                 : Messages.ArminHealPitchPlayerFullLife
         };
-
         if (player.LifePoint != player.MaxLifePoint)
         {
             healNode.Options.Add(new DialogueOption
@@ -64,11 +68,12 @@ public static class NpcDialogues
                     if (player.Gold < GetHealCost()) return Messages.NotEnoughGold;
                     if (player.LifePoint >= player.MaxLifePoint) return Messages.AlreadyFullHealth;
 
-                    player.Gold -= GetHealCost();
+                    int healedCost = GetHealCost();
+                    player.Gold -= healedCost;
                     int before = player.LifePoint;
                     player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + GetHealAmount());
                     int healed = player.LifePoint - before;
-                    return string.Format(Messages.HealedHpForGold, healed, GetHealCost());
+                    return string.Format(Messages.HealedHpForGold, healed, healedCost);
                 },
                 Next = afterService
             });
@@ -87,7 +92,6 @@ public static class NpcDialogues
                     : string.Format(Messages.ArminRepairPitch, GetRepairCost(), GetRepairAmount());
             }
         };
-
         if (baseCamp != null && baseCamp.MaxHp - baseCamp.Hp != 0)
         {
             repairNode.Options.Add(new DialogueOption
@@ -99,11 +103,12 @@ public static class NpcDialogues
                     if (baseCamp.Hp >= baseCamp.MaxHp) return Messages.NoCampToRepair;
                     if (player.Gold < GetRepairCost()) return Messages.NotEnoughGold;
 
-                    player.Gold -= GetRepairCost();
+                    int repairCost = GetRepairCost();
+                    player.Gold -= repairCost;
                     int before = baseCamp.Hp;
                     baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + GetRepairAmount());
                     int repaired = baseCamp.Hp - before;
-                    return string.Format(Messages.RepairedCampForHpCost, repaired, GetRepairCost());
+                    return string.Format(Messages.RepairedCampForHpCost, repaired, repairCost);
                 },
                 Next = afterService
             });
@@ -111,7 +116,7 @@ public static class NpcDialogues
         repairNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = afterService });
 
         // ---- Wire "afterService" to standard menu, returning to returningIntro on "Goodbye"
-        AddStandardOptions(afterService, healNode, repairNode, returningIntro);
+        AddStandardOptions(afterService, healNode, repairNode, null);
 
         // ---- Add standard options to every intro screen (do NOT change their Text)
         AddStandardOptions(firstIntro, healNode, repairNode, returningIntro);

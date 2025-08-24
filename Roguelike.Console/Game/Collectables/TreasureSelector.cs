@@ -5,7 +5,6 @@ using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Rendering;
 using Roguelike.Console.Properties.i18n;
-using Roguelike.Console.Rendering;
 using System;
 
 public static class TreasureSelector
@@ -125,6 +124,11 @@ public static class TreasureSelector
                 else if (steps < 800) { baseMin = 4; baseMax = 7; }
                 else { baseMin = 5; baseMax = 8; }
 
+                // Encourage build based on max life points
+                int basePlayer = Math.Max(1, player.LifePoint / 16);
+                baseMin += basePlayer;
+                baseMax += basePlayer;
+
                 int roll = _random.Next(baseMin, baseMax + 1);
                 // Soft cap by 20% of current max HP per pickup (prevents absurd spikes)
                 int cap = Math.Max(3, (int)Math.Round(player.MaxLifePoint * 0.20));
@@ -163,14 +167,12 @@ public static class TreasureSelector
         switch (type)
         {
             case BonusType.Vision:
-                // Special rule requested:
-                // 1 -> Common, 2 -> Uncommon, 3 -> Rare, >=4 (shouldn't happen) -> Epic
                 return value switch
                 {
-                    <= 1 => ItemRarity.Broken,
-                    2 => ItemRarity.Common,
-                    3 => ItemRarity.Uncommon,
-                    _ => ItemRarity.Rare
+                    <= 1 => ItemRarity.Common,
+                    2 => ItemRarity.Uncommon,
+                    3 => ItemRarity.Rare,
+                    _ => ItemRarity.Epic
                 };
 
             case BonusType.MaxLifePoint:

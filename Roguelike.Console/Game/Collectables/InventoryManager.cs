@@ -67,7 +67,7 @@ public static class InventoryManager
             settings.Controls.Choice1,
             settings.Controls.Choice2,
             settings.Controls.Choice3,
-            settings.Controls.Exit
+            settings.Controls.Exit.ToUpper()
         };
 
         for (int i = 0; i < player.Inventory.Count && i < keys.Count; i++)
