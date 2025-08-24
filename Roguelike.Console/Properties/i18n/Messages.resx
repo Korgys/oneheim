@@ -120,6 +120,9 @@
   <data name="ABossArrives" xml:space="preserve">
     <value>A boss arrives</value>
   </data>
+  <data name="Acolyte" xml:space="preserve">
+    <value>Acolyte : Flesh Devourer</value>
+  </data>
   <data name="AlphaWolf" xml:space="preserve">
     <value>Alpha Wolf</value>
   </data>
@@ -216,11 +219,17 @@
   <data name="CaveTroll" xml:space="preserve">
     <value>Cave Troll</value>
   </data>
+  <data name="Champion" xml:space="preserve">
+    <value>Champion : Hand of Flesh</value>
+  </data>
   <data name="Choices" xml:space="preserve">
     <value>Choices</value>
   </data>
   <data name="CombatOccurred" xml:space="preserve">
     <value>Combat occurred!</value>
+  </data>
+  <data name="Cultist" xml:space="preserve">
+    <value>Cultist of the fresh meat</value>
   </data>
   <data name="DaggerOfLifeSteal" xml:space="preserve">
     <value>Dagger of life steal</value>
@@ -306,6 +315,9 @@
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Healed {0} HP for {1} gold.</value>
   </data>
+  <data name="HighPriest" xml:space="preserve">
+    <value>High Priest : Prophet of Flesh</value>
+  </data>
   <data name="HolyBible" xml:space="preserve">
     <value>Holy Bible</value>
   </data>
@@ -390,6 +402,9 @@
   <data name="PressAnyKeyToContinue" xml:space="preserve">
     <value>Press any key to continue...</value>
   </data>
+  <data name="Priest" xml:space="preserve">
+    <value>Scarlet Priest</value>
+  </data>
   <data name="ProspectorKey" xml:space="preserve">
     <value>Prospector's Key</value>
   </data>
@@ -434,6 +449,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Reduce undead armor by {0}</value>
+  </data>
+  <data name="SealOfLivingFlesh" xml:space="preserve">
+    <value>Seal of Living Flesh</value>
+  </data>
+  <data name="SealOfLivingFleshDescription" xml:space="preserve">
+    <value>+{0}HP on critical damage</value>
   </data>
   <data name="SealOfWisdom" xml:space="preserve">
     <value>Seal Of Wisdom</value>
@@ -581,6 +602,9 @@
   </data>
   <data name="YouWereKilledBy" xml:space="preserve">
     <value>You were killed by {0}.</value>
+  </data>
+  <data name="Zealot" xml:space="preserve">
+    <value>Blood Zealot</value>
   </data>
   <data name="Zombie" xml:space="preserve">
     <value>Zombie</value>

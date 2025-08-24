@@ -70,6 +70,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Acolyte : Flesh Devourer.
+        /// </summary>
+        internal static string Acolyte {
+            get {
+                return ResourceManager.GetString("Acolyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Alpha Wolf.
         /// </summary>
         internal static string AlphaWolf {
@@ -358,6 +367,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Champion : Hand of Flesh.
+        /// </summary>
+        internal static string Champion {
+            get {
+                return ResourceManager.GetString("Champion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choices.
         /// </summary>
         internal static string Choices {
@@ -372,6 +390,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string CombatOccurred {
             get {
                 return ResourceManager.GetString("CombatOccurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cultist of the fresh meat.
+        /// </summary>
+        internal static string Cultist {
+            get {
+                return ResourceManager.GetString("Cultist", resourceCulture);
             }
         }
         
@@ -628,6 +655,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à High Priest : Prophet of Flesh.
+        /// </summary>
+        internal static string HighPriest {
+            get {
+                return ResourceManager.GetString("HighPriest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Holy Bible.
         /// </summary>
         internal static string HolyBible {
@@ -880,6 +916,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Scarlet Priest.
+        /// </summary>
+        internal static string Priest {
+            get {
+                return ResourceManager.GetString("Priest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Prospector&apos;s Key.
         /// </summary>
         internal static string ProspectorKey {
@@ -1011,6 +1056,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string SacredCrucifixDescription {
             get {
                 return ResourceManager.GetString("SacredCrucifixDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Seal of Living Flesh.
+        /// </summary>
+        internal static string SealOfLivingFlesh {
+            get {
+                return ResourceManager.GetString("SealOfLivingFlesh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à +{0}HP on critical damage.
+        /// </summary>
+        internal static string SealOfLivingFleshDescription {
+            get {
+                return ResourceManager.GetString("SealOfLivingFleshDescription", resourceCulture);
             }
         }
         
@@ -1452,6 +1515,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string YouWereKilledBy {
             get {
                 return ResourceManager.GetString("YouWereKilledBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Blood Zealot.
+        /// </summary>
+        internal static string Zealot {
+            get {
+                return ResourceManager.GetString("Zealot", resourceCulture);
             }
         }
         

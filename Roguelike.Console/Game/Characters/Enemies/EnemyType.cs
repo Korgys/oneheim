@@ -4,5 +4,7 @@ public enum EnemyType
 {
     Unknown,
     Undead,
-    Wild
+    Wild,
+    Cultist,
+    Outlaws    
 }

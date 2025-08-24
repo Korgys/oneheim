@@ -175,7 +175,7 @@ public class ItemFactory
                 Name = Messages.ProspectorKey,
                 Effect = Messages.ProspectorKeyDescription,
                 Value = 3,
-                UpgradableIncrementValue = 3
+                UpgradableIncrementValue = 4
             },
             ItemId.HawkEye => new Item
             {
@@ -234,6 +234,14 @@ public class ItemFactory
                 Effect = Messages.TalismanOfPeaceDescription,
                 Value = 4,
                 UpgradableIncrementValue = 4
+            },
+            ItemId.SealOfLivingFlesh => new Item
+            {
+                Id = id,
+                Name = Messages.SealOfLivingFlesh,
+                Effect = Messages.SealOfLivingFleshDescription,
+                Value = 2,
+                UpgradableIncrementValue = 2
             },
             _ => throw new ArgumentException("Unknown item type")
         };

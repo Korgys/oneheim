@@ -29,5 +29,6 @@ public enum ItemId
     OldGiantWoodenClub = 25,
     LuckyMillorLeftHand = 26,
     GrolMokbarRing = 27,
-    TalismanOfPeace = 28
+    TalismanOfPeace = 28,
+    SealOfLivingFlesh = 29
 }

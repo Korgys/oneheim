@@ -37,8 +37,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Game\Characters\Enemies\Mobs\Humans\" />
-  </ItemGroup>
-
 </Project>

@@ -51,6 +51,7 @@ public sealed class CombatResolver
         // 3) Roll crit + armor break (only if attacker’s Strength > defender’s Strength)
         bool isCrit = false;
         int armorShred = 0;
+        int lifeStolen = 0;
         if (attacker.Strength > defender.Strength)
         {
             // RoyalGuardGauntlet and RoyalGuardShield logic
@@ -72,6 +73,15 @@ public sealed class CombatResolver
                 damage = (int)Math.Ceiling(damage * criticalDamageBonus); 
                 armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.10, MidpointRounding.AwayFromZero)); // -5% armor
                 defender.Armor = Math.Max(0, defender.Armor - armorShred);
+
+                // SealOfLivingFlesh item logic
+                var sealOfLivingFlesh = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.SealOfLivingFlesh);
+                if (sealOfLivingFlesh != null)
+                {
+                    var initialLifePoint = attacker.LifePoint;
+                    defender.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + sealOfLivingFlesh.Value);
+                    lifeStolen += defender.LifePoint - initialLifePoint;
+                }
             }
         }
 
@@ -104,14 +114,13 @@ public sealed class CombatResolver
         }
 
         // 5) Apply on-hit lifesteal for attacker (dagger)
-        int lifeStolen = 0;
         var dagger = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.DaggerLifeSteal);
         if (dagger != null && damage > 0 && _random.NextDouble() <= 0.6 )
         {
             int steal = Math.Min(damage, dagger.Value);
             int before = attacker.LifePoint;
             attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + steal);
-            lifeStolen = attacker.LifePoint - before;
+            lifeStolen += attacker.LifePoint - before;
         }
 
         // 6) Apply thorns on attacker if defender has breastplate and got hit

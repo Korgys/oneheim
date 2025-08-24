@@ -1,6 +1,7 @@
 ﻿using Roguelike.Console.Game.Characters.Enemies.Bosses;
-using Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
+using Roguelike.Console.Game.Characters.Enemies.Mobs.FreshMeatCultists;
 using Roguelike.Console.Game.Characters.Enemies.Mobs.Undeads;
+using Roguelike.Console.Game.Characters.Enemies.Mobs.Wilds;
 
 namespace Roguelike.Console.Game.Characters.Enemies;
 
@@ -45,6 +46,12 @@ public class EnemyFactory
             EnemyId.Lich => new Lich(x, y, level),
             EnemyId.Wyvern => new Wyvern(x, y, level),
             EnemyId.Troll => new Troll(x, y, level),
+            EnemyId.Cultist => new Cultist(x, y, level),
+            EnemyId.Acolyte => new Acolyte(x, y, level),
+            EnemyId.Zealot => new Zealot(x, y, level),
+            EnemyId.Priest => new Priest(x, y, level),
+            EnemyId.Champion => new Champion(x, y, level),
+            EnemyId.HighPriest => new HighPriest(x, y, level),
             _ => throw new ArgumentOutOfRangeException(nameof(EnemyId), enemyId, null)
         };
     }

@@ -11,7 +11,7 @@ public class Revenant : Enemy
         Armor = (8 + _random.Next(0, 3)) * level + (level - 1); 
         Strength = (11 + _random.Next(0, 4)) * level + (level - 1);
         Speed = (4 + _random.Next(0, 2)) * level + (level - 1); // Revenants are faster than regular zombies but still slower than most enemies
-        Vision = 3; // Enhanced vision range
+        Vision = 2; // Enhanced vision range
         Name = Messages.Revenant;
         Category = EnemyType.Undead;
     }

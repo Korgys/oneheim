@@ -120,6 +120,9 @@
   <data name="ABossArrives" xml:space="preserve">
     <value>Un boss arrive</value>
   </data>
+  <data name="Acolyte" xml:space="preserve">
+    <value>Acolyte : Dévoreur de chair</value>
+  </data>
   <data name="AlphaWolf" xml:space="preserve">
     <value>Loup alpha</value>
   </data>
@@ -216,11 +219,17 @@
   <data name="CaveTroll" xml:space="preserve">
     <value>Troll des cavernes</value>
   </data>
+  <data name="Champion" xml:space="preserve">
+    <value>Champion : Main de la chair</value>
+  </data>
   <data name="Choices" xml:space="preserve">
     <value>Choix</value>
   </data>
   <data name="CombatOccurred" xml:space="preserve">
     <value>Un combat a eu lieu !</value>
+  </data>
+  <data name="Cultist" xml:space="preserve">
+    <value>Cultiste de la viande fraîche</value>
   </data>
   <data name="DaggerOfLifeSteal" xml:space="preserve">
     <value>Dague du voleur de vie</value>
@@ -306,6 +315,9 @@
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Soigné de {0} de vie contre {1} d'or.</value>
   </data>
+  <data name="HighPriest" xml:space="preserve">
+    <value>Grand prêtre : Prophète de la viande</value>
+  </data>
   <data name="HolyBible" xml:space="preserve">
     <value>Bible sacrée</value>
   </data>
@@ -390,6 +402,9 @@
   <data name="PressAnyKeyToContinue" xml:space="preserve">
     <value>Appuyez sur n'importe quelle touche pour quitter ...</value>
   </data>
+  <data name="Priest" xml:space="preserve">
+    <value>Prêtre écarlate</value>
+  </data>
   <data name="ProspectorKey" xml:space="preserve">
     <value>Clé du prospecteur</value>
   </data>
@@ -434,6 +449,12 @@
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
     <value>Réduit l'armure des morts-vivants de {0}</value>
+  </data>
+  <data name="SealOfLivingFlesh" xml:space="preserve">
+    <value>Sceau de chair vivante</value>
+  </data>
+  <data name="SealOfLivingFleshDescription" xml:space="preserve">
+    <value>+{0} de vie à chaque coup critique</value>
   </data>
   <data name="SealOfWisdom" xml:space="preserve">
     <value>Sceau de sagesse</value>
@@ -581,6 +602,9 @@
   </data>
   <data name="YouWereKilledBy" xml:space="preserve">
     <value>Vous avez été tué par {0}.</value>
+  </data>
+  <data name="Zealot" xml:space="preserve">
+    <value>Fanatique sanglant</value>
   </data>
   <data name="Zombie" xml:space="preserve">
     <value>Zombie</value>

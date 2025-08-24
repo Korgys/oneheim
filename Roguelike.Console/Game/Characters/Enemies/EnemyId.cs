@@ -14,5 +14,11 @@ public enum EnemyId
     Werewolf,
     Lich,
     Wyvern,
-    Troll
+    Troll,
+    Cultist,
+    Acolyte,
+    Zealot,
+    Priest,
+    Champion,
+    HighPriest
 }
