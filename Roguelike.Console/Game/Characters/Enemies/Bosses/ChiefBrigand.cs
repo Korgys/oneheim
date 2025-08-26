@@ -3,26 +3,19 @@ using Roguelike.Console.Properties.i18n;
 
 namespace Roguelike.Console.Game.Characters.Enemies.Bosses;
 
-public class Lich : Boss
+public class ChiefBrigand : Boss
 {
-    public Lich(int x, int y, int level) : base(x, y, level)
+    public ChiefBrigand(int x, int y, int level) : base(x, y, level)
     {
         LifePoint = 10 * level * level; // lvl5: 250HP, lvl10: 1000HP
         MaxLifePoint = LifePoint;
-        Armor = 10 * level;             // lvl5: 50, lvl10: 100
-        Strength = 18 * level;          // lvl5: 90, lvl10: 180
-        Speed = 7 * level;              // lvl5: 35, lvl10:  70
-        Name = Messages.TheElderLich;
-        Category = EnemyType.Undead;
+        Armor = 12 * level;             // lvl5: 60, lvl10: 120
+        Strength = 13 * level;          // lvl5: 65, lvl10: 130
+        Speed = 13 * level;             // lvl5: 65, lvl10: 130
+        Name = Messages.ChiefBrigand;
+        Category = EnemyType.Outlaws;
         Inventory = new List<Item>
         {
-            new Item
-            {
-                Id = ItemId.DaggerLifeSteal,
-                Name = "Life steal",
-                Effect = "Steal up to {0} life points from the player on hit.",
-                Value = level
-            },
             new Item
             {
                 Id = ItemId.TalismanOfTheLastBreath,
@@ -33,3 +26,4 @@ public class Lich : Boss
         };
     }
 }
+

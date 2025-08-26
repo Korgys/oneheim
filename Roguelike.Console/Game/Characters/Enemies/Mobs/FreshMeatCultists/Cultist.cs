@@ -6,7 +6,7 @@ public class Cultist : Enemy
 {
     public Cultist(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (10 + _random.Next(0, 3)) * level + (level - 1);
+        LifePoint = (7 + _random.Next(0, 3)) * level + (level - 1);
         MaxLifePoint = LifePoint;
         Armor = (3 + _random.Next(0, 2)) * level + (level - 1);
         Strength = (4 + _random.Next(0, 2)) * level + (level - 1);

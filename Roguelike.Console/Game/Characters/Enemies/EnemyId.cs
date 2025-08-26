@@ -20,5 +20,12 @@ public enum EnemyId
     Zealot,
     Priest,
     Champion,
-    HighPriest
+    HighPriest,
+    Drunkard,
+    Assassin,
+    Brigand,
+    WatchtowerArcher,
+    Mercenary,
+    ChiefBrigand,
+    YannTheSilent
 }

@@ -33,8 +33,8 @@ public class HighPriest : Boss
             new Item
             {
                 Id = ItemId.TalismanOfTheLastBreath,
-                Name = "Talisman of the Last Breath",
-                Effect = "Cannot be instant kill",
+                Name = Messages.TalismanOfTheLastBreath,
+                Effect = Messages.TalismanOfTheLastBreathDescription,
                 Value = 4 * level * level // lvl5: 100, lvl10: 400
             }
         };

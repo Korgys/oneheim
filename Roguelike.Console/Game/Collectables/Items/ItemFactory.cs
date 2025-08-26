@@ -174,8 +174,8 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.ProspectorKey,
                 Effect = Messages.ProspectorKeyDescription,
-                Value = 3,
-                UpgradableIncrementValue = 4
+                Value = 4,
+                UpgradableIncrementValue = 3
             },
             ItemId.HawkEye => new Item
             {

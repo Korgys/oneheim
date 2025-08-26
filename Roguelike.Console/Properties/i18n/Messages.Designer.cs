@@ -70,7 +70,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Acolyte : Flesh Devourer.
+        ///   Recherche une chaîne localisée semblable à Acolyte Flesh Devourer.
         /// </summary>
         internal static string Acolyte {
             get {
@@ -232,6 +232,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Assassin.
+        /// </summary>
+        internal static string Assassin {
+            get {
+                return ResourceManager.GetString("Assassin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Base Camp.
         /// </summary>
         internal static string BaseCamp {
@@ -313,6 +322,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Brigand of the Pierced Stone.
+        /// </summary>
+        internal static string Brigand {
+            get {
+                return ResourceManager.GetString("Brigand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The camp is already in perfect shape..
         /// </summary>
         internal static string CampAlreadyRepair {
@@ -367,11 +385,20 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Champion : Hand of Flesh.
+        ///   Recherche une chaîne localisée semblable à Champion Hand of Flesh.
         /// </summary>
         internal static string Champion {
             get {
                 return ResourceManager.GetString("Champion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chief of the Pierced Stone bandits.
+        /// </summary>
+        internal static string ChiefBrigand {
+            get {
+                return ResourceManager.GetString("ChiefBrigand", resourceCulture);
             }
         }
         
@@ -426,6 +453,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string Dropped {
             get {
                 return ResourceManager.GetString("Dropped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Drunkard.
+        /// </summary>
+        internal static string Drunkard {
+            get {
+                return ResourceManager.GetString("Drunkard", resourceCulture);
             }
         }
         
@@ -655,7 +691,7 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à High Priest : Prophet of Flesh.
+        ///   Recherche une chaîne localisée semblable à High Priest Prophet of Flesh.
         /// </summary>
         internal static string HighPriest {
             get {
@@ -786,6 +822,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string MaybeLater {
             get {
                 return ResourceManager.GetString("MaybeLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mercenary.
+        /// </summary>
+        internal static string Mercenary {
+            get {
+                return ResourceManager.GetString("Mercenary", resourceCulture);
             }
         }
         
@@ -1339,6 +1384,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Watchtower archer.
+        /// </summary>
+        internal static string WatchtowerArcher {
+            get {
+                return ResourceManager.GetString("WatchtowerArcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Werewolf.
         /// </summary>
         internal static string Werewolf {
@@ -1380,6 +1434,15 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string XP {
             get {
                 return ResourceManager.GetString("XP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Assassin : Yann The Silent.
+        /// </summary>
+        internal static string YannTheSilent {
+            get {
+                return ResourceManager.GetString("YannTheSilent", resourceCulture);
             }
         }
         

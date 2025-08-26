@@ -121,7 +121,7 @@
     <value>Un boss arrive</value>
   </data>
   <data name="Acolyte" xml:space="preserve">
-    <value>Acolyte : Dévoreur de chair</value>
+    <value>Acolyte Dévoreur de chair</value>
   </data>
   <data name="AlphaWolf" xml:space="preserve">
     <value>Loup alpha</value>
@@ -174,6 +174,9 @@
   <data name="ArmoredZombie" xml:space="preserve">
     <value>Zombie en armure</value>
   </data>
+  <data name="Assassin" xml:space="preserve">
+    <value>Assassin</value>
+  </data>
   <data name="BaseCamp" xml:space="preserve">
     <value>Camp de base</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="BootsOfEchoStepDescription" xml:space="preserve">
     <value>L'esquive augmente de {0}% si plus rapide que l'adversaire</value>
   </data>
+  <data name="Brigand" xml:space="preserve">
+    <value>Brigand de Pierre-Percée</value>
+  </data>
   <data name="CampAlreadyRepair" xml:space="preserve">
     <value>Le camp est déjà réparé.</value>
   </data>
@@ -220,7 +226,10 @@
     <value>Troll des cavernes</value>
   </data>
   <data name="Champion" xml:space="preserve">
-    <value>Champion : Main de la chair</value>
+    <value>Champion Main de la chair</value>
+  </data>
+  <data name="ChiefBrigand" xml:space="preserve">
+    <value>Chef des brigands de Pierre-Percée</value>
   </data>
   <data name="Choices" xml:space="preserve">
     <value>Choix</value>
@@ -239,6 +248,9 @@
   </data>
   <data name="Dropped" xml:space="preserve">
     <value>Lâche</value>
+  </data>
+  <data name="Drunkard" xml:space="preserve">
+    <value>Ivrogne</value>
   </data>
   <data name="EnchantedPouch" xml:space="preserve">
     <value>Bourse enchantée</value>
@@ -316,7 +328,7 @@
     <value>Soigné de {0} de vie contre {1} d'or.</value>
   </data>
   <data name="HighPriest" xml:space="preserve">
-    <value>Grand prêtre : Prophète de la viande</value>
+    <value>Grand prêtre Prophète de la viande</value>
   </data>
   <data name="HolyBible" xml:space="preserve">
     <value>Bible sacrée</value>
@@ -359,6 +371,9 @@
   </data>
   <data name="MaybeLater" xml:space="preserve">
     <value>Peut-être plus tard.</value>
+  </data>
+  <data name="Mercenary" xml:space="preserve">
+    <value>Mercenaire</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Se déplacer</value>
@@ -543,6 +558,9 @@
   <data name="Vision" xml:space="preserve">
     <value>Vision</value>
   </data>
+  <data name="WatchtowerArcher" xml:space="preserve">
+    <value>Archer de la tour de guet</value>
+  </data>
   <data name="Werewolf" xml:space="preserve">
     <value>Loup-garou</value>
   </data>
@@ -557,6 +575,9 @@
   </data>
   <data name="XP" xml:space="preserve">
     <value>Exp.</value>
+  </data>
+  <data name="YannTheSilent" xml:space="preserve">
+    <value>Assassin : Yann le silencieux</value>
   </data>
   <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
     <value>Vous possédez déjà {0}, il n'est pas améliorable.</value>

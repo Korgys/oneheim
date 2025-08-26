@@ -6,7 +6,7 @@ public class AlphaWolf : Enemy
 {
     public AlphaWolf(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (12 + _random.Next(0, 4)) * level + (level - 1);
+        LifePoint = (15 + _random.Next(0, 4)) * level + (level - 1);
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(0, 2)) * level + (level - 1);
         Strength = (9 + _random.Next(0, 4)) * level + (level - 1);

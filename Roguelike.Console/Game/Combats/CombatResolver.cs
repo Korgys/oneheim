@@ -65,13 +65,13 @@ public sealed class CombatResolver
                 // BerserkerNecklace and PaladinNecklace logic
                 var berserkerNecklace = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.BerserkerNecklace);
                 var paladinNecklace = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.PaladinNecklace);
-                var criticalDamageBonus = 1.5; // +50% damage by default
-                criticalDamageBonus += berserkerNecklace?.Value ?? 0;
-                criticalDamageBonus -= paladinNecklace?.Value ?? 0;
+                decimal criticalDamageBonus = 1.5m; // +50% damage by default
+                criticalDamageBonus += berserkerNecklace?.Value / 100m ?? 0;
+                criticalDamageBonus -= paladinNecklace?.Value / 100m ?? 0;
 
                 isCrit = true;
                 damage = (int)Math.Ceiling(damage * criticalDamageBonus); 
-                armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.10, MidpointRounding.AwayFromZero)); // -5% armor
+                armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.05, MidpointRounding.AwayFromZero)); // -5% armor
                 defender.Armor = Math.Max(0, defender.Armor - armorShred);
 
                 // SealOfLivingFlesh item logic

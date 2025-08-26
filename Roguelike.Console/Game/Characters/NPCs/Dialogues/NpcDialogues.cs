@@ -26,8 +26,8 @@ public static class NpcDialogues
                 : player.Gold;
         }
         int GetHealCost() => GetHealAmount();
-        int GetRepairAmount() => baseCamp != null ? Math.Min(player.Gold, baseCamp.MaxHp - baseCamp.Hp) : 0;
-        int GetRepairCost() => GetRepairAmount();
+        int GetRepairAmount() => baseCamp != null ? Math.Min(player.Gold / 10, (baseCamp.MaxHp - baseCamp.Hp) / 10) * 10 : 0;
+        int GetRepairCost() => baseCamp != null ? Math.Min(player.Gold / 10, (baseCamp.MaxHp - baseCamp.Hp) / 10) : 0;
 
         DialogueNode Intro(Func<string> textFactory) => new DialogueNode { Text = textFactory };
 
@@ -104,10 +104,11 @@ public static class NpcDialogues
                     if (player.Gold < GetRepairCost()) return Messages.NotEnoughGold;
 
                     int repairCost = GetRepairCost();
+                    int repairAmount = GetRepairAmount();
                     player.Gold -= repairCost;
-                    int before = baseCamp.Hp;
-                    baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + GetRepairAmount());
-                    int repaired = baseCamp.Hp - before;
+                    int healthBefore = baseCamp.Hp;
+                    baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + repairAmount);
+                    int repaired = baseCamp.Hp - healthBefore;
                     return string.Format(Messages.RepairedCampForHpCost, repaired, repairCost);
                 },
                 Next = afterService

@@ -121,7 +121,7 @@
     <value>A boss arrives</value>
   </data>
   <data name="Acolyte" xml:space="preserve">
-    <value>Acolyte : Flesh Devourer</value>
+    <value>Acolyte Flesh Devourer</value>
   </data>
   <data name="AlphaWolf" xml:space="preserve">
     <value>Alpha Wolf</value>
@@ -174,6 +174,9 @@
   <data name="ArmoredZombie" xml:space="preserve">
     <value>Armored Zombie</value>
   </data>
+  <data name="Assassin" xml:space="preserve">
+    <value>Assassin</value>
+  </data>
   <data name="BaseCamp" xml:space="preserve">
     <value>Base Camp</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="BootsOfEchoStepDescription" xml:space="preserve">
     <value>Dodge increased by {0}% if your faster than you opponent</value>
   </data>
+  <data name="Brigand" xml:space="preserve">
+    <value>Brigand of the Pierced Stone</value>
+  </data>
   <data name="CampAlreadyRepair" xml:space="preserve">
     <value>The camp is already in perfect shape.</value>
   </data>
@@ -220,7 +226,10 @@
     <value>Cave Troll</value>
   </data>
   <data name="Champion" xml:space="preserve">
-    <value>Champion : Hand of Flesh</value>
+    <value>Champion Hand of Flesh</value>
+  </data>
+  <data name="ChiefBrigand" xml:space="preserve">
+    <value>Chief of the Pierced Stone bandits</value>
   </data>
   <data name="Choices" xml:space="preserve">
     <value>Choices</value>
@@ -239,6 +248,9 @@
   </data>
   <data name="Dropped" xml:space="preserve">
     <value>Dropped</value>
+  </data>
+  <data name="Drunkard" xml:space="preserve">
+    <value>Drunkard</value>
   </data>
   <data name="EnchantedPouch" xml:space="preserve">
     <value>Enchanted Pouch</value>
@@ -316,7 +328,7 @@
     <value>Healed {0} HP for {1} gold.</value>
   </data>
   <data name="HighPriest" xml:space="preserve">
-    <value>High Priest : Prophet of Flesh</value>
+    <value>High Priest Prophet of Flesh</value>
   </data>
   <data name="HolyBible" xml:space="preserve">
     <value>Holy Bible</value>
@@ -359,6 +371,9 @@
   </data>
   <data name="MaybeLater" xml:space="preserve">
     <value>Maybe later.</value>
+  </data>
+  <data name="Mercenary" xml:space="preserve">
+    <value>Mercenary</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Move</value>
@@ -543,6 +558,9 @@
   <data name="Vision" xml:space="preserve">
     <value>Vision</value>
   </data>
+  <data name="WatchtowerArcher" xml:space="preserve">
+    <value>Watchtower archer</value>
+  </data>
   <data name="Werewolf" xml:space="preserve">
     <value>Werewolf</value>
   </data>
@@ -557,6 +575,9 @@
   </data>
   <data name="XP" xml:space="preserve">
     <value>XP</value>
+  </data>
+  <data name="YannTheSilent" xml:space="preserve">
+    <value>Assassin : Yann The Silent</value>
   </data>
   <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
     <value>You already own {0}, not upgradable.</value>

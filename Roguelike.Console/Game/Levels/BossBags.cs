@@ -19,6 +19,9 @@ public class BossBags
         { EnemyId.Lich, 1 },
         { EnemyId.Troll, 1 },
         { EnemyId.Wyvern, 1 },
+        { EnemyId.HighPriest, 1 },
+        { EnemyId.ChiefBrigand, 1 },
+        { EnemyId.YannTheSilent, 1 },
     };
 
     public static Dictionary<EnemyId, int> Level10 = new Dictionary<EnemyId, int>
@@ -26,5 +29,8 @@ public class BossBags
         { EnemyId.Lich, 1 },
         { EnemyId.Troll, 1 },
         { EnemyId.Wyvern, 1 },
+        { EnemyId.HighPriest, 1 },
+        { EnemyId.ChiefBrigand, 1 },
+        { EnemyId.YannTheSilent, 1 },
     };
 }
