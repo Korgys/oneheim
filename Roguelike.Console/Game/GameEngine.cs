@@ -1,6 +1,5 @@
 ﻿using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies;
-using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Characters.NPCs;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Levels;
@@ -35,6 +34,7 @@ public class GameEngine
         _siegeSystem = new StructureSiegeSystem();
         _runner.Register(_siegeSystem);
         _runner.Register(new WaveAndFogSystem());
+        _runner.Register(new MercenaryPatrolSystem());
 
         _enemyManager = new EnemyManager(_levelManager, _siegeSystem); // EnemyManager uses siege info
 
@@ -81,7 +81,15 @@ public class GameEngine
             && _levelManager.Structures.Any(s => s.Name == Messages.BaseCamp))
         {
             _levelManager.PlaceNpc(NpcId.Ichem);
-            _gameMessage = "A new traveler comes to the base camp";
+            _gameMessage = Messages.ANewTravelerComesToTheBaseCamp;
+        }
+
+        // Spawn Eber (mercenary, hire guards) at 250 steps
+        if (_levelManager.Player.Steps == 250 && !_levelManager.Npcs.Any(n => n.Id == NpcId.Eber)
+            && _levelManager.Structures.Any(s => s.Name == Messages.BaseCamp))
+        {
+            _levelManager.PlaceNpc(NpcId.Eber);
+            _gameMessage = Messages.ANewTravelerComesToTheBaseCamp;
         }
     }
 }

@@ -19,6 +19,9 @@ public static class NpcDialogManager
             case NpcId.Ichem:
                 NpcDialogues.BuildForIchem(npc, level, settings);
                 break;
+            case NpcId.Eber:
+                NpcDialogues.BuildForEber(npc, level, settings);
+                break;
             default:
                 break;
         }
@@ -55,12 +58,13 @@ public static class NpcDialogManager
 
             Console.WriteLine();
 
-            // Render options with Choice 1/2/3 mapping
+            // Render options with Choice 1/2/3/escape mapping
             var map = new[]
             {
                 settings.Controls.Choice1,
                 settings.Controls.Choice2,
-                settings.Controls.Choice3
+                settings.Controls.Choice3,
+                settings.Controls.Exit
             };
             for (int i = 0; i < node.Options.Count && i < map.Length; i++) // Be careful with the length, only 3 choices are supported
             {

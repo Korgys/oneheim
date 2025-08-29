@@ -1,8 +1,10 @@
 ﻿namespace Roguelike.Console.Game.Characters.Players;
 
 using Roguelike.Console.Configuration;
+using Roguelike.Console.Game.Characters.NPCs;
 using Roguelike.Console.Game.Characters.NPCs.Dialogues;
 using Roguelike.Console.Game.Collectables;
+using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Game.Levels;
 using Roguelike.Console.Properties.i18n;
 using System;
@@ -59,13 +61,35 @@ public class PlayerController
                 return;
             }
             else
-                continue;
-
-            var npc = _level.Npcs.FirstOrDefault(n => n.X == newX && n.Y == newY);
-            if (npc != null)
             {
+#if DEBUG
+                if (key == "M")
+                {
+                    player.Steps = 149;
+                    player.Armor = 200;
+                    player.Strength = 200;
+                    player.Speed = 200;
+                    player.Gold = 2000;
+                    player.MaxLifePoint = 100;
+                    player.LifePoint = player.MaxLifePoint;
+                    player.Vision = 20;
+                }
+#endif
+                continue;
+            }
+
+            if (_level.Npcs.Any(n => n.X == newX && n.Y == newY))
+            {
+                var npc = _level.Npcs.First(n => n.X == newX && n.Y == newY);
                 NpcDialogManager.StartDialogue(npc, _level, _settings);
                 GameMessage = string.Format(Messages.YouTalkedWith, npc.Name);
+                keyRecognized = true;
+                continue;
+            }
+            else if (_level.Mercenaries.Any(m => m.X == newX && m.Y == newY))
+            {
+                var allie = _level.Mercenaries.First(m => m.X == newX && m.Y == newY);
+                GameMessage = string.Format(Messages.YouTalkedWith, allie.Name);
                 keyRecognized = true;
                 continue;
             }
@@ -94,6 +118,13 @@ public class PlayerController
             // do NOT increment steps if inside any structure or if he just looted chest or entered in combat
             if (!insideStructure && !hasLootedChest && !hasFightEnemy)
             {
+                // StopWatch logic
+                var stopWatch = _level.Player.Inventory.FirstOrDefault(i => i.Id == ItemId.StopWatch);
+                if (stopWatch != null && _level.Player.Steps % stopWatch.Value == 0)
+                {
+                    return; // skip incrementing steps this turn
+                }
+
                 // increment steps
                 _level.Player.Steps++;
             }

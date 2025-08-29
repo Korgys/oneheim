@@ -6,12 +6,12 @@ public class Champion : Enemy
 {
     public Champion(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (15 + _random.Next(0, 3)) * level + (level - 1);
+        LifePoint = (20 + _random.Next(0, 4)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (8 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (12 + _random.Next(0, 2)) * level + (level - 1);
-        Speed = 7 * level + (level - 1);
-        Vision = 2; // normal vision range
+        Armor = (9 + _random.Next(0, 3)) * level;
+        Strength = (15 + _random.Next(0, 4)) * level;
+        Speed = 9 * level;
+        Vision = 3; // good vision range
         Name = Messages.Champion;
         Category = EnemyType.Cultist;
     }

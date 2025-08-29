@@ -6,12 +6,12 @@ public class Werewolf : Enemy
 {
     public Werewolf(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (28 + _random.Next(0, 8)) * level + (level - 1);
+        LifePoint = (30 + _random.Next(0, 8)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (4 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (12 + _random.Next(0, 4)) * level + (level - 1);
-        Speed = (12 + _random.Next(0, 4)) * level + (level - 1);
-        Vision = 3; // Wolves have a good vision range
+        Armor = (8 + _random.Next(0, 4)) * level;
+        Strength = (20 + _random.Next(0, 4)) * level;
+        Speed = (20 + _random.Next(0, 4)) * level;
+        Vision = 4; // best vision range
         Name = Messages.Werewolf;
         Category = EnemyType.Wild;
         StepsPerTurn = 2; // move really fast

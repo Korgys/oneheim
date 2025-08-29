@@ -60,6 +60,7 @@ public static class InventoryManager
 
     private static string HandleFullInventory(Player player, Item newItem, GameSettings settings)
     {
+        Console.WriteLine();
         Console.WriteLine(Messages.InventoryFull);
 
         var keys = new List<string>

@@ -27,7 +27,7 @@ public class CombatManager
     public void StartCombat(Enemy enemy)
     {
         _level.PlayerInCombat = true;
-        CombatRendering.BlinkConsole(enemy is Boss);
+        CombatRenderer.BlinkConsole(enemy is Boss);
 
         var player = _level.Player;
 
@@ -54,7 +54,7 @@ public class CombatManager
             if (IsRoundStart(turn)) OnRoundStart(player, enemy, round);
 
             // Rendering fight state
-            CombatRendering.RenderFight(enemy, player);
+            CombatRenderer.RenderFight(enemy, player);
             Console.WriteLine(string.Join("\n", _fightLog));
             Thread.Sleep((int)waitTimeInTurn);
 
@@ -100,7 +100,7 @@ public class CombatManager
             if (turn % 2 == 1) round++; // each 2 actions is a new round
         }
 
-        CombatRendering.RenderEndFight(enemy, player, _fightLog);
+        CombatRenderer.RenderEndFight(enemy, player, _fightLog);
         _level.PlayerInCombat = false;
     }
 

@@ -87,15 +87,17 @@ public static class ConsoleRenderer
                     continue;
                 }
 
-                // 8) Interior of structure or empty space
-                if (structure != null)
+                // 8) Mercenaries allies
+                if (level.Mercenaries.Any(m => m.X == x && m.Y == y))
                 {
-                    Console.Write(' '); // interior floor
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(level.Mercenaries.First(m => m.X == x && m.Y == y).Character);
+                    Console.ResetColor();
+                    continue;
                 }
-                else
-                {
-                    Console.Write(' '); // empty floor
-                }
+
+                // 9) Interior of structure or empty space
+                Console.Write(' ');
             }
             Console.WriteLine();
         }

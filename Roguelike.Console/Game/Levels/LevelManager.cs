@@ -4,6 +4,7 @@ using Roguelike.Console.Configuration;
 using Roguelike.Console.Game.Characters.Enemies;
 using Roguelike.Console.Game.Characters.Enemies.Bosses;
 using Roguelike.Console.Game.Characters.NPCs;
+using Roguelike.Console.Game.Characters.NPCs.Allies;
 using Roguelike.Console.Game.Characters.Players;
 using Roguelike.Console.Game.Collectables;
 using Roguelike.Console.Game.Collectables.Items;
@@ -22,6 +23,7 @@ public class LevelManager
     public List<Enemy> Enemies { get; } = new();
     public List<Npc> Npcs { get; } = new();
     public List<Structure> Structures { get; } = new();
+    public List<Mercenary> Mercenaries { get; } = new();
     public bool PlayerInCombat { get; set; } = false;
     public int ChestPrice { get; set; } = 50;
 
@@ -92,6 +94,8 @@ public class LevelManager
             int x = rnd.Next(1, GridWidth - 1);
             int y = rnd.Next(1, GridHeight - 1);
 
+            if (s.EntranceTiles.Any(e => e.x == x && e.y == y)) continue; // avoid entrances
+
             bool inInterior = s != null && s.IsInterior(x, y);
 
             if (preferInterior && s != null && !inInterior) continue;
@@ -107,7 +111,6 @@ public class LevelManager
         }
         return null;
     }
-
 
     public void PlaceTreasures(int count)
     {
@@ -188,6 +191,91 @@ public class LevelManager
 
         var boss = EnemyFactory.CreateFromBag(bossBagProbability, x, y, level);
         Enemies.Add(boss);
+    }
+
+    public bool TryHireMercenaries(int count, out int hired, out string reason)
+    {
+        hired = 0;
+        reason = string.Empty;
+
+        // Find the base camp
+        var baseCamp = Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
+        if (baseCamp == null)
+        {
+            reason = "No base camp to defend.";
+            return false;
+        }
+
+        // Find exterior tiles adjacent to the camp walls for spawn
+        var spawnTiles = GetExteriorPerimeterSpots(baseCamp).ToList();
+        if (spawnTiles.Count == 0)
+        {
+            reason = "No available perimeter spots.";
+            return false;
+        }
+
+        // Limit total mercenaries (optional safety)
+        int maxMercs = 12;
+        if (Mercenaries.Count >= maxMercs)
+        {
+            reason = "Too many mercenaries already recruited.";
+            return false;
+        }
+
+        // Try to place up to 'count' mercs
+        foreach (var tile in spawnTiles)
+        {
+            if (hired >= count) break;
+            if (IsOccupied(tile.x, tile.y)) continue;
+
+            var m = Mercenary.Create(tile.x, tile.y, Player.Level);
+            Mercenaries.Add(m);
+            hired++;
+        }
+
+        if (hired == 0)
+            reason = "Could not place any mercenary at the perimeter.";
+
+        return true;
+    }
+
+    /// <summary>
+    /// Return free tiles that are outside the structure but adjacent to its walls
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    private IEnumerable<(int x, int y)> GetExteriorPerimeterSpots(Structure s)
+    {
+        foreach (var w in s.WallTiles())
+        {
+            var nbs = new (int x, int y)[] { (w.x + 1, w.y), (w.x - 1, w.y), (w.x, w.y + 1), (w.x, w.y - 1) };
+            foreach (var n in nbs)
+            {
+                // outside
+                if (s.IsInterior(n.x, n.y)) continue;
+                else if (s.IsWall(n.x, n.y)) continue;
+                // inside bounds and free-ish
+                //if (n.x <= 0 || n.x >= GridWidth - 1 || n.y <= 0 || n.y >= GridHeight - 1) continue;
+                if (!IsOccupied(n.x, n.y))
+                    yield return n;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Consider treasures, enemies, player, mercenaries as blockers
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    private bool IsOccupied(int x, int y)
+    {
+        if (Player.X == x && Player.Y == y) return true;
+        if (Treasures.Any(t => t.X == x && t.Y == y)) return true;
+        if (Enemies.Any(e => e.X == x && e.Y == y)) return true;
+        if (Mercenaries.Any(m => m.X == x && m.Y == y)) return true;
+        // walls are naturally blocked by your movement checks
+        return false;
     }
 
     /// <summary>

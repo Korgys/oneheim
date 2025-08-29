@@ -135,6 +135,9 @@
   <data name="AndTakeThornsDamage" xml:space="preserve">
     <value>and takes {0} thorns damage</value>
   </data>
+  <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
+    <value>A new traveler comes to the base camp</value>
+  </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
     <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
   </data>
@@ -500,6 +503,12 @@
   </data>
   <data name="Steps" xml:space="preserve">
     <value>Steps</value>
+  </data>
+  <data name="StopWatch" xml:space="preserve">
+    <value>StopWatch</value>
+  </data>
+  <data name="StopWatchDescription" xml:space="preserve">
+    <value>Don't count one step every {0} steps</value>
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Strength</value>

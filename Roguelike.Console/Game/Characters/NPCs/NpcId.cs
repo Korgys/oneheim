@@ -3,5 +3,6 @@
 public enum NpcId
 {
     Armin,
-    Ichem
+    Ichem,
+    Eber
 }

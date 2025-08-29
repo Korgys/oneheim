@@ -1,6 +1,4 @@
-﻿using System.Reflection.Emit;
-
-namespace Roguelike.Console.Game.Structures;
+﻿namespace Roguelike.Console.Game.Structures;
 
 public class Structure
 {
@@ -12,11 +10,14 @@ public class Structure
     public int MaxHp { get; }
     public int Hp { get; set; }
 
+    // Optional explicit entrance tiles (outside side)
+    public readonly HashSet<(int x, int y)> EntranceTiles = new();
+
     // Precomputed absolute coordinates for fast checks
     private readonly HashSet<(int x, int y)> _walls = new();
     private readonly HashSet<(int x, int y)> _interior = new();
 
-    public Structure(string name, int x, int y, string[] layout, int baseHp = 1000)
+    public Structure(string name, int x, int y, string[] layout, HashSet<(int x, int y)> entranceTiles, int baseHp = 1000)
     {
         Name = name;
         X = x; Y = y;
@@ -38,6 +39,8 @@ public class Structure
                 else _interior.Add((gx, gy)); // only spaces should be in layout
             }
         }
+
+        EntranceTiles = entranceTiles;
     }
 
     public bool IsWall(int gx, int gy) => _walls.Contains((gx, gy));

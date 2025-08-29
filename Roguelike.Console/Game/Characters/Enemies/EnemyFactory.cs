@@ -56,7 +56,7 @@ public class EnemyFactory
             EnemyId.HighPriest => new HighPriest(x, y, level),
             EnemyId.Drunkard => new Drunkard(x, y, level),
             EnemyId.Brigand => new Brigand(x, y, level),
-            EnemyId.Mercenary => new Mercenary(x, y, level),
+            EnemyId.Mercenary => new GreedyMercenary(x, y, level),
             EnemyId.Assassin => new Assassin(x, y, level),
             EnemyId.WatchtowerArcher => new WatchtowerArcher(x, y, level),
             EnemyId.ChiefBrigand => new ChiefBrigand(x, y, level),

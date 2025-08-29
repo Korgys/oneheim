@@ -200,7 +200,7 @@ public static class NpcDialogues
                 var chosen = TreasureSelector.PromptPlayerForBonus(choices, player, settings);
 
                 player.Gold -= price;
-                level.ChestPrice += 2; // inflation anti-exploit
+                level.ChestPrice = (int)(level.ChestPrice * 1.06m); // inflation anti-exploit
                 var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
 
                 return $"Purchased: {msg}\nChest price has increased.";
@@ -222,4 +222,107 @@ public static class NpcDialogues
 
         npc.Root = mainMenu;
     }
+
+    public static void BuildForEber(Npc npc, LevelManager level, GameSettings settings)
+    {
+        var player = level.Player;
+
+        // Dynamic pricing that scales with already hired mercenaries
+        int GetUnitPrice()
+        {
+            int basePrice = 120; // base price for one guard
+            int owned = level.Mercenaries.Count;
+            // +10 gold per existing merc, capped modestly
+            return basePrice + Math.Min(owned * 10, 100);
+        }
+
+        int GetSquadPrice() // 3 guards with a small discount
+        {
+            int unit = GetUnitPrice();
+            // e.g., 3 * unit * 0.9 rounded
+            return (int)MathF.Round(unit * 3 * 0.9f);
+        }
+
+        DialogueNode Node(Func<string> text) => new DialogueNode { Text = text };
+
+        DialogueNode? mainMenu = null;
+
+        // Main menu: hire 1, hire 3, small talk, goodbye
+        mainMenu = Node(() =>
+        {
+            var intro = npc.HasMet
+                ? "Steel is cheap; loyalty is not. Looking to hire?"
+                : "Name's Eber. I train Oneheim guards. You pay, they protect.";
+            return $"{intro}";
+        });
+
+        mainMenu.Options.Add(new DialogueOption
+        {
+            LabelFactory = () => $"Hire a Oneheim guard ({GetUnitPrice()} gold)",
+            Action = () =>
+            {
+                int price = GetUnitPrice();
+                if (player.Gold < price) return "You do not have enough gold.";
+
+                // Hire exactly 1 guard
+                if (!level.TryHireMercenaries(1, out int hired, out string reason))
+                    return reason;
+
+                player.Gold -= price;
+                return hired > 0
+                    ? "Hired 1 Oneheim guard. He will circle the camp and strike nearby foes."
+                    : "No suitable spot around the camp to deploy a guard.";
+            },
+            Next = mainMenu
+        });
+
+        mainMenu.Options.Add(new DialogueOption
+        {
+            LabelFactory = () => $"Hire a Oneheim squad (3) ({GetSquadPrice()} gold)",
+            Action = () =>
+            {
+                int price = GetSquadPrice();
+                if (player.Gold < price) return "You do not have enough gold.";
+
+                // Hire up to 3 guards
+                if (!level.TryHireMercenaries(3, out int hired, out string reason))
+                    return reason;
+
+                if (hired == 0) return "No suitable spots around the camp to deploy a squad.";
+
+                player.Gold -= price;
+                return hired == 3
+                    ? "Hired a Oneheim squad. They will patrol the perimeter and intercept threats."
+                    : $"Hired {hired} guard(s). Patrol will start immediately.";
+            },
+            Next = mainMenu
+        });
+
+        // Optional small talk
+        string[] lines =
+        {
+            "Mercenaries keep blades sharp and eyes sharper.",
+            "Perimeter first. Then the roads.",
+            "Oneheim steel doesn’t bend.",
+            "Pay now, bleed less later."
+        };
+        var talk = Node(() => lines[_random.Next(lines.Length)]);
+        talk.Options.Add(new DialogueOption { Label = "Back", Next = mainMenu });
+
+        mainMenu.Options.Add(new DialogueOption
+        {
+            Label = "Just talk",
+            Next = talk
+        });
+
+        // End dialogue
+        mainMenu.Options.Add(new DialogueOption
+        {
+            Label = "Goodbye",
+            Next = null
+        });
+
+        npc.Root = mainMenu;
+    }
+
 }

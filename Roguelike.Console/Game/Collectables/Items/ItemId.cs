@@ -30,5 +30,6 @@ public enum ItemId
     LuckyMillorLeftHand = 26,
     GrolMokbarRing = 27,
     TalismanOfPeace = 28,
-    SealOfLivingFlesh = 29
+    SealOfLivingFlesh = 29,
+    StopWatch = 30
 }

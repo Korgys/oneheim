@@ -154,7 +154,9 @@ public class EnemyManager
         if (_level.Structures.Any(s => s.IsWall(x, y) && ((double)s.Hp / (double)s.MaxHp) >= 0.1))
             return false;
 
+        // do not move onto treasures, enemies, or mercenaries
         return !_level.Treasures.Any(t => t.X == x && t.Y == y)
-            && !_level.Enemies.Any(e => e.X == x && e.Y == y);
+            && !_level.Enemies.Any(e => e.X == x && e.Y == y)
+            && !_level.Mercenaries.Any(e => e.X == x && e.Y == y);
     }
 }

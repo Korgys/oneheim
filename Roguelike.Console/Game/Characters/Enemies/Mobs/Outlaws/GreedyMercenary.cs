@@ -2,9 +2,9 @@
 
 namespace Roguelike.Console.Game.Characters.Enemies.Mobs.Outlaws;
 
-public class Mercenary : Enemy
+public class GreedyMercenary : Enemy
 {
-    public Mercenary(int x, int y, int level) : base(x, y, level)
+    public GreedyMercenary(int x, int y, int level) : base(x, y, level)
     {
         LifePoint = (12 + _random.Next(0, 3)) * level + (level - 1);
         MaxLifePoint = LifePoint;

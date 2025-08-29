@@ -8,7 +8,7 @@ using Roguelike.Console.Game.Collectables.Items;
 using Roguelike.Console.Properties.i18n;
 using System;
 
-public class CombatRendering
+public class CombatRenderer
 {
     public static void BlinkConsole(bool isBoss)
     {

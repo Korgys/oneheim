@@ -115,6 +115,15 @@ namespace Roguelike.Console.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à A new traveler comes to the base camp.
+        /// </summary>
+        internal static string ANewTravelerComesToTheBaseCamp {
+            get {
+                return ResourceManager.GetString("ANewTravelerComesToTheBaseCamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step..
         /// </summary>
         internal static string ArminFirstMeeting {
@@ -1209,6 +1218,24 @@ namespace Roguelike.Console.Properties.i18n {
         internal static string Steps {
             get {
                 return ResourceManager.GetString("Steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à StopWatch.
+        /// </summary>
+        internal static string StopWatch {
+            get {
+                return ResourceManager.GetString("StopWatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Don&apos;t count one step every {0} steps.
+        /// </summary>
+        internal static string StopWatchDescription {
+            get {
+                return ResourceManager.GetString("StopWatchDescription", resourceCulture);
             }
         }
         

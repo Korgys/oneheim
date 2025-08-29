@@ -135,6 +135,9 @@
   <data name="AndTakeThornsDamage" xml:space="preserve">
     <value>et prends {0} de dégâts d'épines</value>
   </data>
+  <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
+    <value>Un nouveau voyageur est arrivé au camp</value>
+  </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
     <value>Salutations, voyageur. Sois le bienvenu à [Green]Oneheim[/], ou plutôt, à ce qu’il en reste. Ce village n’est plus qu’un champ de ruines. J’y ai établi un camp et élevé des palissades. Prends garde, car au-dehors, le [red]danger[/] guette à chaque pas.</value>
   </data>
@@ -500,6 +503,12 @@
   </data>
   <data name="Steps" xml:space="preserve">
     <value>Pas</value>
+  </data>
+  <data name="StopWatch" xml:space="preserve">
+    <value>Chronomètre</value>
+  </data>
+  <data name="StopWatchDescription" xml:space="preserve">
+    <value>Ne compte pas un pas tous les {0} pas.</value>
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Force</value>

@@ -243,6 +243,14 @@ public class ItemFactory
                 Value = 2,
                 UpgradableIncrementValue = 2
             },
+            ItemId.StopWatch => new Item
+            {
+                Id = id,
+                Name = Messages.StopWatch,
+                Effect = Messages.StopWatchDescription,
+                Value = 15,
+                UpgradableIncrementValue = -1
+            },
             _ => throw new ArgumentException("Unknown item type")
         };
     }
