@@ -1,8 +1,18 @@
-﻿using Roguelike.Console.Game;
+﻿using Roguelike.Console.Rendering;
+using Roguelike.Core.Configuration;
+using Roguelike.Core.Game.GameLoop;
 
 // Launch game engine
-var game = new GameEngine();
-game.StartNewGame();
+var settings = ConfigurationReader.LoadGameSettings();
+var engine = new GameEngine(
+    settings,
+    new ConsoleRenderer(),
+    new ConsoleInput(),
+    new SystemClock(),
+    new DefaultRng(),
+    new ConsoleCombatRenderer());
+
+engine.Run();
 
 // TODO: more dialogue options
 // TODO: implement menu system

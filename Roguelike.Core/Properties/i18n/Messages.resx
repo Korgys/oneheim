@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABossArrives" xml:space="preserve">
+    <value>A boss arrives</value>
+  </data>
+  <data name="Acolyte" xml:space="preserve">
+    <value>Acolyte Flesh Devourer</value>
+  </data>
+  <data name="AlphaWolf" xml:space="preserve">
+    <value>Alpha Wolf</value>
+  </data>
+  <data name="AlreadyFullHealth" xml:space="preserve">
+    <value>You are already full life</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="AndTakeThornsDamage" xml:space="preserve">
+    <value>and takes {0} thorns damage</value>
+  </data>
+  <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
+    <value>A new traveler comes to the base camp</value>
+  </data>
+  <data name="ArminFirstMeeting" xml:space="preserve">
+    <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
+  </data>
+  <data name="ArminHealPitch" xml:space="preserve">
+    <value>I can patch you up for {0} gold. You will recover up to +{1} HP.</value>
+  </data>
+  <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
+    <value>I can heal you. Come again when you will be damaged.</value>
+  </data>
+  <data name="ArminMeeting" xml:space="preserve">
+    <value>Back again? The wilds look harsh today. Tell me, friend, what may I do for you?</value>
+  </data>
+  <data name="ArminMeetingBaseCampUnderAttack" xml:space="preserve">
+    <value>To arms! The shadows breach our palisades! Hold fast! We shall not yield!</value>
+  </data>
+  <data name="ArminMeetingFirstBossComing" xml:space="preserve">
+    <value>I heard ghastly cries beyond the walls, freezing the blood in my veins. Some foul creature prowls in the shadows. Beware, traveler.</value>
+  </data>
+  <data name="ArminMeetingFirstBossDefeated" xml:space="preserve">
+    <value>Word has spread, you have vanquished that dreadful beast. Never had I imagined such strength in you. It is a true blessing to have you among us! Accept my eternal gratitude. Tell me, how might I repay such a debt?</value>
+  </data>
+  <data name="ArminMeetingFirstBossHere" xml:space="preserve">
+    <value>Travelers speak of a mighty foe haunting these lands. If only a valiant soul were strong enough to deliver us from this bane… May the camp’s palisades hold until then.</value>
+  </data>
+  <data name="ArminMeetingPlayerLowLife" xml:space="preserve">
+    <value>By the gods, you look on the brink of collapse! Rest a while. This camp was meant as a haven for the weary.</value>
+  </data>
+  <data name="ArminMeetingPlayerRich" xml:space="preserve">
+    <value>That is a heavy purse you carry. May it serve to raise Oneheim anew and kindle fresh hopes.</value>
+  </data>
+  <data name="ArminRepairPitch" xml:space="preserve">
+    <value>I can repair the camp for {0} gold (+{1} HP).</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>Armor</value>
+  </data>
+  <data name="ArmoredZombie" xml:space="preserve">
+    <value>Armored Zombie</value>
+  </data>
+  <data name="Assassin" xml:space="preserve">
+    <value>Assassin</value>
+  </data>
+  <data name="BaseCamp" xml:space="preserve">
+    <value>Base Camp</value>
+  </data>
+  <data name="BaseCampHp" xml:space="preserve">
+    <value>Base Camp HP: </value>
+  </data>
+  <data name="BeCarefullYouAreNotSafeHere" xml:space="preserve">
+    <value>Be carefull, you are not safe here ...</value>
+  </data>
+  <data name="BerserkerNecklace" xml:space="preserve">
+    <value>Berserker Necklace</value>
+  </data>
+  <data name="BerserkerNecklaceDescription" xml:space="preserve">
+    <value>+{0}% critical damage</value>
+  </data>
+  <data name="BladeOfHeroes" xml:space="preserve">
+    <value>Blade Of Heroes</value>
+  </data>
+  <data name="BladeOfHeroesDescription" xml:space="preserve">
+    <value>+{0} strengh against bosses</value>
+  </data>
+  <data name="BootsOfEchoStep" xml:space="preserve">
+    <value>Boots of Echo Step</value>
+  </data>
+  <data name="BootsOfEchoStepDescription" xml:space="preserve">
+    <value>Dodge increased by {0}% if your faster than you opponent</value>
+  </data>
+  <data name="Brigand" xml:space="preserve">
+    <value>Brigand of the Pierced Stone</value>
+  </data>
+  <data name="CampAlreadyRepair" xml:space="preserve">
+    <value>The camp is already in perfect shape.</value>
+  </data>
+  <data name="CanYouHealMe" xml:space="preserve">
+    <value>Can you heal me?</value>
+  </data>
+  <data name="CanYouRepairTheCamp" xml:space="preserve">
+    <value>Can you repair the camp?</value>
+  </data>
+  <data name="CapeOfInvisibility" xml:space="preserve">
+    <value>Cape Of Invisibility</value>
+  </data>
+  <data name="CapeOfInvisibilityDescription" xml:space="preserve">
+    <value>Decrease by {0} enemies vision range</value>
+  </data>
+  <data name="CaveTroll" xml:space="preserve">
+    <value>Cave Troll</value>
+  </data>
+  <data name="Champion" xml:space="preserve">
+    <value>Champion Hand of Flesh</value>
+  </data>
+  <data name="ChiefBrigand" xml:space="preserve">
+    <value>Chief of the Pierced Stone bandits</value>
+  </data>
+  <data name="Choices" xml:space="preserve">
+    <value>Choices</value>
+  </data>
+  <data name="CombatOccurred" xml:space="preserve">
+    <value>Combat occurred!</value>
+  </data>
+  <data name="Cultist" xml:space="preserve">
+    <value>Cultist of the fresh meat</value>
+  </data>
+  <data name="DaggerOfLifeSteal" xml:space="preserve">
+    <value>Dagger of life steal</value>
+  </data>
+  <data name="DaggerOfLifeStealDescription" xml:space="preserve">
+    <value>60% chances to steal up to {0} life points from the enemy on hit.</value>
+  </data>
+  <data name="Dropped" xml:space="preserve">
+    <value>Dropped</value>
+  </data>
+  <data name="Drunkard" xml:space="preserve">
+    <value>Drunkard</value>
+  </data>
+  <data name="EnchantedPouch" xml:space="preserve">
+    <value>Enchanted Pouch</value>
+  </data>
+  <data name="EnchantedPouchDescription" xml:space="preserve">
+    <value>+{0}% more gold after each victory</value>
+  </data>
+  <data name="EnemyDefeated" xml:space="preserve">
+    <value>Enemy defeated!</value>
+  </data>
+  <data name="EnemyIsUnderTrollMushroomEffect" xml:space="preserve">
+    <value>Enemy is under troll mushroom effect. He cannot attack now.</value>
+  </data>
+  <data name="EngravedFangs" xml:space="preserve">
+    <value>Engraved Fangs</value>
+  </data>
+  <data name="EngravedFangsDescription" xml:space="preserve">
+    <value>Reduces by {0} the ARMOR of beasts</value>
+  </data>
+  <data name="FeathersOfHope" xml:space="preserve">
+    <value>Feathers Of Hope</value>
+  </data>
+  <data name="FeathersOfHopeDescription" xml:space="preserve">
+    <value>Gain {0} HP on dodge</value>
+  </data>
+  <data name="FidelityCard" xml:space="preserve">
+    <value>Fidelity Card</value>
+  </data>
+  <data name="FidelityCardDescription" xml:space="preserve">
+    <value>{0}% discount with merchants</value>
+  </data>
+  <data name="Fight" xml:space="preserve">
+    <value>Fight !</value>
+  </data>
+  <data name="FluteOfHunter" xml:space="preserve">
+    <value>Hunter's Flute</value>
+  </data>
+  <data name="FluteOfHunterDescription" xml:space="preserve">
+    <value>Decreases by {0} the ATK of beasts</value>
+  </data>
+  <data name="FoundItem" xml:space="preserve">
+    <value>Found item: {0} – {1}</value>
+  </data>
+  <data name="GameOverPressEnterToExit" xml:space="preserve">
+    <value>Game Over! Press Enter to exit.</value>
+  </data>
+  <data name="GlassesOfClairvoyance" xml:space="preserve">
+    <value>Glasses of Clairvoyance</value>
+  </data>
+  <data name="GlassesOfClairvoyanceDescription" xml:space="preserve">
+    <value>Your vision range cannot go below {0}</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Goodbye.</value>
+  </data>
+  <data name="GrolMokbarRing" xml:space="preserve">
+    <value>Grol Mokbar's Ring</value>
+  </data>
+  <data name="GrolMokbarRingDescription" xml:space="preserve">
+    <value>+{0} enemies each wave</value>
+  </data>
+  <data name="HasBeenDestroy" xml:space="preserve">
+    <value>{0} has been destroyed!</value>
+  </data>
+  <data name="HawkEye" xml:space="preserve">
+    <value>Hawk Eye</value>
+  </data>
+  <data name="HawkEyeDescription" xml:space="preserve">
+    <value>{0}% chance of finding better bonus vision in chests</value>
+  </data>
+  <data name="HealedHpForGold" xml:space="preserve">
+    <value>Healed {0} HP for {1} gold.</value>
+  </data>
+  <data name="HighPriest" xml:space="preserve">
+    <value>High Priest Prophet of Flesh</value>
+  </data>
+  <data name="HolyBible" xml:space="preserve">
+    <value>Holy Bible</value>
+  </data>
+  <data name="HolyBibleDescription" xml:space="preserve">
+    <value>Reduce undead strengh by {0}</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="InventoryFull" xml:space="preserve">
+    <value>Inventory full. Choose item to drop:</value>
+  </data>
+  <data name="IsUnderAttack" xml:space="preserve">
+    <value>is under attack</value>
+  </data>
+  <data name="KeepCurrentInventory" xml:space="preserve">
+    <value>Keep current inventory</value>
+  </data>
+  <data name="LeglessZombie" xml:space="preserve">
+    <value>Legless Zombie</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="LifePoint" xml:space="preserve">
+    <value>LifePoint</value>
+  </data>
+  <data name="LuckyMillorLeftHand" xml:space="preserve">
+    <value>Lucky Millor's Left Hand</value>
+  </data>
+  <data name="LuckyMillorLeftHandDescription" xml:space="preserve">
+    <value>+{0}% chance to find better bonuses</value>
+  </data>
+  <data name="MaxHp" xml:space="preserve">
+    <value>Max HP</value>
+  </data>
+  <data name="MaxLifePoint" xml:space="preserve">
+    <value>MaxLifePoint</value>
+  </data>
+  <data name="MaybeLater" xml:space="preserve">
+    <value>Maybe later.</value>
+  </data>
+  <data name="Mercenary" xml:space="preserve">
+    <value>Mercenary</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="NeedHealing" xml:space="preserve">
+    <value>I need healing.</value>
+  </data>
+  <data name="NoCampToRepair" xml:space="preserve">
+    <value>No camp to repair</value>
+  </data>
+  <data name="NotEnoughGold" xml:space="preserve">
+    <value>You do not have enough gold.</value>
+  </data>
+  <data name="NothingToRepair" xml:space="preserve">
+    <value>There is nothing to repair here.</value>
+  </data>
+  <data name="OldGiantWoodenClub" xml:space="preserve">
+    <value>Old Giant Wooden Club</value>
+  </data>
+  <data name="OldGiantWoodenClubDescription" xml:space="preserve">
+    <value>Breaks {0} armor when less strength than opponent's armor</value>
+  </data>
+  <data name="PaladinNecklace" xml:space="preserve">
+    <value>Paladin Necklace</value>
+  </data>
+  <data name="PaladinNecklaceDescription" xml:space="preserve">
+    <value>Reduce enemies critical damage by {0}%</value>
+  </data>
+  <data name="PayAndHeal" xml:space="preserve">
+    <value>Pay and heal</value>
+  </data>
+  <data name="PayAndRepair" xml:space="preserve">
+    <value>Pay and repair</value>
+  </data>
+  <data name="Picked" xml:space="preserve">
+    <value>picked</value>
+  </data>
+  <data name="PlagueGhoul" xml:space="preserve">
+    <value>Plague Ghoul</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="PressAnyKeyToContinue" xml:space="preserve">
+    <value>Press any key to continue...</value>
+  </data>
+  <data name="Priest" xml:space="preserve">
+    <value>Scarlet Priest</value>
+  </data>
+  <data name="ProspectorKey" xml:space="preserve">
+    <value>Prospector's Key</value>
+  </data>
+  <data name="ProspectorKeyDescription" xml:space="preserve">
+    <value>+{0} treasure chests at each wave</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="RepairedCampForHpCost" xml:space="preserve">
+    <value>Repaired camp for +{0} HP (cost {1} gold).</value>
+  </data>
+  <data name="RepairTheCamp" xml:space="preserve">
+    <value>Repair the camp.</value>
+  </data>
+  <data name="Revenant" xml:space="preserve">
+    <value>Revenant</value>
+  </data>
+  <data name="Rewards" xml:space="preserve">
+    <value>Rewards :</value>
+  </data>
+  <data name="RingOfEndurance" xml:space="preserve">
+    <value>Ring Of Endurance</value>
+  </data>
+  <data name="RingOfEnduranceDescription" xml:space="preserve">
+    <value>Grants +{0} HP at the start of each battle</value>
+  </data>
+  <data name="RoyalGuardGauntlet" xml:space="preserve">
+    <value>Royal Guard Gauntlet</value>
+  </data>
+  <data name="RoyalGuardGauntletDescription" xml:space="preserve">
+    <value>+{0}% critical chance</value>
+  </data>
+  <data name="RoyalGuardShield" xml:space="preserve">
+    <value>Royal Guard Shield</value>
+  </data>
+  <data name="RoyalGuardShieldDescription" xml:space="preserve">
+    <value>Reduce enemies critical chance by {0}%</value>
+  </data>
+  <data name="SacredCrucifix" xml:space="preserve">
+    <value>Sacred Crucifix</value>
+  </data>
+  <data name="SacredCrucifixDescription" xml:space="preserve">
+    <value>Reduce undead armor by {0}</value>
+  </data>
+  <data name="SealOfLivingFlesh" xml:space="preserve">
+    <value>Seal of Living Flesh</value>
+  </data>
+  <data name="SealOfLivingFleshDescription" xml:space="preserve">
+    <value>+{0}HP on critical damage</value>
+  </data>
+  <data name="SealOfWisdom" xml:space="preserve">
+    <value>Seal Of Wisdom</value>
+  </data>
+  <data name="SealOfWisdomDescription" xml:space="preserve">
+    <value>+{0}% more experience from battles</value>
+  </data>
+  <data name="ShieldOfChampion" xml:space="preserve">
+    <value>Champion’s Shield</value>
+  </data>
+  <data name="ShieldOfChampionDescription" xml:space="preserve">
+    <value>Provides +{0} armor against bosses.</value>
+  </data>
+  <data name="ShredArmor" xml:space="preserve">
+    <value>shred {0} armor</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="SpiderNest" xml:space="preserve">
+    <value>Spider Nest</value>
+  </data>
+  <data name="StealHp" xml:space="preserve">
+    <value>steal {0} HP</value>
+  </data>
+  <data name="StepAndLevel" xml:space="preserve">
+    <value>Steps: {0} | Lvl: {1}</value>
+  </data>
+  <data name="Steps" xml:space="preserve">
+    <value>Steps</value>
+  </data>
+  <data name="StopWatch" xml:space="preserve">
+    <value>StopWatch</value>
+  </data>
+  <data name="StopWatchDescription" xml:space="preserve">
+    <value>Don't count one step every {0} steps</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+  <data name="StructureUnderAttack" xml:space="preserve">
+    <value>{0} is under attack! HP:{1}/{2}</value>
+  </data>
+  <data name="TalismanOfPeace" xml:space="preserve">
+    <value>Talisman of peace</value>
+  </data>
+  <data name="TalismanOfPeaceDescription" xml:space="preserve">
+    <value>-{0} enemies each wave</value>
+  </data>
+  <data name="TalismanOfTheLastBreath" xml:space="preserve">
+    <value>Talisman Of The Last Breath‎</value>
+  </data>
+  <data name="TalismanOfTheLastBreathDescription" xml:space="preserve">
+    <value>Survive once per combat to fatal blow</value>
+  </data>
+  <data name="TheCampIsAlreadyFullyRepair" xml:space="preserve">
+    <value>The camp is already fully repaired.</value>
+  </data>
+  <data name="TheElderLich" xml:space="preserve">
+    <value>The Elder Lich</value>
+  </data>
+  <data name="TheEndPressEnterToExit" xml:space="preserve">
+    <value>The End! Press Enter to exit.</value>
+  </data>
+  <data name="TheEnemyDealDamageToYou" xml:space="preserve">
+    <value>The enemy deals {0} damage to you</value>
+  </data>
+  <data name="TheEnemyDodgedYourAttack" xml:space="preserve">
+    <value>The enemy dodged your attack!</value>
+  </data>
+  <data name="TheFogIntensifies" xml:space="preserve">
+    <value>The fog intensifies. New enemies and treasures have appeared!</value>
+  </data>
+  <data name="TheJuvenileGreenWyvern" xml:space="preserve">
+    <value>The Juvenile Green Wyvern</value>
+  </data>
+  <data name="ThornBreastplate" xml:space="preserve">
+    <value>Thorn Breastplate</value>
+  </data>
+  <data name="ThornBreastplateDescription" xml:space="preserve">
+    <value>60% chances that enemies take {0} damage if they hit you</value>
+  </data>
+  <data name="TrollMushroom" xml:space="preserve">
+    <value>Troll's Mushroom</value>
+  </data>
+  <data name="TrollMushroomDescription" xml:space="preserve">
+    <value>Attack every 2 turns, +{0}% damage</value>
+  </data>
+  <data name="UpgradedItemTo" xml:space="preserve">
+    <value>Upgraded {0} to value {1}</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Vision</value>
+  </data>
+  <data name="WatchtowerArcher" xml:space="preserve">
+    <value>Watchtower archer</value>
+  </data>
+  <data name="Werewolf" xml:space="preserve">
+    <value>Werewolf</value>
+  </data>
+  <data name="WhatElseCanIDo" xml:space="preserve">
+    <value>What else can I do ?</value>
+  </data>
+  <data name="WildBear" xml:space="preserve">
+    <value>Wild Bear</value>
+  </data>
+  <data name="Wolf" xml:space="preserve">
+    <value>Wolf</value>
+  </data>
+  <data name="XP" xml:space="preserve">
+    <value>XP</value>
+  </data>
+  <data name="YannTheSilent" xml:space="preserve">
+    <value>Assassin : Yann The Silent</value>
+  </data>
+  <data name="YouAlreadyOwnItemNotUpgradable" xml:space="preserve">
+    <value>You already own {0}, not upgradable.</value>
+  </data>
+  <data name="YouAreUnderTrollMushroomEffect" xml:space="preserve">
+    <value>You are under troll mushroom effect. You cannot attack now.</value>
+  </data>
+  <data name="YouDealDamage" xml:space="preserve">
+    <value>You deal {0} damage</value>
+  </data>
+  <data name="YouDefeatedAllBosses" xml:space="preserve">
+    <value>You defeated all bosses</value>
+  </data>
+  <data name="YouDefeatedAllBossesThanksForPlaying" xml:space="preserve">
+    <value>You defeated all bosses. Now it's peaceful. Thanks for playing!</value>
+  </data>
+  <data name="YouDied" xml:space="preserve">
+    <value>You died ...</value>
+  </data>
+  <data name="YouDodgedTheEnemyAttack" xml:space="preserve">
+    <value>You dodged the enemy's attack!</value>
+  </data>
+  <data name="YouDodgedTheEnemyAttackAndGainHp" xml:space="preserve">
+    <value>You dodged the enemy's attack and gain {0} HP !</value>
+  </data>
+  <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
+    <value>You found a treasure! Choose your bonus:</value>
+  </data>
+  <data name="YouHealWithYourRingOfEndurance" xml:space="preserve">
+    <value>You heal {0} HP with your ring of endurance.</value>
+  </data>
+  <data name="YouLeveledUp" xml:space="preserve">
+    <value>You leveled up to level {0} !</value>
+  </data>
+  <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
+    <value>You survived a fatal blow with your talisman but it has run out for this combat.</value>
+  </data>
+  <data name="YouTalkedWith" xml:space="preserve">
+    <value>You talked with {0}.</value>
+  </data>
+  <data name="YouWereAttackedAndDefeatedYourEnemy" xml:space="preserve">
+    <value>You were attacked and you defeated your enemy !</value>
+  </data>
+  <data name="YouWereKilledBy" xml:space="preserve">
+    <value>You were killed by {0}.</value>
+  </data>
+  <data name="Zealot" xml:space="preserve">
+    <value>Blood Zealot</value>
+  </data>
+  <data name="Zombie" xml:space="preserve">
+    <value>Zombie</value>
+  </data>
+</root>
