@@ -71,7 +71,7 @@ public static class PlayerRenderer
         // Primary stats
         Console.Write($"{Messages.Steps ?? "Steps"}: {player.Steps} ");
         Console.Write($"| {Messages.Lvl ?? "Lvl"}: {player.Level} ");
-        Console.Write($"| {Messages.XP ?? "XP"}: {player.XP} ");
+        Console.Write($"| {Messages.XP ?? "XP"}: {player.XP}/{player.GetNextLevelXP()} ");
         Console.Write($"| {Messages.Gold ?? "Gold"}: {player.Gold}");
         Console.WriteLine();
 

@@ -2,6 +2,7 @@
 
 using Roguelike.Core.Game.Characters.Enemies;
 using Roguelike.Core.Game.Characters.Players;
+using Roguelike.Core.Game.Combat;
 using System.Collections.Generic;
 
 public interface ICombatRenderer
@@ -13,7 +14,7 @@ public interface ICombatRenderer
     void RenderTurn(Enemy enemy, Player player, IReadOnlyCollection<string> logLines);
 
     // Called once when combat ends (show rewards/end screen text)
-    void OnCombatEnd(Enemy enemy, Player player, IReadOnlyCollection<string> finalLogLines);
+    void OnCombatEnd(Enemy enemy, Player player, IReadOnlyCollection<string> finalLogLines, CombatReport combatReport);
 }
 
 // Safe no-op default you can use in tests or headless builds
@@ -21,5 +22,5 @@ public sealed class NullCombatRenderer : ICombatRenderer
 {
     public void OnCombatStart(bool isBoss) { }
     public void RenderTurn(Enemy enemy, Player player, IReadOnlyCollection<string> logLines) { }
-    public void OnCombatEnd(Enemy enemy, Player player, IReadOnlyCollection<string> finalLogLines) { }
+    public void OnCombatEnd(Enemy enemy, Player player, IReadOnlyCollection<string> finalLogLines, CombatReport combatReport) { }
 }

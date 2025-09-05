@@ -145,10 +145,7 @@ public sealed class CombatManager
             }
         }
 
-        _ui.OnCombatEnd(enemy, player, _fightLog.ToArray());
-        _level.PlayerInCombat = false;
-
-        return new CombatReport(
+        var combatReport = new CombatReport(
             EnemyName: enemy.Name,
             PlayerDied: player.LifePoint <= 0,
             EnemyDied: enemy.LifePoint <= 0,
@@ -156,6 +153,11 @@ public sealed class CombatManager
             Xp: xp,
             Log: _fightLog.ToArray()
         );
+
+        _ui.OnCombatEnd(enemy, player, _fightLog.ToArray(), combatReport);
+        _level.PlayerInCombat = false;
+
+        return combatReport;
     }
 
     // ---------- Hooks & helpers ----------
