@@ -1,7 +1,7 @@
-﻿namespace Roguelike.Console.Rendering;
+﻿namespace Roguelike.Console.Rendering.Characters;
 
+using Roguelike.Console.Rendering.Items;
 using Roguelike.Core.Game.Characters.Players;
-using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Properties.i18n;
 using System;
 
@@ -15,14 +15,14 @@ public static class PlayerRenderer
         // Example: HP: 8/12 | Str: 6 | Armor: 3 | Speed: 2 | Vision: 5 | Lvl: 3 | XP: 120 | Gold: 87 | Steps: 241
         Console.WriteLine(
             $"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} | " +
-            $"{(Messages.Strength ?? "Strength")}: {player.Strength} | " +
-            $"{(Messages.Armor ?? "Armor")}: {player.Armor} | " +
-            $"{(Messages.Speed ?? "Speed")}: {player.Speed} | " +
-            $"{(Messages.Vision ?? "Vision")}: {player.Vision} | " +
-            $"{(Messages.Level ?? "Level")}: {player.Level} | " +
-            $"{(Messages.XP ?? "XP")}: {player.XP} | " +
-            $"{(Messages.Gold ?? "Gold")}: {player.Gold} | " +
-            $"{(Messages.Steps ?? "Steps")}: {player.Steps}"
+            $"{Messages.Strength ?? "Strength"}: {player.Strength} | " +
+            $"{Messages.Armor ?? "Armor"}: {player.Armor} | " +
+            $"{Messages.Speed ?? "Speed"}: {player.Speed} | " +
+            $"{Messages.Vision ?? "Vision"}: {player.Vision} | " +
+            $"{Messages.Level ?? "Level"}: {player.Level} | " +
+            $"{Messages.XP ?? "XP"}: {player.XP} | " +
+            $"{Messages.Gold ?? "Gold"}: {player.Gold} | " +
+            $"{Messages.Steps ?? "Steps"}: {player.Steps}"
         );
     }
 
@@ -37,7 +37,7 @@ public static class PlayerRenderer
         Console.WriteLine($"{Messages.Inventory}: {count}/{player.MaxInventorySize}");
         foreach (var it in player.Inventory)
         {
-            WriteColoredByRarity($"- {it.Name} ({it.EffectDescription})", it.Rarity);
+            RarityRenderer.WriteColoredByRarity($"- {it.Name} ({it.EffectDescription})", it.Rarity);
             Console.WriteLine();
         }
     }
@@ -49,15 +49,15 @@ public static class PlayerRenderer
     {
         // Lines
         Console.WriteLine($"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} | " +
-                          $"{(Messages.Level ?? "Level")}: {player.Level} | " +
-                          $"{(Messages.XP ?? "XP")}: {player.XP} | " +
-                          $"{(Messages.Gold ?? "Gold")}: {player.Gold}");
+                          $"{Messages.Level ?? "Level"}: {player.Level} | " +
+                          $"{Messages.XP ?? "XP"}: {player.XP} | " +
+                          $"{Messages.Gold ?? "Gold"}: {player.Gold}");
 
-        Console.WriteLine($"{(Messages.Strength ?? "Strength")}: {player.Strength} | " +
-                          $"{(Messages.Armor ?? "Armor")}: {player.Armor} | " +
-                          $"{(Messages.Speed ?? "Speed")}: {player.Speed} | " +
-                          $"{(Messages.Vision ?? "Vision")}: {player.Vision} | " +
-                          $"{(Messages.Steps ?? "Steps")}: {player.Steps}");
+        Console.WriteLine($"{Messages.Strength ?? "Strength"}: {player.Strength} | " +
+                          $"{Messages.Armor ?? "Armor"}: {player.Armor} | " +
+                          $"{Messages.Speed ?? "Speed"}: {player.Speed} | " +
+                          $"{Messages.Vision ?? "Vision"}: {player.Vision} | " +
+                          $"{Messages.Steps ?? "Steps"}: {player.Steps}");
 
         // Inventory (short list)
         RenderPlayerInventory(player);
@@ -84,22 +84,5 @@ public static class PlayerRenderer
 
         // Inventory (full)
         RenderPlayerInventory(player);
-    }
-
-    private static void WriteColoredByRarity(string text, ItemRarity rarity)
-    {
-        var prev = Console.ForegroundColor;
-        Console.ForegroundColor = rarity switch
-        {
-            ItemRarity.Broken => ConsoleColor.DarkGray,
-            ItemRarity.Common => ConsoleColor.White,
-            ItemRarity.Uncommon => ConsoleColor.Cyan,
-            ItemRarity.Rare => ConsoleColor.Green,
-            ItemRarity.Epic => ConsoleColor.Magenta,
-            ItemRarity.Legendary => ConsoleColor.Yellow,
-            _ => ConsoleColor.White
-        };
-        Console.Write(text);
-        Console.ForegroundColor = prev;
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Roguelike.Console.Rendering;
 
+using Roguelike.Console.Rendering.Characters;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.GameLoop;
 using Roguelike.Core.Properties.i18n;

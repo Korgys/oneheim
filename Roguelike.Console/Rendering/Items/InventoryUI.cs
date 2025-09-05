@@ -1,4 +1,4 @@
-﻿namespace Roguelike.Console.Rendering;
+﻿namespace Roguelike.Console.Rendering.Items;
 
 using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
@@ -26,10 +26,10 @@ public class InventoryUI : IInventoryUI
         for (int i = 0; i < player.Inventory.Count && i < keys.Count; i++)
         {
             var inventoryItem = player.Inventory[i];
-            RarityRenderer.WriteColored($"{keys[i]}. {inventoryItem.Name} ({inventoryItem.EffectDescription})\n", inventoryItem.Rarity);
+            RarityRenderer.WriteColoredByRarity($"{keys[i]}. {inventoryItem.Name} ({inventoryItem.EffectDescription})\n", inventoryItem.Rarity);
         }
 
-        RarityRenderer.WriteColored($"{keys.Last()}. {newItem.Name} ({newItem.EffectDescription}).", newItem.Rarity);
+        RarityRenderer.WriteColoredByRarity($"{keys.Last()}. {newItem.Name} ({newItem.EffectDescription}).", newItem.Rarity);
         Console.WriteLine($" ({Messages.KeepCurrentInventory}).");
 
         int chosenItemToDrop = -1;

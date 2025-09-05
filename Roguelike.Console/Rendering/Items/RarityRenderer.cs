@@ -1,11 +1,16 @@
-﻿namespace Roguelike.Console.Rendering;
+﻿namespace Roguelike.Console.Rendering.Items;
 
 using Roguelike.Core.Game.Collectables.Items;
 using System;
 
 public class RarityRenderer
 {
-    public static void WriteColored(string text, ItemRarity rarity)
+    /// <summary>
+    /// Write text in the console with a color based on the item rarity.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="rarity"></param>
+    public static void WriteColoredByRarity(string text, ItemRarity rarity)
     {
         var original = Console.ForegroundColor;
 

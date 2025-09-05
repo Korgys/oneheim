@@ -1,4 +1,7 @@
 ﻿using Roguelike.Console.Rendering;
+using Roguelike.Console.Rendering.Characters;
+using Roguelike.Console.Rendering.Combats;
+using Roguelike.Console.Rendering.Items;
 using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.GameLoop;
 

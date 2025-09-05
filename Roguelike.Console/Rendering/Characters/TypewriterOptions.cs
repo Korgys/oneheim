@@ -1,4 +1,4 @@
-﻿namespace Roguelike.Console.Rendering;
+﻿namespace Roguelike.Console.Rendering.Characters;
 
 public sealed class TypewriterOptions
 {

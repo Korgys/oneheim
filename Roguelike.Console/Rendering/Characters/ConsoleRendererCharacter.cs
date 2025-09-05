@@ -1,6 +1,6 @@
 ﻿using Roguelike.Core.Game.Characters.NPCs;
 
-namespace Roguelike.Console.Rendering;
+namespace Roguelike.Console.Rendering.Characters;
 
 public static class ConsoleRendererCharacter
 {

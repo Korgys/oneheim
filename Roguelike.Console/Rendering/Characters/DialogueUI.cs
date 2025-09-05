@@ -1,4 +1,4 @@
-﻿namespace Roguelike.Console.Rendering;
+﻿namespace Roguelike.Console.Rendering.Characters;
 
 using System.Text.RegularExpressions;
 using System;
