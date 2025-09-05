@@ -369,6 +369,9 @@
   <data name="LuckyMillorLeftHandDescription" xml:space="preserve">
     <value>+{0}% de chance de trouver de meilleurs bonus</value>
   </data>
+  <data name="Lvl" xml:space="preserve">
+    <value>Niv.</value>
+  </data>
   <data name="MaxHp" xml:space="preserve">
     <value>Vie max</value>
   </data>

@@ -1,5 +1,4 @@
-﻿using Roguelike.Core.Abstractions;
-using Roguelike.Core.Configuration;
+﻿using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Enemies;
 using Roguelike.Core.Game.Characters.NPCs;
@@ -7,16 +6,13 @@ using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Systems;
 using Roguelike.Core.Properties.i18n;
-using System.Linq;
 
 namespace Roguelike.Core.Game.GameLoop;
 
 public sealed class GameEngine
 {
     private readonly IRenderer _renderer;
-    private readonly IInput _input;           // Reserved for future interactive adapters (kept for DI symmetry)
     private readonly IClock _clock;
-    private readonly IRng _rng;
 
     private readonly TurnSystemRunner _runner;
     private readonly LevelManager _level;
@@ -29,18 +25,21 @@ public sealed class GameEngine
     private bool _isGameEnded = false;
 
     public GameEngine(
-        GameSettings settings,
-        IRenderer renderer, IInput input, IClock clock, IRng rng, ICombatRenderer combatRenderer)
+        GameSettings settings, 
+        IRenderer renderer, 
+        IClock clock, 
+        ICombatRenderer combatRenderer, 
+        IDialogueRenderer dialogueRenderer,
+        ITreasurePicker treasurePicker,
+        IInventoryUI inventoryUI)
     {
         _renderer = renderer;
-        _input = input;
         _clock = clock;
-        _rng = rng;
 
         _settings = settings;
 
         _level = new LevelManager(settings);
-        _playerController = new PlayerController(_level, settings, combatRenderer);
+        _playerController = new PlayerController(_level, settings, combatRenderer, dialogueRenderer, treasurePicker, inventoryUI);
         _difficultyManager = new DifficultyManager(settings.Difficulty);
 
         var siegeSystem = new StructureSiegeSystem();

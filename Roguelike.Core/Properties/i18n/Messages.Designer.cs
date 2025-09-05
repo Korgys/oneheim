@@ -817,6 +817,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lvl..
+        /// </summary>
+        public static string Lvl {
+            get {
+                return ResourceManager.GetString("Lvl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Max HP.
         /// </summary>
         public static string MaxHp {

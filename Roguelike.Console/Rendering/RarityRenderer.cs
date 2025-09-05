@@ -1,8 +1,9 @@
-﻿namespace Roguelike.Core.Game.Collectables.Items;
+﻿namespace Roguelike.Console.Rendering;
 
+using Roguelike.Core.Game.Collectables.Items;
 using System;
 
-public static class ItemManager
+public class RarityRenderer
 {
     public static void WriteColored(string text, ItemRarity rarity)
     {

@@ -7,10 +7,11 @@ var settings = ConfigurationReader.LoadGameSettings();
 var engine = new GameEngine(
     settings,
     new ConsoleRenderer(),
-    new ConsoleInput(),
     new SystemClock(),
-    new DefaultRng(),
-    new ConsoleCombatRenderer());
+    new ConsoleCombatRenderer(),
+    new ConsoleDialogueRenderer(settings),
+    new ConsoleTreasurePicker(settings.Controls),
+    new InventoryUI());
 
 engine.Run();
 

@@ -1,4 +1,5 @@
 ﻿using Roguelike.Core.Configuration;
+using Roguelike.Core.Game.Abstractions;          // <-- ITreasurePicker
 using Roguelike.Core.Game.Characters.Enemies.Bosses;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
@@ -9,7 +10,7 @@ namespace Roguelike.Core.Game.Characters.NPCs.Dialogues;
 
 public static class NpcDialogues
 {
-    private static Random _random = new();
+    private static readonly Random _random = new();
 
     public static void BuildForArmin(Npc npc, LevelManager level)
     {
@@ -18,18 +19,15 @@ public static class NpcDialogues
         bool hasBoss = level.Enemies.Any(e => e is Boss);
         int steps = player.Steps;
 
-        // Cost/amount helpers (re-evaluated at runtime for dynamic values)
-        int GetHealAmount()
-        {
-            return player.Gold > player.MaxLifePoint - player.LifePoint
-                ? player.MaxLifePoint - player.LifePoint
-                : player.Gold;
-        }
-        int GetHealCost() => GetHealAmount();
-        int GetRepairAmount() => baseCamp != null ? Math.Min(player.Gold / 10, (baseCamp.MaxHp - baseCamp.Hp) / 10) * 10 : 0;
-        int GetRepairCost() => baseCamp != null ? Math.Min(player.Gold / 10, (baseCamp.MaxHp - baseCamp.Hp) / 10) : 0;
+        // Re-evaluate costs/amounts at runtime to stay dynamic
+        int GetHealAmount() =>
+            Math.Min(player.Gold, Math.Max(0, player.MaxLifePoint - player.LifePoint));
+        int GetHealCost() => GetHealAmount(); // 1 gold = 1 HP (example)
+        int GetRepairAmount() =>
+            baseCamp is null ? 0 : Math.Min(player.Gold, baseCamp.MaxHp - baseCamp.Hp);
+        int GetRepairCost() => GetRepairAmount(); // 1 gold = 1 HP (example)
 
-        DialogueNode Intro(Func<string> textFactory) => new DialogueNode { Text = textFactory };
+        DialogueNode Intro(Func<string> textFactory) => new() { Text = textFactory };
 
         void AddStandardOptions(DialogueNode node, DialogueNode heal, DialogueNode repair, DialogueNode? goodbyeNext = null)
         {
@@ -38,7 +36,7 @@ public static class NpcDialogues
             node.Options.Add(new DialogueOption { Label = Messages.Goodbye, Next = goodbyeNext });
         }
 
-        // ---- Build all intro nodes (never mutate their Text later)
+        // Intros
         var firstIntro = Intro(() => Messages.ArminFirstMeeting);
         var returningIntro = Intro(() => Messages.ArminMeeting);
         var firstBossComingIntro = Intro(() => Messages.ArminMeetingFirstBossComing);
@@ -48,10 +46,10 @@ public static class NpcDialogues
         var playerRichIntro = Intro(() => Messages.ArminMeetingPlayerRich);
         var baseCampUnderAttackIntro = Intro(() => Messages.ArminMeetingBaseCampUnderAttack);
 
-        // ---- Shared "after service" node that asks "what else?"
+        // “What else?” hub
         var afterService = new DialogueNode { Text = () => Messages.WhatElseCanIDo };
 
-        // ---- Heal node (no recursion; wire Next = afterService)
+        // Heal
         var healNode = new DialogueNode
         {
             Text = () => player.LifePoint != player.MaxLifePoint
@@ -68,19 +66,20 @@ public static class NpcDialogues
                     if (player.Gold < GetHealCost()) return Messages.NotEnoughGold;
                     if (player.LifePoint >= player.MaxLifePoint) return Messages.AlreadyFullHealth;
 
-                    int healedCost = GetHealCost();
-                    player.Gold -= healedCost;
+                    int cost = GetHealCost();
+                    int amount = GetHealAmount();
+                    player.Gold -= cost;
                     int before = player.LifePoint;
-                    player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + GetHealAmount());
+                    player.LifePoint = Math.Min(player.MaxLifePoint, player.LifePoint + amount);
                     int healed = player.LifePoint - before;
-                    return string.Format(Messages.HealedHpForGold, healed, healedCost);
+                    return string.Format(Messages.HealedHpForGold, healed, cost);
                 },
                 Next = afterService
             });
         }
         healNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = afterService });
 
-        // ---- Repair node (no recursion; wire Next = afterService)
+        // Repair
         var repairNode = new DialogueNode
         {
             Text = () =>
@@ -92,7 +91,7 @@ public static class NpcDialogues
                     : string.Format(Messages.ArminRepairPitch, GetRepairCost(), GetRepairAmount());
             }
         };
-        if (baseCamp != null && baseCamp.MaxHp - baseCamp.Hp != 0)
+        if (baseCamp != null && baseCamp.Hp < baseCamp.MaxHp)
         {
             repairNode.Options.Add(new DialogueOption
             {
@@ -103,33 +102,31 @@ public static class NpcDialogues
                     if (baseCamp.Hp >= baseCamp.MaxHp) return Messages.NoCampToRepair;
                     if (player.Gold < GetRepairCost()) return Messages.NotEnoughGold;
 
-                    int repairCost = GetRepairCost();
-                    int repairAmount = GetRepairAmount();
-                    player.Gold -= repairCost;
-                    int healthBefore = baseCamp.Hp;
-                    baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + repairAmount);
-                    int repaired = baseCamp.Hp - healthBefore;
-                    return string.Format(Messages.RepairedCampForHpCost, repaired, repairCost);
+                    int cost = GetRepairCost();
+                    int amount = GetRepairAmount();
+                    player.Gold -= cost;
+                    int before = baseCamp.Hp;
+                    baseCamp.Hp = Math.Min(baseCamp.MaxHp, baseCamp.Hp + amount);
+                    int repaired = baseCamp.Hp - before;
+                    return string.Format(Messages.RepairedCampForHpCost, repaired, cost);
                 },
                 Next = afterService
             });
         }
         repairNode.Options.Add(new DialogueOption { Label = Messages.MaybeLater, Next = afterService });
 
-        // ---- Wire "afterService" to standard menu, returning to returningIntro on "Goodbye"
+        // Wire menus
         AddStandardOptions(afterService, healNode, repairNode, null);
+        AddStandardOptions(firstIntro, healNode, repairNode, null);
+        AddStandardOptions(returningIntro, healNode, repairNode, null);
+        AddStandardOptions(firstBossComingIntro, healNode, repairNode, null);
+        AddStandardOptions(firstBossHereIntro, healNode, repairNode, null);
+        AddStandardOptions(firstBossDefeatedIntro, healNode, repairNode, null);
+        AddStandardOptions(playerLowLifeIntro, healNode, repairNode, null);
+        AddStandardOptions(playerRichIntro, healNode, repairNode, null);
+        AddStandardOptions(baseCampUnderAttackIntro, healNode, repairNode, null);
 
-        // ---- Add standard options to every intro screen (do NOT change their Text)
-        AddStandardOptions(firstIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(returningIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(firstBossComingIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(firstBossHereIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(firstBossDefeatedIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(playerLowLifeIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(playerRichIntro, healNode, repairNode, returningIntro);
-        AddStandardOptions(baseCampUnderAttackIntro, healNode, repairNode, returningIntro);
-
-        // ---- Pick the intro based on context
+        // Choose intro
         DialogueNode PickRoot()
         {
             if (!npc.HasMet) return firstIntro;
@@ -149,7 +146,10 @@ public static class NpcDialogues
         npc.Root = PickRoot();
     }
 
-    public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings)
+    /// <summary>
+    /// Ichem requires an ITreasurePicker so Core stays UI-agnostic.
+    /// </summary>
+    public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings, ITreasurePicker picker, IInventoryUI inventoryUI)
     {
         var player = level.Player;
 
@@ -164,7 +164,7 @@ public static class NpcDialogues
             return Math.Max(1, discounted);
         }
 
-        DialogueNode Node(Func<string> text) => new DialogueNode { Text = text };
+        DialogueNode Node(Func<string> text) => new() { Text = text };
 
         string[] smallTalkLines =
         {
@@ -186,22 +186,21 @@ public static class NpcDialogues
             return $"{intro} Care to buy a boon for {GetCurrentPrice()} gold?";
         });
 
-        // Shop
+        // Shop (uses the picker)
         mainMenu.Options.Add(new DialogueOption
         {
             LabelFactory = () => $"Buy a boon ({GetCurrentPrice()} gold)",
             Action = () =>
             {
                 int price = GetCurrentPrice();
-
                 if (player.Gold < price) return "You do not have enough gold.";
 
-                var choices = TreasureSelector.GenerateBonusChoices(player, settings);
-                var chosen = TreasureSelector.PromptPlayerForBonus(choices, player, settings);
+                // Let presentation layer drive the choice
+                var chosen = TreasureSelector.ChooseWithPicker(player, settings, picker);
 
                 player.Gold -= price;
-                level.ChestPrice = (int)(level.ChestPrice * 1.06m); // inflation anti-exploit
-                var msg = TreasureSelector.ApplyBonus(chosen, player, settings);
+                level.ChestPrice = (int)(level.ChestPrice * 1.06m); // soft inflation
+                var msg = TreasureSelector.ApplyBonus(chosen, player, settings, inventoryUI);
 
                 return $"Purchased: {msg}\nChest price has increased.";
             },
@@ -227,33 +226,29 @@ public static class NpcDialogues
     {
         var player = level.Player;
 
-        // Dynamic pricing that scales with already hired mercenaries
         int GetUnitPrice()
         {
-            int basePrice = 120; // base price for one guard
+            int basePrice = 120;
             int owned = level.Mercenaries.Count;
-            // +10 gold per existing merc, capped modestly
             return basePrice + Math.Min(owned * 10, 100);
         }
 
-        int GetSquadPrice() // 3 guards with a small discount
+        int GetSquadPrice()
         {
             int unit = GetUnitPrice();
-            // e.g., 3 * unit * 0.9 rounded
             return (int)MathF.Round(unit * 3 * 0.9f);
         }
 
-        DialogueNode Node(Func<string> text) => new DialogueNode { Text = text };
+        DialogueNode Node(Func<string> text) => new() { Text = text };
 
         DialogueNode? mainMenu = null;
 
-        // Main menu: hire 1, hire 3, small talk, goodbye
         mainMenu = Node(() =>
         {
             var intro = npc.HasMet
                 ? "Steel is cheap; loyalty is not. Looking to hire?"
                 : "Name's Eber. I train Oneheim guards. You pay, they protect.";
-            return $"{intro}";
+            return intro;
         });
 
         mainMenu.Options.Add(new DialogueOption
@@ -264,7 +259,6 @@ public static class NpcDialogues
                 int price = GetUnitPrice();
                 if (player.Gold < price) return "You do not have enough gold.";
 
-                // Hire exactly 1 guard
                 if (!level.TryHireMercenaries(1, out int hired, out string reason))
                     return reason;
 
@@ -284,7 +278,6 @@ public static class NpcDialogues
                 int price = GetSquadPrice();
                 if (player.Gold < price) return "You do not have enough gold.";
 
-                // Hire up to 3 guards
                 if (!level.TryHireMercenaries(3, out int hired, out string reason))
                     return reason;
 
@@ -298,7 +291,6 @@ public static class NpcDialogues
             Next = mainMenu
         });
 
-        // Optional small talk
         string[] lines =
         {
             "Mercenaries keep blades sharp and eyes sharper.",
@@ -309,20 +301,9 @@ public static class NpcDialogues
         var talk = Node(() => lines[_random.Next(lines.Length)]);
         talk.Options.Add(new DialogueOption { Label = "Back", Next = mainMenu });
 
-        mainMenu.Options.Add(new DialogueOption
-        {
-            Label = "Just talk",
-            Next = talk
-        });
-
-        // End dialogue
-        mainMenu.Options.Add(new DialogueOption
-        {
-            Label = "Goodbye",
-            Next = null
-        });
+        mainMenu.Options.Add(new DialogueOption { Label = "Just talk", Next = talk });
+        mainMenu.Options.Add(new DialogueOption { Label = "Goodbye", Next = null });
 
         npc.Root = mainMenu;
     }
-
 }

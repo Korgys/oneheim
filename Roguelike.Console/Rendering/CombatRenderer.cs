@@ -21,29 +21,29 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
         var enemyHP = $"{enemy.LifePoint}/{enemy.MaxLifePoint}";
         var playerHP = $"{player.LifePoint}/{player.MaxLifePoint}";
 
-        System.Console.WriteLine("Fight!");
-        System.Console.WriteLine();
+        Console.WriteLine("Fight!");
+        Console.WriteLine();
 
-        System.Console.WriteLine($"{Player.Character.ToString().PadRight(colWidth)}{enemy.Name.PadLeft(colWidth)}");
-        System.Console.WriteLine();
-        System.Console.WriteLine($"HP: {playerHP}".PadRight(colWidth) + $"HP: {enemyHP}".PadLeft(colWidth));
+        Console.WriteLine($"{Player.Character.ToString().PadRight(colWidth)}{enemy.Name.PadLeft(colWidth)}");
+        Console.WriteLine();
+        Console.WriteLine($"HP: {playerHP}".PadRight(colWidth) + $"HP: {enemyHP}".PadLeft(colWidth));
 
         PrintStat("Attack", player.Strength, enemy.Strength, colWidth);
         PrintStat("Armor", player.Armor, enemy.Armor, colWidth);
         PrintStat("Speed", player.Speed, enemy.Speed, colWidth);
 
-        System.Console.WriteLine();
+        Console.WriteLine();
         foreach (var line in logLines)
-            System.Console.WriteLine(line);
+            Console.WriteLine(line);
     }
 
     public void OnCombatEnd(Enemy enemy, Player player, IReadOnlyCollection<string> finalLogLines)
     {
         // Show final state + logs and wait for key
         RenderTurn(enemy, player, finalLogLines);
-        System.Console.WriteLine();
-        System.Console.WriteLine("Press any key to continue...");
-        System.Console.ReadKey(true);
+        Console.WriteLine();
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey(true);
     }
 
     private static void PrintStat(string label, int playerStat, int enemyStat, int colWidth)
@@ -51,13 +51,13 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
         string playerText = $"{label}: {playerStat}".PadRight(colWidth);
         string enemyText = $"{label}: {enemyStat}".PadLeft(colWidth);
 
-        System.Console.ForegroundColor = ConsoleColor.White;
-        System.Console.Write(playerText);
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write(playerText);
 
-        System.Console.ForegroundColor = GetColor(enemyStat - playerStat);
-        System.Console.WriteLine(enemyText);
+        Console.ForegroundColor = GetColor(enemyStat - playerStat);
+        Console.WriteLine(enemyText);
 
-        System.Console.ResetColor();
+        Console.ResetColor();
     }
 
     private static ConsoleColor GetColor(int diff) =>
@@ -77,37 +77,37 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
 
     private static void BlinkEnemy()
     {
-        System.Console.Clear();
+        Console.Clear();
         for (int i = 4; i >= 0; i--)
         {
             for (int y = 0; y < 22; y++)
             {
                 for (int x = 0; x < 60; x++)
-                    System.Console.Write(i);
-                System.Console.WriteLine();
+                    Console.Write(i);
+                Console.WriteLine();
             }
-            System.Threading.Thread.Sleep(100);
-            System.Console.Clear();
+            Thread.Sleep(100);
+            Console.Clear();
         }
     }
 
     private static void BlinkBoss()
     {
-        System.Console.Clear();
+        Console.Clear();
         bool darkRed = true;
         for (int i = 10; i >= 0; i--)
         {
             for (int y = 0; y < 22; y++)
             {
                 for (int x = 0; x < 60; x++)
-                    System.Console.Write(i);
-                System.Console.WriteLine();
+                    Console.Write(i);
+                Console.WriteLine();
             }
-            System.Threading.Thread.Sleep(100);
-            System.Console.Clear();
-            System.Console.BackgroundColor = darkRed ? ConsoleColor.Black : ConsoleColor.DarkRed;
+            Thread.Sleep(100);
+            Console.Clear();
+            Console.BackgroundColor = darkRed ? ConsoleColor.Black : ConsoleColor.DarkRed;
             darkRed = !darkRed;
         }
-        System.Console.ResetColor();
+        Console.ResetColor();
     }
 }

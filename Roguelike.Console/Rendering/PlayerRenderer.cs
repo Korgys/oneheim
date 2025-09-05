@@ -32,11 +32,7 @@ public static class PlayerRenderer
     public static void RenderPlayerInventory(Player player)
     {
         var count = player.Inventory.Count;
-        if (count == 0)
-        {
-            Console.WriteLine($"{Messages.Inventory}: 0/{player.MaxInventorySize}");
-            return;
-        }
+        if (count == 0) return;
 
         Console.WriteLine($"{Messages.Inventory}: {count}/{player.MaxInventorySize}");
         foreach (var it in player.Inventory)
@@ -73,10 +69,18 @@ public static class PlayerRenderer
     public static void RendererPlayerFullInfo(Player player)
     {
         // Primary stats
-        Console.WriteLine($"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint}");
-        Console.WriteLine($"{(Messages.Level ?? "Level")}: {player.Level}  |  {(Messages.XP ?? "XP")}: {player.XP}  |  {(Messages.Gold ?? "Gold")}: {player.Gold}");
-        Console.WriteLine($"{(Messages.Strength ?? "Strength")}: {player.Strength}  |  {(Messages.Armor ?? "Armor")}: {player.Armor}  |  {(Messages.Speed ?? "Speed")}: {player.Speed}  |  {(Messages.Vision ?? "Vision")}: {player.Vision}");
-        Console.WriteLine($"{(Messages.Steps ?? "Steps")}: {player.Steps}");
+        Console.Write($"{Messages.Steps ?? "Steps"}: {player.Steps} ");
+        Console.Write($"| {Messages.Lvl ?? "Lvl"}: {player.Level} ");
+        Console.Write($"| {Messages.XP ?? "XP"}: {player.XP} ");
+        Console.Write($"| {Messages.Gold ?? "Gold"}: {player.Gold}");
+        Console.WriteLine();
+
+        Console.Write($"{Messages.HP}: {player.LifePoint}/{player.MaxLifePoint} ");
+        Console.Write($"| {Messages.Strength ?? "Strength"}: {player.Strength} ");
+        Console.Write($"| {Messages.Armor ?? "Armor"}: {player.Armor} ");
+        Console.Write($"| {Messages.Speed ?? "Speed"}: {player.Speed} ");
+        Console.Write($"| {Messages.Vision ?? "Vision"}: {player.Vision}");
+        Console.WriteLine();
 
         // Inventory (full)
         RenderPlayerInventory(player);

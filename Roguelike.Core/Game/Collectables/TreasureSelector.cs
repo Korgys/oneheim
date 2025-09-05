@@ -1,19 +1,16 @@
 ﻿namespace Roguelike.Core.Game.Collectables;
 
 using Roguelike.Core.Configuration;
+using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Properties.i18n;
-using System;
-using System.Linq;
 
 public static class TreasureSelector
 {
     private static List<ItemId> _selectedItemPool = new();
     private static readonly Random _random = new();
-    private static readonly int _numberOfItemInPool = 9;
-
-    // ---------- Generation ----------
+    private const int _numberOfItemInPool = 9;
 
     public static List<Treasure> GenerateBonusChoices(Player player, GameSettings settings)
     {
@@ -56,6 +53,68 @@ public static class TreasureSelector
         return result;
     }
 
+    /// <summary>
+    /// Build UI-ready option models (description + rarity) from raw treasures.
+    /// </summary>
+    public static List<TreasureOptionView> BuildOptionViews(
+        IReadOnlyList<Treasure> choices, Player player)
+    {
+        var list = new List<TreasureOptionView>(choices.Count);
+        foreach (var t in choices)
+        {
+            ItemRarity? itemRarity = null;
+            string desc = t.Type == BonusType.Item
+                ? FormatItemDescription((ItemId)t.Value, player, out itemRarity)
+                : $"+{t.Value} {Messages.ResourceManager.GetString(t.Type.ToString()) ?? t.Type.ToString()}";
+
+            var rarity = GetRarityForBonus(t.Type, t.Value, player, itemRarity);
+            list.Add(new TreasureOptionView
+            {
+                Treasure = t,
+                Description = desc,
+                Rarity = rarity
+            });
+        }
+        return list;
+    }
+
+    /// <summary>
+    /// UI-agnostic "choose" flow: use an injected picker to select a treasure.
+    /// </summary>
+    public static Treasure ChooseWithPicker(
+        Player player,
+        GameSettings settings,
+        ITreasurePicker picker)
+    {
+        var choices = GenerateBonusChoices(player, settings);
+        var views = BuildOptionViews(choices, player);
+
+        var ctx = new TreasurePickerContext
+        {
+            Player = player,
+            Title = Messages.YouFoundATreasureChooseABonus
+        };
+
+        int idx = picker.Pick(ctx, views);
+        if (idx < 0 || idx >= choices.Count) idx = 0; // defensive
+        return choices[idx];
+    }
+
+    public static string ApplyBonus(Treasure bonus, Player player, GameSettings settings, IInventoryUI ui) =>
+        bonus.Type switch
+        {
+            BonusType.LifePoint => ApplyLifePointBonus(player, bonus.Value),
+            BonusType.MaxLifePoint => ApplyMaxLifePointBonus(player, bonus.Value),
+            BonusType.Strength => ApplyStatBonus(player, nameof(player.Strength), bonus.Value),
+            BonusType.Armor => ApplyStatBonus(player, nameof(player.Armor), bonus.Value),
+            BonusType.Speed => ApplyStatBonus(player, nameof(player.Speed), bonus.Value),
+            BonusType.Vision => ApplyStatBonus(player, nameof(player.Vision), bonus.Value),
+            BonusType.Item => ApplyItemBonus(player, settings, (ItemId)bonus.Value, ui),
+            _ => "Unknown bonus type"
+        };
+
+    public static void ResetItemPool() => _selectedItemPool.Clear();
+
     private static void TryAddStatFocus(Player p, List<Treasure> res, HashSet<BonusType> used)
     {
         bool armorDom = p.Armor > p.Speed && p.Armor > p.Strength && p.Armor > 10;
@@ -85,53 +144,43 @@ public static class TreasureSelector
         {
             case BonusType.Item:
                 {
-                    var validItems = _selectedItemPool
-                        .Where(id =>
+                    var valid = _selectedItemPool.Where(id =>
+                    {
+                        var existing = player.Inventory.FirstOrDefault(i => i.Id == id);
+                        if (existing != null)
                         {
-                            var existing = player.Inventory.FirstOrDefault(i => i.Id == id);
-                            if (existing != null)
-                            {
-                                if (existing.UpgradableIncrementValue == 0) return false;           // owned & non-upgradable
-                                if (existing.Rarity >= ItemRarity.Legendary) return false;         // maxed rarity
-                            }
-                            if (currentSelection?.Any(t => t.Type == BonusType.Item && (ItemId)t.Value == id) == true)
-                                return false; // avoid duplicates among the 3 choices
-                            return true;
-                        })
-                        .ToList();
+                            if (existing.UpgradableIncrementValue == 0) return false;   // owned & non-upgradable
+                            if (existing.Rarity >= ItemRarity.Legendary) return false; // maxed rarity
+                        }
+                        if (currentSelection?.Any(t => t.Type == BonusType.Item && (ItemId)t.Value == id) == true)
+                            return false; // avoid duplicates among the 3 choices
+                        return true;
+                    }).ToList();
 
-                    if (validItems.Count == 0) return -1; // no valid item right now
-                    return (int)validItems[_random.Next(validItems.Count)];
+                    if (valid.Count == 0) return -1;
+                    return (int)valid[_random.Next(valid.Count)];
                 }
 
             case BonusType.Vision:
                 {
-                    // Base +1 (Common). HawkEye synergy may upgrade roll.
-                    int v = 1;
+                    int v = 1; // base +1 (Common)
                     var hawkEye = player.Inventory.FirstOrDefault(i => i.Id == ItemId.HawkEye);
                     if (hawkEye != null && _random.NextDouble() <= hawkEye.Value / 100.0)
-                        v = _random.NextDouble() <= 0.10 ? 3 : 2; // 10% chance for +3, else +2
+                        v = _random.NextDouble() <= 0.10 ? 3 : 2; // 10%: +3 else +2
                     return v;
                 }
 
             case BonusType.LifePoint:
-                {
-                    // ~70% of missing HP
-                    return (int)((player.MaxLifePoint - player.LifePoint) * 0.7);
-                }
+                return (int)((player.MaxLifePoint - player.LifePoint) * 0.7);
 
             case BonusType.MaxLifePoint:
                 {
-                    // Calibrate by steps and soft-cap by 20% of MaxHP
                     int steps = Math.Max(0, player.Steps);
                     int baseMin, baseMax;
-                    if (steps < 200) baseMin = 2;
-                    else if (steps < 500) baseMin = 3;
-                    else if (steps < 800) baseMin = 4; else baseMin = 5;
-
-                    if (steps < 200) baseMax = 4;
-                    else if (steps < 500) baseMax = 6;
-                    else if (steps < 800) baseMax = 7; else baseMax = 8;
+                    if (steps < 200) { baseMin = 2; baseMax = 4; }
+                    else if (steps < 500) { baseMin = 3; baseMax = 6; }
+                    else if (steps < 800) { baseMin = 4; baseMax = 7; }
+                    else { baseMin = 5; baseMax = 8; }
 
                     int buildNudge = Math.Max(1, player.LifePoint / 16);
                     int roll = _random.Next(baseMin + buildNudge, baseMax + buildNudge + 1);
@@ -139,12 +188,14 @@ public static class TreasureSelector
                     return Math.Min(roll, cap);
                 }
 
-            default: // Strength, Armor, Speed
+            default: // Strength / Armor / Speed
                 {
-                    int s;
-                    if (player.Steps < 200) s = _random.Next(1, 3);
-                    else if (player.Steps < 600) s = _random.Next(2, 4);
-                    else s = _random.Next(3, 5);
+                    int s = player.Steps switch
+                    {
+                        < 200 => _random.Next(1, 3),
+                        < 600 => _random.Next(2, 4),
+                        _ => _random.Next(3, 5),
+                    };
 
                     // LuckyMillorLeftHand: +1 proc
                     var lucky = player.Inventory.FirstOrDefault(i => i.Id == ItemId.LuckyMillorLeftHand);
@@ -163,11 +214,22 @@ public static class TreasureSelector
         }
     }
 
-    // ---------- Rarity evaluation (for display only) ----------
-
-    private static ItemRarity GetRarityForBonus(BonusType type, int value, Player player, ItemRarity? itemRarityFromItem)
+    private static string FormatItemDescription(ItemId itemId, Player player, out ItemRarity? itemRarity)
     {
-        if (type == BonusType.Item && itemRarityFromItem.HasValue) return itemRarityFromItem.Value;
+        var item = ItemFactory.CreateItem(itemId);
+        var existing = player.Inventory.FirstOrDefault(i => i.Id == itemId);
+
+        int displayValue = existing != null
+            ? existing.Value + existing.UpgradableIncrementValue
+            : item.Value;
+
+        itemRarity = existing != null ? existing.Rarity : item.Rarity;
+        return $"{item.Name} : {item.GetEffectDescription(displayValue)}";
+    }
+
+    private static ItemRarity GetRarityForBonus(BonusType type, int value, Player player, ItemRarity? fromItem)
+    {
+        if (type == BonusType.Item && fromItem.HasValue) return fromItem.Value;
 
         return type switch
         {
@@ -183,7 +245,7 @@ public static class TreasureSelector
 
             BonusType.LifePoint => MapHealRarity(value, player),
 
-            _ => value switch   // STR / ARM / SPD
+            _ => value switch // STR / ARM / SPD
             {
                 <= 1 => ItemRarity.Broken,
                 2 => ItemRarity.Common,
@@ -215,80 +277,6 @@ public static class TreasureSelector
             return ItemRarity.Epic;
         }
     }
-
-    // ---------- Prompt (Core-only; no color helpers) ----------
-
-    public static Treasure PromptPlayerForBonus(List<Treasure> choices, Player player, GameSettings settings)
-    {
-        Console.Clear();
-
-        // Minimal stats + inventory (Core-only)
-        Console.WriteLine($"Steps: {player.Steps} | LVL: {player.Level} | XP: {player.XP} | Gold: {player.Gold}");
-        Console.WriteLine($"HP: {player.LifePoint}/{player.MaxLifePoint} | STR: {player.Strength} | ARM: {player.Armor} | SPD: {player.Speed} | VIS: {player.Vision}");
-        if (player.Inventory.Any())
-        {
-            Console.WriteLine("Inventory:");
-            foreach (var it in player.Inventory)
-                Console.WriteLine($"- {it.Name} ({it.EffectDescription}) x{it.Value}");
-        }
-
-        Console.WriteLine();
-        Console.WriteLine(Messages.YouFoundATreasureChooseABonus);
-
-        var keys = new List<string> { settings.Controls.Choice1, settings.Controls.Choice2, settings.Controls.Choice3 };
-
-        for (int i = 0; i < choices.Count; i++)
-        {
-            var b = choices[i];
-
-            ItemRarity? fromItem = null;
-            string desc = b.Type == BonusType.Item
-                ? FormatItemDescription((ItemId)b.Value, player, out fromItem)
-                : $"+{b.Value} {Messages.ResourceManager.GetString(b.Type.ToString()) ?? b.Type.ToString()}";
-
-            var rarity = GetRarityForBonus(b.Type, b.Value, player, fromItem);
-            Console.WriteLine($"{keys[i]}. [{rarity}] {desc}");
-        }
-
-        int chosen = -1;
-        while (chosen == -1)
-        {
-            var key = Console.ReadKey(true).Key.ToString().ToUpperInvariant();
-            chosen = keys.FindIndex(k => k.ToUpperInvariant() == key);
-        }
-
-        return choices[chosen];
-    }
-
-    private static string FormatItemDescription(ItemId itemId, Player player, out ItemRarity? itemRarity)
-    {
-        var item = ItemFactory.CreateItem(itemId);
-        var existing = player.Inventory.FirstOrDefault(i => i.Id == itemId);
-
-        int displayValue = existing != null
-            ? existing.Value + existing.UpgradableIncrementValue
-            : item.Value;
-
-        // Use actual rarity (don’t offset it)
-        itemRarity = existing != null ? existing.Rarity : item.Rarity;
-
-        return $"{item.Name} : {item.GetEffectDescription(displayValue)}";
-    }
-
-    // ---------- Apply ----------
-
-    public static string ApplyBonus(Treasure bonus, Player player, GameSettings settings) =>
-        bonus.Type switch
-        {
-            BonusType.LifePoint => ApplyLifePointBonus(player, bonus.Value),
-            BonusType.MaxLifePoint => ApplyMaxLifePointBonus(player, bonus.Value),
-            BonusType.Strength => ApplyStatBonus(player, nameof(player.Strength), bonus.Value),
-            BonusType.Armor => ApplyStatBonus(player, nameof(player.Armor), bonus.Value),
-            BonusType.Speed => ApplyStatBonus(player, nameof(player.Speed), bonus.Value),
-            BonusType.Vision => ApplyStatBonus(player, nameof(player.Vision), bonus.Value),
-            BonusType.Item => ApplyItemBonus(player, settings, (ItemId)bonus.Value),
-            _ => "Unknown bonus type"
-        };
 
     private static string ApplyLifePointBonus(Player p, int amount)
     {
@@ -322,11 +310,77 @@ public static class TreasureSelector
         return $"+{value} {label}";
     }
 
-    private static string ApplyItemBonus(Player p, GameSettings settings, ItemId itemId)
+    private static string ApplyItemBonus(Player p, GameSettings settings, ItemId itemId, IInventoryUI ui)
     {
         var item = ItemFactory.CreateItem(itemId);
-        return InventoryManager.TryAddItem(p, item, settings);
+        return TryAddItem(p, item, settings, ui);
     }
 
-    public static void ResetItemPool() => _selectedItemPool.Clear();
+    private static string TryAddItem(Player player, Item item, GameSettings settings, IInventoryUI ui)
+    {
+        string message = string.Empty;
+        var existing = player.Inventory.FirstOrDefault(i => i.Id == item.Id);
+
+        // Existing item
+        if (existing != null)
+        {
+            if (existing.UpgradableIncrementValue != 0)
+            {
+                existing.Value += existing.UpgradableIncrementValue;
+                if (existing.Rarity < ItemRarity.Legendary) existing.Rarity++;
+
+                // Sort items
+                player.Inventory = [.. player.Inventory.OrderByDescending(i => i.Rarity)];
+
+                // Check if the item is a special item that affects player stats
+                if (existing.Id == ItemId.GlassesOfClairvoyance && player.Vision < existing.Value)
+                {
+                    player.Vision = existing.Value;
+                }
+
+                return string.Format(Messages.UpgradedItemTo, item.Name, existing.Value);
+            }
+            else
+            {
+                return string.Format(Messages.YouAlreadyOwnItemNotUpgradable, item.Name);
+            }
+        }
+
+        // Sort items
+        player.Inventory = [.. player.Inventory.OrderByDescending(i => i.Rarity)];
+
+        // Check if the item is a special item that affects player stats
+        if (item.Id == ItemId.GlassesOfClairvoyance && player.Vision < item.Value)
+        {
+            player.Vision = item.Value;
+        }
+
+        // Check if the player can carry more items
+        if (player.Inventory.Count >= 3)
+        {
+            return HandleFullInventory(player, item, settings, ui);
+        }
+
+        // Add the item to the inventory
+        player.Inventory.Add(item);
+        return string.Format(Messages.FoundItem, item.Name, item.EffectDescription);
+    }
+
+    private static string HandleFullInventory(Player player, Item newItem, GameSettings settings, IInventoryUI ui)
+    {
+        var dropIndex = ui.PromptDropIndex(player, newItem, settings);
+
+        if (dropIndex < player.Inventory.Count)
+        {
+            var dropped = player.Inventory[dropIndex];
+            player.Inventory.RemoveAt(dropIndex);
+            player.Inventory.Add(newItem);
+
+            return $"{Messages.Dropped} {dropped.Name}, {Messages.Picked} {newItem.Name}.";
+        }
+        else
+        {
+            return Messages.KeepCurrentInventory;
+        }
+    }
 }
