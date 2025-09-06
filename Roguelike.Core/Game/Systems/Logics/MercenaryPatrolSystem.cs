@@ -2,7 +2,7 @@
 using Roguelike.Core.Game.Characters.NPCs.Allies;
 using Roguelike.Core.Game.Levels;
 
-namespace Roguelike.Core.Game.Systems;
+namespace Roguelike.Core.Game.Systems.Logics;
 
 // Run after enemies move so guards can respond
 public sealed class MercenaryPatrolSystem : ITurnSystem

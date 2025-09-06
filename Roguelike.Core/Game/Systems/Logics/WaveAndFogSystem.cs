@@ -1,4 +1,4 @@
-﻿namespace Roguelike.Core.Game.Systems;
+﻿namespace Roguelike.Core.Game.Systems.Logics;
 
 using Roguelike.Core.Game.Characters.Enemies.Bosses;
 using Roguelike.Core.Properties.i18n;
@@ -27,7 +27,6 @@ public sealed class WaveAndFogSystem : ITurnSystem
 
         // Every 100 steps up to 1000
         if (player.Steps > 0 && player.Steps < 1001 && player.Steps % 100 == 0)
-        {
             if (player.Steps % 500 == 0)
             {
                 level.PlaceBoss();
@@ -41,12 +40,9 @@ public sealed class WaveAndFogSystem : ITurnSystem
                 player.SetPlayerVisionAfterFogArrival();
                 LastMessage = Messages.TheFogIntensifies;
             }
-        }
 
         // Endgame condition
         if (player.Steps > 1000 && !level.Enemies.Any(e => e is Boss))
-        {
             LastMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
-        }
     }
 }

@@ -3,7 +3,7 @@ using Roguelike.Core.Game.Characters.Enemies.Bosses;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Properties.i18n;
 
-namespace Roguelike.Core.Game.Systems;
+namespace Roguelike.Core.Game.Systems.Logics;
 
 public sealed class StructureSiegeSystem : ITurnSystem
 {
@@ -46,9 +46,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
                 _lastAttackers.Clear();
             }
             else
-            {
                 LastMessage = string.Format(Messages.StructureUnderAttack, structure.Name, structure.Hp, structure.MaxHp);
-            }
         }
     }
 
@@ -58,9 +56,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
     private static bool IsAdjacentToAnyWall((int x, int y) p, (int x, int y)[] walls)
     {
         foreach (var w in walls)
-        {
             if (Math.Abs(p.x - w.x) + Math.Abs(p.y - w.y) == 1) return true;
-        }
         return false;
     }
 }
