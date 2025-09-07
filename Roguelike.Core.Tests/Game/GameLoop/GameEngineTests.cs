@@ -29,13 +29,6 @@ namespace Roguelike.Core.Tests.Game.GameLoop
             return engine;
         }
 
-        private static void SetPrivateField<T>(object target, string fieldName, T value)
-        {
-            var f = target.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-            Assert.IsNotNull(f, $"Champ privé introuvable: {fieldName}");
-            f.SetValue(target, value!);
-        }
-
         [TestMethod]
         public void Run_RendersOnlyEndFrame_WhenAlreadyEnded()
         {
@@ -43,8 +36,8 @@ namespace Roguelike.Core.Tests.Game.GameLoop
             var engine = CreateEngine(out var renderer, out var clock);
 
             // Force le jeu à l'état "terminé" avant Run()
-            SetPrivateField(engine, "_isGameEnded", true);
-            SetPrivateField(engine, "_gameMessage", "Game Over!");
+            TestHelper.SetPrivateField(engine, "_isGameEnded", true);
+            TestHelper.SetPrivateField(engine, "_gameMessage", "Game Over!");
 
             // Act
             engine.Run();
@@ -67,7 +60,7 @@ namespace Roguelike.Core.Tests.Game.GameLoop
             // On prépare un arrêt propre : on met _isGameEnded à true juste avant d’entrer dans la boucle.
             // Ici, on le fait AVANT l’appel, ce qui revient au même que le test précédent,
             // mais ce test valide qu’aucune dépendance noop ne provoque d’exception dans Run().
-            SetPrivateField(engine, "_isGameEnded", true);
+            TestHelper.SetPrivateField(engine, "_isGameEnded", true);
 
             // Act & Assert
             engine.Run(); // ne doit pas lever d’exception

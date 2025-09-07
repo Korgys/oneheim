@@ -4,6 +4,7 @@ using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Systems;
 using Roguelike.Core.Game.Systems.Logics;
 using Roguelike.Core.Properties.i18n;
+using System.Reflection;
 
 namespace Roguelike.Core.Tests.Game.Systems.Logics;
 
@@ -85,27 +86,34 @@ public class WaveAndFogSystemTests
     }
 
     [TestMethod]
-    public void Update_NoBossRemaining_AnnouncesEndgame_AfterStep1000()
+    public void Update_NoBossRemaining_AnnouncesEndgame_AfterStep1500()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1001);
+        var (sys, ctx, level) = CreateContext(playerSteps: 1501);
 
         // Ensure there is no boss alive on the map.
         // By default LevelManager starts with no enemies; this assert protects intent.
         Assert.IsFalse(level.Enemies.Exists(e => e is Boss),
             "Precondition failed: level should have no Boss before endgame check.");
 
+        TestHelper.SetPrivateField(sys, "_firstBossPlaced", true);
+        TestHelper.SetPrivateField(sys, "_secondBossPlaced", true);
+        TestHelper.SetPrivateField(sys, "_thirdBossPlaced", true);
+        level.Enemies.Clear(); // Ensure no boss remains
         sys.Update(ctx);
 
         Assert.AreEqual(Messages.YouDefeatedAllBossesThanksForPlaying, sys.LastMessage);
     }
 
     [TestMethod]
-    public void Update_BossRemaining_NoEndgame_AfterStep1000()
+    public void Update_BossRemaining_NoEndgame_AfterStep1500()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1001);
+        var (sys, ctx, level) = CreateContext(playerSteps: 1501);
 
         // Simulate a remaining boss on the map
         level.PlaceBoss();
+        TestHelper.SetPrivateField(sys, "_firstBossPlaced", true);
+        TestHelper.SetPrivateField(sys, "_secondBossPlaced", true);
+        TestHelper.SetPrivateField(sys, "_thirdBossPlaced", true);
 
         sys.Update(ctx);
 
