@@ -115,6 +115,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à A new day dawns.
+        /// </summary>
+        public static string ANewDayDawns {
+            get {
+                return ResourceManager.GetString("ANewDayDawns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à A new traveler comes to the base camp.
         /// </summary>
         public static string ANewTravelerComesToTheBaseCamp {
@@ -453,6 +462,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string DaggerOfLifeStealDescription {
             get {
                 return ResourceManager.GetString("DaggerOfLifeStealDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Day.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
             }
         }
         
@@ -880,6 +898,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Night.
+        /// </summary>
+        public static string Night {
+            get {
+                return ResourceManager.GetString("Night", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à No camp to repair.
         /// </summary>
         public static string NoCampToRepair {
@@ -1285,6 +1312,24 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sunrise.
+        /// </summary>
+        public static string Sunrise {
+            get {
+                return ResourceManager.GetString("Sunrise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sunset.
+        /// </summary>
+        public static string Sunset {
+            get {
+                return ResourceManager.GetString("Sunset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Talisman of peace.
         /// </summary>
         public static string TalismanOfPeace {
@@ -1380,6 +1425,33 @@ namespace Roguelike.Core.Properties.i18n {
         public static string TheJuvenileGreenWyvern {
             get {
                 return ResourceManager.GetString("TheJuvenileGreenWyvern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The night arrives.
+        /// </summary>
+        public static string TheNightArrives {
+            get {
+                return ResourceManager.GetString("TheNightArrives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The sun rises.
+        /// </summary>
+        public static string TheSunRises {
+            get {
+                return ResourceManager.GetString("TheSunRises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The sun sets. Be aware of the night ....
+        /// </summary>
+        public static string TheSunSets {
+            get {
+                return ResourceManager.GetString("TheSunSets", resourceCulture);
             }
         }
         

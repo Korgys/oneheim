@@ -9,6 +9,7 @@ using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Structures;
+using Roguelike.Core.Game.Systems.Logics;
 using Roguelike.Core.Properties.i18n;
 using System;
 
@@ -26,6 +27,10 @@ public class LevelManager
     public List<Mercenary> Mercenaries { get; } = new();
     public bool PlayerInCombat { get; set; } = false;
     public int ChestPrice { get; set; } = 50;
+
+    public DayCycle DayCycle { get; set; } = DayCycle.Sunset;
+    /// <summary>Number of player steps for a complete cycle (Sunset -> Night -> Sunrise -> Day -> next Sunset).</summary>
+    public int StepsForFullCycle { get; set; } = 100;
 
     private readonly DifficultyManager _difficultyManager;
     private readonly Random _random = new();

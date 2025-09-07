@@ -1,12 +1,8 @@
-﻿namespace Roguelike.Console.Rendering;
-
+﻿using Roguelike.Console.Rendering;
 using Roguelike.Console.Rendering.Characters;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.GameLoop;
 using Roguelike.Core.Properties.i18n;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 public sealed class ConsoleRenderer : IRenderer
 {
@@ -20,21 +16,30 @@ public sealed class ConsoleRenderer : IRenderer
         int width = view.GridWidth;
         int height = view.GridHeight;
 
+        var palette = DayNightPalette.For(view.DayCycle);
+
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
+                Console.BackgroundColor = palette.BackgroundColor;
+
                 // 1) Borders
                 if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
                 {
+                    Console.ForegroundColor = palette.BorderColor;
                     Console.Write('=');
+                    Console.ResetColor();
                     continue;
                 }
 
                 // 2) Fog of war
-                if (Math.Abs(x - player.X) > player.Vision || Math.Abs(y - player.Y) > player.Vision)
+                bool inFog = Math.Abs(x - player.X) > player.Vision || Math.Abs(y - player.Y) > player.Vision;
+                if (inFog)
                 {
+                    Console.ForegroundColor = palette.FogColor;
                     Console.Write('.');
+                    Console.ResetColor();
                     continue;
                 }
 
@@ -42,7 +47,7 @@ public sealed class ConsoleRenderer : IRenderer
                 var structure = view.Structures.FirstOrDefault(s => s.Contains(x, y));
                 if (structure != null && structure.IsWall(x, y))
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = palette.WallColor;
                     Console.Write('X');
                     Console.ResetColor();
                     continue;
@@ -51,7 +56,9 @@ public sealed class ConsoleRenderer : IRenderer
                 // 4) Player
                 if (x == player.X && y == player.Y)
                 {
+                    Console.ForegroundColor = palette.PlayerColor;
                     Console.Write(ConsoleRendererCharacter.Player);
+                    Console.ResetColor();
                     continue;
                 }
 
@@ -59,7 +66,7 @@ public sealed class ConsoleRenderer : IRenderer
                 var npc = view.Npcs.FirstOrDefault(n => n.X == x && n.Y == y);
                 if (npc != null)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = palette.NpcColor;
                     Console.Write(ConsoleRendererCharacter.GetNpcCharacter(npc.Id));
                     Console.ResetColor();
                     continue;
@@ -69,7 +76,7 @@ public sealed class ConsoleRenderer : IRenderer
                 var treasure = view.Treasures.FirstOrDefault(t => t.X == x && t.Y == y);
                 if (treasure != null)
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = palette.TreasureColor;
                     Console.Write(ConsoleRendererCharacter.Treasure);
                     Console.ResetColor();
                     continue;
@@ -79,7 +86,7 @@ public sealed class ConsoleRenderer : IRenderer
                 var enemy = view.Enemies.FirstOrDefault(e => e.X == x && e.Y == y);
                 if (enemy != null)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = palette.EnemyColor;
                     Console.Write(enemy.Character);
                     Console.ResetColor();
                     continue;
@@ -89,7 +96,7 @@ public sealed class ConsoleRenderer : IRenderer
                 var merc = view.Mercenaries.FirstOrDefault(m => m.X == x && m.Y == y);
                 if (merc != null)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = palette.MercColor;
                     Console.Write(merc.Character);
                     Console.ResetColor();
                     continue;
@@ -101,7 +108,7 @@ public sealed class ConsoleRenderer : IRenderer
             Console.WriteLine();
         }
 
-        // Base structure HP (if severely damaged and not under attack)
+        // Base HP hint (inchangé)
         var baseStructure = view.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (baseStructure != null)
         {
@@ -116,7 +123,10 @@ public sealed class ConsoleRenderer : IRenderer
             }
         }
 
-        // Game messages
+        // Info cycle jour/nuit + barre
+        RenderDayNightBanner(view);
+
+        // Messages (inchangé)
         var message = view.CurrentMessage;
         if (string.IsNullOrEmpty(message) && !string.IsNullOrEmpty(_lastGameMessage))
             message = _lastGameMessage;
@@ -142,14 +152,13 @@ public sealed class ConsoleRenderer : IRenderer
             {
                 Console.WriteLine(message);
             }
-
             _lastGameMessage = message;
         }
 
-        // Player HUD
+        // HUD
         PlayerRenderer.RendererPlayerFullInfo(player);
 
-        // End of game
+        // Fin de partie + help (inchangés) …
         if (view.IsGameEnded)
         {
             if (message != null && message.Contains(Messages.YouDefeatedAllBosses))
@@ -165,23 +174,39 @@ public sealed class ConsoleRenderer : IRenderer
             Console.ResetColor();
             Console.ReadLine();
         }
-        else
+        else if (!view.HasPlayerUsedAValidKey)
         {
-            // Controls help
-            if (!view.HasPlayerUsedAValidKey)
-            {
-                var keys = view.Controls;
-                Console.WriteLine(
-                    $"{Messages.Move}: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
-                    $"{Messages.Choices}: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
-                    $"{Messages.Quit}: {keys.Exit}");
-            }
+            var keys = view.Controls;
+            Console.WriteLine(
+                $"{Messages.Move}: {keys.MoveUp},{keys.MoveRight},{keys.MoveDown},{keys.MoveLeft} | " +
+                $"{Messages.Choices}: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
+                $"{Messages.Quit}: {keys.Exit}");
         }
+    }
+
+    private static void RenderDayNightBanner(GameStateView view)
+    {
+        var palette = DayNightPalette.For(view.DayCycle);
+        var icon = palette.Icon;
+
+        // petite barre 20 cases
+        int width = 20;
+        int filled = (int)Math.Round(view.CycleProgress * width);
+        filled = Math.Clamp(filled, 0, width);
+
+        var bar = new string('■', filled) + new string('─', width - filled);
+
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write($"[{icon}] ");
+        Console.ResetColor();
+
+        Console.ForegroundColor = palette.ProgressBarColor;
+        Console.WriteLine(bar);
+        Console.ResetColor();
     }
 
     public void ShowMessages(IEnumerable<string> messages)
     {
-        foreach (var msg in messages)
-            Console.WriteLine(msg);
+        foreach (var msg in messages) Console.WriteLine(msg);
     }
 }

@@ -13,7 +13,7 @@ public class PlayerFactory
             Strength = 5,
             Armor = 1,
             Speed = 1,
-            Vision = 3
+            Vision = 4
         };
     }
 }

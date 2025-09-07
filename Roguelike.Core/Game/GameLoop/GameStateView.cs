@@ -8,6 +8,7 @@ using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Structures;
+using Roguelike.Core.Game.Systems.Logics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,6 +36,10 @@ public sealed class GameStateView
     public bool HasPlayerUsedAValidKey { get; }
     public bool IsBaseCampUnderAttack { get; }
 
+    // Day and night cycle
+    public DayCycle DayCycle { get; init; }
+    public double CycleProgress { get; init; } // 0.0 to 1.0
+
     // Controls mapping (for help display)
     public ControlsSettings Controls { get; }
 
@@ -50,7 +55,9 @@ public sealed class GameStateView
         bool isGameEnded,
         bool hasPlayerUsedAValidKey,
         bool isBaseCampUnderAttack,
-        ControlsSettings controls)
+        ControlsSettings controls, 
+        DayCycle dayCycle, 
+        double cycleProgress)
     {
         GridWidth = gridWidth;
         GridHeight = gridHeight;
@@ -65,6 +72,8 @@ public sealed class GameStateView
         HasPlayerUsedAValidKey = hasPlayerUsedAValidKey;
         IsBaseCampUnderAttack = isBaseCampUnderAttack;
         Controls = controls;
+        DayCycle = dayCycle;
+        CycleProgress = cycleProgress;
     }
 
     /// <summary>
@@ -91,7 +100,11 @@ public sealed class GameStateView
             isGameEnded,
             hasUsedKey,
             isBaseCampUnderAttack,
-            settings.Controls
+            settings.Controls,
+            level.DayCycle,
+            level.StepsForFullCycle > 0
+                ? (double)(level.Player.Steps % level.StepsForFullCycle) / level.StepsForFullCycle
+                : 0.0
         );
     }
 }

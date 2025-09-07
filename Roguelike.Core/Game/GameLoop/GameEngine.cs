@@ -47,6 +47,7 @@ public sealed class GameEngine
         _runner = new TurnSystemRunner();
         _runner.Register(siegeSystem);
         _runner.Register(new WaveAndFogSystem());
+        _runner.Register(new DayAndNightSystem());
         _runner.Register(new MercenaryPatrolSystem());
 
         _enemyManager = new EnemyManager(_level, siegeSystem, combatRenderer);

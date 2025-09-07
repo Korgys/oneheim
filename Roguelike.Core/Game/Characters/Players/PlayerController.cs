@@ -1,15 +1,12 @@
-﻿namespace Roguelike.Core.Game.Characters.Players
-{
-    using Roguelike.Core.Configuration;
-    using Roguelike.Core.Game.Abstractions;
-    using Roguelike.Core.Game.Characters.NPCs.Dialogues;
-    using Roguelike.Core.Game.Collectables;
-    using Roguelike.Core.Game.Collectables.Items;
-    using Roguelike.Core.Game.Levels;
-    using Roguelike.Core.Properties.i18n;
-    using System;
-    using System.Linq;
+﻿using Roguelike.Core.Configuration;
+using Roguelike.Core.Game.Abstractions;
+using Roguelike.Core.Game.Collectables;
+using Roguelike.Core.Game.Collectables.Items;
+using Roguelike.Core.Game.Levels;
+using Roguelike.Core.Properties.i18n;
 
+namespace Roguelike.Core.Game.Characters.Players
+{
     public class PlayerController
     {
         private readonly LevelManager _level;
@@ -79,14 +76,13 @@
 #if DEBUG
                     if (key == "M")
                     {
-                        player.Steps = 149;
                         player.Armor = 200;
                         player.Strength = 200;
                         player.Speed = 200;
                         player.Gold = 2000;
                         player.MaxLifePoint = 100;
                         player.LifePoint = player.MaxLifePoint;
-                        player.Vision = 20;
+                        player.Vision = 7;
                     }
 #endif
                     continue; // unrecognized key, keep waiting

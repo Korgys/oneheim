@@ -135,6 +135,9 @@
   <data name="AndTakeThornsDamage" xml:space="preserve">
     <value>et prends {0} de dégâts d'épines</value>
   </data>
+  <data name="ANewDayDawns" xml:space="preserve">
+    <value>Un nouveau jour se lève</value>
+  </data>
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
     <value>Un nouveau voyageur est arrivé au camp</value>
   </data>
@@ -248,6 +251,9 @@
   </data>
   <data name="DaggerOfLifeStealDescription" xml:space="preserve">
     <value>60% de chances de voler {0} de vie lorsqu'on touche l'ennemi.</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Jour</value>
   </data>
   <data name="Dropped" xml:space="preserve">
     <value>Lâche</value>
@@ -390,6 +396,9 @@
   <data name="NeedHealing" xml:space="preserve">
     <value>J'ai besoin de me soigner.</value>
   </data>
+  <data name="Night" xml:space="preserve">
+    <value>Nuit</value>
+  </data>
   <data name="NoCampToRepair" xml:space="preserve">
     <value>Il n'y a plus de camp à réparer. Tout est détruit.</value>
   </data>
@@ -525,6 +534,12 @@
   <data name="StructureUnderAttack" xml:space="preserve">
     <value>Le {0} est attaqué ! Etat: {1}/{2}</value>
   </data>
+  <data name="Sunrise" xml:space="preserve">
+    <value>Aube</value>
+  </data>
+  <data name="Sunset" xml:space="preserve">
+    <value>Soir</value>
+  </data>
   <data name="TalismanOfPeace" xml:space="preserve">
     <value>Talisman de la paix</value>
   </data>
@@ -557,6 +572,15 @@
   </data>
   <data name="TheJuvenileGreenWyvern" xml:space="preserve">
     <value>La Juvénile Wyvern Verte</value>
+  </data>
+  <data name="TheNightArrives" xml:space="preserve">
+    <value>La nuit s'installe. Il fait froid et sombre. Quelque chose vous observe dans la nuit ...</value>
+  </data>
+  <data name="TheSunRises" xml:space="preserve">
+    <value>Le soleil se lève</value>
+  </data>
+  <data name="TheSunSets" xml:space="preserve">
+    <value>Le soleil se couche. Soyez prudent la nuit ...</value>
   </data>
   <data name="ThornBreastplate" xml:space="preserve">
     <value>Plastron d'épines</value>
