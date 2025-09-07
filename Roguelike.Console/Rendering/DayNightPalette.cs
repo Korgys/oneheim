@@ -25,7 +25,7 @@ public static class DayNightPalette
             DayCycle.Night => new Palette(
                 FogColor: ConsoleColor.DarkGray,
                 WallColor: ConsoleColor.DarkGray,
-                PlayerColor: ConsoleColor.DarkGray,
+                PlayerColor: ConsoleColor.Gray,
                 NpcColor: ConsoleColor.DarkGreen,
                 EnemyColor: ConsoleColor.DarkRed,
                 MercColor: ConsoleColor.DarkCyan,
@@ -45,7 +45,7 @@ public static class DayNightPalette
                 TreasureColor: ConsoleColor.Yellow,
                 BorderColor: ConsoleColor.Yellow,
                 BackgroundColor: ConsoleColor.DarkBlue,
-                ProgressBarColor: ConsoleColor.DarkBlue,
+                ProgressBarColor: ConsoleColor.Cyan,
                 Icon: Messages.Sunset
             ),
             DayCycle.Sunrise => new Palette(
@@ -58,7 +58,7 @@ public static class DayNightPalette
                 TreasureColor: ConsoleColor.Yellow,
                 BorderColor: ConsoleColor.Yellow,
                 BackgroundColor: ConsoleColor.DarkBlue,
-                ProgressBarColor: ConsoleColor.DarkBlue,
+                ProgressBarColor: ConsoleColor.Cyan,
                 Icon: Messages.Sunrise
             ),
             _ => new Palette( // Day

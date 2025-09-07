@@ -36,7 +36,6 @@ public sealed class WaveAndFogSystem : ITurnSystem
         {
             level.PlaceEnemies(ctx.Difficulty.GetEnemiesNumber());
             level.PlaceTreasures(ctx.Difficulty.GetTreasuresNumber());
-            player.SetPlayerVisionAfterFogArrival();
             LastMessage = Messages.TheFogIntensifies;
         }
 
@@ -72,7 +71,6 @@ public sealed class WaveAndFogSystem : ITurnSystem
     private void PlaceBoss(LevelManager level, Player player)
     {
         level.PlaceBoss();
-        player.SetPlayerVisionAfterFogArrival();
         LastMessage = Messages.ABossArrives;
     }
 }

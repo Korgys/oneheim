@@ -1,5 +1,4 @@
-﻿using Roguelike.Core.Game.Characters.Players;
-using Roguelike.Core.Properties.i18n;
+﻿using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.Systems.Logics;
 
@@ -10,7 +9,7 @@ public sealed class DayAndNightSystem : ITurnSystem
 
     // Vision tuning (negative = vision down, positive = vision up)
     public int VisionDeltaSunset { get; set; } = -1;
-    public int VisionDeltaNight { get; set; } = -1;
+    public int VisionDeltaNight { get; set; } = -2;
     public int VisionDeltaSunrise { get; set; } = +1;
     public int VisionDeltaDay { get; set; } = +1;
 
@@ -30,35 +29,31 @@ public sealed class DayAndNightSystem : ITurnSystem
         int stepsForNextCycle = level.StepsForFullCycle;
         int moduloForCycle = stepsForNextCycle == 0 ? 0 : (player.Steps % stepsForNextCycle);
 
-        // Keyframes du cycle (tu peux les déplacer si tu veux des durées différentes)
+        // Cycle changes at specific steps in the cycle
         if (moduloForCycle == 0)
         {
             level.DayCycle = DayCycle.Sunset;
             LastMessage = Messages.TheSunSets;
-            ApplyVisionDelta(player, VisionDeltaSunset);
+            player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaSunset, VisionMin, VisionMax));
         }
         else if (moduloForCycle == 15)
         {
             level.DayCycle = DayCycle.Night;
             LastMessage = Messages.TheNightArrives;
-            ApplyVisionDelta(player, VisionDeltaNight);
+            player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaNight, VisionMin, VisionMax));
         }
         else if (moduloForCycle == 65)
         {
             level.DayCycle = DayCycle.Sunrise;
             LastMessage = Messages.TheSunRises;
-            ApplyVisionDelta(player, VisionDeltaSunrise);
+            player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaSunrise, VisionMin, VisionMax));
         }
         else if (moduloForCycle == 80)
         {
             level.DayCycle = DayCycle.Day;
             LastMessage = Messages.ANewDayDawns;
-            ApplyVisionDelta(player, VisionDeltaDay);
+            player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaDay, VisionMin, VisionMax));
         }
     }
 
-    private void ApplyVisionDelta(Player p, int delta)
-    {
-        p.Vision = Math.Clamp(p.Vision + delta, VisionMin, VisionMax);
-    }
 }

@@ -10,6 +10,7 @@ public class BossBags
         {
             5 => Level5,
             10 => Level10,
+            15 => Level15,
             _ => throw new ArgumentOutOfRangeException(nameof(level), "Invalid level")
         };
     }
@@ -25,6 +26,16 @@ public class BossBags
     };
 
     public static Dictionary<EnemyId, int> Level10 = new Dictionary<EnemyId, int>
+    {
+        { EnemyId.Lich, 1 },
+        { EnemyId.Troll, 1 },
+        { EnemyId.Wyvern, 1 },
+        { EnemyId.HighPriest, 1 },
+        { EnemyId.ChiefBrigand, 1 },
+        { EnemyId.YannTheSilent, 1 },
+    };
+
+    public static Dictionary<EnemyId, int> Level15 = new Dictionary<EnemyId, int>
     {
         { EnemyId.Lich, 1 },
         { EnemyId.Troll, 1 },
