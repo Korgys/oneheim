@@ -22,15 +22,15 @@ public static class TreasureSelector
         double hpRatio = player.MaxLifePoint > 0 ? (double)player.LifePoint / player.MaxLifePoint : 0;
         if (hpRatio >= 0.5) types.Remove(BonusType.LifePoint);
 
-        // Stop offering vision when already high
-        if (player.Vision >= 9) types.Remove(BonusType.Vision);
+        // Stop offering vision when already high (9 max)
+        if (player.Vision <= _random.Next(10)) types.Remove(BonusType.Vision);
 
         var result = new List<Treasure>();
         var usedNonItemTypes = new HashSet<BonusType>();
 
         // Optional stat focus (50%) if a stat dominates (>10)
         if (_random.NextDouble() <= 0.5)
-            TryAddStatFocus(player, result, usedNonItemTypes);
+            types.Remove(TryAddStatFocus(player, result));
 
         // Fill remaining slots up to 3
         int safety = 50;
@@ -45,10 +45,6 @@ public static class TreasureSelector
             int value = GenerateValueForBonus(type, player, result);
             result.Add(new Treasure { Type = type, Value = value });
         }
-
-        // Safety top-up
-        while (result.Count < 3)
-            result.Add(new Treasure { Type = BonusType.MaxLifePoint, Value = Math.Max(2, player.MaxLifePoint / 12) });
 
         return result;
     }
@@ -115,26 +111,31 @@ public static class TreasureSelector
 
     public static void ResetItemPool() => _selectedItemPool.Clear();
 
-    private static void TryAddStatFocus(Player p, List<Treasure> res, HashSet<BonusType> used)
+    /// <summary>
+    /// If a stat is clearly dominating (>10 and > other stats), offer it as a bonus.
+    /// </summary>
+    /// <param name="p"></param>
+    /// <param name="res"></param>
+    /// <returns></returns>
+    private static BonusType TryAddStatFocus(Player p, List<Treasure> res)
     {
-        bool armorDom = p.Armor > p.Speed && p.Armor > p.Strength && p.Armor > 10;
         bool strDom = p.Strength > p.Speed && p.Strength > p.Armor && p.Strength > 10;
         bool spdDom = p.Speed > p.Strength && p.Speed > p.Armor && p.Speed > 10;
 
-        if (armorDom)
-        {
-            res.Add(new Treasure { Type = BonusType.Armor, Value = GenerateValueForBonus(BonusType.Armor, p) });
-            used.Add(BonusType.Armor);
-        }
-        else if (strDom)
+        if (strDom)
         {
             res.Add(new Treasure { Type = BonusType.Strength, Value = GenerateValueForBonus(BonusType.Strength, p) });
-            used.Add(BonusType.Strength);
+            return BonusType.Strength;
         }
         else if (spdDom)
         {
             res.Add(new Treasure { Type = BonusType.Speed, Value = GenerateValueForBonus(BonusType.Speed, p) });
-            used.Add(BonusType.Speed);
+            return BonusType.Speed;
+        }
+        else // by default, offer Armor
+        {
+            res.Add(new Treasure { Type = BonusType.Armor, Value = GenerateValueForBonus(BonusType.Armor, p) });
+            return BonusType.Armor;
         }
     }
 
@@ -192,9 +193,10 @@ public static class TreasureSelector
                 {
                     int s = player.Steps switch
                     {
-                        < 200 => _random.Next(1, 3),
-                        < 600 => _random.Next(2, 4),
-                        _ => _random.Next(3, 5),
+                        < 200 => _random.Next(1, 3), // 1 or 2
+                        < 600 => _random.Next(2, 4), // 2, 3
+                        < 900 => _random.Next(3, 5), // 3, 4
+                        _     => _random.Next(4, 6)  // 4, 5
                     };
 
                     // LuckyMillorLeftHand: +1 proc

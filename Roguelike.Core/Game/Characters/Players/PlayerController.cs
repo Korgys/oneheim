@@ -19,6 +19,8 @@
         private readonly ITreasurePicker _treasurePicker;
         private readonly IInventoryUI _inventoryUi;
 
+        private bool _stopWatchUsed = false;
+
         public bool HasUsedKey { get; private set; } = false;
         public bool HasMovedThisTurn { get; private set; } = false;
         public bool IsGameEnded { get; private set; } = false;
@@ -138,9 +140,17 @@
                 {
                     // StopWatch item: skip increment on given frequency
                     var stopWatch = _level.Player.Inventory.FirstOrDefault(i => i.Id == ItemId.StopWatch);
-                    if (stopWatch != null && stopWatch.Value > 0 && _level.Player.Steps % stopWatch.Value == 0)
+                    if (stopWatch != null! && stopWatch.Value > 0 && _level.Player.Steps % stopWatch.Value == 0)
                     {
-                        return; // skip step increment this turn
+                        if (!_stopWatchUsed)
+                        {
+                            _stopWatchUsed = true;
+                            return; // skip step increment this turn
+                        }
+                        else
+                        {
+                            _stopWatchUsed = false;
+                        }                        
                     }
 
                     _level.Player.Steps++;

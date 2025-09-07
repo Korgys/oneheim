@@ -36,7 +36,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
         // Rule: ≥4 attackers OR any boss
         if (_lastAttackers.Count >= 4 || _lastAttackers.Any(a => a is Boss))
         {
-            int damage = Math.Max(1, _lastAttackers.Sum(a => a.Strength) / 4);
+            int damage = Math.Max(1, _lastAttackers.Sum(a => a.Strength) / 8);
             structure.TakeDamage(damage);
 
             if (structure.Hp <= 0)

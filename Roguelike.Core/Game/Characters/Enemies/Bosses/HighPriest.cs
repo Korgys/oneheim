@@ -9,9 +9,9 @@ public class HighPriest : Boss
     {
         LifePoint = 8 * level * level; // lvl5: 200HP, lvl10: 800HP
         MaxLifePoint = LifePoint;
-        Armor = 12 * level;             // lvl5: 60, lvl10: 120
+        Armor = 10 * level;             // lvl5: 50, lvl10: 100
         Strength = 18 * level;          // lvl5: 90, lvl10: 180
-        Speed = 12 * level;             // lvl5: 60, lvl10: 120
+        Speed = 10 * level;             // lvl5: 50, lvl10: 100
         Name = Messages.HighPriest;
         Category = EnemyType.Cultist;
         Inventory = new List<Item>
