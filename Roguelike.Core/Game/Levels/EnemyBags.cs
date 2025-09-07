@@ -18,6 +18,11 @@ public static class EnemyBags
             8 => Level8,
             9 => Level9,
             10 => Level10,
+            11 => Level11,
+            12 => Level12,
+            13 => Level13,
+            14 => Level14,
+            15 => Level15,
             _ => throw new ArgumentOutOfRangeException(nameof(level), "Invalid level")
         };
     }
@@ -249,6 +254,76 @@ public static class EnemyBags
     };
 
     public static Dictionary<EnemyId, int> Level10 = new Dictionary<EnemyId, int>
+    {
+        // static ennemies (strong)
+        { EnemyId.PlagueGhoul,       1 },
+        { EnemyId.GiantSpider,       1 },
+        { EnemyId.Priest,            1 },
+        { EnemyId.WatchtowerArcher,  1 },
+        // really strong ennemies
+        { EnemyId.Revenant,          4 },
+        { EnemyId.Werewolf,          4 },
+        { EnemyId.Champion,          4 },
+        { EnemyId.Assassin,          4 },
+    };
+
+    public static Dictionary<EnemyId, int> Level11 = new Dictionary<EnemyId, int>
+    {
+        // static ennemies (strong)
+        { EnemyId.PlagueGhoul,       1 },
+        { EnemyId.GiantSpider,       1 },
+        { EnemyId.Priest,            1 },
+        { EnemyId.WatchtowerArcher,  1 },
+        // really strong ennemies
+        { EnemyId.Revenant,          4 },
+        { EnemyId.Werewolf,          4 },
+        { EnemyId.Champion,          4 },
+        { EnemyId.Assassin,          4 },
+    };
+
+    public static Dictionary<EnemyId, int> Level12 = new Dictionary<EnemyId, int>
+    {
+        // static ennemies (strong)
+        { EnemyId.PlagueGhoul,       1 },
+        { EnemyId.GiantSpider,       1 },
+        { EnemyId.Priest,            1 },
+        { EnemyId.WatchtowerArcher,  1 },
+        // really strong ennemies
+        { EnemyId.Revenant,          4 },
+        { EnemyId.Werewolf,          4 },
+        { EnemyId.Champion,          4 },
+        { EnemyId.Assassin,          4 },
+    };
+
+    public static Dictionary<EnemyId, int> Level13 = new Dictionary<EnemyId, int>
+    {
+        // static ennemies (strong)
+        { EnemyId.PlagueGhoul,       1 },
+        { EnemyId.GiantSpider,       1 },
+        { EnemyId.Priest,            1 },
+        { EnemyId.WatchtowerArcher,  1 },
+        // really strong ennemies
+        { EnemyId.Revenant,          4 },
+        { EnemyId.Werewolf,          4 },
+        { EnemyId.Champion,          4 },
+        { EnemyId.Assassin,          4 },
+    };
+
+    public static Dictionary<EnemyId, int> Level14 = new Dictionary<EnemyId, int>
+    {
+        // static ennemies (strong)
+        { EnemyId.PlagueGhoul,       1 },
+        { EnemyId.GiantSpider,       1 },
+        { EnemyId.Priest,            1 },
+        { EnemyId.WatchtowerArcher,  1 },
+        // really strong ennemies
+        { EnemyId.Revenant,          4 },
+        { EnemyId.Werewolf,          4 },
+        { EnemyId.Champion,          4 },
+        { EnemyId.Assassin,          4 },
+    };
+
+    public static Dictionary<EnemyId, int> Level15 = new Dictionary<EnemyId, int>
     {
         // static ennemies (strong)
         { EnemyId.PlagueGhoul,       1 },

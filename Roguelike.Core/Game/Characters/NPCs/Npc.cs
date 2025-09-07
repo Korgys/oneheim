@@ -6,7 +6,7 @@ public class Npc : Character
 {
     public NpcId Id { get; set; }
     public char Character { get; set; } // NPC asset
-    public string Name { get; set; }
+    public override string Name { get; set; }
 
     #region Dialogue
     public bool HasMet { get; set; }

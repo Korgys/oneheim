@@ -14,6 +14,6 @@ public class Enemy : Character
 
     public EnemyType Category { get; set; }
     public char Character { get; set; } = 'E'; // Default enemy character
-    public string Name { get; set; }
+    public override string Name { get; set; }
     public int StepsPerTurn { get; set; } = 1; // 0 = static, 1 = normal, 2 = boss/fast
 }

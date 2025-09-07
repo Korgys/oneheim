@@ -2,7 +2,7 @@
 
 public class Mercenary : Character
 {
-    public string Name { get; set; } = "Oneheim Guard";
+    public override string Name { get; set; } = "Oneheim Guard";
     public char Character { get; set; } = 'é';
     public int StepsPerTurn { get; set; } = 1;
 

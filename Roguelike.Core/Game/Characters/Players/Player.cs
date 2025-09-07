@@ -1,9 +1,11 @@
 ﻿using Roguelike.Core.Game.Collectables.Items;
+using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.Characters.Players;
 
 public class Player : Character
 {
+    public override string Name { get; set; } = Messages.Player;
     public static char Character { get; set; } = '@'; // Default player character
     public int MaxInventorySize { get; set; } = 3; // Default maximum inventory size
     public int Steps { get; set; } = 0;

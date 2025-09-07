@@ -4,6 +4,7 @@ namespace Roguelike.Core.Game.Characters;
 
 public abstract class Character
 {
+    public abstract string Name { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
     public int LifePoint { get; set; }

@@ -105,12 +105,12 @@ public sealed class CombatResolver
         bool savedByTalisman = false;
         if (defender.LifePoint <= 0
             && defender.Inventory.Any(i => i.Id == ItemId.TalismanOfTheLastBreath)
-            && _talismanUsed.ContainsKey(defender.ToString()) && _talismanUsed[defender.ToString()] == true)
+            && !_talismanUsed.ContainsKey(defender.Name))
         {
             var talisman = defender.Inventory.First(i => i.Id == ItemId.TalismanOfTheLastBreath);
             defender.LifePoint = Math.Min(defender.MaxLifePoint, talisman.Value);
             savedByTalisman = true;
-            _talismanUsed.Add(defender.ToString(), savedByTalisman);
+            _talismanUsed.Add(defender.Name, savedByTalisman);
         }
 
         // 5) Apply on-hit lifesteal for attacker (dagger)

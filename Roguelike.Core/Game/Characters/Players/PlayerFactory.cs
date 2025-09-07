@@ -8,8 +8,8 @@ public class PlayerFactory
         {
             X = x,
             Y = y,
-            LifePoint = 10,
-            MaxLifePoint = 10,
+            LifePoint = 12,
+            MaxLifePoint = 12,
             Strength = 5,
             Armor = 1,
             Speed = 1,
