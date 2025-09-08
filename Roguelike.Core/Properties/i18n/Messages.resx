@@ -139,7 +139,10 @@
     <value>A new day dawns</value>
   </data>
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
-    <value>A new traveler comes to the base camp</value>
+    <value>A new traveler comes to the base camp !</value>
+  </data>
+  <data name="ArminAreYouSerious" xml:space="preserve">
+    <value>Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you're so smart, the night is waiting for you...</value>
   </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
     <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
@@ -170,6 +173,9 @@
   </data>
   <data name="ArminMeetingPlayerRich" xml:space="preserve">
     <value>That is a heavy purse you carry. May it serve to raise Oneheim anew and kindle fresh hopes.</value>
+  </data>
+  <data name="ArminOneheimWasASmallVillage" xml:space="preserve">
+    <value>Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/].</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
     <value>I can repair the camp for {0} gold (+{1} HP).</value>
@@ -357,6 +363,9 @@
   <data name="IsUnderAttack" xml:space="preserve">
     <value>is under attack</value>
   </data>
+  <data name="JustTalking" xml:space="preserve">
+    <value>Just talking</value>
+  </data>
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Keep current inventory</value>
   </data>
@@ -407,6 +416,9 @@
   </data>
   <data name="NothingToRepair" xml:space="preserve">
     <value>There is nothing to repair here.</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="OldGiantWoodenClub" xml:space="preserve">
     <value>Old Giant Wooden Club</value>
@@ -608,6 +620,9 @@
   </data>
   <data name="WhatElseCanIDo" xml:space="preserve">
     <value>What else can I do ?</value>
+  </data>
+  <data name="WhereAreWe" xml:space="preserve">
+    <value>Where are we ?</value>
   </data>
   <data name="WildBear" xml:space="preserve">
     <value>Wild Bear</value>

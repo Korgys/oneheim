@@ -139,10 +139,13 @@
     <value>Un nouveau jour se lève</value>
   </data>
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
-    <value>Un nouveau voyageur est arrivé au camp</value>
+    <value>Un nouveau voyageur est arrivé au camp !</value>
+  </data>
+  <data name="ArminAreYouSerious" xml:space="preserve">
+    <value>s</value>
   </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
-    <value>Salutations, voyageur. Sois le bienvenu à [Green]Oneheim[/], ou plutôt, à ce qu’il en reste. Ce village n’est plus qu’un champ de ruines. J’y ai établi un camp et élevé des palissades. Prends garde, car au-dehors, le [red]danger[/] guette à chaque pas.</value>
+    <value>Tu es sérieux ? Alors que je viens juste de te l'expliquer ? Tu écoutes à moitié ? Es-tu de ces gens qui tapotent leur doigt pour aller plus vite dans les discussions ? Tu sais quoi ? Vas-y si tu es si malin, [blue]la nuit t'attend[/] ...</value>
   </data>
   <data name="ArminHealPitch" xml:space="preserve">
     <value>Je peux vous soigner contre quelques piastres. Contre {0} d'or, vous regagnerez jusqu'à +{1} de vie.</value>
@@ -170,6 +173,9 @@
   </data>
   <data name="ArminMeetingPlayerRich" xml:space="preserve">
     <value>Voilà une bourse bien lourde que tu portes là. Puisse-t-elle servir à relever Oneheim et à bâtir de nouvelles espérances.</value>
+  </data>
+  <data name="ArminOneheimWasASmallVillage" xml:space="preserve">
+    <value>Oneheim était un petit village au nord-est du [gold]vieux royaume[/]. Il y a 21 moissons de celà, une [red]terrible catastrophe[/] eu lieu et le village fut [red]détruit[/].</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
     <value>Je peux réparer le camp pour {0} d'or (+{1} de vie du camp).</value>
@@ -357,6 +363,9 @@
   <data name="IsUnderAttack" xml:space="preserve">
     <value>est attaqué</value>
   </data>
+  <data name="JustTalking" xml:space="preserve">
+    <value>Quoi de neuf ?</value>
+  </data>
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Garder l'inventaire actuel</value>
   </data>
@@ -407,6 +416,9 @@
   </data>
   <data name="NothingToRepair" xml:space="preserve">
     <value>Il n'y a rien à réparer.</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="OldGiantWoodenClub" xml:space="preserve">
     <value>Vieux gourdin géant en bois</value>
@@ -608,6 +620,9 @@
   </data>
   <data name="WhatElseCanIDo" xml:space="preserve">
     <value>Que puis-je faire d'autre ?</value>
+  </data>
+  <data name="WhereAreWe" xml:space="preserve">
+    <value>Où sommes-nous ?</value>
   </data>
   <data name="WildBear" xml:space="preserve">
     <value>Sanglier</value>

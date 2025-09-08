@@ -4,5 +4,6 @@ public enum NpcId
 {
     Armin,
     Ichem,
-    Eber
+    Eber,
+    Omana
 }

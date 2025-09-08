@@ -1,7 +1,7 @@
 ﻿using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.NPCs;
-using Roguelike.Core.Game.Characters.NPCs.Dialogues;
+using Roguelike.Core.Game.Characters.NPCs.Dialogues.Texts;
 using Roguelike.Core.Game.Levels;
 
 public static class NpcDialogManager

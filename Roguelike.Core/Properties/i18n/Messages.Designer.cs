@@ -124,11 +124,20 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à A new traveler comes to the base camp.
+        ///   Recherche une chaîne localisée semblable à A new traveler comes to the base camp !.
         /// </summary>
         public static string ANewTravelerComesToTheBaseCamp {
             get {
                 return ResourceManager.GetString("ANewTravelerComesToTheBaseCamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you&apos;re so smart, the night is waiting for you....
+        /// </summary>
+        public static string ArminAreYouSerious {
+            get {
+                return ResourceManager.GetString("ArminAreYouSerious", resourceCulture);
             }
         }
         
@@ -219,6 +228,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string ArminMeetingPlayerRich {
             get {
                 return ResourceManager.GetString("ArminMeetingPlayerRich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/]..
+        /// </summary>
+        public static string ArminOneheimWasASmallVillage {
+            get {
+                return ResourceManager.GetString("ArminOneheimWasASmallVillage", resourceCulture);
             }
         }
         
@@ -781,6 +799,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Just talking.
+        /// </summary>
+        public static string JustTalking {
+            get {
+                return ResourceManager.GetString("JustTalking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Keep current inventory.
         /// </summary>
         public static string KeepCurrentInventory {
@@ -930,6 +957,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string NothingToRepair {
             get {
                 return ResourceManager.GetString("NothingToRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         
@@ -1533,6 +1569,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string WhatElseCanIDo {
             get {
                 return ResourceManager.GetString("WhatElseCanIDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Where are we ?.
+        /// </summary>
+        public static string WhereAreWe {
+            get {
+                return ResourceManager.GetString("WhereAreWe", resourceCulture);
             }
         }
         

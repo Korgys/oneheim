@@ -47,6 +47,7 @@ public sealed class GameEngine
         _runner = new TurnSystemRunner();
         _runner.Register(siegeSystem);
         _runner.Register(new WaveAndFogSystem());
+        _runner.Register(new NpcSpawnSystem());
         _runner.Register(new DayAndNightSystem());
         _runner.Register(new MercenaryPatrolSystem());
 
@@ -93,14 +94,11 @@ public sealed class GameEngine
             if (afterMsgs.Any())
                 _gameMessage = string.Join("\n", afterMsgs);
 
-            // 6) Time-based / step-based events (NPC spawns, etc.)
-            ApplyGameEventsIfNeeded();
-
-            // 7) Let the renderer surface any consolidated message line(s)
+            // 6) Let the renderer surface any consolidated message line(s)
             if (!string.IsNullOrWhiteSpace(_gameMessage))
                 _renderer.ShowMessages(new[] { _gameMessage });
 
-            // 8) Small tick pacing (UI can override/ignore)
+            // 7) Small tick pacing (UI can override/ignore)
             _clock.Delay(1);
         }
 
@@ -113,26 +111,5 @@ public sealed class GameEngine
             hasUsedKey: true  // at end we don't need the controls helper anymore
         );
         _renderer.RenderFrame(endView);
-    }
-
-    private void ApplyGameEventsIfNeeded()
-    {
-        // Spawn Ichem (shop NPC) at 150 steps
-        if (_level.Player.Steps == 150 &&
-            !_level.Npcs.Any(n => n.Id == NpcId.Ichem) &&
-            _level.Structures.Any(s => s.Name == Messages.BaseCamp))
-        {
-            _level.PlaceNpc(NpcId.Ichem);
-            _gameMessage = Messages.ANewTravelerComesToTheBaseCamp;
-        }
-
-        // Spawn Eber (mercenary NPC) at 250 steps
-        if (_level.Player.Steps == 250 &&
-            !_level.Npcs.Any(n => n.Id == NpcId.Eber) &&
-            _level.Structures.Any(s => s.Name == Messages.BaseCamp))
-        {
-            _level.PlaceNpc(NpcId.Eber);
-            _gameMessage = Messages.ANewTravelerComesToTheBaseCamp;
-        }
     }
 }

@@ -30,6 +30,14 @@ public static class NpcFactory
                 X = x,
                 Y = y
             },
+            NpcId.Omana => new Npc
+            {
+                Id = id,
+                Name = NpcId.Omana.ToString(),
+                Character = 'ô',
+                X = x,
+                Y = y
+            },
             _ => throw new ArgumentException("Unknown npc type")
         };
     }

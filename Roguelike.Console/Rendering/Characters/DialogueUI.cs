@@ -114,6 +114,7 @@ public static class DialogueUI
             "gold" or "yellow" => ConsoleColor.Yellow,
             "red" => ConsoleColor.Red,
             "green" => ConsoleColor.Green,
+            "blue" => ConsoleColor.Blue,
             "cyan" => ConsoleColor.Cyan,
             "magenta" => ConsoleColor.Magenta,
             "white" => ConsoleColor.White,

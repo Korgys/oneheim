@@ -190,7 +190,8 @@ public sealed class ConsoleRenderer : IRenderer
                 || message.Contains(string.Format(Messages.HasBeenDestroy, Messages.BaseCamp))
                 || message.Contains(Messages.ABossArrives))
                 Console.ForegroundColor = ConsoleColor.Red;
-            else if (message.Contains(Messages.YouDefeatedAllBosses))
+            else if (message.Contains(Messages.ANewTravelerComesToTheBaseCamp) 
+                || message.Contains(Messages.YouDefeatedAllBosses))
                 Console.ForegroundColor = ConsoleColor.Green;
             else
                 Console.ForegroundColor = ConsoleColor.Gray;
