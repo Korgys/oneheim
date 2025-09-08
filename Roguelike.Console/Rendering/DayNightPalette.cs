@@ -45,7 +45,7 @@ public static class DayNightPalette
                 TreasureColor: ConsoleColor.Yellow,
                 BorderColor: ConsoleColor.Yellow,
                 BackgroundColor: ConsoleColor.DarkBlue,
-                ProgressBarColor: ConsoleColor.Cyan,
+                ProgressBarColor: ConsoleColor.Blue,
                 Icon: Messages.Sunset
             ),
             DayCycle.Sunrise => new Palette(

@@ -167,6 +167,7 @@ public sealed class ConsoleRenderer : IRenderer
 
         // Reset colors after the grid
         Console.BackgroundColor = defaultBg;
+        Console.ResetColor();
 
         // IMPORTANT: clear the HUD area before writing into it
         int hudTop = height;

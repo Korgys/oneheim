@@ -9,7 +9,7 @@ public class HighPriest : Boss
     {
         LifePoint = 8 * level * level; // lvl5: 200HP, lvl10: 800HP
         MaxLifePoint = LifePoint;
-        Armor = 10 * level;             // lvl5: 50, lvl10: 100
+        Armor = 9 * level;              // lvl5: 45, lvl10: 90
         Strength = 18 * level;          // lvl5: 90, lvl10: 180
         Speed = 10 * level;             // lvl5: 50, lvl10: 100
         Name = Messages.HighPriest;
