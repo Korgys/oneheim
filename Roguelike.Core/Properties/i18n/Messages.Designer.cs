@@ -133,6 +133,24 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Arbalest bolt of the King&apos;s Valley.
+        /// </summary>
+        public static string ArbalestBoltOfTheKingsValley {
+            get {
+                return ResourceManager.GetString("ArbalestBoltOfTheKingsValley", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce outlaws armor by {0}%.
+        /// </summary>
+        public static string ArbalestBoltOfTheKingsValleyDescription {
+            get {
+                return ResourceManager.GetString("ArbalestBoltOfTheKingsValleyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you&apos;re so smart, the night is waiting for you....
         /// </summary>
         public static string ArminAreYouSerious {
@@ -331,7 +349,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à +{0} strengh against bosses.
+        ///   Recherche une chaîne localisée semblable à +{0}% strengh against bosses.
         /// </summary>
         public static string BladeOfHeroesDescription {
             get {
@@ -363,6 +381,24 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Brigand {
             get {
                 return ResourceManager.GetString("Brigand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Butcher&apos;s Thorn Chaplet.
+        /// </summary>
+        public static string ButchersThornChaplet {
+            get {
+                return ResourceManager.GetString("ButchersThornChaplet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce cultist strengh by {0}%.
+        /// </summary>
+        public static string ButchersThornChapletDescription {
+            get {
+                return ResourceManager.GetString("ButchersThornChapletDescription", resourceCulture);
             }
         }
         
@@ -556,7 +592,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Reduces by {0} the ARMOR of beasts.
+        ///   Recherche une chaîne localisée semblable à Reduce beasts armor by {0}%.
         /// </summary>
         public static string EngravedFangsDescription {
             get {
@@ -619,7 +655,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Decreases by {0} the ATK of beasts.
+        ///   Recherche une chaîne localisée semblable à Reduce beasts strengh by {0}%.
         /// </summary>
         public static string FluteOfHunterDescription {
             get {
@@ -754,7 +790,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Reduce undead strengh by {0}.
+        ///   Recherche une chaîne localisée semblable à Reduce undead strengh by {0}%.
         /// </summary>
         public static string HolyBibleDescription {
             get {
@@ -939,6 +975,24 @@ namespace Roguelike.Core.Properties.i18n {
         public static string NoCampToRepair {
             get {
                 return ResourceManager.GetString("NoCampToRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Watcher lantern of Nordheim.
+        /// </summary>
+        public static string NordheimWatcherLantern {
+            get {
+                return ResourceManager.GetString("NordheimWatcherLantern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce outlaws strengh by {0}%.
+        /// </summary>
+        public static string NordheimWatcherLanternDescription {
+            get {
+                return ResourceManager.GetString("NordheimWatcherLanternDescription", resourceCulture);
             }
         }
         
@@ -1195,11 +1249,29 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Reduce undead armor by {0}.
+        ///   Recherche une chaîne localisée semblable à Reduce undead armor by {0}%.
         /// </summary>
         public static string SacredCrucifixDescription {
             get {
                 return ResourceManager.GetString("SacredCrucifixDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sauerkraut effigy.
+        /// </summary>
+        public static string SauerkrautEffigy {
+            get {
+                return ResourceManager.GetString("SauerkrautEffigy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce cultist armor by {0}%.
+        /// </summary>
+        public static string SauerkrautEffigyDescription {
+            get {
+                return ResourceManager.GetString("SauerkrautEffigyDescription", resourceCulture);
             }
         }
         

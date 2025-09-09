@@ -141,6 +141,12 @@
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
     <value>A new traveler comes to the base camp !</value>
   </data>
+  <data name="ArbalestBoltOfTheKingsValley" xml:space="preserve">
+    <value>Arbalest bolt of the King's Valley</value>
+  </data>
+  <data name="ArbalestBoltOfTheKingsValleyDescription" xml:space="preserve">
+    <value>Reduce outlaws armor by {0}%</value>
+  </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
     <value>Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you're so smart, the night is waiting for you...</value>
   </data>
@@ -208,7 +214,7 @@
     <value>Blade Of Heroes</value>
   </data>
   <data name="BladeOfHeroesDescription" xml:space="preserve">
-    <value>+{0} strengh against bosses</value>
+    <value>+{0}% strengh against bosses</value>
   </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Boots of Echo Step</value>
@@ -218,6 +224,12 @@
   </data>
   <data name="Brigand" xml:space="preserve">
     <value>Brigand of the Pierced Stone</value>
+  </data>
+  <data name="ButchersThornChaplet" xml:space="preserve">
+    <value>Butcher's Thorn Chaplet</value>
+  </data>
+  <data name="ButchersThornChapletDescription" xml:space="preserve">
+    <value>Reduce cultist strengh by {0}%</value>
   </data>
   <data name="CampAlreadyRepair" xml:space="preserve">
     <value>The camp is already in perfect shape.</value>
@@ -283,7 +295,7 @@
     <value>Engraved Fangs</value>
   </data>
   <data name="EngravedFangsDescription" xml:space="preserve">
-    <value>Reduces by {0} the ARMOR of beasts</value>
+    <value>Reduce beasts armor by {0}%</value>
   </data>
   <data name="FeathersOfHope" xml:space="preserve">
     <value>Feathers Of Hope</value>
@@ -304,7 +316,7 @@
     <value>Hunter's Flute</value>
   </data>
   <data name="FluteOfHunterDescription" xml:space="preserve">
-    <value>Decreases by {0} the ATK of beasts</value>
+    <value>Reduce beasts strengh by {0}%</value>
   </data>
   <data name="FoundItem" xml:space="preserve">
     <value>Found item: {0} – {1}</value>
@@ -349,7 +361,7 @@
     <value>Holy Bible</value>
   </data>
   <data name="HolyBibleDescription" xml:space="preserve">
-    <value>Reduce undead strengh by {0}</value>
+    <value>Reduce undead strengh by {0}%</value>
   </data>
   <data name="HP" xml:space="preserve">
     <value>HP</value>
@@ -410,6 +422,12 @@
   </data>
   <data name="NoCampToRepair" xml:space="preserve">
     <value>No camp to repair</value>
+  </data>
+  <data name="NordheimWatcherLantern" xml:space="preserve">
+    <value>Watcher lantern of Nordheim</value>
+  </data>
+  <data name="NordheimWatcherLanternDescription" xml:space="preserve">
+    <value>Reduce outlaws strengh by {0}%</value>
   </data>
   <data name="NotEnoughGold" xml:space="preserve">
     <value>You do not have enough gold.</value>
@@ -496,7 +514,13 @@
     <value>Sacred Crucifix</value>
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
-    <value>Reduce undead armor by {0}</value>
+    <value>Reduce undead armor by {0}%</value>
+  </data>
+  <data name="SauerkrautEffigy" xml:space="preserve">
+    <value>Sauerkraut effigy</value>
+  </data>
+  <data name="SauerkrautEffigyDescription" xml:space="preserve">
+    <value>Reduce cultist armor by {0}%</value>
   </data>
   <data name="SealOfLivingFlesh" xml:space="preserve">
     <value>Seal of Living Flesh</value>

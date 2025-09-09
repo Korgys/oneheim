@@ -31,5 +31,9 @@ public enum ItemId
     GrolMokbarRing = 27,
     TalismanOfPeace = 28,
     SealOfLivingFlesh = 29,
-    StopWatch = 30
+    StopWatch = 30,
+    SauerkrautEffigy = 31,
+    ButchersThornChaplet = 32,
+    NordheimWatcherLantern = 33,
+    ArbalestBoltOfTheKingsValley = 34
 }

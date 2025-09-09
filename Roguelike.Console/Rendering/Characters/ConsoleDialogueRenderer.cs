@@ -6,6 +6,7 @@ using Roguelike.Core.Game.Characters.NPCs.Dialogues;
 using Roguelike.Core.Configuration;
 using System;
 using Roguelike.Core.Game.Characters.Players;
+using Roguelike.Core.Properties.i18n;
 
 public sealed class ConsoleDialogueRenderer : IDialogueRenderer
 {
@@ -37,7 +38,7 @@ public sealed class ConsoleDialogueRenderer : IDialogueRenderer
 
             if (node.Options.Count == 0)
             {
-                Console.WriteLine("Press any key to return...");
+                Console.WriteLine(Messages.PressAnyKeyToContinue);
                 Console.ReadKey(true);
                 break;
             }
@@ -81,7 +82,7 @@ public sealed class ConsoleDialogueRenderer : IDialogueRenderer
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(feedback);
                 Console.ResetColor();
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine(Messages.PressAnyKeyToContinue);
                 Console.ReadKey(true);
             }
 

@@ -19,13 +19,13 @@ public sealed class NpcSpawnSystem : ITurnSystem
         if (!level.Structures.Any(s => s.Name == Messages.BaseCamp))
             return;
 
-        // Spawn Ichem (shop NPC) at 150 steps
+        // Spawn Ichem (shop NPC) at 66 steps
         if (steps == 66 && !level.Npcs.Any(n => n.Id == NpcId.Ichem))
         {
             level.PlaceNpc(NpcId.Ichem);
             LastMessage = Messages.ANewTravelerComesToTheBaseCamp;
         }
-        // Spawn Eber (mercenary NPC) at 250 steps
+        // Spawn Eber (mercenary NPC) at 166 steps
         if (steps == 166 && !level.Npcs.Any(n => n.Id == NpcId.Eber))
         {
             PlaceNpc(NpcId.Eber, level);

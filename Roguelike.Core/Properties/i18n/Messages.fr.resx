@@ -141,11 +141,17 @@
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
     <value>Un nouveau voyageur est arrivé au camp !</value>
   </data>
+  <data name="ArbalestBoltOfTheKingsValley" xml:space="preserve">
+    <value>Carreau d'arbalète de la vallée des rois</value>
+  </data>
+  <data name="ArbalestBoltOfTheKingsValleyDescription" xml:space="preserve">
+    <value>Réduit l'armure des hors-la-loi de {0}%</value>
+  </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
-    <value>s</value>
+    <value>Tu es sérieux ? Alors que je viens juste de te l'expliquer ? Tu écoutes à moitié ? Es-tu de ces gens qui tapotent leur doigt pour aller plus vite dans les discussions ? Tu sais quoi ? Vas-y si tu es si malin, [blue]la nuit t'attend[/] ...</value>
   </data>
   <data name="ArminFirstMeeting" xml:space="preserve">
-    <value>Tu es sérieux ? Alors que je viens juste de te l'expliquer ? Tu écoutes à moitié ? Es-tu de ces gens qui tapotent leur doigt pour aller plus vite dans les discussions ? Tu sais quoi ? Vas-y si tu es si malin, [blue]la nuit t'attend[/] ...</value>
+    <value>Salutations, voyageur. Bienvenue à [Gold]Oneheim[/]… ou ce qu'il en reste. Ce village n'est plus qu'un amas de ruines. J'y ai établi un campement et dressé [Green]des palissades[/] pour me protéger de [Red]la nuit[/]. Attention, car au-delà de ces murs, [Red]le danger[/] guette à chaque pas.</value>
   </data>
   <data name="ArminHealPitch" xml:space="preserve">
     <value>Je peux vous soigner contre quelques piastres. Contre {0} d'or, vous regagnerez jusqu'à +{1} de vie.</value>
@@ -208,7 +214,7 @@
     <value>Lame des héros</value>
   </data>
   <data name="BladeOfHeroesDescription" xml:space="preserve">
-    <value>+{0} de force contre les boss</value>
+    <value>+{0}% force contre les boss</value>
   </data>
   <data name="BootsOfEchoStep" xml:space="preserve">
     <value>Bottes de pas léger</value>
@@ -218,6 +224,12 @@
   </data>
   <data name="Brigand" xml:space="preserve">
     <value>Brigand de Pierre-Percée</value>
+  </data>
+  <data name="ButchersThornChaplet" xml:space="preserve">
+    <value>Chapelet d'épines du Boucher</value>
+  </data>
+  <data name="ButchersThornChapletDescription" xml:space="preserve">
+    <value>Réduit la force des cultistes de {0}%</value>
   </data>
   <data name="CampAlreadyRepair" xml:space="preserve">
     <value>Le camp est déjà réparé.</value>
@@ -283,7 +295,7 @@
     <value>Crocs gravés</value>
   </data>
   <data name="EngravedFangsDescription" xml:space="preserve">
-    <value>Affaiblit l’armure de {0} des bêtes rencontrées</value>
+    <value>Réduit l'armure des bêtes sauvages de {0}%</value>
   </data>
   <data name="FeathersOfHope" xml:space="preserve">
     <value>Plumes de l'espoir</value>
@@ -304,7 +316,7 @@
     <value>Flûte du chasseur</value>
   </data>
   <data name="FluteOfHunterDescription" xml:space="preserve">
-    <value>Réduit de {0} l’ATQ des bêtes affrontées</value>
+    <value>Réduit la force des bêtes sauvages de {0}%</value>
   </data>
   <data name="FoundItem" xml:space="preserve">
     <value>Objet trouvé: {0} - {1}</value>
@@ -349,7 +361,7 @@
     <value>Bible sacrée</value>
   </data>
   <data name="HolyBibleDescription" xml:space="preserve">
-    <value>Réduit la force des morts-vivants de {0}</value>
+    <value>Réduit la force des morts-vivants de {0}%</value>
   </data>
   <data name="HP" xml:space="preserve">
     <value>Vie</value>
@@ -410,6 +422,12 @@
   </data>
   <data name="NoCampToRepair" xml:space="preserve">
     <value>Il n'y a plus de camp à réparer. Tout est détruit.</value>
+  </data>
+  <data name="NordheimWatcherLantern" xml:space="preserve">
+    <value>Lanterne du veilleur du Nordheim</value>
+  </data>
+  <data name="NordheimWatcherLanternDescription" xml:space="preserve">
+    <value>Réduit la force des hors-la-loi de {0}%</value>
   </data>
   <data name="NotEnoughGold" xml:space="preserve">
     <value>Vous n'avez pas assez d'or pour ça.</value>
@@ -496,7 +514,13 @@
     <value>Crucifix sacré</value>
   </data>
   <data name="SacredCrucifixDescription" xml:space="preserve">
-    <value>Réduit l'armure des morts-vivants de {0}</value>
+    <value>Réduit l'armure des morts-vivants de {0}%</value>
+  </data>
+  <data name="SauerkrautEffigy" xml:space="preserve">
+    <value>Effigie d'une Choucroute</value>
+  </data>
+  <data name="SauerkrautEffigyDescription" xml:space="preserve">
+    <value>Réduit l'armure des cultistes de {0}%</value>
   </data>
   <data name="SealOfLivingFlesh" xml:space="preserve">
     <value>Sceau de chair vivante</value>
@@ -514,7 +538,7 @@
     <value>Bouclier des champions</value>
   </data>
   <data name="ShieldOfChampionDescription" xml:space="preserve">
-    <value>+{0} d'armure contre les boss.</value>
+    <value>+{0}% d'armure contre les boss.</value>
   </data>
   <data name="ShredArmor" xml:space="preserve">
     <value>détruit {0} d'armure</value>

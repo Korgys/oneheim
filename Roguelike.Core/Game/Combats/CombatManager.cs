@@ -172,29 +172,48 @@ public sealed class CombatManager
         if (enemy.Category == EnemyType.Undead)
         {
             var holyBible = player.Inventory.FirstOrDefault(i => i.Id == ItemId.HolyBible);
-            if (holyBible != null) enemy.Strength = Math.Max(0, enemy.Strength - holyBible.Value);
+            if (holyBible != null) enemy.Strength = (int)Math.Max(1, enemy.Strength * (1 - holyBible.Value / 100.0));
 
             var sacredCrucifix = player.Inventory.FirstOrDefault(i => i.Id == ItemId.SacredCrucifix);
-            if (sacredCrucifix != null) enemy.Armor = Math.Max(0, enemy.Armor - sacredCrucifix.Value);
+            if (sacredCrucifix != null) enemy.Armor = (int)Math.Max(0, enemy.Armor * (1 - sacredCrucifix.Value / 100.0));
         }
         // Wild
         else if (enemy.Category == EnemyType.Wild)
         {
             var flute = player.Inventory.FirstOrDefault(i => i.Id == ItemId.FluteOfHunter);
-            if (flute != null) enemy.Strength = Math.Max(0, enemy.Strength - flute.Value);
+            if (flute != null) enemy.Strength = (int)Math.Max(1, enemy.Strength * (1 - flute.Value / 100.0));
 
             var fangs = player.Inventory.FirstOrDefault(i => i.Id == ItemId.EngravedFangs);
-            if (fangs != null) enemy.Armor = Math.Max(0, enemy.Armor - fangs.Value);
+            if (fangs != null) enemy.Armor = (int)Math.Max(0, enemy.Armor * (1 - fangs.Value / 100.0));
+        }
+        // Cultist
+        else if (enemy.Category == EnemyType.Cultist)
+        {
+            var sauerkrautEffigy = player.Inventory.FirstOrDefault(i => i.Id == ItemId.SauerkrautEffigy);
+            if (sauerkrautEffigy != null) enemy.Strength = (int)Math.Max(1, enemy.Strength * (1 - sauerkrautEffigy.Value / 100.0));
+
+            var thornChaplet = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ButchersThornChaplet);
+            if (thornChaplet != null) enemy.Armor = (int)Math.Max(0, enemy.Armor * (1 - thornChaplet.Value / 100.0));
+        }
+
+        // Outlaws
+        else if (enemy.Category == EnemyType.Outlaws)
+        {
+            var watchLantern = player.Inventory.FirstOrDefault(i => i.Id == ItemId.NordheimWatcherLantern);
+            if (watchLantern != null) enemy.Strength = (int)Math.Max(1, enemy.Strength * (1 - watchLantern.Value / 100.0));
+
+            var arbalestBolt = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ArbalestBoltOfTheKingsValley);
+            if (arbalestBolt != null) enemy.Armor = (int)Math.Max(0, enemy.Armor * (1 - arbalestBolt.Value / 100.0));
         }
 
         // Boss
         if (enemy is Boss)
         {
             var blade = player.Inventory.FirstOrDefault(i => i.Id == ItemId.BladeOfHeroes);
-            if (blade != null) enemy.Strength = Math.Max(0, enemy.Strength - blade.Value);
+            if (blade != null) player.Strength = (int)(player.Strength * (1 + blade.Value / 100.0));
 
             var shield = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ShieldOfChampion);
-            if (shield != null) enemy.Armor = Math.Max(0, enemy.Armor - shield.Value);
+            if (shield != null) player.Armor = (int)(player.Armor * (1 + shield.Value / 100.0));
         }
     }
 

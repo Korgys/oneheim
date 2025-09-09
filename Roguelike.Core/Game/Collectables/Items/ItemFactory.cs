@@ -102,16 +102,16 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.HolyBible,
                 Effect = Messages.HolyBibleDescription,
-                Value = 5,
-                UpgradableIncrementValue = 4
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.SacredCrucifix => new Item
             {
                 Id = id,
                 Name = Messages.SacredCrucifix,
                 Effect = Messages.SacredCrucifixDescription,
-                Value = 5,
-                UpgradableIncrementValue = 4
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.RingOfEndurance => new Item
             {
@@ -126,32 +126,32 @@ public class ItemFactory
                 Id = id,
                 Name = Messages.BladeOfHeroes,
                 Effect = Messages.BladeOfHeroesDescription,
-                Value = 10,
-                UpgradableIncrementValue = 5
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.ShieldOfChampion => new Item
             {
                 Id = id,
                 Name = Messages.ShieldOfChampion,
                 Effect = Messages.ShieldOfChampionDescription,
-                Value = 10,
-                UpgradableIncrementValue = 5
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.FluteOfHunter => new Item
             {
                 Id = id,
                 Name = Messages.FluteOfHunter,
                 Effect = Messages.FluteOfHunterDescription,
-                Value = 5,
-                UpgradableIncrementValue = 4
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.EngravedFangs => new Item
             {
                 Id = id,
                 Name = Messages.EngravedFangs,
                 Effect = Messages.EngravedFangsDescription,
-                Value = 5,
-                UpgradableIncrementValue = 4
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             ItemId.EnchantedPouch => new Item
             {
@@ -250,6 +250,38 @@ public class ItemFactory
                 Effect = Messages.StopWatchDescription,
                 Value = 15,
                 UpgradableIncrementValue = -1
+            },
+            ItemId.SauerkrautEffigy => new Item
+            {
+                Id = id,
+                Name = Messages.SauerkrautEffigy,
+                Effect = Messages.SauerkrautEffigyDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.ButchersThornChaplet => new Item
+            {
+                Id = id,
+                Name = Messages.ButchersThornChaplet,
+                Effect = Messages.ButchersThornChapletDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.NordheimWatcherLantern => new Item
+            {
+                Id = id,
+                Name = Messages.NordheimWatcherLantern,
+                Effect = Messages.NordheimWatcherLanternDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.ArbalestBoltOfTheKingsValley => new Item
+            {
+                Id = id,
+                Name = Messages.ArbalestBoltOfTheKingsValley,
+                Effect = Messages.ArbalestBoltOfTheKingsValleyDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
             },
             _ => throw new ArgumentException("Unknown item type")
         };
