@@ -112,44 +112,44 @@ public class StructureSiegeSystemTests
     }
 
     [TestMethod]
-    public void Update_StepsAtOrBelow175_DoesNothing()
+    public void Update_StepsAtOrBelowMinSteps_DoesNothing()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 175);
+        var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege);
         Assert.IsNotNull(GetBaseCamp(level), "Precondition: Base Camp should exist for this test.");
 
         sys.Update(ctx);
 
-        Assert.IsNull(sys.LastMessage, "No siege before or at 175 steps.");
+        Assert.IsNull(sys.LastMessage, $"No siege before or at {StructureSiegeSystem.MinStepsForSiege} steps.");
         Assert.AreEqual(0, sys.LastAttackers.Count);
     }
 
     [TestMethod]
-    public void Update_At176_WithFourAdjacentEnemies_TriggersSiege_DamagesCamp()
+    public void Update_AtMinSteps_With_Min_AdjacentEnemies_TriggersSiege_DamagesCamp()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 176);
+        var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
         var baseCamp = GetBaseCamp(level);
         Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
 
         int hpBefore = (int)baseCamp.Hp;
 
-        // Place 4 enemies adjacent to walls (outside)
-        var spots = FindExteriorAdjacentToWalls(baseCamp, 4);
-        Assert.IsTrue(spots.Length >= 4, "Could not find enough exterior adjacent wall tiles for test.");
+        // Place min enemies adjacent to walls (outside)
+        var spots = FindExteriorAdjacentToWalls(baseCamp, StructureSiegeSystem.MinAttackersForSiege);
+        Assert.IsTrue(spots.Length >= StructureSiegeSystem.MinAttackersForSiege, "Could not find enough exterior adjacent wall tiles for test.");
 
         foreach (var pos in spots)
             level.Enemies.Add(MakeEnemyAt(pos, strength: 4));
 
         sys.Update(ctx);
 
-        Assert.IsTrue(sys.LastAttackers.Count >= 4, "Should have detected 4 attackers.");
+        Assert.IsTrue(sys.LastAttackers.Count >= StructureSiegeSystem.MinAttackersForSiege, $"Should have detected {StructureSiegeSystem.MinAttackersForSiege} attackers.");
         Assert.IsNotNull(sys.LastMessage, "Siege should produce a message.");
         Assert.IsTrue(baseCamp.Hp < hpBefore, "Structure HP should be reduced by the siege.");
     }
 
     [TestMethod]
-    public void Update_At176_WithSingleBoss_TriggersSiegeEvenIfLessThanFour()
+    public void Update_AtMinSteps_WithSingleBoss_TriggersSiegeEvenIfLessThanMinAttackers()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 176);
+        var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
         var baseCamp = GetBaseCamp(level);
         Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
 
@@ -170,15 +170,15 @@ public class StructureSiegeSystemTests
     [TestMethod]
     public void Update_Overkill_DestroyBaseCamp_YieldsDestroyMessage_AndClearsAttackers()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 176);
+        var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
         var baseCamp = GetBaseCamp(level);
         Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
 
         baseCamp.Hp = 2;
 
-        // Place 4 enemies adjacent to walls (outside)
-        var spots = FindExteriorAdjacentToWalls(baseCamp, 4);
-        Assert.IsTrue(spots.Length >= 4, "Could not find enough exterior adjacent wall tiles for test.");
+        // Place min enemies adjacent to walls for siege (outside)
+        var spots = FindExteriorAdjacentToWalls(baseCamp, StructureSiegeSystem.MinAttackersForSiege);
+        Assert.IsTrue(spots.Length >= StructureSiegeSystem.MinAttackersForSiege, "Could not find enough exterior adjacent wall tiles for test.");
 
         foreach (var pos in spots)
             level.Enemies.Add(MakeEnemyAt(pos, strength: 4));

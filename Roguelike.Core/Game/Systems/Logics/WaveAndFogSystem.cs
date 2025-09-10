@@ -31,35 +31,35 @@ public sealed class WaveAndFogSystem : ITurnSystem
             return;
         }
 
-        // Every 100 steps up to 1000
-        if (player.Steps > 0 && player.Steps < 1001 && player.Steps % 100 == 0)
+        // Every 100 steps up to 1515
+        if (player.Steps > 0 && player.Steps < 1515 && player.Steps % 100 == 0)
         {
             level.PlaceEnemies(ctx.Difficulty.GetEnemiesNumber());
             level.PlaceTreasures(ctx.Difficulty.GetTreasuresNumber());
             LastMessage = Messages.TheFogIntensifies;
         }
 
-        // 1st Boss at 500 steps
-        if (player.Steps >= 500 && !_firstBossPlaced)
+        // 1st Boss at 515 steps
+        if (player.Steps >= 515 && !_firstBossPlaced)
         {
             PlaceBoss(level, player);
             _firstBossPlaced = true;
         }
-        // 2nd Boss at 1000 steps
-        else if (player.Steps >= 1000 && !_secondBossPlaced)
+        // 2nd Boss at 1015 steps
+        else if (player.Steps >= 1015 && !_secondBossPlaced)
         {
             PlaceBoss(level, player);
             _secondBossPlaced = true;
         }
-        // 3rd Boss at 1500 steps
-        else if (player.Steps >= 1500 && !_thirdBossPlaced)
+        // 3rd Boss at 1515 steps
+        else if (player.Steps >= 1515 && !_thirdBossPlaced)
         {
             PlaceBoss(level, player);
             _thirdBossPlaced = true;
         }
 
         // Endgame condition
-        if (player.Steps > 1500 && !level.Enemies.Any(e => e is Boss))
+        if (player.Steps > 1515 && !level.Enemies.Any(e => e is Boss))
             LastMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
     }
 

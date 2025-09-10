@@ -4,7 +4,6 @@ using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Systems;
 using Roguelike.Core.Game.Systems.Logics;
 using Roguelike.Core.Properties.i18n;
-using System.Reflection;
 
 namespace Roguelike.Core.Tests.Game.Systems.Logics;
 
@@ -66,9 +65,9 @@ public class WaveAndFogSystemTests
     }
 
     [TestMethod]
-    public void Update_PlacesBossAndFog_AtStep500()
+    public void Update_PlacesBossAndFog_AtStep515()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 500);
+        var (sys, ctx, level) = CreateContext(playerSteps: 515);
 
         sys.Update(ctx);
 
@@ -76,9 +75,9 @@ public class WaveAndFogSystemTests
     }
 
     [TestMethod]
-    public void Update_PlacesBossAndFog_AtStep1000()
+    public void Update_PlacesBossAndFog_AtStep1015()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1000);
+        var (sys, ctx, level) = CreateContext(playerSteps: 1015);
 
         sys.Update(ctx);
 
@@ -86,9 +85,19 @@ public class WaveAndFogSystemTests
     }
 
     [TestMethod]
-    public void Update_NoBossRemaining_AnnouncesEndgame_AfterStep1500()
+    public void Update_PlacesBossAndFog_AtStep1515()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1501);
+        var (sys, ctx, level) = CreateContext(playerSteps: 1515);
+
+        sys.Update(ctx);
+
+        Assert.AreEqual(Messages.ABossArrives, sys.LastMessage);
+    }
+
+    [TestMethod]
+    public void Update_NoBossRemaining_AnnouncesEndgame_AfterStep1516()
+    {
+        var (sys, ctx, level) = CreateContext(playerSteps: 1516);
 
         // Ensure there is no boss alive on the map.
         // By default LevelManager starts with no enemies; this assert protects intent.
@@ -105,9 +114,9 @@ public class WaveAndFogSystemTests
     }
 
     [TestMethod]
-    public void Update_BossRemaining_NoEndgame_AfterStep1500()
+    public void Update_BossRemaining_NoEndgame_AfterStep1516()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1501);
+        var (sys, ctx, level) = CreateContext(playerSteps: 1516);
 
         // Simulate a remaining boss on the map
         level.PlaceBoss();
@@ -117,6 +126,6 @@ public class WaveAndFogSystemTests
 
         sys.Update(ctx);
 
-        Assert.IsNull(sys.LastMessage, "When a boss remains after 1000 steps, endgame message must not trigger.");
+        Assert.IsNull(sys.LastMessage, "When a boss remains after 1516 steps, endgame message must not trigger.");
     }
 }
