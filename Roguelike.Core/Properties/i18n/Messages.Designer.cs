@@ -1015,6 +1015,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Novice of the fresh meat cult.
+        /// </summary>
+        public static string Novice {
+            get {
+                return ResourceManager.GetString("Novice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         public static string Ok {
@@ -1083,6 +1092,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Picked {
             get {
                 return ResourceManager.GetString("Picked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pickpocket.
+        /// </summary>
+        public static string Pickpocket {
+            get {
+                return ResourceManager.GetString("Pickpocket", resourceCulture);
             }
         }
         
@@ -1335,6 +1353,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string ShredArmor {
             get {
                 return ResourceManager.GetString("ShredArmor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Skeleton.
+        /// </summary>
+        public static string Skeleton {
+            get {
+                return ResourceManager.GetString("Skeleton", resourceCulture);
             }
         }
         
@@ -1659,6 +1686,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string WildBear {
             get {
                 return ResourceManager.GetString("WildBear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Wild little bear.
+        /// </summary>
+        public static string WildLittleBear {
+            get {
+                return ResourceManager.GetString("WildLittleBear", resourceCulture);
             }
         }
         

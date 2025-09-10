@@ -17,6 +17,17 @@ public class LevelManager
 {
     public const int GridWidth = 60;
     public const int GridHeight = 22;
+
+    private static List<EnemyType> _enemyTypes = new();
+    public static List<EnemyType> EnemyTypes 
+    { 
+        get
+        {
+            if (_enemyTypes.Count == 0) _enemyTypes = EnemyTypeHelper.GetRandomEnemyTypesBag(3);
+            return _enemyTypes;
+        }
+    }
+
     public char[,] Grid { get; } = new char[GridHeight, GridWidth];
 
     public Player Player { get; private set; }
@@ -167,7 +178,7 @@ public class LevelManager
     public void PlaceEnemies(int count)
     {
         int level = Math.Max(1, Player.Steps / 100); // Level scaling
-        var enemyBagProbability = EnemyBags.GetByLevel(level); // Weighted bag
+        var enemyBagProbability = EnemyBags.GetByLevelAndType(level, EnemyTypes); // Weighted bag
 
         // GrolMokbarRing and TalismanOfPeace items logic
         int variance = 0;
@@ -293,7 +304,7 @@ public class LevelManager
         PlaceBaseCamp();
         PlaceNpc(NpcId.Armin, GridWidth / 2 + 1, GridHeight / 2 - 2);
         PlaceTreasures(_difficultyManager.GetTreasuresNumber() + 4);
-        // Enemies only appears after 6 steps in the game events GameEngine
+        // Enemies only appears after X steps in the game events GameEngine
     }
 
     private void InitializeGrid()

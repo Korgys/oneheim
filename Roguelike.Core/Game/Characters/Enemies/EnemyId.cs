@@ -2,30 +2,48 @@
 
 public enum EnemyId
 {
+    // Undead
     LeglessZombie,
+    Skeleton,
     Zombie,
     ArmoredZombie,
-    GiantSpider,
     PlagueGhoul,
     Revenant,
+    // Wilds beasts
+    WildLittleBear,
     WildBear,
     Wolf,
     AlphaWolf,
+    GiantSpider,
     Werewolf,
-    Lich,
-    Wyvern,
-    Troll,
-    Cultist,
+    // Outlaws
+    Drunkard,
+    Pickpocket,    
+    Brigand,
+    Mercenary,
+    WatchtowerArcher,    
+    Assassin,
+    // Cultists
+    Novice,
     Acolyte,
+    Cultist,
     Zealot,
     Priest,
     Champion,
+    // Demons
+    Imp,
+    DemonSlave,
+    Hellhound,
+    Overseer,
+    HellObelisk,
+    DoomReaper,
+    // Bosses
+    Lich,
+    Wyvern,
+    Troll,
     HighPriest,
-    Drunkard,
-    Assassin,
-    Brigand,
-    WatchtowerArcher,
-    Mercenary,
     ChiefBrigand,
-    YannTheSilent
+    YannTheSilent,
+    DartTheSoulbound,
+    AzrakelTheForsaken
 }

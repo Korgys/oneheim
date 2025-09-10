@@ -4,6 +4,7 @@ using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables.Items;
+using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Properties.i18n;
 
 public static class TreasureSelector
@@ -23,7 +24,7 @@ public static class TreasureSelector
         if (hpRatio >= 0.5) types.Remove(BonusType.LifePoint);
 
         // Stop offering vision when already high (9 max)
-        if (player.Vision <= _random.Next(10)) types.Remove(BonusType.Vision);
+        if (_random.Next(11) <= player.Vision) types.Remove(BonusType.Vision);
 
         var result = new List<Treasure>();
         var usedNonItemTypes = new HashSet<BonusType>();
@@ -207,11 +208,23 @@ public static class TreasureSelector
         }
     }
 
+    /// <summary>
+    /// Ensures that the item pool is initialized with a randomized selection of items.
+    /// </summary>
+    /// <remarks>This method populates the item pool with a subset of items, excluding those associated with
+    /// the current enemy types. The selection is randomized and limited to a predefined number of items.</remarks>
     private static void EnsureItemPoolInitialized()
     {
         if (_selectedItemPool.Count == 0)
         {
             var all = Enum.GetValues<ItemId>().ToList();
+
+            // Filter on enemy types
+            var excludedItems = new List<ItemId>();
+            foreach (var enemyType in LevelManager.EnemyTypes)
+                excludedItems.AddRange(ItemIdHelper.GetItemIdsSpecificByEnemyType(enemyType));
+
+            var filteredItems = all.Except(excludedItems).ToList();
             _selectedItemPool = all.OrderBy(_ => _random.Next()).Take(_numberOfItemInPool).ToList();
         }
     }

@@ -6,11 +6,11 @@ public class LeglessZombie : Enemy
 {
     public LeglessZombie(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (5 + _random.Next(0, 3)) * level + (level-1);
+        LifePoint = (5 + _random.Next(3)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (3 + _random.Next(0, 2)) * level + (level - 1); 
-        Strength = (3 + _random.Next(0, 2)) * level + (level - 1);
-        Speed = 1 * level + (level - 1); // Slowest enemy in the game
+        Armor = (3 + _random.Next(2)) * level; 
+        Strength = (3 + _random.Next(2)) * level;
+        Speed = 1 * level; // Slowest enemy in the game
         Vision = 1; // Limited vision range
         Name = Messages.LeglessZombie;
         Category = EnemyType.Undead;

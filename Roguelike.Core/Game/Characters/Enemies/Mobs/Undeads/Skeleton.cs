@@ -2,17 +2,17 @@
 
 namespace Roguelike.Core.Game.Characters.Enemies.Mobs.Undeads;
 
-public class Zombie : Enemy
+public class Skeleton : Enemy
 {
-    public Zombie(int x, int y, int level) : base(x, y, level)
+    public Skeleton(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (13 + _random.Next(4)) * level;
+        LifePoint = (5 + _random.Next(3)) * level;
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(2)) * level;
-        Strength = (5 + _random.Next(2)) * level;
-        Speed = 2 * level; // Zombies are slow
+        Strength = (4 + _random.Next(2)) * level;
+        Speed = (1 + _random.Next(3)) * level;
         Vision = 1; // Limited vision range
-        Name = Messages.Zombie;
+        Name = Messages.Skeleton;
         Category = EnemyType.Undead;
     }
 }

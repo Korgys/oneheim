@@ -1,5 +1,5 @@
 ﻿using Roguelike.Core.Game.Characters.Enemies.Bosses;
-using Roguelike.Core.Game.Characters.Enemies.Mobs.FreshMeatCultists;
+using Roguelike.Core.Game.Characters.Enemies.Mobs.Cultists;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Humans;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Outlaws;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Undeads;
@@ -35,32 +35,48 @@ public class EnemyFactory
     {
         return enemyId switch
         {
+            // Undead
             EnemyId.LeglessZombie => new LeglessZombie(x, y, level),
+            EnemyId.Skeleton => new Skeleton(x, y, level),
             EnemyId.Zombie => new Zombie(x, y, level),
             EnemyId.ArmoredZombie => new ArmoredZombie(x, y, level),
             EnemyId.PlagueGhoul => new PlagueGhoul(x, y, level),
             EnemyId.Revenant => new Revenant(x, y, level),
+
             EnemyId.Lich => new Lich(x, y, level),
+
+            // Wild beasts
+            EnemyId.WildLittleBear => new WildLittleBear(x, y, level),
             EnemyId.WildBear => new WildBear(x, y, level),
             EnemyId.Wolf => new Wolf(x, y, level),
             EnemyId.AlphaWolf => new AlphaWolf(x, y, level),
             EnemyId.GiantSpider => new SpiderNest(x, y, level),
-            EnemyId.Werewolf => new Werewolf(x, y, level),            
+            EnemyId.Werewolf => new Werewolf(x, y, level),
+            
             EnemyId.Wyvern => new Wyvern(x, y, level),
             EnemyId.Troll => new Troll(x, y, level),
-            EnemyId.Cultist => new Cultist(x, y, level),
-            EnemyId.Acolyte => new Acolyte(x, y, level),
-            EnemyId.Zealot => new Zealot(x, y, level),
-            EnemyId.Priest => new Priest(x, y, level),
-            EnemyId.Champion => new Champion(x, y, level),
-            EnemyId.HighPriest => new HighPriest(x, y, level),
+
+            // Outlaws
             EnemyId.Drunkard => new Drunkard(x, y, level),
+            EnemyId.Pickpocket => new Pickpocket(x, y, level),
             EnemyId.Brigand => new Brigand(x, y, level),
             EnemyId.Mercenary => new GreedyMercenary(x, y, level),
             EnemyId.Assassin => new Assassin(x, y, level),
             EnemyId.WatchtowerArcher => new WatchtowerArcher(x, y, level),
+
             EnemyId.ChiefBrigand => new ChiefBrigand(x, y, level),
             EnemyId.YannTheSilent => new YannTheSilent(x, y, level),
+
+            // Cultists
+            EnemyId.Novice => new Novice(x, y, level),
+            EnemyId.Acolyte => new Acolyte(x, y, level),
+            EnemyId.Cultist => new Cultist(x, y, level),
+            EnemyId.Zealot => new Zealot(x, y, level),
+            EnemyId.Priest => new Priest(x, y, level),
+            EnemyId.Champion => new Champion(x, y, level),
+
+            EnemyId.HighPriest => new HighPriest(x, y, level),
+
             _ => throw new ArgumentOutOfRangeException(nameof(EnemyId), enemyId, null)
         };
     }

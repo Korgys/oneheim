@@ -435,6 +435,9 @@
   <data name="NothingToRepair" xml:space="preserve">
     <value>There is nothing to repair here.</value>
   </data>
+  <data name="Novice" xml:space="preserve">
+    <value>Novice of the fresh meat cult</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -458,6 +461,9 @@
   </data>
   <data name="Picked" xml:space="preserve">
     <value>picked</value>
+  </data>
+  <data name="Pickpocket" xml:space="preserve">
+    <value>Pickpocket</value>
   </data>
   <data name="PlagueGhoul" xml:space="preserve">
     <value>Plague Ghoul</value>
@@ -542,6 +548,9 @@
   </data>
   <data name="ShredArmor" xml:space="preserve">
     <value>shred {0} armor</value>
+  </data>
+  <data name="Skeleton" xml:space="preserve">
+    <value>Skeleton</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
@@ -650,6 +659,9 @@
   </data>
   <data name="WildBear" xml:space="preserve">
     <value>Wild Bear</value>
+  </data>
+  <data name="WildLittleBear" xml:space="preserve">
+    <value>Wild little bear</value>
   </data>
   <data name="Wolf" xml:space="preserve">
     <value>Wolf</value>

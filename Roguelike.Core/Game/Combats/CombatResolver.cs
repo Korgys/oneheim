@@ -79,8 +79,8 @@ public sealed class CombatResolver
                 if (sealOfLivingFlesh != null)
                 {
                     var initialLifePoint = attacker.LifePoint;
-                    defender.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + sealOfLivingFlesh.Value);
-                    lifeStolen += defender.LifePoint - initialLifePoint;
+                    attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + sealOfLivingFlesh.Value);
+                    lifeStolen += attacker.LifePoint - initialLifePoint;
                 }
             }
         }
