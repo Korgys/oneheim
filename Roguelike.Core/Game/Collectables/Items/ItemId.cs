@@ -35,5 +35,7 @@ public enum ItemId
     SauerkrautEffigy = 31,
     ButchersThornChaplet = 32,
     NordheimWatcherLantern = 33,
-    ArbalestBoltOfTheKingsValley = 34
+    ArbalestOfTheKingsValley = 34,
+    HolyWater = 35,
+    LightningAmulet = 36,
 }

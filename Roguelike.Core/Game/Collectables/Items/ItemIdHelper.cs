@@ -20,7 +20,7 @@ public static class ItemIdHelper
             },
             EnemyType.Outlaws => new List<ItemId>
             {
-                ItemId.ArbalestBoltOfTheKingsValley,
+                ItemId.ArbalestOfTheKingsValley,
                 ItemId.NordheimWatcherLantern
             },
             EnemyType.Cultist => new List<ItemId>
@@ -28,9 +28,10 @@ public static class ItemIdHelper
                 ItemId.ButchersThornChaplet,
                 ItemId.SauerkrautEffigy
             },
-            //EnemyType.Demon => new List<ItemId>
-            //{
-            //},
+            EnemyType.Demon => new List<ItemId>
+            {
+                
+            },
             _ => new List<ItemId>()
         };
     }

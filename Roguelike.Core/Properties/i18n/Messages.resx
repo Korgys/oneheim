@@ -141,10 +141,10 @@
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
     <value>A new traveler comes to the base camp !</value>
   </data>
-  <data name="ArbalestBoltOfTheKingsValley" xml:space="preserve">
-    <value>Arbalest bolt of the King's Valley</value>
+  <data name="ArbalestOfTheKingsValley" xml:space="preserve">
+    <value>Arbalest of the King's Valley</value>
   </data>
-  <data name="ArbalestBoltOfTheKingsValleyDescription" xml:space="preserve">
+  <data name="ArbalestOfTheKingsValleyDescription" xml:space="preserve">
     <value>Reduce outlaws armor by {0}%</value>
   </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
@@ -194,6 +194,9 @@
   </data>
   <data name="Assassin" xml:space="preserve">
     <value>Assassin</value>
+  </data>
+  <data name="AzrakelTheForsaken" xml:space="preserve">
+    <value>Azrakel, The Forsaken</value>
   </data>
   <data name="BaseCamp" xml:space="preserve">
     <value>Base Camp</value>
@@ -272,6 +275,12 @@
   </data>
   <data name="Day" xml:space="preserve">
     <value>Day</value>
+  </data>
+  <data name="DemonSlave" xml:space="preserve">
+    <value>Demon slave</value>
+  </data>
+  <data name="DoomReaper" xml:space="preserve">
+    <value>Doom Reaper</value>
   </data>
   <data name="Dropped" xml:space="preserve">
     <value>Dropped</value>
@@ -354,6 +363,12 @@
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Healed {0} HP for {1} gold.</value>
   </data>
+  <data name="Hellhound" xml:space="preserve">
+    <value>Hellhound</value>
+  </data>
+  <data name="HellObelisk" xml:space="preserve">
+    <value>Hell Obelisk</value>
+  </data>
   <data name="HighPriest" xml:space="preserve">
     <value>High Priest Prophet of Flesh</value>
   </data>
@@ -363,8 +378,17 @@
   <data name="HolyBibleDescription" xml:space="preserve">
     <value>Reduce undead strengh by {0}%</value>
   </data>
+  <data name="HolyWater" xml:space="preserve">
+    <value>Holy Water</value>
+  </data>
+  <data name="HolyWaterDescription" xml:space="preserve">
+    <value>Reduce demon armor by {0}%</value>
+  </data>
   <data name="HP" xml:space="preserve">
     <value>HP</value>
+  </data>
+  <data name="Imp" xml:space="preserve">
+    <value>Imp</value>
   </data>
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
@@ -389,6 +413,12 @@
   </data>
   <data name="LifePoint" xml:space="preserve">
     <value>LifePoint</value>
+  </data>
+  <data name="LightningAmulet" xml:space="preserve">
+    <value>Lightning Amulet</value>
+  </data>
+  <data name="LightningAmuletDescription" xml:space="preserve">
+    <value>Reduce demon strengh by {0}%</value>
   </data>
   <data name="LuckyMillorLeftHand" xml:space="preserve">
     <value>Lucky Millor's Left Hand</value>
@@ -446,6 +476,9 @@
   </data>
   <data name="OldGiantWoodenClubDescription" xml:space="preserve">
     <value>Breaks {0} armor when less strength than opponent's armor</value>
+  </data>
+  <data name="Overseer" xml:space="preserve">
+    <value>Overseer</value>
   </data>
   <data name="PaladinNecklace" xml:space="preserve">
     <value>Paladin Necklace</value>
@@ -620,6 +653,9 @@
   </data>
   <data name="TheNightArrives" xml:space="preserve">
     <value>The night arrives</value>
+  </data>
+  <data name="TheSoulbound" xml:space="preserve">
+    <value>Dart, The Soulbound</value>
   </data>
   <data name="TheSunRises" xml:space="preserve">
     <value>The sun rises</value>

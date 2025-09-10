@@ -203,7 +203,7 @@ public sealed class CombatManager
             var watchLantern = player.Inventory.FirstOrDefault(i => i.Id == ItemId.NordheimWatcherLantern);
             if (watchLantern != null) enemy.Strength = (int)Math.Max(1, enemy.Strength * (1 - watchLantern.Value / 100.0));
 
-            var arbalestBolt = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ArbalestBoltOfTheKingsValley);
+            var arbalestBolt = player.Inventory.FirstOrDefault(i => i.Id == ItemId.ArbalestOfTheKingsValley);
             if (arbalestBolt != null) enemy.Armor = (int)Math.Max(0, enemy.Armor * (1 - arbalestBolt.Value / 100.0));
         }
 

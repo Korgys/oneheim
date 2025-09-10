@@ -133,20 +133,20 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Arbalest bolt of the King&apos;s Valley.
+        ///   Recherche une chaîne localisée semblable à Arbalest of the King&apos;s Valley.
         /// </summary>
-        public static string ArbalestBoltOfTheKingsValley {
+        public static string ArbalestOfTheKingsValley {
             get {
-                return ResourceManager.GetString("ArbalestBoltOfTheKingsValley", resourceCulture);
+                return ResourceManager.GetString("ArbalestOfTheKingsValley", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Reduce outlaws armor by {0}%.
         /// </summary>
-        public static string ArbalestBoltOfTheKingsValleyDescription {
+        public static string ArbalestOfTheKingsValleyDescription {
             get {
-                return ResourceManager.GetString("ArbalestBoltOfTheKingsValleyDescription", resourceCulture);
+                return ResourceManager.GetString("ArbalestOfTheKingsValleyDescription", resourceCulture);
             }
         }
         
@@ -291,6 +291,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Assassin {
             get {
                 return ResourceManager.GetString("Assassin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Azrakel, The Forsaken.
+        /// </summary>
+        public static string AzrakelTheForsaken {
+            get {
+                return ResourceManager.GetString("AzrakelTheForsaken", resourceCulture);
             }
         }
         
@@ -525,6 +534,24 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Day {
             get {
                 return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Demon slave.
+        /// </summary>
+        public static string DemonSlave {
+            get {
+                return ResourceManager.GetString("DemonSlave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Doom Reaper.
+        /// </summary>
+        public static string DoomReaper {
+            get {
+                return ResourceManager.GetString("DoomReaper", resourceCulture);
             }
         }
         
@@ -772,6 +799,24 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hellhound.
+        /// </summary>
+        public static string Hellhound {
+            get {
+                return ResourceManager.GetString("Hellhound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hell Obelisk.
+        /// </summary>
+        public static string HellObelisk {
+            get {
+                return ResourceManager.GetString("HellObelisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à High Priest Prophet of Flesh.
         /// </summary>
         public static string HighPriest {
@@ -799,11 +844,38 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Holy Water.
+        /// </summary>
+        public static string HolyWater {
+            get {
+                return ResourceManager.GetString("HolyWater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce demon armor by {0}%.
+        /// </summary>
+        public static string HolyWaterDescription {
+            get {
+                return ResourceManager.GetString("HolyWaterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à HP.
         /// </summary>
         public static string HP {
             get {
                 return ResourceManager.GetString("HP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Imp.
+        /// </summary>
+        public static string Imp {
+            get {
+                return ResourceManager.GetString("Imp", resourceCulture);
             }
         }
         
@@ -876,6 +948,24 @@ namespace Roguelike.Core.Properties.i18n {
         public static string LifePoint {
             get {
                 return ResourceManager.GetString("LifePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lightning Amulet.
+        /// </summary>
+        public static string LightningAmulet {
+            get {
+                return ResourceManager.GetString("LightningAmulet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reduce demon strengh by {0}%.
+        /// </summary>
+        public static string LightningAmuletDescription {
+            get {
+                return ResourceManager.GetString("LightningAmuletDescription", resourceCulture);
             }
         }
         
@@ -1047,6 +1137,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string OldGiantWoodenClubDescription {
             get {
                 return ResourceManager.GetString("OldGiantWoodenClubDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Overseer.
+        /// </summary>
+        public static string Overseer {
+            get {
+                return ResourceManager.GetString("Overseer", resourceCulture);
             }
         }
         
@@ -1569,6 +1668,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string TheNightArrives {
             get {
                 return ResourceManager.GetString("TheNightArrives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Dart, The Soulbound.
+        /// </summary>
+        public static string TheSoulbound {
+            get {
+                return ResourceManager.GetString("TheSoulbound", resourceCulture);
             }
         }
         

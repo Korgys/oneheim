@@ -1,5 +1,6 @@
 ﻿using Roguelike.Core.Game.Characters.Enemies.Bosses;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Cultists;
+using Roguelike.Core.Game.Characters.Enemies.Mobs.Demons;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Humans;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Outlaws;
 using Roguelike.Core.Game.Characters.Enemies.Mobs.Undeads;
@@ -76,6 +77,17 @@ public class EnemyFactory
             EnemyId.Champion => new Champion(x, y, level),
 
             EnemyId.HighPriest => new HighPriest(x, y, level),
+
+            // Demons
+            EnemyId.Imp => new Imp(x, y, level),
+            EnemyId.DemonSlave => new DemonSlave(x, y, level),
+            EnemyId.Hellhound => new Hellhound(x, y, level),
+            EnemyId.Overseer => new Overseer(x, y, level),
+            EnemyId.HellObelisk => new HellObelisk(x, y, level),
+            EnemyId.DoomReaper => new DoomReaper(x, y, level),
+
+            EnemyId.DartTheSoulbound => new DartTheSoulbound(x, y, level),
+            EnemyId.AzrakelTheForsaken => new AzrakelTheForsaken(x, y, level),
 
             _ => throw new ArgumentOutOfRangeException(nameof(EnemyId), enemyId, null)
         };

@@ -275,11 +275,27 @@ public class ItemFactory
                 Value = 20,
                 UpgradableIncrementValue = 10
             },
-            ItemId.ArbalestBoltOfTheKingsValley => new Item
+            ItemId.ArbalestOfTheKingsValley => new Item
             {
                 Id = id,
-                Name = Messages.ArbalestBoltOfTheKingsValley,
-                Effect = Messages.ArbalestBoltOfTheKingsValleyDescription,
+                Name = Messages.ArbalestOfTheKingsValley,
+                Effect = Messages.ArbalestOfTheKingsValleyDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.LightningAmulet => new Item
+            {
+                Id = id,
+                Name = Messages.LightningAmulet,
+                Effect = Messages.LightningAmuletDescription,
+                Value = 20,
+                UpgradableIncrementValue = 10
+            },
+            ItemId.HolyWater => new Item
+            {
+                Id = id,
+                Name = Messages.HolyWater,
+                Effect = Messages.HolyWaterDescription,
                 Value = 20,
                 UpgradableIncrementValue = 10
             },

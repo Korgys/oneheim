@@ -14,5 +14,6 @@ public class Assassin : Enemy
         Vision = 3;
         Name = Messages.Assassin;
         Category = EnemyType.Outlaws;
+        StepsPerTurn = 2; // move really fast
     }
 }

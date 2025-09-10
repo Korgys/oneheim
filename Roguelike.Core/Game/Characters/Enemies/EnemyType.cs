@@ -7,5 +7,5 @@ public enum EnemyType
     Wild,
     Outlaws,
     Cultist,
-    //Demon
+    Demon
 }

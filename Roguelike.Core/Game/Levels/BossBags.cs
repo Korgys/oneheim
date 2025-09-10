@@ -23,6 +23,8 @@ public class BossBags
         { EnemyId.HighPriest, 1 },
         { EnemyId.ChiefBrigand, 1 },
         { EnemyId.YannTheSilent, 1 },
+        { EnemyId.DartTheSoulbound, 1 },
+        { EnemyId.AzrakelTheForsaken, 1 }
     };
 
     public static Dictionary<EnemyId, int> Level10 = new Dictionary<EnemyId, int>
@@ -33,6 +35,8 @@ public class BossBags
         { EnemyId.HighPriest, 1 },
         { EnemyId.ChiefBrigand, 1 },
         { EnemyId.YannTheSilent, 1 },
+        { EnemyId.DartTheSoulbound, 1 },
+        { EnemyId.AzrakelTheForsaken, 1 }
     };
 
     public static Dictionary<EnemyId, int> Level15 = new Dictionary<EnemyId, int>
@@ -43,5 +47,7 @@ public class BossBags
         { EnemyId.HighPriest, 1 },
         { EnemyId.ChiefBrigand, 1 },
         { EnemyId.YannTheSilent, 1 },
+        { EnemyId.DartTheSoulbound, 1 },
+        { EnemyId.AzrakelTheForsaken, 1 }
     };
 }

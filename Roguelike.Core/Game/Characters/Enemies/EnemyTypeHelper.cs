@@ -11,7 +11,7 @@ public static class EnemyTypeHelper
         { EnemyType.Wild,       5 },
         { EnemyType.Outlaws,    3 },
         { EnemyType.Cultist,    3 },
-        //{ EnemyType.Demon,      1 }
+        { EnemyType.Demon,      9 } // TODO: Debug change to 1
     };
 
     /// <summary>
@@ -94,15 +94,15 @@ public static class EnemyTypeHelper
                 EnemyId.Priest,
                 EnemyId.Champion
             },
-            //EnemyType.Demon => new List<EnemyId>
-            //{
-            //    EnemyId.Imp,
-            //    EnemyId.DemonSlave,
-            //    EnemyId.Hellhound,
-            //    EnemyId.Overseer,
-            //    EnemyId.HellObelisk,
-            //    EnemyId.DoomReaper
-            //},
+            EnemyType.Demon => new List<EnemyId>
+            {
+                EnemyId.Imp,
+                EnemyId.DemonSlave,
+                EnemyId.Hellhound,
+                EnemyId.Overseer,
+                EnemyId.HellObelisk,
+                EnemyId.DoomReaper
+            },
             _ => new List<EnemyId>()
         };
     }

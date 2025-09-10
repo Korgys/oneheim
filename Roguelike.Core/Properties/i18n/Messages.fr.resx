@@ -141,10 +141,10 @@
   <data name="ANewTravelerComesToTheBaseCamp" xml:space="preserve">
     <value>Un nouveau voyageur est arrivé au camp !</value>
   </data>
-  <data name="ArbalestBoltOfTheKingsValley" xml:space="preserve">
-    <value>Carreau d'arbalète de la vallée des rois</value>
+  <data name="ArbalestOfTheKingsValley" xml:space="preserve">
+    <value>Arbalète de la vallée des rois</value>
   </data>
-  <data name="ArbalestBoltOfTheKingsValleyDescription" xml:space="preserve">
+  <data name="ArbalestOfTheKingsValleyDescription" xml:space="preserve">
     <value>Réduit l'armure des hors-la-loi de {0}%</value>
   </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
@@ -194,6 +194,9 @@
   </data>
   <data name="Assassin" xml:space="preserve">
     <value>Assassin</value>
+  </data>
+  <data name="AzrakelTheForsaken" xml:space="preserve">
+    <value>Azrakel, le Déchu</value>
   </data>
   <data name="BaseCamp" xml:space="preserve">
     <value>Camp de base</value>
@@ -272,6 +275,12 @@
   </data>
   <data name="Day" xml:space="preserve">
     <value>Jour</value>
+  </data>
+  <data name="DemonSlave" xml:space="preserve">
+    <value>Esclave démoniaque</value>
+  </data>
+  <data name="DoomReaper" xml:space="preserve">
+    <value>Faucheur de l'Apocalypse</value>
   </data>
   <data name="Dropped" xml:space="preserve">
     <value>Lâche</value>
@@ -354,6 +363,12 @@
   <data name="HealedHpForGold" xml:space="preserve">
     <value>Soigné de {0} de vie contre {1} d'or.</value>
   </data>
+  <data name="Hellhound" xml:space="preserve">
+    <value>Chien des enfers</value>
+  </data>
+  <data name="HellObelisk" xml:space="preserve">
+    <value>Obélisque infernal</value>
+  </data>
   <data name="HighPriest" xml:space="preserve">
     <value>Grand prêtre Prophète de la viande</value>
   </data>
@@ -363,8 +378,17 @@
   <data name="HolyBibleDescription" xml:space="preserve">
     <value>Réduit la force des morts-vivants de {0}%</value>
   </data>
+  <data name="HolyWater" xml:space="preserve">
+    <value>Eau bénite</value>
+  </data>
+  <data name="HolyWaterDescription" xml:space="preserve">
+    <value>Réduit l'armure des démons de {0}%</value>
+  </data>
   <data name="HP" xml:space="preserve">
     <value>Vie</value>
+  </data>
+  <data name="Imp" xml:space="preserve">
+    <value>Diablotin</value>
   </data>
   <data name="Inventory" xml:space="preserve">
     <value>Inventaire</value>
@@ -389,6 +413,12 @@
   </data>
   <data name="LifePoint" xml:space="preserve">
     <value>Vie</value>
+  </data>
+  <data name="LightningAmulet" xml:space="preserve">
+    <value>Amulette de lumière</value>
+  </data>
+  <data name="LightningAmuletDescription" xml:space="preserve">
+    <value>Réduit la force des démons de {0}%</value>
   </data>
   <data name="LuckyMillorLeftHand" xml:space="preserve">
     <value>Main Gauche de Millor</value>
@@ -446,6 +476,9 @@
   </data>
   <data name="OldGiantWoodenClubDescription" xml:space="preserve">
     <value>Casse {0} d'armure quand moins de force que l'armure de l'adversaire</value>
+  </data>
+  <data name="Overseer" xml:space="preserve">
+    <value>Surveillant infernal</value>
   </data>
   <data name="PaladinNecklace" xml:space="preserve">
     <value>Pendentif du paladin</value>
@@ -620,6 +653,9 @@
   </data>
   <data name="TheNightArrives" xml:space="preserve">
     <value>La nuit s'installe. Il fait froid et sombre. Quelque chose vous observe dans la nuit ...</value>
+  </data>
+  <data name="TheSoulbound" xml:space="preserve">
+    <value>Dart, l'âme-liée</value>
   </data>
   <data name="TheSunRises" xml:space="preserve">
     <value>Le soleil se lève</value>
