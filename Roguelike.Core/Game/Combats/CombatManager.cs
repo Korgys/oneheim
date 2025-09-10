@@ -67,6 +67,7 @@ public sealed class CombatManager
 
             _ui.RenderTurn(enemy, player, _fightLog.ToArray());
             Thread.Sleep((int)waitTimeInTurn);
+            waitTimeInTurn *= 0.99f; // gradually speed up
 
             var attacker = playerTurn ? (Character)player : enemy;
             var defender = playerTurn ? (Character)enemy : player;
