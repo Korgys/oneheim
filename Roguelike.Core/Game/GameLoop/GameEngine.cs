@@ -1,12 +1,10 @@
 ﻿using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Enemies;
-using Roguelike.Core.Game.Characters.NPCs;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Systems;
 using Roguelike.Core.Game.Systems.Logics;
-using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.GameLoop;
 
@@ -46,7 +44,7 @@ public sealed class GameEngine
         var siegeSystem = new StructureSiegeSystem();
         _runner = new TurnSystemRunner();
         _runner.Register(siegeSystem);
-        _runner.Register(new WaveAndFogSystem());
+        _runner.Register(new WaveAndFogSystem(_playerController));
         _runner.Register(new NpcSpawnSystem());
         _runner.Register(new DayAndNightSystem());
         _runner.Register(new MercenaryPatrolSystem());

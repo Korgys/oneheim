@@ -14,6 +14,13 @@ public sealed class WaveAndFogSystem : ITurnSystem
     private bool _secondBossPlaced = false;
     private bool _thirdBossPlaced = false;
 
+    private PlayerController _playerController;
+
+    public WaveAndFogSystem(PlayerController playerController)
+    {
+        _playerController = playerController;
+    }
+
     public void Update(TurnContext ctx)
     {
         LastMessage = null;
@@ -60,7 +67,10 @@ public sealed class WaveAndFogSystem : ITurnSystem
 
         // Endgame condition
         if (player.Steps > 1515 && !level.Enemies.Any(e => e is Boss))
+        {
             LastMessage = Messages.YouDefeatedAllBossesThanksForPlaying;
+            _playerController.IsGameEnded = true;
+        }
     }
 
     /// <summary>

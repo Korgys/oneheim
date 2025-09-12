@@ -20,7 +20,7 @@ namespace Roguelike.Core.Game.Characters.Players
 
         public bool HasUsedKey { get; private set; } = false;
         public bool HasMovedThisTurn { get; private set; } = false;
-        public bool IsGameEnded { get; private set; } = false;
+        public bool IsGameEnded { get; set; } = false;
         public string GameMessage { get; private set; } = string.Empty;
 
         public PlayerController(

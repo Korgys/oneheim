@@ -1,16 +1,18 @@
 ﻿using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Characters.Enemies.Bosses;
+using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Systems;
 using Roguelike.Core.Game.Systems.Logics;
 using Roguelike.Core.Properties.i18n;
+using Roguelike.Core.Tests.Fakes;
 
 namespace Roguelike.Core.Tests.Game.Systems.Logics;
 
 [TestClass]
 public class WaveAndFogSystemTests
 {
-    private static (WaveAndFogSystem sys, TurnContext ctx, LevelManager level) CreateContext(
+    private static (WaveAndFogSystem sys, TurnContext ctx, LevelManager level, PlayerController playerController) CreateContext(
         Difficulty difficulty = Difficulty.Normal,
         int playerHp = 10,
         int playerSteps = 0)
@@ -28,16 +30,23 @@ public class WaveAndFogSystemTests
 
         var diff = new DifficultyManager(settings.Difficulty);
 
+        var playerController = new PlayerController(
+            level, 
+            settings, 
+            new FakeCombatRenderer(), 
+            new FakeDialogueRenderer(),
+            new FakeTreasurePicker(),
+            new FakeInventoryUI());
         var ctx = new TurnContext(level, settings, diff);
-        var sys = new WaveAndFogSystem();
+        var sys = new WaveAndFogSystem(playerController);
 
-        return (sys, ctx, level);
+        return (sys, ctx, level, playerController);
     }
 
     [TestMethod]
     public void Update_DoesNothing_WhenPlayerDead()
     {
-        var (sys, ctx, level) = CreateContext(playerHp: 0, playerSteps: 8);
+        var (sys, ctx, level, playerController) = CreateContext(playerHp: 0, playerSteps: 8);
 
         sys.Update(ctx);
 
@@ -47,7 +56,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_SpawnsWaveAndWarnsPlayer_AtStep8()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 8);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 8);
 
         sys.Update(ctx);
 
@@ -57,7 +66,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_FogIntensifies_AtStep100()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 100);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 100);
 
         sys.Update(ctx);
 
@@ -67,7 +76,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_PlacesBossAndFog_AtStep515()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 515);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 515);
 
         sys.Update(ctx);
 
@@ -77,7 +86,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_PlacesBossAndFog_AtStep1015()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1015);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 1015);
 
         sys.Update(ctx);
 
@@ -87,7 +96,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_PlacesBossAndFog_AtStep1515()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1515);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 1515);
 
         sys.Update(ctx);
 
@@ -97,7 +106,7 @@ public class WaveAndFogSystemTests
     [TestMethod]
     public void Update_NoBossRemaining_AnnouncesEndgame_AfterStep1516()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1516);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 1516);
 
         // Ensure there is no boss alive on the map.
         // By default LevelManager starts with no enemies; this assert protects intent.
@@ -111,12 +120,13 @@ public class WaveAndFogSystemTests
         sys.Update(ctx);
 
         Assert.AreEqual(Messages.YouDefeatedAllBossesThanksForPlaying, sys.LastMessage);
+        Assert.IsTrue(playerController.IsGameEnded);
     }
 
     [TestMethod]
     public void Update_BossRemaining_NoEndgame_AfterStep1516()
     {
-        var (sys, ctx, level) = CreateContext(playerSteps: 1516);
+        var (sys, ctx, level, playerController) = CreateContext(playerSteps: 1516);
 
         // Simulate a remaining boss on the map
         level.PlaceBoss();
@@ -127,5 +137,6 @@ public class WaveAndFogSystemTests
         sys.Update(ctx);
 
         Assert.IsNull(sys.LastMessage, "When a boss remains after 1516 steps, endgame message must not trigger.");
+        Assert.IsFalse(playerController.IsGameEnded);
     }
 }
