@@ -9,9 +9,9 @@ public static class EnemyTypeHelper
     {
         { EnemyType.Undead,     5 },
         { EnemyType.Wild,       5 },
-        { EnemyType.Outlaws,    3 },
-        { EnemyType.Cultist,    3 },
-        { EnemyType.Demon,      9 } // TODO: Debug change to 1
+        { EnemyType.Outlaws,    4 },
+        { EnemyType.Cultist,    4 },
+        { EnemyType.Demon,      3 } 
     };
 
     /// <summary>

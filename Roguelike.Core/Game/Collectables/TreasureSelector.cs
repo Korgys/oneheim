@@ -1,6 +1,7 @@
 ﻿namespace Roguelike.Core.Game.Collectables;
 
 using Roguelike.Core.Configuration;
+using Roguelike.Core.Extensions;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables.Items;
@@ -93,7 +94,7 @@ public static class TreasureSelector
         };
 
         int idx = picker.Pick(ctx, views);
-        if (idx < 0 || idx >= choices.Count) idx = 0; // defensive
+        if (idx < 0 || idx >= choices.Count) idx = 0;
         return choices[idx];
     }
 
@@ -109,8 +110,6 @@ public static class TreasureSelector
             BonusType.Item => ApplyItemBonus(player, settings, (ItemId)bonus.Value, ui),
             _ => "Unknown bonus type"
         };
-
-    public static void ResetItemPool() => _selectedItemPool.Clear();
 
     /// <summary>
     /// If a stat is clearly dominating (>10 and > other stats), offer it as a bonus.
@@ -173,31 +172,26 @@ public static class TreasureSelector
                 }
 
             case BonusType.LifePoint:
-                return (int)((player.MaxLifePoint - player.LifePoint) * 0.7);
+                return (int)((player.MaxLifePoint - player.LifePoint) * 0.7); // Offer 70% of missing HP
 
             case BonusType.MaxLifePoint:
                 {
-                    int steps = Math.Max(0, player.Steps);
-                    int baseMin, baseMax;
-                    if (steps < 200) { baseMin = 2; baseMax = 4; }
-                    else if (steps < 500) { baseMin = 3; baseMax = 6; }
-                    else if (steps < 800) { baseMin = 4; baseMax = 7; }
-                    else { baseMin = 5; baseMax = 8; }
-
-                    int buildNudge = Math.Max(1, player.LifePoint / 16);
-                    int roll = _random.Next(baseMin + buildNudge, baseMax + buildNudge + 1);
-                    int cap = Math.Max(3, (int)Math.Round(player.MaxLifePoint * 0.20));
-                    return Math.Min(roll, cap);
+                    decimal x = _random.Next(8, 12); // 8-11%
+                    int roll = Math.Max(2, (int)Math.Round(player.MaxLifePoint / x)); // up to ~12.5% of max HP
+                    int minCap = Math.Max(50, player.Steps) / 50; // at least 1, up to 30
+                    return Math.Max(minCap, roll);
                 }
 
             default: // Strength / Armor / Speed
                 {
                     int s = player.Steps switch
                     {
-                        < 200 => _random.Next(1, 3), // 1 or 2
-                        < 600 => _random.Next(2, 4), // 2, 3
-                        < 900 => _random.Next(3, 5), // 3, 4
-                        _     => _random.Next(4, 6)  // 4, 5
+                        < 200  => _random.NextWeighted(new Dictionary<int, int> { { 1, 2 }, { 2, 1 } }),           // 1-1-2
+                        < 400  => _random.Next(1, 3),                                                              // 1-2 (not weighted)
+                        < 600  => _random.NextWeighted(new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 1 } }), // 1-2-2-3
+                        < 800  => _random.Next(2, 4),                                                              // 2-3
+                        < 1200 => _random.Next(2, 5),                                                              // 2-3-4
+                        _      => _random.Next(3, 6)                                                               // 3-4
                     };
 
                     // LuckyMillorLeftHand: +1 proc
@@ -283,13 +277,14 @@ public static class TreasureSelector
 
         static ItemRarity MapHealRarity(int amount, Player p)
         {
-            int missing = Math.Max(0, p.MaxLifePoint - p.LifePoint);
-            double healPct = missing > 0 ? (double)Math.Min(amount, missing) / missing : 0;
-            if (healPct < 0.25) return ItemRarity.Broken;
-            if (healPct < 0.50) return ItemRarity.Common;
-            if (healPct < 0.75) return ItemRarity.Uncommon;
-            if (healPct < 0.95) return ItemRarity.Rare;
-            return ItemRarity.Epic;
+            double ratio = p.MaxLifePoint > 0 ? (p.LifePoint * 100) / p.MaxLifePoint : 0;
+
+            if (ratio > 0.25) return ItemRarity.Broken;
+            if (ratio > 0.16) return ItemRarity.Common;
+            if (ratio > 0.08) return ItemRarity.Uncommon;
+            if (ratio > 0.04) return ItemRarity.Rare;
+            if (ratio > 0.02) return ItemRarity.Epic;
+            return ItemRarity.Legendary;
         }
     }
 

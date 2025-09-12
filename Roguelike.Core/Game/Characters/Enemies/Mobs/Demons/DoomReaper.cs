@@ -13,7 +13,7 @@ public class DoomReaper : Enemy
         Speed = (10 + _random.Next(level)) * level;
         Name = Messages.DoomReaper;
         Category = EnemyType.Demon;
-        Vision = 2; // Normal vision range
+        Vision = 3; // Good vision range
         StepsPerTurn = 2; // move really fast
     }
 }

@@ -9,8 +9,8 @@ public class DemonSlave : Enemy
         LifePoint = (5 + _random.Next(2)) * level;
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(2)) * level;
-        Strength = (5 + _random.Next(2)) * level;
-        Speed = (3 + _random.Next(2)) * level;
+        Strength = (8 + _random.Next(2)) * level;
+        Speed = (5 + _random.Next(2)) * level;
         Vision = 1; // Limited vision range
         Name = Messages.DemonSlave;
         Category = EnemyType.Demon;

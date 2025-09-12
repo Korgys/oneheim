@@ -11,7 +11,7 @@ public class Werewolf : Enemy
         Armor = (8 + _random.Next(0, 4)) * level;
         Strength = (20 + _random.Next(0, 4)) * level;
         Speed = (20 + _random.Next(0, 4)) * level;
-        Vision = 4; // best vision range
+        Vision = 5; // best vision range for a mob
         Name = Messages.Werewolf;
         Category = EnemyType.Wild;
         StepsPerTurn = 2; // move really fast

@@ -9,9 +9,9 @@ public class Imp : Enemy
         LifePoint = (4 + _random.Next(2)) * level;
         MaxLifePoint = LifePoint;
         Armor = (1 + _random.Next(2)) * level;
-        Strength = (3 + _random.Next(2)) * level;
-        Speed = (3 + _random.Next(2)) * level;
-        Vision = 2; // Normal vision range
+        Strength = (5 + _random.Next(2)) * level;
+        Speed = (5 + _random.Next(2)) * level;
+        Vision = 3; // Good vision range
         Name = Messages.Imp;
         Category = EnemyType.Demon;
     }

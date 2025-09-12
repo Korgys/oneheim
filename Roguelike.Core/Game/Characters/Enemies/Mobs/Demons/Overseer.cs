@@ -8,10 +8,10 @@ public class Overseer : Enemy
     {
         LifePoint = (6 + _random.Next(3)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (10 + _random.Next(2)) * level;
-        Strength = (10 + _random.Next(2)) * level;
+        Armor = (15 + _random.Next(2)) * level;
+        Strength = (15 + _random.Next(2)) * level;
         Speed = (6 + _random.Next(2)) * level;
-        Vision = 2; // Normal vision range
+        Vision = 3; // Good vision range
         Name = Messages.Overseer;
         Category = EnemyType.Demon;
     }

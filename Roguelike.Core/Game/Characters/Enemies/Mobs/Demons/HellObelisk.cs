@@ -6,11 +6,11 @@ public class HellObelisk : Enemy
 {
     public HellObelisk(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (10 + _random.Next(3)) * level;
+        LifePoint = (8 + _random.Next(3)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (16 + _random.Next(2)) * level;
-        Strength = (16 + _random.Next(2)) * level;
-        Speed = (10 + _random.Next(2)) * level;
+        Armor = (20 + _random.Next(2)) * level;
+        Strength = (20 + _random.Next(2)) * level;
+        Speed = (8 + _random.Next(2)) * level;
         Name = Messages.HellObelisk;
         Category = EnemyType.Demon;
         StepsPerTurn = 0; // static

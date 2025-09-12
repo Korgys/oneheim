@@ -160,7 +160,7 @@ public sealed class CombatResolver
 
         // Tune slopes/caps depending on who defends (keep your previous values)
         double slope = 0.025;
-        double max = 0.75;
+        double max = 0.85; // Max chances of dodging the attack
 
         // Boots add a flat percentage to player's dodge chance while defending
         double bootsBonus = 0;

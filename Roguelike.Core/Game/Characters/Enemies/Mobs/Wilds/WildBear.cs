@@ -6,14 +6,13 @@ public class WildBear : Enemy
 {
     public WildBear(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (10 + _random.Next(0, 4)) * level + (level - 1);
+        LifePoint = (12 + _random.Next(4)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (3 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (6 + _random.Next(0, 4)) * level + (level - 1);
-        Speed = (5 + _random.Next(0, 2)) * level + (level - 1);
-        Vision = 1;
-        Name = Messages.WildBear;
+        Armor = (4 + _random.Next(2)) * level;
+        Strength = (6 + _random.Next(4)) * level;
+        Speed = (6 + _random.Next(2)) * level;
+        Vision = 2;
+        Name = Messages.WildLittleBear;
         Category = EnemyType.Wild;
-        StepsPerTurn = 1;
     }
 }

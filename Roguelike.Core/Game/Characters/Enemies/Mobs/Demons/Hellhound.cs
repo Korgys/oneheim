@@ -9,9 +9,9 @@ public class Hellhound : Enemy
         LifePoint = (6 + _random.Next(2)) * level;
         MaxLifePoint = LifePoint;
         Armor = (5 + _random.Next(2)) * level;
-        Strength = (8 + _random.Next(2)) * level;
+        Strength = (10 + _random.Next(2)) * level;
         Speed = (8 + _random.Next(2)) * level;
-        Vision = 4; // Very good vision range
+        Vision = 5; // Best vision range in the game for a mob
         StepsPerTurn = 2; // Can move 2 cases per turn
         Name = Messages.Hellhound;
         Category = EnemyType.Demon;
