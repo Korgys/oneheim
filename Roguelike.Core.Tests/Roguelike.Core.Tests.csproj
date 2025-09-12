@@ -9,7 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="coveragereport\**" />
+    <Compile Remove="TestResults\**" />
+    <EmbeddedResource Remove="coveragereport\**" />
+    <EmbeddedResource Remove="TestResults\**" />
+    <None Remove="coveragereport\**" />
+    <None Remove="TestResults\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Roguelike.Core\Roguelike.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
