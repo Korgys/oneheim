@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="coveragereport\**" />
+    <Compile Remove="TestResults\**" />
+    <EmbeddedResource Remove="coveragereport\**" />
+    <EmbeddedResource Remove="TestResults\**" />
+    <None Remove="coveragereport\**" />
+    <None Remove="TestResults\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Roguelike.Core\Roguelike.Core.csproj" />
   </ItemGroup>
 
