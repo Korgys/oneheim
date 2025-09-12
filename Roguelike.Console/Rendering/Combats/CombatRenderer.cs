@@ -20,14 +20,17 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
     {
         Console.Clear();
 
-        int colWidth = 16;
+        int colWidthTitle = 24;
+        int colWidth = 20;
         var enemyHP = $"{enemy.LifePoint}/{enemy.MaxLifePoint}";
         var playerHP = $"{player.LifePoint}/{player.MaxLifePoint}";
 
         Console.WriteLine("Fight!");
         Console.WriteLine();
 
-        Console.WriteLine($"{Player.Character.ToString().PadRight(colWidth)}{enemy.Name.PadLeft(colWidth)}");
+        string playerTitle = $"{Player.Character} {player.Name} ({Messages.Lvl} {player.Level})";
+        string enemyTitle = $"{enemy.Name} ({Messages.Lvl} {enemy.Level})";
+        Console.WriteLine($"{playerTitle.PadRight(colWidthTitle)}{enemyTitle.PadLeft(colWidthTitle)}");
         Console.WriteLine();
         Console.WriteLine($"HP: {playerHP}".PadRight(colWidth) + $"HP: {enemyHP}".PadLeft(colWidth));
 
