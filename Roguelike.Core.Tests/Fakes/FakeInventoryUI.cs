@@ -7,10 +7,9 @@ namespace Roguelike.Core.Tests.Fakes;
 
 public sealed class FakeInventoryUI : IInventoryUI
 {
-    public int PromptDropIndex(Player player, Item newItem, GameSettings settings)
-    {
-        return 0;
-    }
-
     public void Show(object player) { }
+
+    private readonly int _dropIndex;
+    public FakeInventoryUI(int dropIndex) => _dropIndex = dropIndex;
+    public int PromptDropIndex(Player player, Item newItem, GameSettings settings) => _dropIndex;
 }

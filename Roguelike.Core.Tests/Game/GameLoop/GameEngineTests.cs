@@ -23,8 +23,8 @@ namespace Roguelike.Core.Tests.Game.GameLoop
                 clock,
                 new FakeCombatRenderer(),
                 new FakeDialogueRenderer(),
-                new FakeTreasurePicker(),
-                new FakeInventoryUI());
+                new FakeTreasurePicker(0),
+                new FakeInventoryUI(0));
 
             return engine;
         }

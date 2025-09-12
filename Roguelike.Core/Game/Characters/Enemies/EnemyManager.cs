@@ -1,6 +1,5 @@
 ﻿using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Moves;
-using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Combat;
 using Roguelike.Core.Game.Levels;
