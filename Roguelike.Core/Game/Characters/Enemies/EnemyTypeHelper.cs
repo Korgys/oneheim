@@ -25,8 +25,9 @@ public static class EnemyTypeHelper
     /// name="size"/> is less than or equal to 0, an empty list is returned.</returns>
     public static List<EnemyType> GetRandomEnemyTypesBag(int size)
     {
-        if (size <= 0) return new List<EnemyType>();
-
+        if (size <= 0 || size >= Enum.GetNames<EnemyType>().Length) 
+            throw new ArgumentOutOfRangeException($"size out of range in GetRandomEnemyTypesBag. Value={size}");
+        
         // On construit une "liste pondérée" avec répétitions virtuelles
         var weightedList = new List<EnemyType>();
         foreach (var kv in Weights)
@@ -116,6 +117,8 @@ public static class EnemyTypeHelper
     private static EnemyType GetWeightedRandom(List<EnemyType> weightedList, List<EnemyType> excluded)
     {
         var filtered = weightedList.Where(t => !excluded.Contains(t)).ToList();
+        if (filtered.Count == 0) return EnemyType.Unknown;
+
         int index = _random.Next(filtered.Count);
         return filtered[index];
     }

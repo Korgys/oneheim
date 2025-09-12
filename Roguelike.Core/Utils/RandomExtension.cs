@@ -1,5 +1,8 @@
-﻿namespace Roguelike.Core.Extensions;
+﻿namespace Roguelike.Core.Utils;
 
+/// <summary>
+/// Add extension methods to the Random class.
+/// </summary>
 public static class RandomExtensions
 {
     public static T NextWeighted<T>(this Random random, Dictionary<T, int> weights)
@@ -18,7 +21,7 @@ public static class RandomExtensions
                 return kvp.Key;
         }
 
-        // Ne devrait jamais arriver
+        // Should never reach here
         throw new InvalidOperationException("Erreur lors du tirage pondéré");
     }
 }

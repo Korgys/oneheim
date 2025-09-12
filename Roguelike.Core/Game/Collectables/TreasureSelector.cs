@@ -1,7 +1,7 @@
 ﻿namespace Roguelike.Core.Game.Collectables;
 
 using Roguelike.Core.Configuration;
-using Roguelike.Core.Extensions;
+using Roguelike.Core.Utils;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables.Items;
