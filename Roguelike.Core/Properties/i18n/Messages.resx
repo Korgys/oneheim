@@ -147,6 +147,9 @@
   <data name="ArbalestOfTheKingsValleyDescription" xml:space="preserve">
     <value>Reduce outlaws armor by {0}%</value>
   </data>
+  <data name="AreWeSafeHere" xml:space="preserve">
+    <value>Are we safe here ?</value>
+  </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
     <value>Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you're so smart, the night is waiting for you...</value>
   </data>
@@ -158,6 +161,12 @@
   </data>
   <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
     <value>I can heal you. Come again when you will be damaged.</value>
+  </data>
+  <data name="ArminJustTalking1" xml:space="preserve">
+    <value>Be careful out there, it gets dark quickly, it's long, and it's hard to see the danger. Stay close to camp, unless you don't value your life.</value>
+  </data>
+  <data name="ArminJustTalking2" xml:space="preserve">
+    <value>If you ever have to fight, listen carefully. If you have more strength than your opponent, you'll have a chance to deal critical damage and break their armor. If you have more speed, you'll have a chance to dodge their attacks. If you don't have enough health or armor, you'll die.</value>
   </data>
   <data name="ArminMeeting" xml:space="preserve">
     <value>Back again? The wilds look harsh today. Tell me, friend, what may I do for you?</value>
@@ -181,10 +190,17 @@
     <value>That is a heavy purse you carry. May it serve to raise Oneheim anew and kindle fresh hopes.</value>
   </data>
   <data name="ArminOneheimWasASmallVillage" xml:space="preserve">
-    <value>Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/].</value>
+    <value>Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/]. 
+I started rebuilding the village recently, but the surrounding area has become very [red]dangerous[/].</value>
+  </data>
+  <data name="ArminPreventionForTheSiege" xml:space="preserve">
+    <value>That's a good question. Currently, the stockades seem to be holding (status: {0}/{1}). [red]4 well-organized enemies[/] or one [red]very powerful[/] enemy could launch an assault and the structure would take [red]damage[/]. It's possible during assaults that some enemies could manage to enter the camp. And in the worst case, the camp would be [red]destroyed[/], we would be overwhelmed and we would no longer have any means of protecting ourselves. That's why it's important to act quickly, to repel the assault, if possible to recruit as many as possible to defend ourselves.</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
     <value>I can repair the camp for {0} gold (+{1} HP).</value>
+  </data>
+  <data name="ArminTalkingAboutBoss" xml:space="preserve">
+    <value>I'm sure I saw him! I'm not crazy. There's a [red]{0}[/] prowling the plains.</value>
   </data>
   <data name="Armor" xml:space="preserve">
     <value>Armor</value>
@@ -405,6 +421,9 @@
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Keep current inventory</value>
   </data>
+  <data name="KilledBy" xml:space="preserve">
+    <value>Killed by</value>
+  </data>
   <data name="LeglessZombie" xml:space="preserve">
     <value>Legless Zombie</value>
   </data>
@@ -468,6 +487,12 @@
   <data name="Novice" xml:space="preserve">
     <value>Novice of the fresh meat cult</value>
   </data>
+  <data name="NpcDiedKilledBy" xml:space="preserve">
+    <value>{0} died, killed by {1}.</value>
+  </data>
+  <data name="NpcIsAttacked" xml:space="preserve">
+    <value>{0} is attacked ({1}/{2}).</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -476,6 +501,9 @@
   </data>
   <data name="OldGiantWoodenClubDescription" xml:space="preserve">
     <value>Breaks {0} armor when less strength than opponent's armor</value>
+  </data>
+  <data name="OneheimGuard" xml:space="preserve">
+    <value>Oneheim Guard</value>
   </data>
   <data name="Overseer" xml:space="preserve">
     <value>Overseer</value>
@@ -732,6 +760,9 @@
   <data name="YouDodgedTheEnemyAttackAndGainHp" xml:space="preserve">
     <value>You dodged the enemy's attack and gain {0} HP !</value>
   </data>
+  <data name="YouDoNotHaveEnoughGold" xml:space="preserve">
+    <value>You do not have enough gold.</value>
+  </data>
   <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
     <value>You found a treasure! Choose your bonus:</value>
   </data>
@@ -758,5 +789,26 @@
   </data>
   <data name="Zombie" xml:space="preserve">
     <value>Zombie</value>
+  </data>
+  <data name="IchemIntro1" xml:space="preserve">
+    <value>Greetings, wanderer. Care to buy a boon for {0} gold?</value>
+  </data>
+  <data name="IchemIntro2" xml:space="preserve">
+    <value>Back again, wanderer ? Care to buy a boon for {0} gold?</value>
+  </data>
+  <data name="BuyBoonForGold" xml:space="preserve">
+    <value>Buy a boon ({0} gold)</value>
+  </data>
+  <data name="Purchased" xml:space="preserve">
+    <value>Purchased</value>
+  </data>
+  <data name="ChestPriceHasIncreased" xml:space="preserve">
+    <value>Chest price has increased.</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="IchemIntroPurchase1" xml:space="preserve">
+    <value>Have you found what you're looking for? Yes, certainly, but you want more, don't you? I can make you another chest, for only [gold]{0} gold[/], are you interested ?</value>
   </data>
 </root>

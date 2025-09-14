@@ -3,6 +3,7 @@ using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Levels;
+using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.Characters.NPCs.Dialogues.Texts;
 
@@ -14,6 +15,7 @@ public static partial class NpcDialogues
     public static void BuildForIchem(Npc npc, LevelManager level, GameSettings settings, ITreasurePicker picker, IInventoryUI inventoryUI)
     {
         var player = level.Player;
+        bool hasPurchased = false;
 
         int GetCurrentPrice()
         {
@@ -38,46 +40,50 @@ public static partial class NpcDialogues
         };
 
         var talk = Node(() => smallTalkLines[_random.Next(smallTalkLines.Length)]);
-        talk.Options.Add(new DialogueOption { Label = "Back", Next = null });
+        talk.Options.Add(new DialogueOption { Label = Messages.Back, Next = null });
 
         DialogueNode? mainMenu = null;
 
         mainMenu = Node(() =>
         {
-            var intro = npc.HasMet ? "Back again, wanderer?" : "Greetings, wanderer.";
-            return $"{intro} Care to buy a boon for {GetCurrentPrice()} gold?";
+            if (hasPurchased) return string.Format(Messages.IchemIntroPurchase1, GetCurrentPrice());
+
+            return npc.HasMet
+             ? string.Format(Messages.IchemIntro2, GetCurrentPrice())
+             : string.Format(Messages.IchemIntro1, GetCurrentPrice());
         });
 
         // Shop (uses the picker)
         mainMenu.Options.Add(new DialogueOption
         {
-            LabelFactory = () => $"Buy a boon ({GetCurrentPrice()} gold)",
+            LabelFactory = () => string.Format(Messages.BuyBoonForGold, GetCurrentPrice()),
             Action = () =>
             {
                 int price = GetCurrentPrice();
-                if (player.Gold < price) return "You do not have enough gold.";
+                if (player.Gold < price) return Messages.YouDoNotHaveEnoughGold;
 
                 // Let presentation layer drive the choice
                 var chosen = TreasureSelector.ChooseWithPicker(player, settings, picker);
 
                 player.Gold -= price;
                 level.ChestPrice = (int)(level.ChestPrice * 1.06m); // soft inflation
+                hasPurchased = true; // only for dialogue text purposes
                 var msg = TreasureSelector.ApplyBonus(chosen, player, settings, inventoryUI);
 
-                return $"Purchased: {msg}\nChest price has increased.";
+                return $"{Messages.Purchased}: {msg}\n{Messages.ChestPriceHasIncreased}";
             },
             Next = mainMenu
         });
 
         mainMenu.Options.Add(new DialogueOption
         {
-            Label = "Just chat",
+            Label = Messages.JustTalking,
             Next = talk
         });
 
         mainMenu.Options.Add(new DialogueOption
         {
-            Label = "Goodbye",
+            Label = Messages.Goodbye,
             Next = null
         });
 

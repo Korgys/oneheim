@@ -1,8 +1,11 @@
-﻿namespace Roguelike.Core.Game.Characters.NPCs.Allies;
+﻿
+using Roguelike.Core.Properties.i18n;
+
+namespace Roguelike.Core.Game.Characters.NPCs.Allies;
 
 public class Mercenary : Character
 {
-    public override string Name { get; set; } = "Oneheim Guard";
+    public override string Name { get; set; } = Messages.OneheimGuard;
     public char Character { get; set; } = 'é';
     public int StepsPerTurn { get; set; } = 1;
 

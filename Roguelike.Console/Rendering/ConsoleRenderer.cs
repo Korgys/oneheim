@@ -188,6 +188,8 @@ public sealed class ConsoleRenderer : IRenderer
             if (message.Contains(Messages.BeCarefullYouAreNotSafeHere)
                 || message.Contains(Messages.IsUnderAttack)
                 || message.Contains(string.Format(Messages.HasBeenDestroy, Messages.BaseCamp))
+                || message.Contains(Messages.GameOverPressEnterToExit)
+                || message.Contains(Messages.KilledBy)
                 || message.Contains(Messages.ABossArrives))
                 Console.ForegroundColor = ConsoleColor.Red;
             else if (message.Contains(Messages.ANewTravelerComesToTheBaseCamp) 

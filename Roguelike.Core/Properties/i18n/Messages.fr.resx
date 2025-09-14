@@ -147,6 +147,9 @@
   <data name="ArbalestOfTheKingsValleyDescription" xml:space="preserve">
     <value>Réduit l'armure des hors-la-loi de {0}%</value>
   </data>
+  <data name="AreWeSafeHere" xml:space="preserve">
+    <value>Sommes-nous en sécurité ici ?</value>
+  </data>
   <data name="ArminAreYouSerious" xml:space="preserve">
     <value>Tu es sérieux ? Alors que je viens juste de te l'expliquer ? Tu écoutes à moitié ? Es-tu de ces gens qui tapotent leur doigt pour aller plus vite dans les discussions ? Tu sais quoi ? Vas-y si tu es si malin, [blue]la nuit t'attend[/] ...</value>
   </data>
@@ -158,6 +161,12 @@
   </data>
   <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
     <value>Je peux vous soigner contre de l'or si jamais vous vous blessez dans votre aventure.</value>
+  </data>
+  <data name="ArminJustTalking1" xml:space="preserve">
+    <value>Fais attention à toi dehors, la nuit tombe vite, elle est longue et il est difficile d'y voir le danger. Reste près du camp, sauf si tu ne tiens pas à ta vie.</value>
+  </data>
+  <data name="ArminJustTalking2" xml:space="preserve">
+    <value>Si jamais tu dois combattre, écoute attentivement. Si tu as plus de force que ton adversaire, tu auras une chance de lui infliger des dégâts critiques et de lui casser son armure. Si tu as plus de vitesse, tu auras une chance d'esquiver ses attaques. Si tu n'as pas assez de vie ou d'armure, tu mourras.</value>
   </data>
   <data name="ArminMeeting" xml:space="preserve">
     <value>Déjà de retour ? L’extérieur du camp paraît bien rude en ce jour. Que puis-je faire pour toi, ami ?</value>
@@ -181,10 +190,16 @@
     <value>Voilà une bourse bien lourde que tu portes là. Puisse-t-elle servir à relever Oneheim et à bâtir de nouvelles espérances.</value>
   </data>
   <data name="ArminOneheimWasASmallVillage" xml:space="preserve">
-    <value>Oneheim était un petit village au nord-est du [gold]vieux royaume[/]. Il y a 21 moissons de celà, une [red]terrible catastrophe[/] eu lieu et le village fut [red]détruit[/].</value>
+    <value>Oneheim était un petit village au nord-est du [gold]vieux royaume[/]. Il y a 21 moissons de cela, une [red]terrible catastrophe[/] eu lieu et le village fut [red]détruit[/]. J'ai commencé à reconstruire le village il y a peu, mais les environs sont devenus très [red]dangereux[/].</value>
+  </data>
+  <data name="ArminPreventionForTheSiege" xml:space="preserve">
+    <value>C'est une bonne question. Actuellement, les palissades ont l'air de tenir (état: {0}/{1}). [red]4 ennemis[/] bien organisés ou un ennemi [red]très puissant[/] pourraient lancer un assaut et la structure prendrait des [red]dégâts[/]. Il est possible lors des assauts que certains ennemis parviennent à entrer dans le camp. Et dans le pire des cas, le camp serait [red]détruit[/], nous serions submergés et nous n'aurions plus aucun moyen de nous protéger. C'est pourquoi, il est important d'agir vite, de repousser l'assaut, si possible de recruter un maximum pour se défendre.</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
     <value>Je peux réparer le camp pour {0} d'or (+{1} de vie du camp).</value>
+  </data>
+  <data name="ArminTalkingAboutBoss" xml:space="preserve">
+    <value>Je suis sûr de l'avoir vu ! Je ne suis pas fou. Il y a un [red]{0}[/] qui rode dans les plaines.</value>
   </data>
   <data name="Armor" xml:space="preserve">
     <value>Armure</value>
@@ -405,6 +420,9 @@
   <data name="KeepCurrentInventory" xml:space="preserve">
     <value>Garder l'inventaire actuel</value>
   </data>
+  <data name="KilledBy" xml:space="preserve">
+    <value>tué par</value>
+  </data>
   <data name="LeglessZombie" xml:space="preserve">
     <value>Zombie rampant</value>
   </data>
@@ -468,6 +486,12 @@
   <data name="Novice" xml:space="preserve">
     <value>Novice du culte de la viande fraîche</value>
   </data>
+  <data name="NpcDiedKilledBy" xml:space="preserve">
+    <value>{0} est mort, tué par {1}.</value>
+  </data>
+  <data name="NpcIsAttacked" xml:space="preserve">
+    <value>{0} est attaqué ({1}/{2}).</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -476,6 +500,9 @@
   </data>
   <data name="OldGiantWoodenClubDescription" xml:space="preserve">
     <value>Casse {0} d'armure quand moins de force que l'armure de l'adversaire</value>
+  </data>
+  <data name="OneheimGuard" xml:space="preserve">
+    <value>Garde d'Oneheim</value>
   </data>
   <data name="Overseer" xml:space="preserve">
     <value>Surveillant infernal</value>
@@ -732,6 +759,9 @@
   <data name="YouDodgedTheEnemyAttackAndGainHp" xml:space="preserve">
     <value>Vous avez esquivé l'attaque de votre ennemi et volé {0} de vie !</value>
   </data>
+  <data name="YouDoNotHaveEnoughGold" xml:space="preserve">
+    <value>Vous n'avez pas assez d'or pour cela.</value>
+  </data>
   <data name="YouFoundATreasureChooseABonus" xml:space="preserve">
     <value>Vous avez trouvé un trésor ! Choisissez un bonus :</value>
   </data>
@@ -758,5 +788,26 @@
   </data>
   <data name="Zombie" xml:space="preserve">
     <value>Zombie</value>
+  </data>
+  <data name="IchemIntro1" xml:space="preserve">
+    <value>Salutations voyageur. Es-tu intéressé par un de ces coffres que j'ai trouvé dehors ? C'est seulement {0} or.</value>
+  </data>
+  <data name="IchemIntro2" xml:space="preserve">
+    <value>Déjà de retour ? Es-tu intéressé par un de ces coffres que j'ai trouvé dehors ? C'est seulement {0} or.</value>
+  </data>
+  <data name="BuyBoonForGold" xml:space="preserve">
+    <value>Acheter un coffre ({0} or)</value>
+  </data>
+  <data name="Purchased" xml:space="preserve">
+    <value>Acheté</value>
+  </data>
+  <data name="ChestPriceHasIncreased" xml:space="preserve">
+    <value>Le prix des coffres à augmenté.</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="IchemIntroPurchase1" xml:space="preserve">
+    <value>As-tu trouvé ton bonheur ? Oui certainement, mais tu en veux plus n'est-ce pas ? Je peux te faire un autre coffre, pour seulement [gold]{0} or[/], ça t'intéresse ?</value>
   </data>
 </root>

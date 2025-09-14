@@ -1,4 +1,5 @@
-﻿using Roguelike.Core.Game.Characters.NPCs.Dialogues;
+﻿using Roguelike.Core.Game.Characters.Enemies.Bosses;
+using Roguelike.Core.Game.Characters.NPCs.Dialogues;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Structures;
@@ -20,8 +21,6 @@ public sealed class ArminService
     private Player Player => _level.Player;
     private Structure? BaseCamp => _level.Structures.FirstOrDefault();
 
-    // ----- Heal rules -----
-
     public bool CanHealNow =>
         Player.LifePoint < Player.MaxLifePoint &&
         HealAmount > 0;
@@ -34,9 +33,7 @@ public sealed class ArminService
             return Math.Min(Player.Gold, missing);
         }
     }
-
-    public int HealCost => HealAmount; // 1 gold = 1 HP
-
+    public int HealCost => HealAmount * Math.Max(1, Player.Steps / 300);
     public string HealAction()
     {
         if (Player.LifePoint >= Player.MaxLifePoint) return Messages.AlreadyFullHealth;
@@ -52,26 +49,19 @@ public sealed class ArminService
         int healed = Player.LifePoint - before;
         return string.Format(Messages.HealedHpForGold, healed, cost);
     }
-
     public string HealPitchText() =>
         Player.LifePoint != Player.MaxLifePoint
             ? string.Format(Messages.ArminHealPitch, HealCost, HealAmount)
             : Messages.ArminHealPitchPlayerFullLife;
 
-    // ----- Repair rules -----
-
     private int MissingCampHp => BaseCamp is null ? 0 : Math.Max(0, BaseCamp.MaxHp - BaseCamp.Hp);
-
     public bool CanRepairNow =>
         BaseCamp is not null &&
         BaseCamp.Hp < BaseCamp.MaxHp &&
         RepairAmount > 0;
-
     public int RepairAmount =>
         BaseCamp is null ? 0 : Math.Min(Player.Gold, MissingCampHp);
-
     public int RepairCost => RepairAmount; // 1 gold = 1 HP
-
     public string RepairAction()
     {
         if (BaseCamp is null) return Messages.NoCampToRepair;
@@ -88,7 +78,6 @@ public sealed class ArminService
         int repaired = BaseCamp.Hp - before;
         return string.Format(Messages.RepairedCampForHpCost, repaired, cost);
     }
-
     public string RepairPitchText()
     {
         if (BaseCamp is null) return Messages.NothingToRepair;
@@ -98,17 +87,16 @@ public sealed class ArminService
             : string.Format(Messages.ArminRepairPitch, RepairCost, RepairAmount);
     }
 
-    // ----- Other -----
-
     public string PickOther()
     {
-        return Messages.WhereAreWe;
+        if (!ArminInteractions.HasExplainedWhereWeAre && Player.Steps < 115)
+            return Messages.WhereAreWe;
 
-        //return Messages.JustTalking;
+        if (!ArminInteractions.HasPreventedForTheSiege && Player.Steps < 300 && _level.Structures.Any(s => s.Name == Messages.BaseCamp))
+            return Messages.AreWeSafeHere;
+
+        return Messages.JustTalking;
     }
-
-    // ----- Node factory -----
-
     public (DialogueNode Hub, DialogueNode Heal, DialogueNode Repair, DialogueNode Other) BuildServiceNodes(string otherText)
     {
         var hub = new DialogueNode { Text = () => Messages.WhatElseCanIDo };
@@ -149,6 +137,32 @@ public sealed class ArminService
                         ArminInteractions.HasExplainedWhereWeAre = true;
                         return Messages.ArminOneheimWasASmallVillage;
                     }
+                }
+                else if (otherText == Messages.AreWeSafeHere)
+                {
+                    ArminInteractions.HasPreventedForTheSiege = true;
+                    var baseCamp = _level.Structures.First(s => s.Name == Messages.BaseCamp);
+                    return string.Format(Messages.ArminPreventionForTheSiege, baseCamp.Hp, baseCamp.MaxHp);
+                }
+                else if (otherText == Messages.JustTalking)
+                {
+                    // Specific contextual sayings
+                    var boss = _level.Enemies.FirstOrDefault(e => e is Boss);
+                    if (boss != null)
+                    {
+                        return string.Format(Messages.ArminTalkingAboutBoss, boss.Name);
+                    }
+
+                    // Random saying
+                    var sayings = new[]
+                    {
+                        Messages.ArminJustTalking1,
+                        Messages.ArminJustTalking2,
+                        // TODO: will ad more later
+                    };
+                    var rand = new Random();
+                    int idx = rand.Next(sayings.Length);
+                    return sayings[idx];
                 }
                 else return "";
             }

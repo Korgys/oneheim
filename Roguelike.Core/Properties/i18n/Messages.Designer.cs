@@ -151,6 +151,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are we safe here ?.
+        /// </summary>
+        public static string AreWeSafeHere {
+            get {
+                return ResourceManager.GetString("AreWeSafeHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Are you serious? When I just explained it to you? Are you half-listening? Are you one of those people who taps their finger to move faster in conversations? You know what? Go ahead if you&apos;re so smart, the night is waiting for you....
         /// </summary>
         public static string ArminAreYouSerious {
@@ -183,6 +192,24 @@ namespace Roguelike.Core.Properties.i18n {
         public static string ArminHealPitchPlayerFullLife {
             get {
                 return ResourceManager.GetString("ArminHealPitchPlayerFullLife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Be careful out there, it gets dark quickly, it&apos;s long, and it&apos;s hard to see the danger. Stay close to camp, unless you don&apos;t value your life..
+        /// </summary>
+        public static string ArminJustTalking1 {
+            get {
+                return ResourceManager.GetString("ArminJustTalking1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à If you ever have to fight, listen carefully. If you have more strength than your opponent, you&apos;ll have a chance to deal critical damage and break their armor. If you have more speed, you&apos;ll have a chance to dodge their attacks. If you don&apos;t have enough health or armor, you&apos;ll die..
+        /// </summary>
+        public static string ArminJustTalking2 {
+            get {
+                return ResourceManager.GetString("ArminJustTalking2", resourceCulture);
             }
         }
         
@@ -250,11 +277,21 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/]..
+        ///   Recherche une chaîne localisée semblable à Oneheim was a small village in the northeast of the old kingdom. There was a [red]disaster[/] and the village was [red]destroyed[/]. 
+        ///I started rebuilding the village recently, but the surrounding area has become very [red]dangerous[/]..
         /// </summary>
         public static string ArminOneheimWasASmallVillage {
             get {
                 return ResourceManager.GetString("ArminOneheimWasASmallVillage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à That&apos;s a good question. Currently, the stockades seem to be holding (status: {0}/{1}). [red]4 well-organized enemies[/] or one [red]very powerful[/] enemy could launch an assault and the structure would take [red]damage[/]. It&apos;s possible during assaults that some enemies could manage to enter the camp. And in the worst case, the camp would be [red]destroyed[/], we would be overwhelmed and we would no longer have any means of protecting ourselves. That&apos;s why it&apos;s important to act quickly, to repel the assaul [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        public static string ArminPreventionForTheSiege {
+            get {
+                return ResourceManager.GetString("ArminPreventionForTheSiege", resourceCulture);
             }
         }
         
@@ -264,6 +301,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string ArminRepairPitch {
             get {
                 return ResourceManager.GetString("ArminRepairPitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à I&apos;m sure I saw him! I&apos;m not crazy. There&apos;s a [red]{0}[/] prowling the plains..
+        /// </summary>
+        public static string ArminTalkingAboutBoss {
+            get {
+                return ResourceManager.GetString("ArminTalkingAboutBoss", resourceCulture);
             }
         }
         
@@ -300,6 +346,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string AzrakelTheForsaken {
             get {
                 return ResourceManager.GetString("AzrakelTheForsaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -412,6 +467,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Buy a boon ({0} gold).
+        /// </summary>
+        public static string BuyBoonForGold {
+            get {
+                return ResourceManager.GetString("BuyBoonForGold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The camp is already in perfect shape..
         /// </summary>
         public static string CampAlreadyRepair {
@@ -471,6 +535,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Champion {
             get {
                 return ResourceManager.GetString("Champion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chest price has increased..
+        /// </summary>
+        public static string ChestPriceHasIncreased {
+            get {
+                return ResourceManager.GetString("ChestPriceHasIncreased", resourceCulture);
             }
         }
         
@@ -871,6 +944,33 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Greetings, wanderer. Care to buy a boon for {0} gold?.
+        /// </summary>
+        public static string IchemIntro1 {
+            get {
+                return ResourceManager.GetString("IchemIntro1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back again, wanderer ? Care to buy a boon for {0} gold?.
+        /// </summary>
+        public static string IchemIntro2 {
+            get {
+                return ResourceManager.GetString("IchemIntro2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Have you found what you&apos;re looking for? Yes, certainly, but you want more, don&apos;t you? I can make you another chest, for only [gold]{0} gold[/], are you interested ?.
+        /// </summary>
+        public static string IchemIntroPurchase1 {
+            get {
+                return ResourceManager.GetString("IchemIntroPurchase1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Imp.
         /// </summary>
         public static string Imp {
@@ -921,6 +1021,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string KeepCurrentInventory {
             get {
                 return ResourceManager.GetString("KeepCurrentInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Killed by.
+        /// </summary>
+        public static string KilledBy {
+            get {
+                return ResourceManager.GetString("KilledBy", resourceCulture);
             }
         }
         
@@ -1114,6 +1223,24 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} died, killed by {1}..
+        /// </summary>
+        public static string NpcDiedKilledBy {
+            get {
+                return ResourceManager.GetString("NpcDiedKilledBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} is attacked ({1}/{2})..
+        /// </summary>
+        public static string NpcIsAttacked {
+            get {
+                return ResourceManager.GetString("NpcIsAttacked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         public static string Ok {
@@ -1137,6 +1264,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string OldGiantWoodenClubDescription {
             get {
                 return ResourceManager.GetString("OldGiantWoodenClubDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Oneheim Guard.
+        /// </summary>
+        public static string OneheimGuard {
+            get {
+                return ResourceManager.GetString("OneheimGuard", resourceCulture);
             }
         }
         
@@ -1254,6 +1390,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string ProspectorKeyDescription {
             get {
                 return ResourceManager.GetString("ProspectorKeyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Purchased.
+        /// </summary>
+        public static string Purchased {
+            get {
+                return ResourceManager.GetString("Purchased", resourceCulture);
             }
         }
         
@@ -1902,6 +2047,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string YouDodgedTheEnemyAttackAndGainHp {
             get {
                 return ResourceManager.GetString("YouDodgedTheEnemyAttackAndGainHp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You do not have enough gold..
+        /// </summary>
+        public static string YouDoNotHaveEnoughGold {
+            get {
+                return ResourceManager.GetString("YouDoNotHaveEnoughGold", resourceCulture);
             }
         }
         

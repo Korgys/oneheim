@@ -30,7 +30,7 @@ public class LevelManager
 
     public char[,] Grid { get; } = new char[GridHeight, GridWidth];
 
-    public Player Player { get; private set; }
+    public Player Player { get; set; }
     public List<Treasure> Treasures { get; } = new();
     public List<Enemy> Enemies { get; } = new();
     public List<Npc> Npcs { get; } = new();
@@ -54,7 +54,7 @@ public class LevelManager
 
     public bool IsBaseCampUnderAttack()
     {
-        var baseCamp = Structures.FirstOrDefault(s => s.Name == "Base Camp");
+        var baseCamp = Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (baseCamp == null) return false;
 
         // Collect walls once
@@ -82,8 +82,8 @@ public class LevelManager
             }
         }
 
-        // Rule: at least 3 attackers or any boss adjacent
-        return attackers >= 3 || bossAdjacent;
+        // Rule: at least 4 attackers or any boss adjacent
+        return attackers >= 4 || bossAdjacent;
     }
 
     public void PlaceNpc(NpcId npcId, int x, int y)

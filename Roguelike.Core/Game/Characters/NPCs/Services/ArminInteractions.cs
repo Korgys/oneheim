@@ -3,4 +3,5 @@
 public static class ArminInteractions
 {
     public static bool HasExplainedWhereWeAre = false;
+    public static bool HasPreventedForTheSiege = false;
 }

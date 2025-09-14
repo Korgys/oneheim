@@ -9,8 +9,7 @@ public static partial class NpcDialogues
 {
     public static void BuildForArmin(Npc npc, LevelManager level)
     {
-        var player = level.Player;
-        var baseCamp = level.Structures.FirstOrDefault();
+        var player = level.Player;        
         bool hasBoss = level.Enemies.Any(e => e is Boss);
         int steps = player.Steps;
 
@@ -55,7 +54,7 @@ public static partial class NpcDialogues
         {
             if (!npc.HasMet) return firstIntro;
 
-            if (baseCamp is not null && level.IsBaseCampUnderAttack()) return baseCampUnderAttackIntro;
+            if (level.IsBaseCampUnderAttack()) return baseCampUnderAttackIntro;
             if (player.GetLifeRatio() <= 0.20) return playerLowLifeIntro;
             if (player.Gold > 1000) return playerRichIntro;
 

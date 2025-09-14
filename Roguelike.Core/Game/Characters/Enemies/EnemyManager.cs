@@ -36,6 +36,14 @@ public sealed class EnemyManager
         _mover = new GreedyMover();
     }
 
+    /// <summary>
+    /// Moves all enemies on the current level, updating their positions and resolving any combat interactions with the
+    /// player.
+    /// </summary>
+    /// <remarks>This method processes enemy movement based on their vision, movement speed, and the player's
+    /// position. Enemies attempt to move toward the player if they are within range; otherwise, they move randomly. 
+    /// If an enemy reaches the player, combat is initiated. The method also accounts for static obstacles,  dynamic
+    /// enemy positions, and special player effects such as invisibility.</remarks>
     public void MoveEnemies()
     {
         CombatMessage = null;
@@ -89,6 +97,23 @@ public sealed class EnemyManager
                 }
                 else
                 {
+                    // Check if adjacent to npc
+                    var npc = _level.Npcs.FirstOrDefault(m => Math.Abs(m.X - enemy.X) + Math.Abs(m.Y - enemy.Y) == 1);
+                    if (npc != null)
+                    {
+                        // Attack npc
+                        npc.TakeDamage(enemy.Strength);
+
+                        if (npc.LifePoint == 0)
+                        {
+                            CombatMessage = string.Format(Messages.NpcDiedKilledBy, npc.Name, enemy.Name);
+                            _level.Npcs.Remove(npc);
+                        }
+                        else CombatMessage = string.Format(Messages.NpcIsAttacked, npc.Name, npc.LifePoint, npc.MaxLifePoint);
+                        break;
+                    }
+
+                    // Random move
                     if (!TryStepRandom(enemy, occupied, staticBlocked, toFight))
                         break;
                 }

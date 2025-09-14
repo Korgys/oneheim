@@ -25,7 +25,7 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
         var enemyHP = $"{enemy.LifePoint}/{enemy.MaxLifePoint}";
         var playerHP = $"{player.LifePoint}/{player.MaxLifePoint}";
 
-        Console.WriteLine("Fight!");
+        Console.WriteLine(Messages.Fight);
         Console.WriteLine();
 
         string playerTitle = $"{Player.Character} {player.Name} ({Messages.Lvl} {player.Level})";
@@ -73,7 +73,7 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
         }
 
         Console.WriteLine();
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine(Messages.PressAnyKeyToContinue);
         Console.ReadKey(true);
     }
 
