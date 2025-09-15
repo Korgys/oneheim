@@ -1,6 +1,6 @@
 # oneheim
 
-A detailled roguelike in console.
+A detailed roguelike in console.
 
 Explore the region :
 

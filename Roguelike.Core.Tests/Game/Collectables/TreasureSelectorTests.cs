@@ -1,7 +1,12 @@
-﻿using Roguelike.Core.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Roguelike.Core.Configuration;
+using Roguelike.Core.Game.Characters.Enemies;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
+using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Tests.Fakes;
 
 namespace Roguelike.Core.Tests.Game.Collectables;
@@ -104,8 +109,59 @@ public class TreasureSelectorTests
             Assert.IsTrue(choices.Count <= 3);
             hasStrength = choices.Any(t => t.Type == BonusType.Strength);
         }
-        
+
         Assert.IsTrue(hasStrength, "Dominant Strength should lead to a Strength-focused bonus being added.");
+    }
+
+
+    [TestMethod]
+    public void EnsureItemPoolInitialization_ExcludesEnemySpecificItems()
+    {
+        var forcedEnemyTypes = new[] { EnemyType.Undead, EnemyType.Wild, EnemyType.Outlaws, EnemyType.Cultist };
+        var originalEnemyTypes = LevelManager.EnemyTypes.ToList();
+
+        var poolField = typeof(TreasureSelector).GetField("_selectedItemPool", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.IsNotNull(poolField, "Expected TreasureSelector to expose _selectedItemPool field.");
+
+        var originalPoolReference = (List<ItemId>)poolField!.GetValue(null)!;
+        var originalPoolSnapshot = originalPoolReference.ToList();
+
+        var ensureMethod = typeof(TreasureSelector).GetMethod("EnsureItemPoolInitialized", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.IsNotNull(ensureMethod, "EnsureItemPoolInitialized should exist.");
+
+        try
+        {
+            LevelManager.EnemyTypes.Clear();
+            LevelManager.EnemyTypes.AddRange(forcedEnemyTypes);
+
+            var excludedItems = forcedEnemyTypes
+                .SelectMany(ItemIdHelper.GetItemIdsSpecificByEnemyType)
+                .ToHashSet();
+
+            Assert.IsTrue(excludedItems.Count > 0, "Test setup should exclude at least one item.");
+
+            for (int attempt = 0; attempt < 5; attempt++)
+            {
+                poolField.SetValue(null, new List<ItemId>());
+                ensureMethod!.Invoke(null, null);
+
+                var currentPool = (List<ItemId>)poolField.GetValue(null)!;
+                var forbidden = currentPool.Where(excludedItems.Contains).ToList();
+
+                Assert.IsTrue(currentPool.Count > 0, "Item pool should contain entries after initialization.");
+                Assert.AreEqual(0, forbidden.Count,
+                    $"Item pool should exclude enemy-specific items. Found forbidden: {string.Join(", ", forbidden)}");
+            }
+        }
+        finally
+        {
+            LevelManager.EnemyTypes.Clear();
+            LevelManager.EnemyTypes.AddRange(originalEnemyTypes);
+
+            originalPoolReference.Clear();
+            originalPoolReference.AddRange(originalPoolSnapshot);
+            poolField.SetValue(null, originalPoolReference);
+        }
     }
 
 
