@@ -158,7 +158,7 @@ public sealed class ArminService
                     {
                         Messages.ArminJustTalking1,
                         Messages.ArminJustTalking2,
-                        // TODO: will ad more later
+                        // TODO: will add more later
                     };
                     var rand = new Random();
                     int idx = rand.Next(sayings.Length);

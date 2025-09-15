@@ -219,7 +219,12 @@ public static class TreasureSelector
                 excludedItems.AddRange(ItemIdHelper.GetItemIdsSpecificByEnemyType(enemyType));
 
             var filteredItems = all.Except(excludedItems).ToList();
-            _selectedItemPool = all.OrderBy(_ => _random.Next()).Take(_numberOfItemInPool).ToList();
+            var sourcePool = filteredItems.Count > 0 ? filteredItems : all;
+
+            _selectedItemPool = sourcePool
+                .OrderBy(_ => _random.Next())
+                .Take(_numberOfItemInPool)
+                .ToList();
         }
     }
 
