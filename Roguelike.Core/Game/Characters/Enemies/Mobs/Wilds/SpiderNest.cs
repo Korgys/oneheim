@@ -6,11 +6,11 @@ public class SpiderNest : Enemy
 {
     public SpiderNest(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (32 + _random.Next(0, 11)) * level + (level - 1);
+        LifePoint = (30 + _random.Next(15)) * level;
         MaxLifePoint = LifePoint;
-        Armor = 0;
-        Strength = 11 * level + (level - 1);
-        Speed = 11 * level + (level - 1);
+        Armor = level;
+        Strength = (7 + _random.Next(9)) * level;
+        Speed = (16 + _random.Next(9)) * level;
         Name = Messages.SpiderNest;
         Category = EnemyType.Wild;
         StepsPerTurn = 0; // static

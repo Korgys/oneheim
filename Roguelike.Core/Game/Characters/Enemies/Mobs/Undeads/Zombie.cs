@@ -6,10 +6,10 @@ public class Zombie : Enemy
 {
     public Zombie(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (13 + _random.Next(4)) * level;
+        LifePoint = (14 + _random.Next(4)) * level;
         MaxLifePoint = LifePoint;
-        Armor = (4 + _random.Next(2)) * level;
-        Strength = (5 + _random.Next(2)) * level;
+        Armor = (7 + _random.Next(2)) * level;
+        Strength = (7 + _random.Next(2)) * level;
         Speed = 2 * level; // Zombies are slow
         Vision = 1; // Limited vision range
         Name = Messages.Zombie;

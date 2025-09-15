@@ -157,7 +157,7 @@
     <value>Greetings, traveler. Welcome to Oneheim… or what remains of it. This village is but a heap of ruins. I have raised a camp here and set palisades against the night. Beware, for beyond these walls danger waits at every step.</value>
   </data>
   <data name="ArminHealPitch" xml:space="preserve">
-    <value>I can patch you up for {0} gold. You will recover up to +{1} HP.</value>
+    <value>I can patch you up for [gold]{0} gold[/]. You will recover up to [green]+{1} HP[/].</value>
   </data>
   <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
     <value>I can heal you. Come again when you will be damaged.</value>
@@ -197,7 +197,7 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>That's a good question. Currently, the stockades seem to be holding (status: {0}/{1}). [red]4 well-organized enemies[/] or one [red]very powerful[/] enemy could launch an assault and the structure would take [red]damage[/]. It's possible during assaults that some enemies could manage to enter the camp. And in the worst case, the camp would be [red]destroyed[/], we would be overwhelmed and we would no longer have any means of protecting ourselves. That's why it's important to act quickly, to repel the assault, if possible to recruit as many as possible to defend ourselves.</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
-    <value>I can repair the camp for {0} gold (+{1} HP).</value>
+    <value>I can repair the camp for [gold]{0} gold[/] ([green]+{1} HP[/]).</value>
   </data>
   <data name="ArminTalkingAboutBoss" xml:space="preserve">
     <value>I'm sure I saw him! I'm not crazy. There's a [red]{0}[/] prowling the plains.</value>
@@ -809,6 +809,21 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>Back</value>
   </data>
   <data name="IchemIntroPurchase1" xml:space="preserve">
-    <value>Have you found what you're looking for? Yes, certainly, but you want more, don't you? I can make you another chest, for only [gold]{0} gold[/], are you interested ?</value>
+    <value>Thank you for your purchase. Another chest? It's [gold]{0} or[/].</value>
+  </data>
+  <data name="PileOfZombieCorpses" xml:space="preserve">
+    <value>Pile of zombie corpses</value>
+  </data>
+  <data name="RatsNest" xml:space="preserve">
+    <value>Rats Nest</value>
+  </data>
+  <data name="YoungPriest" xml:space="preserve">
+    <value>Young Priest Of The Fresh Meat Cult</value>
+  </data>
+  <data name="HellStele" xml:space="preserve">
+    <value>Hell stele</value>
+  </data>
+  <data name="OutlawSentinel" xml:space="preserve">
+    <value>Outlaw Sentinel</value>
   </data>
 </root>

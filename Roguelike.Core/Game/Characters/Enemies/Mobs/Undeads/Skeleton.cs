@@ -9,7 +9,7 @@ public class Skeleton : Enemy
         LifePoint = (5 + _random.Next(3)) * level;
         MaxLifePoint = LifePoint;
         Armor = (4 + _random.Next(2)) * level;
-        Strength = (4 + _random.Next(2)) * level;
+        Strength = (6 + _random.Next(2)) * level;
         Speed = (1 + _random.Next(3)) * level;
         Vision = 1; // Limited vision range
         Name = Messages.Skeleton;

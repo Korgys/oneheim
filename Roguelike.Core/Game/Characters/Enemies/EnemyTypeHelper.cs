@@ -64,6 +64,7 @@ public static class EnemyTypeHelper
                 EnemyId.LeglessZombie,
                 EnemyId.Skeleton,
                 EnemyId.Zombie,
+                EnemyId.ZombieCorpses,
                 EnemyId.ArmoredZombie,
                 EnemyId.PlagueGhoul,
                 EnemyId.Revenant
@@ -73,8 +74,9 @@ public static class EnemyTypeHelper
                 EnemyId.WildLittleBear,
                 EnemyId.WildBear,
                 EnemyId.Wolf,
+                EnemyId.RatsNest,
                 EnemyId.AlphaWolf,
-                EnemyId.GiantSpider,
+                EnemyId.SpiderNest,
                 EnemyId.Werewolf
             },
             EnemyType.Outlaws => new List<EnemyId>
@@ -82,6 +84,7 @@ public static class EnemyTypeHelper
                 EnemyId.Drunkard,
                 EnemyId.Pickpocket,
                 EnemyId.Brigand,
+                EnemyId.OutlawSentinel,
                 EnemyId.Mercenary,
                 EnemyId.WatchtowerArcher,
                 EnemyId.Assassin
@@ -91,6 +94,7 @@ public static class EnemyTypeHelper
                 EnemyId.Novice,
                 EnemyId.Acolyte,
                 EnemyId.Cultist,
+                EnemyId.YoungPriest,
                 EnemyId.Zealot,
                 EnemyId.Priest,
                 EnemyId.Champion
@@ -100,6 +104,7 @@ public static class EnemyTypeHelper
                 EnemyId.Imp,
                 EnemyId.DemonSlave,
                 EnemyId.Hellhound,
+                EnemyId.HellStele,
                 EnemyId.Overseer,
                 EnemyId.HellObelisk,
                 EnemyId.DoomReaper

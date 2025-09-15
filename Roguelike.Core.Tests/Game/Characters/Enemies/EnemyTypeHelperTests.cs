@@ -77,6 +77,7 @@ public class EnemyTypeHelperTests
                 EnemyId.LeglessZombie,
                 EnemyId.Skeleton,
                 EnemyId.Zombie,
+                EnemyId.ZombieCorpses,
                 EnemyId.ArmoredZombie,
                 EnemyId.PlagueGhoul,
                 EnemyId.Revenant
@@ -93,8 +94,9 @@ public class EnemyTypeHelperTests
                 EnemyId.WildLittleBear,
                 EnemyId.WildBear,
                 EnemyId.Wolf,
+                EnemyId.RatsNest,
                 EnemyId.AlphaWolf,
-                EnemyId.GiantSpider,
+                EnemyId.SpiderNest,
                 EnemyId.Werewolf
             },
             wild,
@@ -109,6 +111,7 @@ public class EnemyTypeHelperTests
                 EnemyId.Drunkard,
                 EnemyId.Pickpocket,
                 EnemyId.Brigand,
+                EnemyId.OutlawSentinel,
                 EnemyId.Mercenary,
                 EnemyId.WatchtowerArcher,
                 EnemyId.Assassin
@@ -125,6 +128,7 @@ public class EnemyTypeHelperTests
                 EnemyId.Novice,
                 EnemyId.Acolyte,
                 EnemyId.Cultist,
+                EnemyId.YoungPriest,
                 EnemyId.Zealot,
                 EnemyId.Priest,
                 EnemyId.Champion
@@ -141,6 +145,7 @@ public class EnemyTypeHelperTests
                 EnemyId.Imp,
                 EnemyId.DemonSlave,
                 EnemyId.Hellhound,
+                EnemyId.HellStele,
                 EnemyId.Overseer,
                 EnemyId.HellObelisk,
                 EnemyId.DoomReaper

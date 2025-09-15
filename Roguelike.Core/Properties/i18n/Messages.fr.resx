@@ -157,10 +157,10 @@
     <value>Salutations, voyageur. Bienvenue à [Gold]Oneheim[/]… ou ce qu'il en reste. Ce village n'est plus qu'un amas de ruines. J'y ai établi un campement et dressé [Green]des palissades[/] pour me protéger de [Red]la nuit[/]. Attention, car au-delà de ces murs, [Red]le danger[/] guette à chaque pas.</value>
   </data>
   <data name="ArminHealPitch" xml:space="preserve">
-    <value>Je peux vous soigner contre quelques piastres. Contre {0} d'or, vous regagnerez jusqu'à +{1} de vie.</value>
+    <value>Je peux vous [green]soigner[/] contre quelques piastres. Contre [gold]{0} d'or[/], vous regagnerez jusqu'à [green]+{1} de vie[/].</value>
   </data>
   <data name="ArminHealPitchPlayerFullLife" xml:space="preserve">
-    <value>Je peux vous soigner contre de l'or si jamais vous vous blessez dans votre aventure.</value>
+    <value>Je peux vous [green]soigner[/] contre de [gold]l'or[/] si jamais vous vous blessez dans votre aventure.</value>
   </data>
   <data name="ArminJustTalking1" xml:space="preserve">
     <value>Fais attention à toi dehors, la nuit tombe vite, elle est longue et il est difficile d'y voir le danger. Reste près du camp, sauf si tu ne tiens pas à ta vie.</value>
@@ -196,7 +196,7 @@
     <value>C'est une bonne question. Actuellement, les palissades ont l'air de tenir (état: {0}/{1}). [red]4 ennemis[/] bien organisés ou un ennemi [red]très puissant[/] pourraient lancer un assaut et la structure prendrait des [red]dégâts[/]. Il est possible lors des assauts que certains ennemis parviennent à entrer dans le camp. Et dans le pire des cas, le camp serait [red]détruit[/], nous serions submergés et nous n'aurions plus aucun moyen de nous protéger. C'est pourquoi, il est important d'agir vite, de repousser l'assaut, si possible de recruter un maximum pour se défendre.</value>
   </data>
   <data name="ArminRepairPitch" xml:space="preserve">
-    <value>Je peux réparer le camp pour {0} d'or (+{1} de vie du camp).</value>
+    <value>Je peux réparer le camp pour [gold]{0} d'or[/] ([green]+{1} de vie du camp[/]).</value>
   </data>
   <data name="ArminTalkingAboutBoss" xml:space="preserve">
     <value>Je suis sûr de l'avoir vu ! Je ne suis pas fou. Il y a un [red]{0}[/] qui rode dans les plaines.</value>
@@ -808,6 +808,21 @@
     <value>Retour</value>
   </data>
   <data name="IchemIntroPurchase1" xml:space="preserve">
-    <value>As-tu trouvé ton bonheur ? Oui certainement, mais tu en veux plus n'est-ce pas ? Je peux te faire un autre coffre, pour seulement [gold]{0} or[/], ça t'intéresse ?</value>
+    <value>Merci pour ton achat. Un autre coffre ? C'est [gold]{0} or[/].</value>
+  </data>
+  <data name="PileOfZombieCorpses" xml:space="preserve">
+    <value>Tas de cadavres de zombies</value>
+  </data>
+  <data name="RatsNest" xml:space="preserve">
+    <value>Nid de rats enragés</value>
+  </data>
+  <data name="YoungPriest" xml:space="preserve">
+    <value>Jeune prêtre de la Viande Fraîche</value>
+  </data>
+  <data name="HellStele" xml:space="preserve">
+    <value>Stèle des enfers</value>
+  </data>
+  <data name="OutlawSentinel" xml:space="preserve">
+    <value>Sentinelle brigande</value>
   </data>
 </root>

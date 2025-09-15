@@ -142,6 +142,7 @@ public class ArminServiceTests
     {
         var lvl = NewLevel();
         var svc = new ArminService(lvl);
+        ArminInteractions.HasExplainedWhereWeAre = false;
 
         var nodes1 = svc.BuildServiceNodes(otherText: Properties.i18n.Messages.WhereAreWe);
         var first = nodes1.Other.Text();

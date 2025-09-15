@@ -27,11 +27,11 @@ public static class EnemyBags
         new Dictionary<EnemyId, int> // Level 1
         {
             // Weak
-            { EnemyId.LeglessZombie,     3 },
-            { EnemyId.WildLittleBear,    3 },
-            { EnemyId.Drunkard,          3 },
-            { EnemyId.Novice,            3 },
-            { EnemyId.Imp,               3 },
+            { EnemyId.LeglessZombie,     4 },
+            { EnemyId.WildLittleBear,    4 },
+            { EnemyId.Drunkard,          4 },
+            { EnemyId.Novice,            4 },
+            { EnemyId.Imp,               4 },
             // Mid-weak
             { EnemyId.Skeleton,          1 },
             { EnemyId.WildBear,          1 },
@@ -59,6 +59,12 @@ public static class EnemyBags
             { EnemyId.Brigand,           1 },
             { EnemyId.Cultist,           1 },
             { EnemyId.Hellhound,         1 },
+            // Static (Normal) 
+            { EnemyId.ZombieCorpses,     1 },
+            { EnemyId.RatsNest,          1 },
+            { EnemyId.OutlawSentinel,    1 },
+            { EnemyId.YoungPriest,       1 },
+            { EnemyId.HellStele,         1 },
         },
         new Dictionary<EnemyId, int> // Level 3
         {
@@ -80,6 +86,12 @@ public static class EnemyBags
             { EnemyId.Brigand,           1 },
             { EnemyId.Cultist,           1 },
             { EnemyId.Hellhound,         1 },
+            // Static (Normal) 
+            { EnemyId.ZombieCorpses,     1 },
+            { EnemyId.RatsNest,          1 },
+            { EnemyId.OutlawSentinel,    1 },
+            { EnemyId.YoungPriest,       1 },
+            { EnemyId.HellStele,         1 },
         },
         new Dictionary<EnemyId, int> // Level 4
         {
@@ -100,13 +112,13 @@ public static class EnemyBags
             { EnemyId.Wolf,              5 },
             { EnemyId.Brigand,           5 },
             { EnemyId.Cultist,           5 },
-            { EnemyId.Hellhound,         5 },
-            // Static (Strong)
-            { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
-            { EnemyId.Priest,            1 },
-            { EnemyId.WatchtowerArcher,  1 },
-            { EnemyId.HellObelisk,       1 },
+            { EnemyId.Hellhound,         7 },
+            // Static (Normal) 
+            { EnemyId.ZombieCorpses,     1 },
+            { EnemyId.RatsNest,          1 },
+            { EnemyId.OutlawSentinel,    1 },
+            { EnemyId.YoungPriest,       1 },
+            { EnemyId.HellStele,         1 },
         },
         new Dictionary<EnemyId, int> // Level 5
         {
@@ -121,10 +133,10 @@ public static class EnemyBags
             { EnemyId.Wolf,              5 },
             { EnemyId.Brigand,           5 },
             { EnemyId.Cultist,           5 },
-            { EnemyId.Hellhound,         5 },
+            { EnemyId.Hellhound,         3 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,        1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -150,11 +162,11 @@ public static class EnemyBags
             { EnemyId.Zealot,            1 },
             { EnemyId.Overseer,          1 },
             // Static (Strong)
-            { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
-            { EnemyId.Priest,            1 },
-            { EnemyId.WatchtowerArcher,  1 },
-            { EnemyId.HellObelisk,       1 },
+            { EnemyId.PlagueGhoul,       2 },
+            { EnemyId.SpiderNest,        2 },
+            { EnemyId.Priest,            2 },
+            { EnemyId.WatchtowerArcher,  2 },
+            { EnemyId.HellObelisk,       4 },
         },
         new Dictionary<EnemyId, int> // Level 7
         {
@@ -172,7 +184,7 @@ public static class EnemyBags
             { EnemyId.Overseer,          3 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -181,7 +193,7 @@ public static class EnemyBags
         {
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -202,7 +214,7 @@ public static class EnemyBags
             { EnemyId.Overseer,          3 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -229,7 +241,7 @@ public static class EnemyBags
             { EnemyId.Overseer,          1 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -250,7 +262,7 @@ public static class EnemyBags
             { EnemyId.Overseer,          2 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -271,7 +283,7 @@ public static class EnemyBags
             { EnemyId.Overseer,          1 },
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },
@@ -286,7 +298,7 @@ public static class EnemyBags
         {
             // Static (Strong)
             { EnemyId.PlagueGhoul,       1 },
-            { EnemyId.GiantSpider,       1 },
+            { EnemyId.SpiderNest,       1 },
             { EnemyId.Priest,            1 },
             { EnemyId.WatchtowerArcher,  1 },
             { EnemyId.HellObelisk,       1 },

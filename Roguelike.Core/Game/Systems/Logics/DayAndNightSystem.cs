@@ -15,7 +15,9 @@ public sealed class DayAndNightSystem : ITurnSystem
 
     // Clamps to keep gameplay readable
     public int VisionMin { get; set; } = 1;
-    public int VisionMax { get; set; } = 10;
+    public int VisionMax { get; set; } = 20;
+
+    private int _lastModuloForCycle = -1;
 
     public void Update(TurnContext ctx)
     {
@@ -29,30 +31,36 @@ public sealed class DayAndNightSystem : ITurnSystem
         int stepsForNextCycle = level.StepsForFullCycle;
         int moduloForCycle = stepsForNextCycle == 0 ? 0 : (player.Steps % stepsForNextCycle);
 
+        if (moduloForCycle == _lastModuloForCycle) return; // No change in cycle
+
         // Cycle changes at specific steps in the cycle
         if (moduloForCycle == 0)
         {
             level.DayCycle = DayCycle.Sunset;
             LastMessage = Messages.TheSunSets;
             player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaSunset, VisionMin, VisionMax));
+            _lastModuloForCycle = moduloForCycle;
         }
         else if (moduloForCycle == 15)
         {
             level.DayCycle = DayCycle.Night;
             LastMessage = Messages.TheNightArrives;
             player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaNight, VisionMin, VisionMax));
+            _lastModuloForCycle = moduloForCycle;
         }
         else if (moduloForCycle == 65)
         {
             level.DayCycle = DayCycle.Sunrise;
             LastMessage = Messages.TheSunRises;
             player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaSunrise, VisionMin, VisionMax));
+            _lastModuloForCycle = moduloForCycle;
         }
         else if (moduloForCycle == 80)
         {
             level.DayCycle = DayCycle.Day;
             LastMessage = Messages.ANewDayDawns;
             player.SetPlayerVision(Math.Clamp(player.Vision + VisionDeltaDay, VisionMin, VisionMax));
+            _lastModuloForCycle = moduloForCycle;
         }
     }
 

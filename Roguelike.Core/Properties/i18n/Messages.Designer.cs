@@ -178,7 +178,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à I can patch you up for {0} gold. You will recover up to +{1} HP..
+        ///   Recherche une chaîne localisée semblable à I can patch you up for [gold]{0} gold[/]. You will recover up to [green]+{1} HP[/]..
         /// </summary>
         public static string ArminHealPitch {
             get {
@@ -296,7 +296,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à I can repair the camp for {0} gold (+{1} HP)..
+        ///   Recherche une chaîne localisée semblable à I can repair the camp for [gold]{0} gold[/] ([green]+{1} HP[/])..
         /// </summary>
         public static string ArminRepairPitch {
             get {
@@ -890,6 +890,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hell stele.
+        /// </summary>
+        public static string HellStele {
+            get {
+                return ResourceManager.GetString("HellStele", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à High Priest Prophet of Flesh.
         /// </summary>
         public static string HighPriest {
@@ -962,7 +971,7 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Have you found what you&apos;re looking for? Yes, certainly, but you want more, don&apos;t you? I can make you another chest, for only [gold]{0} gold[/], are you interested ?.
+        ///   Recherche une chaîne localisée semblable à Thank you for your purchase. Another chest? It&apos;s [gold]{0} or[/]..
         /// </summary>
         public static string IchemIntroPurchase1 {
             get {
@@ -1277,6 +1286,15 @@ namespace Roguelike.Core.Properties.i18n {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Outlaw Sentinel.
+        /// </summary>
+        public static string OutlawSentinel {
+            get {
+                return ResourceManager.GetString("OutlawSentinel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Overseer.
         /// </summary>
         public static string Overseer {
@@ -1336,6 +1354,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Pickpocket {
             get {
                 return ResourceManager.GetString("Pickpocket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pile of zombie corpses.
+        /// </summary>
+        public static string PileOfZombieCorpses {
+            get {
+                return ResourceManager.GetString("PileOfZombieCorpses", resourceCulture);
             }
         }
         
@@ -1408,6 +1435,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string Quit {
             get {
                 return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rats Nest.
+        /// </summary>
+        public static string RatsNest {
+            get {
+                return ResourceManager.GetString("RatsNest", resourceCulture);
             }
         }
         
@@ -2083,6 +2119,15 @@ namespace Roguelike.Core.Properties.i18n {
         public static string YouLeveledUp {
             get {
                 return ResourceManager.GetString("YouLeveledUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Young Priest Of The Fresh Meat Cult.
+        /// </summary>
+        public static string YoungPriest {
+            get {
+                return ResourceManager.GetString("YoungPriest", resourceCulture);
             }
         }
         

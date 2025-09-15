@@ -13,6 +13,7 @@ public sealed class WaveAndFogSystem : ITurnSystem
     private bool _firstBossPlaced = false;
     private bool _secondBossPlaced = false;
     private bool _thirdBossPlaced = false;
+    private int _newWaveStartedAt = 0;
 
     private PlayerController _playerController;
 
@@ -38,9 +39,22 @@ public sealed class WaveAndFogSystem : ITurnSystem
             return;
         }
 
-        // Every 100 steps up to 1515
-        if (player.Steps > 0 && player.Steps < 1515 && player.Steps % 100 == 0)
+        // New wave every 100 steps up to 1515
+        if (player.Steps > 0 && player.Steps < 1515 && player.Steps % 100 == 0 && _newWaveStartedAt != player.Steps)
         {
+            _newWaveStartedAt = player.Steps;
+
+            // Remove weak enemies (level 3 below the wave level)
+            if (player.Steps >= 400)
+            {
+                var weakEnemies = level.Enemies.Where(e => e.Level <= (player.Steps / 100) - 3);
+                foreach (var weakEnemy in weakEnemies.ToList())
+                {
+                    level.Enemies.Remove(weakEnemy);
+                }
+            }
+
+            // Place new enemies and treasures
             level.PlaceEnemies(ctx.Difficulty.GetEnemiesNumber());
             level.PlaceTreasures(ctx.Difficulty.GetTreasuresNumber());
             LastMessage = Messages.TheFogIntensifies;
