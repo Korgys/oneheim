@@ -12,128 +12,32 @@ public sealed class CombatResolver
 
     public AttackOutcome ExecuteAttack(Character attacker, Character defender, int round)
     {
-        // TrollMushroom item logic 
         var trollMushroom = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.TrollMushroom);
-        if (trollMushroom != null && round % 2 == 1)
+        if (IsUnderTrollMushroomEffect(trollMushroom, round))
         {
-            // Cannot attack on odd rounds
             return AttackOutcome.UnderTrollMushroomEffect();
         }
 
-        // 1) Compute defender dodge chance (with boots if any)
-        if (TryDodge(attacker, defender, out double dodgeChance)
-            && _random.NextDouble() < dodgeChance)
+        if (TryResolveDodge(attacker, defender, out var dodgeOutcome))
         {
-            // FeathersOfHope logic
-            int restoredLife = 0;
-            var feathersOfHope = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.FeathersOfHope);
-            if (feathersOfHope != null)
-            {
-                var initialLifePoint = defender.LifePoint;
-                defender.LifePoint = Math.Min(defender.MaxLifePoint, defender.LifePoint + feathersOfHope.Value);
-                restoredLife = defender.LifePoint - initialLifePoint;
-            }
-            return AttackOutcome.HasDodged(restoredLife);
+            return dodgeOutcome;
         }
 
-        // 2) Compute base damage (after armor). Min damage is 1.
-        int baseDamage = Math.Max(0, attacker.Strength - defender.Armor);
-        int minDamage = 1;
-        decimal multiplier = 1m;
-        if (trollMushroom != null)
-        {
-            multiplier *= trollMushroom.Value / 100m;
-            minDamage = 2;
-        }
+        int damage = ComputeBaseDamage(attacker, defender, trollMushroom);
 
-        int damage = Math.Max(minDamage, (int)Math.Ceiling(baseDamage * multiplier));
+        var critResult = ApplyCriticalEffects(attacker, defender, damage);
+        damage = critResult.Damage;
+        bool isCrit = critResult.IsCritical;
+        int armorShred = critResult.ArmorShred;
+        int lifeStolen = critResult.LifeStolen;
 
-        // 3) Roll crit + armor break (only if attacker’s Strength > defender’s Strength)
-        bool isCrit = false;
-        int armorShred = 0;
-        int lifeStolen = 0;
-        if (attacker.Strength > defender.Strength)
-        {
-            // RoyalGuardGauntlet and RoyalGuardShield logic
-            var royalGantelet = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardGauntlet);
-            var royalShield = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardShield);
-            decimal criticalChanceBonus = royalGantelet?.Value / 100m ?? 0;
-            criticalChanceBonus -= royalShield?.Value / 100m ?? 0;
+        armorShred += ApplyOldGiantWoodenClub(attacker, defender);
 
-            if (_random.NextDouble() <= 0.15 + (double)criticalChanceBonus) // 15% crit chance by default
-            {
-                // BerserkerNecklace and PaladinNecklace logic
-                var berserkerNecklace = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.BerserkerNecklace);
-                var paladinNecklace = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.PaladinNecklace);
-                decimal criticalDamageBonus = 1.5m; // +50% damage by default
-                criticalDamageBonus += berserkerNecklace?.Value / 100m ?? 0;
-                criticalDamageBonus -= paladinNecklace?.Value / 100m ?? 0;
+        bool savedByTalisman = ApplyDamageAndTalisman(defender, damage);
 
-                isCrit = true;
-                damage = (int)Math.Ceiling(damage * criticalDamageBonus); 
-                armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.05, MidpointRounding.AwayFromZero)); // -5% armor
-                defender.Armor = Math.Max(0, defender.Armor - armorShred);
+        lifeStolen += ApplyLifeSteal(attacker, damage);
 
-                // SealOfLivingFlesh item logic
-                var sealOfLivingFlesh = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.SealOfLivingFlesh);
-                if (sealOfLivingFlesh != null)
-                {
-                    var initialLifePoint = attacker.LifePoint;
-                    attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + sealOfLivingFlesh.Value);
-                    lifeStolen += attacker.LifePoint - initialLifePoint;
-                }
-            }
-        }
-
-        // OldGiantWoodenClub item logic
-        var oldGiantWoodenClub = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.OldGiantWoodenClub);
-        if (oldGiantWoodenClub != null)
-        {
-            // Breaks armor when less strength than opponent's armor
-            if (attacker.Strength < defender.Armor)
-            {
-                var defenderArmorBeforeBreak = defender.Armor;
-                defender.Armor = Math.Max(attacker.Strength, defender.Armor - oldGiantWoodenClub.Value);
-                armorShred += defenderArmorBeforeBreak - defender.Armor;
-            }
-        }
-
-        // 4) Apply damage to defender (with talisman safety if equiped)
-        defender.LifePoint = Math.Max(0, defender.LifePoint - damage);
-
-        // Talisman logic
-        bool savedByTalisman = false;
-        if (defender.LifePoint <= 0
-            && defender.Inventory.Any(i => i.Id == ItemId.TalismanOfTheLastBreath)
-            && !_talismanUsed.ContainsKey(defender.Name))
-        {
-            var talisman = defender.Inventory.First(i => i.Id == ItemId.TalismanOfTheLastBreath);
-            defender.LifePoint = Math.Min(defender.MaxLifePoint, talisman.Value);
-            savedByTalisman = true;
-            _talismanUsed.Add(defender.Name, savedByTalisman);
-        }
-
-        // 5) Apply on-hit lifesteal for attacker (dagger)
-        var dagger = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.DaggerLifeSteal);
-        if (dagger != null && damage > 0 && _random.NextDouble() <= 0.6 )
-        {
-            int steal = Math.Min(damage, dagger.Value);
-            int before = attacker.LifePoint;
-            attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + steal);
-            lifeStolen += attacker.LifePoint - before;
-        }
-
-        // 6) Apply thorns on attacker if defender has breastplate and got hit
-        int thornsDamage = 0;
-        var breastplate = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.ThornBreastplate);
-        if (breastplate != null && damage > 0 && _random.NextDouble() <= 0.6)
-        {
-            thornsDamage = Math.Max(0, breastplate.Value);
-            if (thornsDamage > 0)
-            {
-                attacker.LifePoint = Math.Max(0, attacker.LifePoint - thornsDamage);
-            }
-        }
+        int thornsDamage = ApplyThorns(attacker, defender, damage);
 
         return new AttackOutcome(
             Dodged: false,
@@ -144,6 +48,158 @@ public sealed class CombatResolver
             ThornsReflected: thornsDamage,
             DefenderSavedByTalisman: savedByTalisman
         );
+    }
+
+    private bool IsUnderTrollMushroomEffect(Item trollMushroom, int round)
+    {
+        if (trollMushroom == null)
+        {
+            return false;
+        }
+
+        // Cannot attack on odd rounds
+        return round % 2 == 1;
+    }
+
+    private bool TryResolveDodge(Character attacker, Character defender, out AttackOutcome outcome)
+    {
+        outcome = default;
+
+        if (!TryDodge(attacker, defender, out double dodgeChance)
+            || _random.NextDouble() >= dodgeChance)
+        {
+            return false;
+        }
+
+        int restoredLife = 0;
+        var feathersOfHope = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.FeathersOfHope);
+        if (feathersOfHope != null)
+        {
+            var initialLifePoint = defender.LifePoint;
+            defender.LifePoint = Math.Min(defender.MaxLifePoint, defender.LifePoint + feathersOfHope.Value);
+            restoredLife = defender.LifePoint - initialLifePoint;
+        }
+
+        outcome = AttackOutcome.HasDodged(restoredLife);
+        return true;
+    }
+
+    private static int ComputeBaseDamage(Character attacker, Character defender, Item trollMushroom)
+    {
+        int baseDamage = Math.Max(0, attacker.Strength - defender.Armor);
+
+        if (trollMushroom == null)
+        {
+            return Math.Max(1, baseDamage);
+        }
+
+        decimal multiplier = trollMushroom.Value / 100m;
+        int scaledDamage = (int)Math.Ceiling(baseDamage * multiplier);
+        return Math.Max(2, scaledDamage);
+    }
+
+    private (int Damage, bool IsCritical, int ArmorShred, int LifeStolen) ApplyCriticalEffects(
+        Character attacker,
+        Character defender,
+        int damage)
+    {
+        if (attacker.Strength <= defender.Strength)
+        {
+            return (damage, false, 0, 0);
+        }
+
+        var royalGantelet = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardGauntlet);
+        var royalShield = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.RoyalGuardShield);
+        decimal criticalChanceBonus = royalGantelet?.Value / 100m ?? 0;
+        criticalChanceBonus -= royalShield?.Value / 100m ?? 0;
+
+        double critChance = 0.15 + (double)criticalChanceBonus; // 15% crit chance by default
+        if (_random.NextDouble() > critChance)
+        {
+            return (damage, false, 0, 0);
+        }
+
+        var berserkerNecklace = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.BerserkerNecklace);
+        var paladinNecklace = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.PaladinNecklace);
+        decimal criticalDamageBonus = 1.5m; // +50% damage by default
+        criticalDamageBonus += berserkerNecklace?.Value / 100m ?? 0;
+        criticalDamageBonus -= paladinNecklace?.Value / 100m ?? 0;
+
+        int criticalDamage = (int)Math.Ceiling(damage * criticalDamageBonus);
+        int armorShred = Math.Max(1, (int)Math.Round(defender.Armor * 0.05, MidpointRounding.AwayFromZero)); // -5% armor
+        defender.Armor = Math.Max(0, defender.Armor - armorShred);
+
+        int lifeStolen = 0;
+        var sealOfLivingFlesh = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.SealOfLivingFlesh);
+        if (sealOfLivingFlesh != null)
+        {
+            var initialLifePoint = attacker.LifePoint;
+            attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + sealOfLivingFlesh.Value);
+            lifeStolen += attacker.LifePoint - initialLifePoint;
+        }
+
+        return (criticalDamage, true, armorShred, lifeStolen);
+    }
+
+    private int ApplyOldGiantWoodenClub(Character attacker, Character defender)
+    {
+        var oldGiantWoodenClub = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.OldGiantWoodenClub);
+        if (oldGiantWoodenClub == null || attacker.Strength >= defender.Armor)
+        {
+            return 0;
+        }
+
+        var defenderArmorBeforeBreak = defender.Armor;
+        defender.Armor = Math.Max(attacker.Strength, defender.Armor - oldGiantWoodenClub.Value);
+        return defenderArmorBeforeBreak - defender.Armor;
+    }
+
+    private bool ApplyDamageAndTalisman(Character defender, int damage)
+    {
+        defender.LifePoint = Math.Max(0, defender.LifePoint - damage);
+
+        if (defender.LifePoint > 0
+            || !defender.Inventory.Any(i => i.Id == ItemId.TalismanOfTheLastBreath)
+            || _talismanUsed.ContainsKey(defender.Name))
+        {
+            return false;
+        }
+
+        var talisman = defender.Inventory.First(i => i.Id == ItemId.TalismanOfTheLastBreath);
+        defender.LifePoint = Math.Min(defender.MaxLifePoint, talisman.Value);
+        _talismanUsed.Add(defender.Name, true);
+        return true;
+    }
+
+    private int ApplyLifeSteal(Character attacker, int damage)
+    {
+        var dagger = attacker.Inventory.FirstOrDefault(i => i.Id == ItemId.DaggerLifeSteal);
+        if (dagger == null || damage <= 0 || _random.NextDouble() > 0.6)
+        {
+            return 0;
+        }
+
+        int steal = Math.Min(damage, dagger.Value);
+        int before = attacker.LifePoint;
+        attacker.LifePoint = Math.Min(attacker.MaxLifePoint, attacker.LifePoint + steal);
+        return attacker.LifePoint - before;
+    }
+
+    private int ApplyThorns(Character attacker, Character defender, int damage)
+    {
+        var breastplate = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.ThornBreastplate);
+        if (breastplate == null || damage <= 0 || _random.NextDouble() > 0.6)
+        {
+            return 0;
+        }
+
+        int thornsDamage = Math.Max(0, breastplate.Value);
+        if (thornsDamage > 0)
+        {
+            attacker.LifePoint = Math.Max(0, attacker.LifePoint - thornsDamage);
+        }
+
+        return thornsDamage;
     }
 
     /// <summary>
