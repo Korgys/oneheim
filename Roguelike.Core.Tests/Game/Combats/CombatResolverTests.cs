@@ -52,10 +52,12 @@ public class CombatResolverTests
         defender.Inventory.Add(new Item { Id = ItemId.TalismanOfTheLastBreath, Value = 15 });
 
         var firstOutcome = resolver.ExecuteAttack(attacker, defender, round: 2);
-        var secondOutcome = resolver.ExecuteAttack(attacker, defender, round: 2);
 
         Assert.IsTrue(firstOutcome.DefenderSavedByTalisman);
         Assert.AreEqual(15, defender.LifePoint);
+
+        var secondOutcome = resolver.ExecuteAttack(attacker, defender, round: 2);
+
         Assert.IsFalse(secondOutcome.DefenderSavedByTalisman);
         Assert.AreEqual(0, defender.LifePoint);
     }
