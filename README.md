@@ -1,76 +1,114 @@
-# oneheim
+# Oneheim
 
-A detailed roguelike in console.
+**Oneheim** est un roguelike console développé en C#/.NET. Le joueur explore une région hostile autour d'un camp de base, récupère des trésors, affronte des vagues de monstres, recrute des alliés et se prépare à l'arrivée de boss majeurs.
 
-Explore the region :
+![Exploration](Screenshots/exploring.png)
 
-![image](Screenshots/exploring.png)
+![Dialogue](Screenshots/dialogue.png)
 
-Discuss with NPCs :
+![Combat](Screenshots/combat.png)
 
-![image](Screenshots/dialogue.png)
+## Fonctionnalités principales
 
-Fights various enemies :
+- Exploration sur grille avec visibilité dynamique et cycle jour/nuit.
+- Combats au tour par tour contre des familles d'ennemis aléatoires.
+- Progression par trésors : statistiques, soins, vision et objets équipables.
+- Camp de base à défendre contre les sièges ennemis.
+- PNJ de service : marchand, recruteur, oracle, jeu de hasard et amélioration d'équipement.
+- Boss à paliers de progression, avec ordre d'apparition aléatoire.
+- Configuration JSON pour la langue, la difficulté et les raccourcis clavier.
 
-![image](Screenshots/combat.png)
+## Prérequis
 
-## Run
+- SDK .NET compatible avec le projet (`net11.0`).
+- Un terminal compatible avec l'affichage console.
+
+Le SDK ciblé par le dépôt est défini dans [`global.json`](global.json). La documentation officielle .NET est disponible ici : <https://learn.microsoft.com/dotnet/>.
+
+## Lancer le jeu
+
+Depuis la racine du dépôt :
 
 ```powershell
 dotnet run --project Roguelike.Console
 ```
 
-The game reads `Roguelike.Console/gameSettings.json` at startup. It controls language, difficulty, and key bindings.
+Le jeu charge automatiquement `Roguelike.Console/gameSettings.json` au démarrage, puis copie ce fichier dans le répertoire de sortie de l'application.
 
-Default FR controls:
+## Configuration
 
-- Move: `Z`, `Q`, `S`, `D`
-- Choices: `W`, `X`, `C`
-- Quit: `Escape`
+La configuration principale se trouve dans `Roguelike.Console/gameSettings.json`.
 
-## Gameplay loop
-
-Explore around the base camp, collect treasures, fight waves, and prepare for boss attacks at major step milestones. The camp can be repaired, defended with hired guards, and lost if enough enemies reach its walls.
-
-Additional travelers unlock during a run: Ichem sells boons, Eber hires guards, Omana reveals the next boss, Urd lets you gamble for items, and Ylva upgrades equipment after the first boss is defeated. A dungeon in the north-east offers a denser risk/reward area.
-
-Difficulty is configured in `gameSettings.json` with `Normal`, `Hard`, or `Hell`.
-
-## How to run unit tests and show code coverage
-
-### 1. Run tests and collect data
-
-```powershell
-cd Roguelike.Core.Tests
-dotnet test --collect:"XPlat Code Coverage"
+```json
+{
+  "Language": "FR",
+  "Difficulty": "Normal",
+  "Controls": {
+    "MoveUp": "Z",
+    "MoveDown": "S",
+    "MoveLeft": "Q",
+    "MoveRight": "D",
+    "Choice1": "W",
+    "Choice2": "X",
+    "Choice3": "C",
+    "Exit": "Escape"
+  }
+}
 ```
 
-Coverage results will be saved under: `TestResults/<GUID>/coverage.cobertura.xml`
+### Langue
 
-### 2. Use ReportGenerator to create an HTML report
+- `FR` : interface en français.
+- Toute autre valeur bascule sur la culture anglaise par défaut.
 
-```powershell
-reportgenerator -reports:TestResults/**/coverage.cobertura.xml -targetdir:coveragereport
+### Difficulté
+
+Valeurs disponibles :
+
+- `Normal`
+- `Hard`
+- `Hell`
+
+La difficulté influence notamment le nombre de trésors et d'ennemis générés pendant la partie.
+
+### Contrôles par défaut
+
+| Action | Touche |
+| --- | --- |
+| Monter | `Z` |
+| Descendre | `S` |
+| Aller à gauche | `Q` |
+| Aller à droite | `D` |
+| Choix 1 | `W` |
+| Choix 2 | `X` |
+| Choix 3 | `C` |
+| Quitter | `Escape` |
+
+Les valeurs correspondent aux noms de touches .NET (`ConsoleKey`). Consultez la documentation officielle : <https://learn.microsoft.com/dotnet/api/system.consolekey>.
+
+## Documentation du jeu
+
+La documentation détaillée du gameplay est disponible dans [`docs/wiki.md`](docs/wiki.md). Elle couvre notamment :
+
+- le cycle jour/nuit ;
+- les vagues et le brouillard ;
+- les monstres et familles d'ennemis ;
+- les boss ;
+- les trésors, objets et raretés ;
+- les PNJ et services ;
+- le camp de base, le donjon et les mercenaires.
+
+## Structure du projet
+
+```text
+Roguelike.Console/   Interface console, rendu, configuration d'exécution
+Roguelike.Core/      Moteur de jeu, systèmes de tour, personnages, combats, objets
+Screenshots/         Captures d'écran du jeu
 ```
 
-### 3. Open the report in your browser
+## Documentation officielle utile
 
-The report will be generated in `coveragereport/index.html`
-
-#### Windows
-
-```powershell
-start coveragereport/index.html
-```
-
-#### macOS
-
-```bash
-open coveragereport/index.html
-```
-
-#### Linux
-
-```bash
-xdg-open coveragereport/index.html
-```
+- Documentation .NET : <https://learn.microsoft.com/dotnet/>
+- CLI .NET : <https://learn.microsoft.com/dotnet/core/tools/>
+- ConsoleKey : <https://learn.microsoft.com/dotnet/api/system.consolekey>
+- System.Text.Json : <https://learn.microsoft.com/dotnet/standard/serialization/system-text-json/overview>
