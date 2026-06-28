@@ -6,6 +6,7 @@
 public static class RandomExtensions
 {
     public static T NextWeighted<T>(this Random random, Dictionary<T, int> weights)
+        where T : notnull
     {
         if (weights == null || weights.Count == 0)
             throw new ArgumentException("Le dictionnaire des poids ne peut pas être vide", nameof(weights));

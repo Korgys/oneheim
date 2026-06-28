@@ -825,4 +825,148 @@
   <data name="OutlawSentinel" xml:space="preserve">
     <value>Sentinelle brigande</value>
   </data>
+  <data name="BaseCampDefendedReward" xml:space="preserve">
+    <value>Le périmètre du camp est sécurisé. Vous gagnez {0} or.</value>
+  </data>
+  <data name="CouldNotPlaceAnyMercenaryAtThePerimeter" xml:space="preserve">
+    <value>Impossible de placer un mercenaire sur le périmètre.</value>
+  </data>
+  <data name="Dungeon" xml:space="preserve">
+    <value>Donjon</value>
+  </data>
+  <data name="EberIntroFirst" xml:space="preserve">
+    <value>Je m'appelle Eber. Je forme les gardes de Oneheim. Vous payez, ils protègent.</value>
+  </data>
+  <data name="EberIntroReturning" xml:space="preserve">
+    <value>L'acier est bon marché, la loyauté beaucoup moins. Besoin de renforts ?</value>
+  </data>
+  <data name="EberSmallTalk1" xml:space="preserve">
+    <value>Les mercenaires gardent leurs lames affûtées et leurs yeux ouverts.</value>
+  </data>
+  <data name="EberSmallTalk2" xml:space="preserve">
+    <value>Le périmètre d'abord. Les routes ensuite.</value>
+  </data>
+  <data name="EberSmallTalk3" xml:space="preserve">
+    <value>L'acier de Oneheim ne plie pas.</value>
+  </data>
+  <data name="EberSmallTalk4" xml:space="preserve">
+    <value>Payez maintenant, saignez moins plus tard.</value>
+  </data>
+  <data name="EnemyTypeCultist" xml:space="preserve">
+    <value>cultiste</value>
+  </data>
+  <data name="EnemyTypeDemon" xml:space="preserve">
+    <value>démon</value>
+  </data>
+  <data name="EnemyTypeOutlaws" xml:space="preserve">
+    <value>brigand</value>
+  </data>
+  <data name="EnemyTypeUndead" xml:space="preserve">
+    <value>mort-vivant</value>
+  </data>
+  <data name="EnemyTypeWild" xml:space="preserve">
+    <value>bête sauvage</value>
+  </data>
+  <data name="GambleForGold" xml:space="preserve">
+    <value>Parier pour un objet ({0} or)</value>
+  </data>
+  <data name="GambleLost" xml:space="preserve">
+    <value>Les dés sont froids. Vous ne gagnez rien.</value>
+  </data>
+  <data name="GambleWonItem" xml:space="preserve">
+    <value>Vous avez gagné {0}.</value>
+  </data>
+  <data name="HireOneheimGuard" xml:space="preserve">
+    <value>Recruter un garde de Oneheim ({0} or)</value>
+  </data>
+  <data name="HireOneheimSquad" xml:space="preserve">
+    <value>Recruter une escouade de Oneheim (3) ({0} or)</value>
+  </data>
+  <data name="HiredOneheimGuard" xml:space="preserve">
+    <value>Un garde de Oneheim recruté. Il patrouillera autour du camp et frappera les ennemis proches.</value>
+  </data>
+  <data name="HiredOneheimSquad" xml:space="preserve">
+    <value>Escouade de Oneheim recrutée. Elle patrouillera le périmètre et interceptera les menaces.</value>
+  </data>
+  <data name="HiredPartialGuardSquad" xml:space="preserve">
+    <value>{0} garde(s) recruté(s). La patrouille commence immédiatement.</value>
+  </data>
+  <data name="IchemSmallTalk1" xml:space="preserve">
+    <value>Ces terres vous changent. Parfois en mieux.</value>
+  </data>
+  <data name="IchemSmallTalk2" xml:space="preserve">
+    <value>L'or passe. Les choix restent.</value>
+  </data>
+  <data name="IchemSmallTalk3" xml:space="preserve">
+    <value>J'ai vendu un jour un don qui sauva un royaume. C'est ce qu'on raconte.</value>
+  </data>
+  <data name="IchemSmallTalk4" xml:space="preserve">
+    <value>L'orage approche. On le sent dans la pierre.</value>
+  </data>
+  <data name="IchemSmallTalk5" xml:space="preserve">
+    <value>Le pouvoir est un poids. Dépensez-le avec sagesse.</value>
+  </data>
+  <data name="MercenaryHasSlainEnemy" xml:space="preserve">
+    <value>{0} a abattu {1} !</value>
+  </data>
+  <data name="MercenaryWasSlainByEnemy" xml:space="preserve">
+    <value>{0} a été tué par {1} !</value>
+  </data>
+  <data name="NightTreasureBonus" xml:space="preserve">
+    <value>Prime de risque nocturne : +{0} or.</value>
+  </data>
+  <data name="NoAvailablePerimeterSpots" xml:space="preserve">
+    <value>Aucun emplacement disponible sur le périmètre.</value>
+  </data>
+  <data name="NoBaseCampToDefend" xml:space="preserve">
+    <value>Aucun camp à défendre.</value>
+  </data>
+  <data name="NoKnownWeakness" xml:space="preserve">
+    <value>aucune faiblesse connue</value>
+  </data>
+  <data name="NoSuitableGuardSpot" xml:space="preserve">
+    <value>Aucun emplacement adapté autour du camp pour déployer un garde.</value>
+  </data>
+  <data name="NoSuitableSquadSpots" xml:space="preserve">
+    <value>Aucun emplacement adapté autour du camp pour déployer une escouade.</value>
+  </data>
+  <data name="NoUpgradeableItem" xml:space="preserve">
+    <value>Vous n'avez aucun objet améliorable.</value>
+  </data>
+  <data name="Omana" xml:space="preserve">
+    <value>Omana</value>
+  </data>
+  <data name="OmanaProphecy" xml:space="preserve">
+    <value>Je vois {0}. Sa nature est {1}. Apportez ceci contre lui : {2}.</value>
+  </data>
+  <data name="TooManyMercenariesAlreadyRecruited" xml:space="preserve">
+    <value>Trop de mercenaires ont déjà été recrutés.</value>
+  </data>
+  <data name="UnknownNpcType" xml:space="preserve">
+    <value>Type de PNJ inconnu.</value>
+  </data>
+  <data name="UpgradeFirstItemForGold" xml:space="preserve">
+    <value>Améliorer votre premier objet améliorable ({0} or)</value>
+  </data>
+  <data name="Urd" xml:space="preserve">
+    <value>Urd</value>
+  </data>
+  <data name="UrdIntroFirst" xml:space="preserve">
+    <value>La chance a des dents. Payez-moi, et peut-être mordra-t-elle vos ennemis.</value>
+  </data>
+  <data name="UrdIntroReturning" xml:space="preserve">
+    <value>De retour pour tenter votre chance ?</value>
+  </data>
+  <data name="Ylva" xml:space="preserve">
+    <value>Ylva</value>
+  </data>
+  <data name="YlvaIntroFirst" xml:space="preserve">
+    <value>Je peux renforcer ce qui a déjà survécu au combat.</value>
+  </data>
+  <data name="YlvaIntroReturning" xml:space="preserve">
+    <value>Apportez-moi de l'or et quelque chose qui mérite d'être amélioré.</value>
+  </data>
+  <data name="YlvaUpgradedItem" xml:space="preserve">
+    <value>{0} est maintenant amélioré à {1}.</value>
+  </data>
 </root>

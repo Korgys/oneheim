@@ -826,4 +826,148 @@ I started rebuilding the village recently, but the surrounding area has become v
   <data name="OutlawSentinel" xml:space="preserve">
     <value>Outlaw Sentinel</value>
   </data>
+  <data name="BaseCampDefendedReward" xml:space="preserve">
+    <value>The base camp perimeter is secure. You earn {0} gold.</value>
+  </data>
+  <data name="CouldNotPlaceAnyMercenaryAtThePerimeter" xml:space="preserve">
+    <value>Could not place any mercenary at the perimeter.</value>
+  </data>
+  <data name="Dungeon" xml:space="preserve">
+    <value>Dungeon</value>
+  </data>
+  <data name="EberIntroFirst" xml:space="preserve">
+    <value>Name's Eber. I train Oneheim guards. You pay, they protect.</value>
+  </data>
+  <data name="EberIntroReturning" xml:space="preserve">
+    <value>Steel is cheap; loyalty is not. Looking to hire?</value>
+  </data>
+  <data name="EberSmallTalk1" xml:space="preserve">
+    <value>Mercenaries keep blades sharp and eyes sharper.</value>
+  </data>
+  <data name="EberSmallTalk2" xml:space="preserve">
+    <value>Perimeter first. Then the roads.</value>
+  </data>
+  <data name="EberSmallTalk3" xml:space="preserve">
+    <value>Oneheim steel does not bend.</value>
+  </data>
+  <data name="EberSmallTalk4" xml:space="preserve">
+    <value>Pay now, bleed less later.</value>
+  </data>
+  <data name="EnemyTypeCultist" xml:space="preserve">
+    <value>cultist</value>
+  </data>
+  <data name="EnemyTypeDemon" xml:space="preserve">
+    <value>demon</value>
+  </data>
+  <data name="EnemyTypeOutlaws" xml:space="preserve">
+    <value>outlaw</value>
+  </data>
+  <data name="EnemyTypeUndead" xml:space="preserve">
+    <value>undead</value>
+  </data>
+  <data name="EnemyTypeWild" xml:space="preserve">
+    <value>wild beast</value>
+  </data>
+  <data name="GambleForGold" xml:space="preserve">
+    <value>Gamble for an item ({0} gold)</value>
+  </data>
+  <data name="GambleLost" xml:space="preserve">
+    <value>The dice fall cold. You win nothing.</value>
+  </data>
+  <data name="GambleWonItem" xml:space="preserve">
+    <value>You won {0}.</value>
+  </data>
+  <data name="HireOneheimGuard" xml:space="preserve">
+    <value>Hire a Oneheim guard ({0} gold)</value>
+  </data>
+  <data name="HireOneheimSquad" xml:space="preserve">
+    <value>Hire a Oneheim squad (3) ({0} gold)</value>
+  </data>
+  <data name="HiredOneheimGuard" xml:space="preserve">
+    <value>Hired 1 Oneheim guard. He will circle the camp and strike nearby foes.</value>
+  </data>
+  <data name="HiredOneheimSquad" xml:space="preserve">
+    <value>Hired a Oneheim squad. They will patrol the perimeter and intercept threats.</value>
+  </data>
+  <data name="HiredPartialGuardSquad" xml:space="preserve">
+    <value>Hired {0} guard(s). Patrol will start immediately.</value>
+  </data>
+  <data name="IchemSmallTalk1" xml:space="preserve">
+    <value>These lands change you. Sometimes for the better.</value>
+  </data>
+  <data name="IchemSmallTalk2" xml:space="preserve">
+    <value>Gold comes and goes. Choices linger.</value>
+  </data>
+  <data name="IchemSmallTalk3" xml:space="preserve">
+    <value>I once sold a boon that saved a kingdom. Or so they say.</value>
+  </data>
+  <data name="IchemSmallTalk4" xml:space="preserve">
+    <value>Storm's coming. You can feel it in the stone.</value>
+  </data>
+  <data name="IchemSmallTalk5" xml:space="preserve">
+    <value>Power is a weight; spend it wisely.</value>
+  </data>
+  <data name="MercenaryHasSlainEnemy" xml:space="preserve">
+    <value>{0} has slain {1}!</value>
+  </data>
+  <data name="MercenaryWasSlainByEnemy" xml:space="preserve">
+    <value>{0} was slain by {1}!</value>
+  </data>
+  <data name="NightTreasureBonus" xml:space="preserve">
+    <value>Night risk bonus: +{0} gold.</value>
+  </data>
+  <data name="NoAvailablePerimeterSpots" xml:space="preserve">
+    <value>No available perimeter spots.</value>
+  </data>
+  <data name="NoBaseCampToDefend" xml:space="preserve">
+    <value>No base camp to defend.</value>
+  </data>
+  <data name="NoKnownWeakness" xml:space="preserve">
+    <value>no known weakness</value>
+  </data>
+  <data name="NoSuitableGuardSpot" xml:space="preserve">
+    <value>No suitable spot around the camp to deploy a guard.</value>
+  </data>
+  <data name="NoSuitableSquadSpots" xml:space="preserve">
+    <value>No suitable spots around the camp to deploy a squad.</value>
+  </data>
+  <data name="NoUpgradeableItem" xml:space="preserve">
+    <value>You have no upgradable item.</value>
+  </data>
+  <data name="Omana" xml:space="preserve">
+    <value>Omana</value>
+  </data>
+  <data name="OmanaProphecy" xml:space="preserve">
+    <value>I see {0}. Its nature is {1}. Bring this against it: {2}.</value>
+  </data>
+  <data name="TooManyMercenariesAlreadyRecruited" xml:space="preserve">
+    <value>Too many mercenaries already recruited.</value>
+  </data>
+  <data name="UnknownNpcType" xml:space="preserve">
+    <value>Unknown NPC type.</value>
+  </data>
+  <data name="UpgradeFirstItemForGold" xml:space="preserve">
+    <value>Upgrade your first upgradable item ({0} gold)</value>
+  </data>
+  <data name="Urd" xml:space="preserve">
+    <value>Urd</value>
+  </data>
+  <data name="UrdIntroFirst" xml:space="preserve">
+    <value>Luck has teeth. Pay me, and maybe it bites your enemies.</value>
+  </data>
+  <data name="UrdIntroReturning" xml:space="preserve">
+    <value>Back to test your luck again?</value>
+  </data>
+  <data name="Ylva" xml:space="preserve">
+    <value>Ylva</value>
+  </data>
+  <data name="YlvaIntroFirst" xml:space="preserve">
+    <value>I can sharpen what already survived battle.</value>
+  </data>
+  <data name="YlvaIntroReturning" xml:space="preserve">
+    <value>Bring me coin and something worth improving.</value>
+  </data>
+  <data name="YlvaUpgradedItem" xml:space="preserve">
+    <value>{0} is now improved to {1}.</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using Roguelike.Core.Game.Characters.NPCs;
+using Roguelike.Core.Game.Characters.Enemies.Bosses;
+using Roguelike.Core.Game.Characters.NPCs;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Properties.i18n;
 
@@ -15,21 +16,26 @@ public sealed class NpcSpawnSystem : ITurnSystem
         var level = ctx.Level;
         var steps = level.Player.Steps;
 
-        // Only spawn NPCs if the base camp exists
         if (!level.Structures.Any(s => s.Name == Messages.BaseCamp))
             return;
 
-        // Spawn Ichem (shop NPC) at 66 steps
         if (steps == 66 && !level.Npcs.Any(n => n.Id == NpcId.Ichem))
         {
             level.PlaceNpc(NpcId.Ichem);
             LastMessage = Messages.ANewTravelerComesToTheBaseCamp;
         }
-        // Spawn Eber (mercenary NPC) at 166 steps
+
         if (steps == 166 && !level.Npcs.Any(n => n.Id == NpcId.Eber))
-        {
             PlaceNpc(NpcId.Eber, level);
-        }
+
+        if (steps >= 350 && !level.Npcs.Any(n => n.Id == NpcId.Omana))
+            PlaceNpc(NpcId.Omana, level);
+
+        if (steps >= 450 && !level.Npcs.Any(n => n.Id == NpcId.Urd))
+            PlaceNpc(NpcId.Urd, level);
+
+        if (steps >= 550 && !level.Npcs.Any(n => n.Id == NpcId.Ylva) && !level.Enemies.Any(e => e is Boss))
+            PlaceNpc(NpcId.Ylva, level);
     }
 
     private void PlaceNpc(NpcId npcId, LevelManager level)

@@ -133,7 +133,7 @@ public class ArminServiceTests
             "Heal node should include an actionable option when player not full.");
 
         // Other node returns some text and has an Ok option
-        Assert.IsFalse(string.IsNullOrWhiteSpace(other.Text()));
+        Assert.IsFalse(string.IsNullOrWhiteSpace(other.Text!()));
         Assert.IsTrue(other.Options.Any(o => o.Label != null));
     }
 
@@ -144,16 +144,17 @@ public class ArminServiceTests
         var lvl = NewLevel();
         var svc = new ArminService(lvl);
 
-        var nodes1 = svc.BuildServiceNodes(otherText: Properties.i18n.Messages.WhereAreWe);
-        var first = nodes1.Other.Text();
+        var nodes1 = svc.BuildServiceNodes(otherText: Roguelike.Core.Properties.i18n.Messages.WhereAreWe);
+        var first = nodes1.Other.Text!();
         Assert.IsTrue(ArminInteractions.HasExplainedWhereWeAre);
         Assert.IsFalse(string.IsNullOrWhiteSpace(first));
 
-        // Calling again with same input should now answer differently
-        var nodes2 = svc.BuildServiceNodes(otherText: Properties.i18n.Messages.WhereAreWe);
-        var second = nodes2.Other.Text();
+        // Calling again with the flag already set should use the reminder text.
+        ArminInteractions.HasExplainedWhereWeAre = true;
+        var nodes2 = svc.BuildServiceNodes(otherText: Roguelike.Core.Properties.i18n.Messages.WhereAreWe);
+        var second = nodes2.Other.Text!();
         Assert.IsFalse(string.IsNullOrWhiteSpace(second));
-        Assert.AreNotEqual(first, second);
+        Assert.AreEqual(Roguelike.Core.Properties.i18n.Messages.ArminAreYouSerious, second);
     }
 
     private static LevelManager NewLevel(

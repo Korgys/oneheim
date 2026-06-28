@@ -1,4 +1,4 @@
-﻿using Roguelike.Core.Configuration;
+using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Characters.NPCs;
 using Roguelike.Core.Game.Characters.NPCs.Dialogues.Texts;
@@ -7,14 +7,13 @@ using Roguelike.Core.Game.Levels;
 public static class NpcDialogManager
 {
     public static void StartDialogue(
-        Npc npc, 
-        LevelManager level, 
-        GameSettings settings, 
-        IDialogueRenderer renderer, 
-        ITreasurePicker treasurePicker, 
+        Npc npc,
+        LevelManager level,
+        GameSettings settings,
+        IDialogueRenderer renderer,
+        ITreasurePicker treasurePicker,
         IInventoryUI inventoryUI)
     {
-        // Build tree depending on NPC
         switch (npc.Id)
         {
             case NpcId.Armin:
@@ -26,14 +25,21 @@ public static class NpcDialogManager
             case NpcId.Eber:
                 NpcDialogues.BuildForEber(npc, level, settings);
                 break;
+            case NpcId.Omana:
+                NpcDialogues.BuildForOmana(npc, level);
+                break;
+            case NpcId.Urd:
+                NpcDialogues.BuildForUrd(npc, level);
+                break;
+            case NpcId.Ylva:
+                NpcDialogues.BuildForYlva(npc, level);
+                break;
         }
 
         if (npc.Root == null) return;
 
-        // Pass tree to renderer (Console, UI, etc.)
         renderer.ShowDialogue(npc, level.Player, npc.Root);
 
-        // Update memory
         npc.HasMet = true;
         npc.TimesTalked++;
     }

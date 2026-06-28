@@ -4,15 +4,37 @@ A detailed roguelike in console.
 
 Explore the region :
 
-![image](screenshots/exploring.png)
+![image](Screenshots/exploring.png)
 
 Discuss with NPCs :
 
-![image](screenshots/dialogue.png)
+![image](Screenshots/dialogue.png)
 
 Fights various enemies :
 
-![image](screenshots/combat.png)
+![image](Screenshots/combat.png)
+
+## Run
+
+```powershell
+dotnet run --project Roguelike.Console
+```
+
+The game reads `Roguelike.Console/gameSettings.json` at startup. It controls language, difficulty, and key bindings.
+
+Default FR controls:
+
+- Move: `Z`, `Q`, `S`, `D`
+- Choices: `W`, `X`, `C`
+- Quit: `Escape`
+
+## Gameplay loop
+
+Explore around the base camp, collect treasures, fight waves, and prepare for boss attacks at major step milestones. The camp can be repaired, defended with hired guards, and lost if enough enemies reach its walls.
+
+Additional travelers unlock during a run: Ichem sells boons, Eber hires guards, Omana reveals the next boss, Urd lets you gamble for items, and Ylva upgrades equipment after the first boss is defeated. A dungeon in the north-east offers a denser risk/reward area.
+
+Difficulty is configured in `gameSettings.json` with `Normal`, `Hard`, or `Hell`.
 
 ## How to run unit tests and show code coverage
 

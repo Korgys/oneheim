@@ -298,6 +298,9 @@ public sealed class ConsoleRenderer : IRenderer
 
     private static void EnsureBufferHeight(int minHeight)
     {
+        if (!OperatingSystem.IsWindows())
+            return;
+
         try
         {
             // Agrandit le buffer si nécessaire (ne réduit jamais)

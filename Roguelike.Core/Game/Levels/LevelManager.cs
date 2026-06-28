@@ -45,6 +45,7 @@ public class LevelManager
 
     private readonly DifficultyManager _difficultyManager;
     private readonly Random _random = new();
+    private readonly Queue<EnemyId> _bossQueue = new();
 
     public LevelManager(GameSettings settings)
     {
@@ -110,7 +111,7 @@ public class LevelManager
             int x = rnd.Next(1, GridWidth - 1);
             int y = rnd.Next(1, GridHeight - 1);
 
-            if (s.EntranceTiles.Any(e => e.x == x && e.y == y)) continue; // avoid entrances
+            if (s != null && s.EntranceTiles.Any(e => e.x == x && e.y == y)) continue; // avoid entrances
 
             bool inInterior = s != null && s.IsInterior(x, y);
 
@@ -200,13 +201,46 @@ public class LevelManager
     public void PlaceBoss()
     {
         int level = Math.Max(1, Player.Steps / 100); // Level scaling
-        var bossBagProbability = BossBags.GetByLevel(level);
 
         if (!TryFindEnemySpawnTile(out int x, out int y, true))
             return;
 
-        var boss = EnemyFactory.CreateFromBag(bossBagProbability, x, y, level);
+        var boss = EnemyFactory.Create(GetNextBossId(level), x, y, level);
         Enemies.Add(boss);
+    }
+
+    public EnemyId PeekNextBossId()
+    {
+        int level = GetUpcomingBossLevel();
+        EnsureBossQueue(level);
+        return _bossQueue.Peek();
+    }
+
+    public Enemy PeekNextBoss()
+    {
+        int level = GetUpcomingBossLevel();
+        return EnemyFactory.Create(PeekNextBossId(), 0, 0, level);
+    }
+
+    private int GetUpcomingBossLevel() => Player.Steps switch
+    {
+        < 515 => 5,
+        < 1015 => 10,
+        _ => 15
+    };
+
+    private EnemyId GetNextBossId(int level)
+    {
+        EnsureBossQueue(level);
+        return _bossQueue.Dequeue();
+    }
+
+    private void EnsureBossQueue(int level)
+    {
+        if (_bossQueue.Count > 0) return;
+
+        foreach (var bossId in BossBags.GetByLevel(level).Keys.OrderBy(_ => _random.Next()))
+            _bossQueue.Enqueue(bossId);
     }
 
     public bool TryHireMercenaries(int count, out int hired, out string reason)
@@ -218,7 +252,7 @@ public class LevelManager
         var baseCamp = Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
         if (baseCamp == null)
         {
-            reason = "No base camp to defend.";
+            reason = Messages.Get("NoBaseCampToDefend");
             return false;
         }
 
@@ -226,7 +260,7 @@ public class LevelManager
         var spawnTiles = GetExteriorPerimeterSpots(baseCamp).ToList();
         if (spawnTiles.Count == 0)
         {
-            reason = "No available perimeter spots.";
+            reason = Messages.Get("NoAvailablePerimeterSpots");
             return false;
         }
 
@@ -234,7 +268,7 @@ public class LevelManager
         int maxMercs = 12;
         if (Mercenaries.Count >= maxMercs)
         {
-            reason = "Too many mercenaries already recruited.";
+            reason = Messages.Get("TooManyMercenariesAlreadyRecruited");
             return false;
         }
 
@@ -250,7 +284,7 @@ public class LevelManager
         }
 
         if (hired == 0)
-            reason = "Could not place any mercenary at the perimeter.";
+            reason = Messages.Get("CouldNotPlaceAnyMercenaryAtThePerimeter");
 
         return true;
     }
@@ -302,8 +336,10 @@ public class LevelManager
         InitializeGrid();
         PlacePayer();
         PlaceBaseCamp();
+        PlaceDungeon();
         PlaceNpc(NpcId.Armin, GridWidth / 2 + 1, GridHeight / 2 - 2);
         PlaceTreasures(_difficultyManager.GetTreasuresNumber() + 4);
+        PlaceDungeonRewards();
         // Enemies only appears after X steps in the game events GameEngine
     }
 
@@ -343,6 +379,44 @@ public class LevelManager
         // Place base camp somewhere safe (adjust the position to the map)
         var baseCamp = BaseCampFactory.CreateBaseCamp((GridWidth / 2) - 4, (GridHeight / 2) - 3, 1000);
         Structures.Add(baseCamp);
+    }
+
+    private void PlaceDungeon()
+    {
+        var dungeon = DungeonFactory.CreateDungeon(GridWidth - 9, 2);
+        Structures.Add(dungeon);
+    }
+
+    private void PlaceDungeonRewards()
+    {
+        var dungeon = Structures.FirstOrDefault(s => s.Name == Messages.Get("Dungeon"));
+        if (dungeon == null) return;
+
+        var interior = GetInteriorTiles(dungeon).ToList();
+        if (interior.Count == 0) return;
+
+        foreach (var tile in interior.OrderBy(_ => _random.Next()).Take(2))
+            Treasures.Add(new Treasure { X = tile.x, Y = tile.y });
+
+        int level = Math.Max(2, Player.Level + 1);
+        var enemyBag = EnemyBags.GetByLevelAndType(level, EnemyTypes);
+        foreach (var tile in interior.OrderBy(_ => _random.Next()).Take(2))
+        {
+            if (Treasures.Any(t => t.X == tile.x && t.Y == tile.y)) continue;
+            Enemies.Add(EnemyFactory.CreateFromBag(enemyBag, tile.x, tile.y, level));
+        }
+    }
+
+    private static IEnumerable<(int x, int y)> GetInteriorTiles(Structure structure)
+    {
+        for (int y = structure.Y; y < structure.Y + structure.Height; y++)
+        {
+            for (int x = structure.X; x < structure.X + structure.Width; x++)
+            {
+                if (structure.IsInterior(x, y))
+                    yield return (x, y);
+            }
+        }
     }
 
     /// <summary>

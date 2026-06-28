@@ -30,7 +30,8 @@ public static class ItemIdHelper
             },
             EnemyType.Demon => new List<ItemId>
             {
-                
+                ItemId.HolyWater,
+                ItemId.LightningAmulet
             },
             _ => new List<ItemId>()
         };

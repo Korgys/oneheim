@@ -6,8 +6,8 @@ namespace Roguelike.Core.Tests.Game.Collectables.Items
     public class ItemFactoryTests
     {
         // Covers every switch arm with simple, data-driven cases.
-        [DataTestMethod]
-        [DynamicData(nameof(GetItemCases), DynamicDataSourceType.Method)]
+        [TestMethod]
+        [DynamicData(nameof(GetItemCases))]
         public void CreateItem_KnownIds_ReturnsExpectedBasics(ItemId id, int expectedValue, int expectedInc)
         {
             // Act
@@ -25,7 +25,7 @@ namespace Roguelike.Core.Tests.Game.Collectables.Items
         }
 
         // Targeted rarity checks for the items that explicitly set Rarity in the factory.
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(ItemId.TalismanOfTheLastBreath, ItemRarity.Rare)]
         [DataRow(ItemId.HawkEye, ItemRarity.Uncommon)]
         [DataRow(ItemId.FidelityCard, ItemRarity.Common)]
@@ -40,7 +40,7 @@ namespace Roguelike.Core.Tests.Game.Collectables.Items
         public void CreateItem_UnknownId_ThrowsArgumentException()
         {
             var unknown = (ItemId)999_999;
-            Assert.ThrowsException<ArgumentException>(() => ItemFactory.CreateItem(unknown));
+            Assert.ThrowsExactly<ArgumentException>(() => ItemFactory.CreateItem(unknown));
         }
 
         // ---- Test data mapping (easy to maintain in one place) ----

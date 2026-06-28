@@ -19,7 +19,10 @@ public static class ConsoleRendererCharacter
             NpcId.Armin => 'â',
             NpcId.Ichem => 'î',
             NpcId.Eber => 'ê',
-            _ => 'ù'
+            NpcId.Omana => 'ô',
+            NpcId.Urd => 'ù',
+            NpcId.Ylva => 'ÿ',
+            _ => '?'
         };
     }
 }
