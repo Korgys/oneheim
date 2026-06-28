@@ -228,7 +228,6 @@ public sealed class ConsoleRenderer : IRenderer
             if (player.LifePoint <= 0)
             {
                 SaveGameOverScore(player);
-                RenderLeaderboard();
                 Console.WriteLine();
                 Console.WriteLine(Messages.PressAnyKeyToContinue);
                 Console.ReadKey(true);
@@ -249,7 +248,7 @@ public sealed class ConsoleRenderer : IRenderer
         if (_hasSavedGameOverScore) return;
 
         var scores = LoadLeaderboard();
-        scores.Add(new LeaderboardEntry
+        var currentEntry = new LeaderboardEntry
         {
             DateUtc = DateTimeOffset.UtcNow,
             Steps = player.Steps,
@@ -257,9 +256,13 @@ public sealed class ConsoleRenderer : IRenderer
             Defense = player.Armor,
             Speed = player.Speed,
             Level = player.Level
-        });
+        };
 
-        SaveLeaderboard(scores);
+        scores.Add(currentEntry);
+
+        var topScores = GetTopScores(scores).ToList();
+        SaveLeaderboard(topScores);
+        RenderLeaderboard(topScores, topScores.IndexOf(currentEntry));
         _hasSavedGameOverScore = true;
     }
 
@@ -293,9 +296,9 @@ public sealed class ConsoleRenderer : IRenderer
             .Take(10)
             .ToList();
 
-    private static void RenderLeaderboard()
+    private static void RenderLeaderboard(IReadOnlyList<LeaderboardEntry>? scores = null, int? highlightedIndex = null)
     {
-        var scores = GetTopScores(LoadLeaderboard());
+        var scoresToRender = scores ?? GetTopScores(LoadLeaderboard());
 
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -303,20 +306,32 @@ public sealed class ConsoleRenderer : IRenderer
         Console.ResetColor();
         Console.WriteLine();
 
-        if (scores.Count == 0)
+        if (scoresToRender.Count == 0)
         {
             Console.WriteLine("No score yet.");
             return;
         }
 
-        for (int i = 0; i < scores.Count; i++)
+        for (int i = 0; i < scoresToRender.Count; i++)
         {
-            var score = scores[i];
+            var score = scoresToRender[i];
             var date = score.DateUtc.ToLocalTime().ToString("yyyy-MM-dd");
-            Console.WriteLine(
-                $"{i + 1,2}. {score.Steps,5} steps | {date} | " +
-                $"atk {score.Attack} / def {score.Defense} / spd {score.Speed} / lvl {score.Level}");
+            var line = $"{i + 1,2}. {score.Steps,5} steps | {date} | " +
+                $"atk {score.Attack} / def {score.Defense} / spd {score.Speed} / lvl {score.Level}";
+
+            if (highlightedIndex.HasValue && highlightedIndex.Value == i)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+            }
+            else
+            {
+                Console.ResetColor();
+            }
+
+            Console.WriteLine(line);
         }
+
+        Console.ResetColor();
     }
 
     private sealed class LeaderboardEntry
