@@ -9,8 +9,8 @@ public class I18nMessagesTests
     [TestMethod]
     public void Messages_EnglishAndFrenchResources_HaveSameKeys()
     {
-        var english = ReadKeys(@"..\..\..\..\Roguelike.Core\Properties\i18n\Messages.resx");
-        var french = ReadKeys(@"..\..\..\..\Roguelike.Core\Properties\i18n\Messages.fr.resx");
+        var english = ReadKeys("Messages.resx");
+        var french = ReadKeys("Messages.fr.resx");
 
         CollectionAssert.AreEquivalent(english, french);
     }
@@ -36,9 +36,12 @@ public class I18nMessagesTests
         }
     }
 
-    private static string[] ReadKeys(string relativePath)
+    private static string[] ReadKeys(string fileName)
     {
-        var path = Path.GetFullPath(relativePath, AppContext.BaseDirectory);
+        var path = Path.GetFullPath(
+            Path.Combine("..", "..", "..", "..", "Roguelike.Core", "Properties", "i18n", fileName),
+            AppContext.BaseDirectory);
+
         return XDocument.Load(path)
             .Descendants("data")
             .Select(e => e.Attribute("name")?.Value)
