@@ -1,11 +1,13 @@
 ﻿using System.Globalization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Roguelike.Core.Configuration;
 
 public class ConfigurationReader
 {
     private static GameSettings? _gameSettings = null;
+    private static readonly string _settingsFilePath = "gameSettings.json";
 
     public static GameSettings LoadGameSettings()
     {
@@ -13,10 +15,9 @@ public class ConfigurationReader
         if (_gameSettings != null) return _gameSettings;
 
         // Load settings from gameSettings.json
-        string filePath = "gameSettings.json";
-        if (File.Exists(filePath))
+        if (File.Exists(_settingsFilePath))
         {
-            string json = File.ReadAllText(filePath);
+            string json = File.ReadAllText(_settingsFilePath);
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
@@ -45,5 +46,27 @@ public class ConfigurationReader
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
         return _gameSettings;
+    }
+
+    public static void SaveGameSettings(GameSettings settings)
+    {
+        if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+        options.Converters.Add(new JsonStringEnumConverter());
+
+        string json = JsonSerializer.Serialize(settings, options);
+        File.WriteAllText(_settingsFilePath, json);
+
+        _gameSettings = settings;
+    }
+
+    public static GameSettings ReloadGameSettings()
+    {
+        _gameSettings = null;
+        return LoadGameSettings();
     }
 }
