@@ -18,7 +18,7 @@ public class EnemyFactoryTests
 
     // ---- Create: mapping complet EnemyId -> Type ----
 
-    [DataTestMethod]
+    [TestMethod]
     // Undead
     [DataRow(EnemyId.LeglessZombie, typeof(LeglessZombie))]
     [DataRow(EnemyId.Skeleton, typeof(Skeleton))]
@@ -83,7 +83,7 @@ public class EnemyFactoryTests
     {
         var invalidId = (EnemyId)999999;
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(
             () => EnemyFactory.Create(invalidId, X, Y, Level));
     }
     
@@ -138,7 +138,7 @@ public class EnemyFactoryTests
         var bag = new Dictionary<EnemyId, int>();
 
         // total == 0 fait échouer Random.Next(1, total+1) => ArgumentOutOfRangeException attendu
-        Assert.ThrowsException<InvalidOperationException>(
+        Assert.ThrowsExactly<InvalidOperationException>(
             () => EnemyFactory.CreateFromBag(bag, X, Y, Level));
     }
 }

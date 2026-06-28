@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);CS8602;CS8604;CS8714;CA1416</WarningsAsErrors>
+  </PropertyGroup>
+</Project>

@@ -19,8 +19,8 @@ public class Lich : Boss
             new Item
             {
                 Id = ItemId.DaggerLifeSteal,
-                Name = "Life steal",
-                Effect = "Steal up to {0} life points from the player on hit.",
+                Name = Messages.DaggerOfLifeSteal,
+                Effect = Messages.DaggerOfLifeStealDescription,
                 Value = level
             },
             new Item

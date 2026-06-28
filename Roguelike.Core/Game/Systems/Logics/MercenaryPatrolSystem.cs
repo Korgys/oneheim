@@ -1,10 +1,10 @@
-﻿using Roguelike.Core.Game.Characters.Enemies;
+using Roguelike.Core.Game.Characters.Enemies;
 using Roguelike.Core.Game.Characters.NPCs.Allies;
 using Roguelike.Core.Game.Levels;
+using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.Systems.Logics;
 
-// Run after enemies move so guards can respond
 public sealed class MercenaryPatrolSystem : ITurnSystem
 {
     public TurnPhase Phase => TurnPhase.AfterEnemiesMove;
@@ -17,33 +17,31 @@ public sealed class MercenaryPatrolSystem : ITurnSystem
 
         foreach (var mercenary in level.Mercenaries.ToList())
         {
-            // 1) If enemy adjacent, attack
             var enemy = GetAdjacentEnemy(level, mercenary.X, mercenary.Y);
             if (enemy != null)
             {
                 int damage = Math.Max(1, mercenary.Strength - enemy.Armor);
                 enemy.LifePoint = Math.Max(0, enemy.LifePoint - damage);
 
-                if (enemy.LifePoint <= 0) // enemy killed
+                if (enemy.LifePoint <= 0)
                 {
                     level.Enemies.Remove(enemy);
-                    LastMessage = $"{mercenary.Name} has slain {enemy.Name}!";
+                    LastMessage = Messages.Format("MercenaryHasSlainEnemy", mercenary.Name, enemy.Name);
                 }
-                else // counter-attack from enemy if still alive
+                else
                 {
                     int counterDmg = Math.Max(1, enemy.Strength - mercenary.Armor);
                     mercenary.LifePoint = Math.Max(0, mercenary.LifePoint - counterDmg);
                     if (mercenary.LifePoint <= 0)
                     {
                         level.Mercenaries.Remove(mercenary);
-                        LastMessage = $"{mercenary.Name} was slain by {enemy.Name} !";
+                        LastMessage = Messages.Format("MercenaryWasSlainByEnemy", mercenary.Name, enemy.Name);
                     }
                 }
 
                 continue;
             }
 
-            // 2) If enemy in short range (vision), move towards closest
             var seen = level.Enemies
                 .Where(e => Math.Abs(e.X - mercenary.X) <= mercenary.Vision && Math.Abs(e.Y - mercenary.Y) <= mercenary.Vision)
                 .OrderBy(e => Math.Abs(e.X - mercenary.X) + Math.Abs(e.Y - mercenary.Y))
@@ -55,7 +53,6 @@ public sealed class MercenaryPatrolSystem : ITurnSystem
                 continue;
             }
 
-            // 3) Otherwise, drift around the base (simple clockwise walk along walls)
             PatrolPerimeter(level, mercenary);
         }
     }
@@ -76,7 +73,6 @@ public sealed class MercenaryPatrolSystem : ITurnSystem
         int dx = Math.Sign(tx - m.X);
         int dy = Math.Sign(ty - m.Y);
 
-        // Prefer axis with larger distance
         int nx = m.X;
         int ny = m.Y;
         if (Math.Abs(tx - m.X) >= Math.Abs(ty - m.Y)) nx += dx;
@@ -87,7 +83,6 @@ public sealed class MercenaryPatrolSystem : ITurnSystem
 
     private static void PatrolPerimeter(LevelManager level, Mercenary m)
     {
-        // Naive clockwise preference: right, down, left, up
         var dirs = new (int dx, int dy)[] { (1, 0), (0, 1), (-1, 0), (0, -1) };
         foreach (var d in dirs)
         {
@@ -106,7 +101,6 @@ public sealed class MercenaryPatrolSystem : ITurnSystem
         if (x <= 0 || x >= LevelManager.GridWidth - 1 || y <= 0 || y >= LevelManager.GridHeight - 1)
             return false;
 
-        // do not enter intact walls
         if (level.Structures.Any(s => s.IsWall(x, y) && !s.IsSeverelyEndomaged()))
             return false;
 

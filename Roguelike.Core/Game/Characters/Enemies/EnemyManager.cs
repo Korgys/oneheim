@@ -81,6 +81,8 @@ public sealed class EnemyManager
                 continue;
 
             int steps = Math.Max(0, enemy.StepsPerTurn);
+            if (_level.DayCycle == DayCycle.Night && steps > 0)
+                steps++;
 
             for (int s = 0; s < steps; s++)
             {

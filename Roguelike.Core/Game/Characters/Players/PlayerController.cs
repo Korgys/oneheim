@@ -3,6 +3,7 @@ using Roguelike.Core.Game.Abstractions;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Levels;
+using Roguelike.Core.Game.Systems.Logics;
 using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Game.Characters.Players
@@ -165,6 +166,12 @@ namespace Roguelike.Core.Game.Characters.Players
 
             // Apply the bonus and set feedback
             GameMessage = TreasureSelector.ApplyBonus(selected, player, _settings, _inventoryUi);
+            if (_level.DayCycle == DayCycle.Night && !_level.Structures.Any(s => s.IsInterior(player.X, player.Y)))
+            {
+                const int nightGoldBonus = 5;
+                player.Gold += nightGoldBonus;
+                GameMessage = $"{GameMessage}\n{string.Format(Messages.Get("NightTreasureBonus"), nightGoldBonus)}";
+            }
 
             // Remove the chest
             _level.Treasures.Remove(treasure);

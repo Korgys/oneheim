@@ -14,6 +14,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
     public string? LastMessage { get; private set; }
 
     private readonly HashSet<Enemy> _lastAttackers = new();
+    private bool _wasUnderSiege;
 
     public IReadOnlyCollection<Enemy> LastAttackers => _lastAttackers;
 
@@ -39,6 +40,7 @@ public sealed class StructureSiegeSystem : ITurnSystem
         // Rule: ≥5 attackers OR any boss
         if (_lastAttackers.Count >= MinAttackersForSiege || _lastAttackers.Any(a => a is Boss))
         {
+            _wasUnderSiege = true;
             int damage = Math.Max(1, _lastAttackers.Sum(a => a.Strength) / 8);
             structure.TakeDamage(damage);
 
@@ -50,6 +52,13 @@ public sealed class StructureSiegeSystem : ITurnSystem
             }
             else
                 LastMessage = string.Format(Messages.StructureUnderAttack, structure.Name, structure.Hp, structure.MaxHp);
+        }
+        else if (_wasUnderSiege)
+        {
+            _wasUnderSiege = false;
+            int reward = Math.Max(10, level.Player.Level * 15);
+            level.Player.Gold += reward;
+            LastMessage = Messages.Format("BaseCampDefendedReward", reward);
         }
     }
 

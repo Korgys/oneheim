@@ -6,14 +6,14 @@ namespace Roguelike.Core.Tests.Game.Levels;
 [TestClass]
 public class EnemyBagsTests
 {
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(0)]
     [DataRow(16)]
     [DataRow(int.MinValue)]
     [DataRow(int.MaxValue)]
     public void GetByLevelAndType_InvalidLevel_Throws(int level)
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() =>
             EnemyBags.GetByLevelAndType(level, new List<EnemyType>()));
     }
 
@@ -24,8 +24,8 @@ public class EnemyBagsTests
         Assert.AreEqual(0, result.Count);
     }
 
-    [DataTestMethod]
-    [DynamicData(nameof(AllLevelIndices), DynamicDataSourceType.Method)]
+    [TestMethod]
+    [DynamicData(nameof(AllLevelIndices))]
     public void GetByLevelAndType_AllTypes_ReturnsExactLevelBag(int level)
     {
         var allTypes = Enum.GetValues(typeof(EnemyType)).Cast<EnemyType>().ToList();
@@ -37,8 +37,8 @@ public class EnemyBagsTests
     }
 
     // Uses a few individual types (and a combo) to ensure filtering works and counts match.
-    [DataTestMethod]
-    [DynamicData(nameof(SomeTypeSelections), DynamicDataSourceType.Method)]
+    [TestMethod]
+    [DynamicData(nameof(SomeTypeSelections))]
     public void GetByLevelAndType_FiltersByType_IntersectionOnly(int level, List<EnemyType> selectedTypes)
     {
         // Build expected via the same helper (keeps tests resilient to future mapping changes).

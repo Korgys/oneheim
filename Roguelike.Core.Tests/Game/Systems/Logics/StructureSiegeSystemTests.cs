@@ -127,8 +127,7 @@ public class StructureSiegeSystemTests
     public void Update_AtMinSteps_With_Min_AdjacentEnemies_TriggersSiege_DamagesCamp()
     {
         var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
-        var baseCamp = GetBaseCamp(level);
-        Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
+        var baseCamp = GetBaseCamp(level) ?? throw new AssertFailedException("Precondition: Base Camp should exist.");
 
         int hpBefore = (int)baseCamp.Hp;
 
@@ -150,8 +149,7 @@ public class StructureSiegeSystemTests
     public void Update_AtMinSteps_WithSingleBoss_TriggersSiegeEvenIfLessThanMinAttackers()
     {
         var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
-        var baseCamp = GetBaseCamp(level);
-        Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
+        var baseCamp = GetBaseCamp(level) ?? throw new AssertFailedException("Precondition: Base Camp should exist.");
 
         int hpBefore = (int)baseCamp.Hp;
 
@@ -171,8 +169,7 @@ public class StructureSiegeSystemTests
     public void Update_Overkill_DestroyBaseCamp_YieldsDestroyMessage_AndClearsAttackers()
     {
         var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
-        var baseCamp = GetBaseCamp(level);
-        Assert.IsNotNull(baseCamp, "Precondition: Base Camp should exist.");
+        var baseCamp = GetBaseCamp(level) ?? throw new AssertFailedException("Precondition: Base Camp should exist.");
 
         baseCamp.Hp = 2;
 

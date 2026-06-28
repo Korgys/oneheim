@@ -1,4 +1,6 @@
-﻿namespace Roguelike.Core.Game.Characters.NPCs;
+using Roguelike.Core.Properties.i18n;
+
+namespace Roguelike.Core.Game.Characters.NPCs;
 
 public static class NpcFactory
 {
@@ -48,12 +50,43 @@ public static class NpcFactory
             NpcId.Omana => new Npc
             {
                 Id = id,
-                Name = NpcId.Omana.ToString(),
+                Name = Messages.Get("Omana"),
                 Character = 'ô',
+                MaxLifePoint = 500,
+                LifePoint = 500,
+                Armor = 40,
+                Strength = 20,
+                Speed = 60,
                 X = x,
                 Y = y
             },
-            _ => throw new ArgumentException("Unknown npc type")
+            NpcId.Urd => new Npc
+            {
+                Id = id,
+                Name = Messages.Get("Urd"),
+                Character = 'ù',
+                MaxLifePoint = 450,
+                LifePoint = 450,
+                Armor = 30,
+                Strength = 30,
+                Speed = 50,
+                X = x,
+                Y = y
+            },
+            NpcId.Ylva => new Npc
+            {
+                Id = id,
+                Name = Messages.Get("Ylva"),
+                Character = 'ÿ',
+                MaxLifePoint = 500,
+                LifePoint = 500,
+                Armor = 45,
+                Strength = 45,
+                Speed = 45,
+                X = x,
+                Y = y
+            },
+            _ => throw new ArgumentException(Messages.Get("UnknownNpcType"))
         };
     }
 }

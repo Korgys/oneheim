@@ -50,7 +50,7 @@ public sealed class CombatResolver
         );
     }
 
-    private bool IsUnderTrollMushroomEffect(Item trollMushroom, int round)
+    private bool IsUnderTrollMushroomEffect(Item? trollMushroom, int round)
     {
         if (trollMushroom == null)
         {
@@ -84,7 +84,7 @@ public sealed class CombatResolver
         return true;
     }
 
-    private static int ComputeBaseDamage(Character attacker, Character defender, Item trollMushroom)
+    private static int ComputeBaseDamage(Character attacker, Character defender, Item? trollMushroom)
     {
         int baseDamage = Math.Max(0, attacker.Strength - defender.Armor);
 

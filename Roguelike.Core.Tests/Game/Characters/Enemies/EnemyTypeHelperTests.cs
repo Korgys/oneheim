@@ -10,16 +10,16 @@ public class EnemyTypeHelperTests
     {
         int enumCount = Enum.GetNames<EnemyType>().Length;
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() =>
             EnemyTypeHelper.GetRandomEnemyTypesBag(-1));
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() =>
             EnemyTypeHelper.GetRandomEnemyTypesBag(0));
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() =>
             EnemyTypeHelper.GetRandomEnemyTypesBag(enumCount));
 
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(() =>
             EnemyTypeHelper.GetRandomEnemyTypesBag(enumCount + 1));
     }
 

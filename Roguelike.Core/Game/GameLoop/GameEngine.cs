@@ -62,7 +62,8 @@ public sealed class GameEngine
                 _settings,
                 currentMessage: _gameMessage,
                 isGameEnded: _isGameEnded,
-                hasUsedKey: _playerController.HasUsedKey
+                hasUsedKey: _playerController.HasUsedKey,
+                isBaseCampUnderAttack: _level.IsBaseCampUnderAttack()
             );
             _renderer.RenderFrame(view);
 
@@ -106,7 +107,8 @@ public sealed class GameEngine
             _settings,
             currentMessage: _gameMessage,
             isGameEnded: _isGameEnded,
-            hasUsedKey: true  // at end we don't need the controls helper anymore
+            hasUsedKey: true,
+            isBaseCampUnderAttack: _level.IsBaseCampUnderAttack()
         );
         _renderer.RenderFrame(endView);
     }

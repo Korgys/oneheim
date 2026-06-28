@@ -34,9 +34,9 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
         Console.WriteLine();
         Console.WriteLine($"HP: {playerHP}".PadRight(colWidth) + $"HP: {enemyHP}".PadLeft(colWidth));
 
-        PrintStat("Attack", player.Strength, enemy.Strength, colWidth);
-        PrintStat("Armor", player.Armor, enemy.Armor, colWidth);
-        PrintStat("Speed", player.Speed, enemy.Speed, colWidth);
+        PrintStat(Messages.Strength, player.Strength, enemy.Strength, colWidth);
+        PrintStat(Messages.Armor, player.Armor, enemy.Armor, colWidth);
+        PrintStat(Messages.Speed, player.Speed, enemy.Speed, colWidth);
 
         Console.WriteLine();
         foreach (var line in logLines)
@@ -69,7 +69,7 @@ public sealed class ConsoleCombatRenderer : ICombatRenderer
                 RenderLevelUp(player, playerStatsBeforeXp);
             }
 
-            Console.WriteLine($"Niv: {player.Level} | Exp: {player.XP}/{player.GetNextLevelXP()}");
+            Console.WriteLine($"{Messages.Lvl}: {player.Level} | {Messages.XP}: {player.XP}/{player.GetNextLevelXP()}");
         }
 
         Console.WriteLine();
