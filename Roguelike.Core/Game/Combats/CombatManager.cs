@@ -148,6 +148,7 @@ public sealed class CombatManager
 
         var combatReport = new CombatReport(
             EnemyName: enemy.Name,
+            EnemyLevel: enemy.Level,
             PlayerDied: player.LifePoint <= 0,
             EnemyDied: enemy.LifePoint <= 0,
             Gold: gold,
@@ -297,6 +298,7 @@ public sealed class CombatManager
 /// </summary>
 public readonly record struct CombatReport(
     string EnemyName,
+    int EnemyLevel,
     bool PlayerDied,
     bool EnemyDied,
     int Gold,

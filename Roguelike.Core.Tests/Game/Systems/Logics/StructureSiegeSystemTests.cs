@@ -32,7 +32,7 @@ public class StructureSiegeSystemTests
         return (sys, ctx, level);
     }
 
-    private static dynamic? GetBaseCamp(LevelManager level)
+    private static Structure? GetBaseCamp(LevelManager level)
     {
         // We only need members used by the system: Name, Hp, MaxHp, TakeDamage(), WallTiles(), IsInterior(), IsSeverelyEndomaged().
         return level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
@@ -42,7 +42,7 @@ public class StructureSiegeSystemTests
     /// Finds up to 'count' outside tiles adjacent (Manhattan distance 1) to the structure walls.
     /// Rejects any tile considered 'interior' by the structure.
     /// </summary>
-    private static (int x, int y)[] FindExteriorAdjacentToWalls(dynamic structure, int count = 4)
+    private static (int x, int y)[] FindExteriorAdjacentToWalls(Structure structure, int count = 4)
     {
         var walls = ((IEnumerable<(int x, int y)>)structure.WallTiles()).ToArray();
         var spots = new List<(int x, int y)>();
@@ -103,7 +103,7 @@ public class StructureSiegeSystemTests
         // Remove any structure named BaseCamp if present
         var baseCamp = GetBaseCamp(level);
         if (baseCamp != null)
-            level.Structures.Remove((Structure)baseCamp);
+            level.Structures.Remove(baseCamp);
 
         sys.Update(ctx);
 
@@ -129,7 +129,7 @@ public class StructureSiegeSystemTests
         var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
         var baseCamp = GetBaseCamp(level) ?? throw new AssertFailedException("Precondition: Base Camp should exist.");
 
-        int hpBefore = (int)baseCamp.Hp;
+        int hpBefore = baseCamp.Hp;
 
         // Place min enemies adjacent to walls (outside)
         var spots = FindExteriorAdjacentToWalls(baseCamp, StructureSiegeSystem.MinAttackersForSiege);
@@ -151,7 +151,7 @@ public class StructureSiegeSystemTests
         var (sys, ctx, level) = CreateContext(playerSteps: StructureSiegeSystem.MinStepsForSiege + 1);
         var baseCamp = GetBaseCamp(level) ?? throw new AssertFailedException("Precondition: Base Camp should exist.");
 
-        int hpBefore = (int)baseCamp.Hp;
+        int hpBefore = baseCamp.Hp;
 
         // Place one boss adjacent to a wall
         var spot = FindExteriorAdjacentToWalls(baseCamp, 1)[0];

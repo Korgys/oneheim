@@ -11,10 +11,13 @@ using Roguelike.Core.Properties.i18n;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System;
+using System.Text.Json;
 
 public sealed class ConsoleRenderer : IRenderer
 {
     private static string? _lastGameMessage = null;
+    private const string LeaderboardFileName = "leaderboard.json";
+    private bool _hasSavedGameOverScore = false;
 
     /// <summary>
     /// helper: pack (x,y) into an int key (works for grids up to ~32k)
@@ -192,7 +195,7 @@ public sealed class ConsoleRenderer : IRenderer
                 || message.Contains(Messages.KilledBy)
                 || message.Contains(Messages.ABossArrives))
                 Console.ForegroundColor = ConsoleColor.Red;
-            else if (message.Contains(Messages.ANewTravelerComesToTheBaseCamp) 
+            else if (message.Contains(Messages.ANewTravelerComesToTheBaseCamp)
                 || message.Contains(Messages.YouDefeatedAllBosses))
                 Console.ForegroundColor = ConsoleColor.Green;
             else
@@ -221,6 +224,15 @@ public sealed class ConsoleRenderer : IRenderer
             }
             Console.ResetColor();
             Console.ReadLine();
+
+            if (player.LifePoint <= 0)
+            {
+                SaveGameOverScore(player);
+                RenderLeaderboard();
+                Console.WriteLine();
+                Console.WriteLine(Messages.PressAnyKeyToContinue);
+                Console.ReadKey(true);
+            }
         }
         else if (!view.HasPlayerUsedAValidKey)
         {
@@ -230,6 +242,91 @@ public sealed class ConsoleRenderer : IRenderer
                 $"{Messages.Choices}: {keys.Choice1},{keys.Choice2},{keys.Choice3} | " +
                 $"{Messages.Quit}: {keys.Exit}");
         }
+    }
+
+    private void SaveGameOverScore(Core.Game.Characters.Players.Player player)
+    {
+        if (_hasSavedGameOverScore) return;
+
+        var scores = LoadLeaderboard();
+        scores.Add(new LeaderboardEntry
+        {
+            DateUtc = DateTimeOffset.UtcNow,
+            Steps = player.Steps,
+            Attack = player.Strength,
+            Defense = player.Armor,
+            Speed = player.Speed,
+            Level = player.Level
+        });
+
+        SaveLeaderboard(scores);
+        _hasSavedGameOverScore = true;
+    }
+
+    private static List<LeaderboardEntry> LoadLeaderboard()
+    {
+        if (!File.Exists(LeaderboardFileName))
+            return new List<LeaderboardEntry>();
+
+        try
+        {
+            var json = File.ReadAllText(LeaderboardFileName);
+            return JsonSerializer.Deserialize<List<LeaderboardEntry>>(json) ?? new List<LeaderboardEntry>();
+        }
+        catch
+        {
+            return new List<LeaderboardEntry>();
+        }
+    }
+
+    private static void SaveLeaderboard(List<LeaderboardEntry> scores)
+    {
+        var topScores = GetTopScores(scores).ToList();
+        var json = JsonSerializer.Serialize(topScores, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(LeaderboardFileName, json);
+    }
+
+    private static IReadOnlyList<LeaderboardEntry> GetTopScores(IEnumerable<LeaderboardEntry> scores) =>
+        scores
+            .OrderByDescending(score => score.Steps)
+            .ThenByDescending(score => score.DateUtc)
+            .Take(10)
+            .ToList();
+
+    private static void RenderLeaderboard()
+    {
+        var scores = GetTopScores(LoadLeaderboard());
+
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("Leaderboard - Top 10");
+        Console.ResetColor();
+        Console.WriteLine();
+
+        if (scores.Count == 0)
+        {
+            Console.WriteLine("No score yet.");
+            return;
+        }
+
+        for (int i = 0; i < scores.Count; i++)
+        {
+            var score = scores[i];
+            var date = score.DateUtc.ToLocalTime().ToString("yyyy-MM-dd");
+            Console.WriteLine(
+                $"{i + 1,2}. {score.Steps,5} steps | {date} | " +
+                $"atk {score.Attack} / def {score.Defense} / spd {score.Speed} / lvl {score.Level}");
+        }
+    }
+
+    private sealed class LeaderboardEntry
+    {
+        public DateTimeOffset DateUtc { get; set; }
+        public int Steps { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Speed { get; set; }
+        public int Level { get; set; }
     }
 
     // helpers: flush segment if color change needed
@@ -304,7 +401,7 @@ public sealed class ConsoleRenderer : IRenderer
         try
         {
             // Agrandit le buffer si nécessaire (ne réduit jamais)
-            if (Console.BufferHeight < minHeight)
+            if (OperatingSystem.IsWindows() && Console.BufferHeight < minHeight)
             {
                 int bw = Math.Max(Console.BufferWidth, Console.WindowWidth);
                 int bh = Math.Max(minHeight, Console.BufferHeight);

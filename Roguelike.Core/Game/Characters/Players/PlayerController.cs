@@ -185,8 +185,17 @@ namespace Roguelike.Core.Game.Characters.Players
             if (enemy == null) return false;
 
             var combat = new Combat.CombatManager(_level, _combatUi);
-            combat.StartCombat(enemy);
-            GameMessage = Messages.CombatOccurred;
+            var report = combat.StartCombat(enemy);
+            if (report.PlayerDied)
+            {
+                GameMessage = string.Format(Messages.YouWereKilledBy, report.EnemyName, report.EnemyLevel);
+                IsGameEnded = true;
+            }
+            else
+            {
+                GameMessage = Messages.CombatOccurred;
+            }
+
             return true;
         }
 

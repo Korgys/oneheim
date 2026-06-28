@@ -87,6 +87,11 @@ public sealed class GameEngine
             _enemyManager.MoveEnemies();
             if (!string.IsNullOrWhiteSpace(_enemyManager.CombatMessage))
                 _gameMessage = _enemyManager.CombatMessage!;
+            if (_level.Player.LifePoint <= 0)
+            {
+                _isGameEnded = true;
+                break;
+            }
 
             // 5) Run "after enemies move" systems
             var afterMsgs = _runner.Run(TurnPhase.AfterEnemiesMove, ctx);

@@ -3,10 +3,12 @@ using Roguelike.Core.Game.Characters.NPCs.Services;
 using Roguelike.Core.Game.Characters.Players;
 using Roguelike.Core.Game.Levels;
 using Roguelike.Core.Game.Structures;
+using Roguelike.Core.Properties.i18n;
 
 namespace Roguelike.Core.Tests.Game.Characters.NPCs.Services;
 
 [TestClass]
+[DoNotParallelize]
 public class ArminServiceTests
 {
     [TestInitialize]
@@ -14,6 +16,7 @@ public class ArminServiceTests
     {
         // Ensure the static interaction flag doesn't leak between tests
         ArminInteractions.HasExplainedWhereWeAre = false;
+        ArminInteractions.HasPreventedForTheSiege = false;
     }
 
 
@@ -133,7 +136,7 @@ public class ArminServiceTests
             "Heal node should include an actionable option when player not full.");
 
         // Other node returns some text and has an Ok option
-        Assert.IsFalse(string.IsNullOrWhiteSpace(other.Text!()));
+        Assert.IsFalse(string.IsNullOrWhiteSpace(other.Text?.Invoke()));
         Assert.IsTrue(other.Options.Any(o => o.Label != null));
     }
 
@@ -144,17 +147,17 @@ public class ArminServiceTests
         var lvl = NewLevel();
         var svc = new ArminService(lvl);
 
-        var nodes1 = svc.BuildServiceNodes(otherText: Roguelike.Core.Properties.i18n.Messages.WhereAreWe);
-        var first = nodes1.Other.Text!();
+        var nodes1 = svc.BuildServiceNodes(otherText: Messages.WhereAreWe);
+        var first = nodes1.Other.Text?.Invoke();
         Assert.IsTrue(ArminInteractions.HasExplainedWhereWeAre);
         Assert.IsFalse(string.IsNullOrWhiteSpace(first));
 
         // Calling again with the flag already set should use the reminder text.
         ArminInteractions.HasExplainedWhereWeAre = true;
-        var nodes2 = svc.BuildServiceNodes(otherText: Roguelike.Core.Properties.i18n.Messages.WhereAreWe);
-        var second = nodes2.Other.Text!();
+        var nodes2 = svc.BuildServiceNodes(otherText: Messages.WhereAreWe);
+        var second = nodes2.Other.Text?.Invoke();
         Assert.IsFalse(string.IsNullOrWhiteSpace(second));
-        Assert.AreEqual(Roguelike.Core.Properties.i18n.Messages.ArminAreYouSerious, second);
+        Assert.AreEqual(Messages.ArminAreYouSerious, second);
     }
 
     private static LevelManager NewLevel(

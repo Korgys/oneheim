@@ -417,3 +417,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 /Roguelike.Core.Tests/coveragereport
+Roguelike.Console/leaderboard.json

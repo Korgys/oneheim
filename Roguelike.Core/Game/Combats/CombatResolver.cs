@@ -50,7 +50,7 @@ public sealed class CombatResolver
         );
     }
 
-    private bool IsUnderTrollMushroomEffect(Item? trollMushroom, int round)
+    private static bool IsUnderTrollMushroomEffect(Item? trollMushroom, int round)
     {
         if (trollMushroom == null)
         {

@@ -347,7 +347,7 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>Found item: {0} – {1}</value>
   </data>
   <data name="GameOverPressEnterToExit" xml:space="preserve">
-    <value>Game Over! Press Enter to exit.</value>
+    <value>Game Over! Press Enter to continue.</value>
   </data>
   <data name="GlassesOfClairvoyance" xml:space="preserve">
     <value>Glasses of Clairvoyance</value>
@@ -782,7 +782,7 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>You were attacked and you defeated your enemy !</value>
   </data>
   <data name="YouWereKilledBy" xml:space="preserve">
-    <value>You were killed by {0}.</value>
+    <value>You were killed by {0} (lvl {1}).</value>
   </data>
   <data name="Zealot" xml:space="preserve">
     <value>Blood Zealot</value>

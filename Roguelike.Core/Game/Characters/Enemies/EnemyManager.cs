@@ -128,12 +128,18 @@ public sealed class EnemyManager
             if (player.LifePoint > 0)
             {
                 var combat = new CombatManager(_level, _combatUi);
-                combat.StartCombat(enemy);
+                var report = combat.StartCombat(enemy);
+
+                if (report.PlayerDied)
+                {
+                    CombatMessage = string.Format(Messages.YouWereKilledBy, report.EnemyName, report.EnemyLevel);
+                    break;
+                }
             }
 
             if (player.LifePoint <= 0)
             {
-                CombatMessage = string.Format(Messages.YouWereKilledBy, enemy.Name);
+                CombatMessage = string.Format(Messages.YouWereKilledBy, enemy.Name, enemy.Level);
                 break;
             }
             else
