@@ -695,7 +695,7 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>Thorn Breastplate</value>
   </data>
   <data name="ThornBreastplateDescription" xml:space="preserve">
-    <value>60% chances that enemies take {0} damage if they hit you</value>
+    <value>Enemies take {0} damage if they hit you</value>
   </data>
   <data name="TrollMushroom" xml:space="preserve">
     <value>Troll's Mushroom</value>

@@ -694,7 +694,7 @@
     <value>Plastron d'épines</value>
   </data>
   <data name="ThornBreastplateDescription" xml:space="preserve">
-    <value>60% de chances que l'adversaire prenne {0} de dégâts si touché</value>
+    <value>L'adversaire prenne {0} de dégâts si touché</value>
   </data>
   <data name="TrollMushroom" xml:space="preserve">
     <value>Champignon de troll</value>

@@ -188,7 +188,7 @@ public sealed class CombatResolver
     private int ApplyThorns(Character attacker, Character defender, int damage)
     {
         var breastplate = defender.Inventory.FirstOrDefault(i => i.Id == ItemId.ThornBreastplate);
-        if (breastplate == null || damage <= 0 || _random.NextDouble() > 0.6)
+        if (breastplate == null || damage <= 0)
         {
             return 0;
         }

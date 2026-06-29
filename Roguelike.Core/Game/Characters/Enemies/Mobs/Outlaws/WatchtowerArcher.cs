@@ -6,11 +6,11 @@ public class WatchtowerArcher : Enemy
 {
     public WatchtowerArcher(int x, int y, int level) : base(x, y, level)
     {
-        LifePoint = (20 + _random.Next(0, 11)) * level + (level - 1);
+        LifePoint = (16 + _random.Next(10)) * level + (level - 1);
         MaxLifePoint = LifePoint;
-        Armor = (5 + _random.Next(0, 2)) * level + (level - 1);
-        Strength = (13 + _random.Next(0, 2)) * level + (level - 1);
-        Speed = (4 + _random.Next(0, 2)) * level + (level - 1);
+        Armor = (5 + _random.Next(2)) * level + (level - 1);
+        Strength = (10 + _random.Next(2)) * level + (level - 1);
+        Speed = (4 + _random.Next(2)) * level + (level - 1);
         Name = Messages.WatchtowerArcher;
         Category = EnemyType.Outlaws;
         StepsPerTurn = 0; // static
