@@ -19,8 +19,8 @@ public class LevelManager
     public const int GridHeight = 22;
 
     private static List<EnemyType> _enemyTypes = new();
-    public static List<EnemyType> EnemyTypes 
-    { 
+    public static List<EnemyType> EnemyTypes
+    {
         get
         {
             if (_enemyTypes.Count == 0) _enemyTypes = EnemyTypeHelper.GetRandomEnemyTypesBag(3);
@@ -110,8 +110,7 @@ public class LevelManager
 
     public bool IsPlayerFarFromBaseCamp(int minDistance = 12)
     {
-        var baseCamp = BaseCamp;
-        if (baseCamp == null) return false;
+        if (BaseCamp is not { } baseCamp) return false;
 
         int centerX = baseCamp.X + baseCamp.Width / 2;
         int centerY = baseCamp.Y + baseCamp.Height / 2;
@@ -120,29 +119,34 @@ public class LevelManager
 
     public bool ShouldOfferCampTeleportTreasure()
     {
-        if (!IsPlayerFarFromBaseCamp()) return false;
+        if (BaseCamp is not { } baseCamp || baseCamp.IsInterior(Player.X, Player.Y)) return false;
 
-        bool playerLowLife = Player.MaxLifePoint > 0 && Player.LifePoint * 100 <= Player.MaxLifePoint * 30;
-        return IsBaseCampUnderAttack() || Npcs.Count > 1 || playerLowLife;
+        bool playerLowLife = Player.MaxLifePoint > 0 && Player.LifePoint * 100 <= Player.MaxLifePoint * 25;
+        bool npcUnderAttack = Npcs.Any(n => n.LifePoint < n.MaxLifePoint);
+        bool bossAlive = Enemies.Any(e => e is Boss);
+
+        return playerLowLife || IsBaseCampUnderAttack() || npcUnderAttack || bossAlive;
     }
 
     private Structure? BaseCamp => Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
 
     private bool TryFindFreeBaseCampInterior(out int x, out int y)
     {
-        var baseCamp = BaseCamp;
-        if (baseCamp != null)
+        if (BaseCamp is not { } baseCamp)
         {
-            var tiles = GetInteriorTiles(baseCamp)
-                .Where(t => !baseCamp.EntranceTiles.Any(e => e.x == t.x && e.y == t.y) && !IsOccupiedByCharacterOrTreasure(t.x, t.y))
-                .OrderBy(_ => _random.Next())
-                .ToList();
+            x = y = -1;
+            return false;
+        }
 
-            if (tiles.Count > 0)
-            {
-                (x, y) = tiles[0];
-                return true;
-            }
+        var tiles = GetInteriorTiles(baseCamp)
+            .Where(t => !baseCamp.EntranceTiles.Any(e => e.x == t.x && e.y == t.y) && !IsOccupiedByCharacterOrTreasure(t.x, t.y))
+            .OrderBy(_ => _random.Next())
+            .ToList();
+
+        if (tiles.Count > 0)
+        {
+            (x, y) = tiles[0];
+            return true;
         }
 
         x = y = -1;

@@ -1,11 +1,14 @@
 using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Characters.Enemies;
+using Roguelike.Core.Game.Characters.Enemies.Bosses;
+using Roguelike.Core.Game.Characters.NPCs;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Levels;
 
 namespace Roguelike.Core.Tests.Game.Levels;
 
 [TestClass]
+[DoNotParallelize]
 public class LevelManagerTests
 {
     [TestMethod]
@@ -90,7 +93,7 @@ public class LevelManagerTests
     }
 
     [TestMethod]
-    public void ShouldOfferCampTeleportTreasure_WhenFarAndLowLife()
+    public void ShouldOfferCampTeleportTreasure_WhenOutsideCampAndLowLife()
     {
         var level = new LevelManager(new GameSettings());
         level.Treasures.Clear();
@@ -105,6 +108,51 @@ public class LevelManagerTests
         Assert.IsTrue(level.ShouldOfferCampTeleportTreasure());
     }
 
+    [TestMethod]
+    public void ShouldOfferCampTeleportTreasure_False_WhenPlayerIsInsideBaseCamp()
+    {
+        var level = new LevelManager(new GameSettings());
+        level.Player.LifePoint = 1;
+        level.Player.MaxLifePoint = 100;
+
+        Assert.IsFalse(level.ShouldOfferCampTeleportTreasure());
+    }
+
+    [TestMethod]
+    public void ShouldOfferCampTeleportTreasure_False_WhenOutsideCampWithoutEmergency()
+    {
+        var level = new LevelManager(new GameSettings());
+        level.Treasures.Clear();
+        level.Npcs.Clear();
+        level.Enemies.Clear();
+        level.Mercenaries.Clear();
+        level.Player.X = LevelManager.GridWidth - 2;
+        level.Player.Y = LevelManager.GridHeight - 2;
+        level.Player.LifePoint = 26;
+        level.Player.MaxLifePoint = 100;
+
+        Assert.IsFalse(level.ShouldOfferCampTeleportTreasure());
+    }
+
+    [TestMethod]
+    public void ShouldOfferCampTeleportTreasure_WhenOutsideCampAndNpcIsWounded()
+    {
+        var level = CreateLevelWithPlayerOutsideCamp();
+        level.Npcs.Add(NpcFactory.CreateNpc(NpcId.Ichem, 25, 10));
+        level.Npcs[0].LifePoint--;
+
+        Assert.IsTrue(level.ShouldOfferCampTeleportTreasure());
+    }
+
+    [TestMethod]
+    public void ShouldOfferCampTeleportTreasure_WhenOutsideCampAndBossIsAlive()
+    {
+        var level = CreateLevelWithPlayerOutsideCamp();
+        level.Enemies.Add(new Troll(1, 1, 5));
+
+        Assert.IsTrue(level.ShouldOfferCampTeleportTreasure());
+    }
+
     private static LevelManager CreateEmptyLevel()
     {
         var level = new LevelManager(new GameSettings());
@@ -113,6 +161,20 @@ public class LevelManagerTests
         level.Npcs.Clear();
         level.Enemies.Clear();
         level.Mercenaries.Clear();
+        return level;
+    }
+
+    private static LevelManager CreateLevelWithPlayerOutsideCamp()
+    {
+        var level = new LevelManager(new GameSettings());
+        level.Treasures.Clear();
+        level.Npcs.Clear();
+        level.Enemies.Clear();
+        level.Mercenaries.Clear();
+        level.Player.X = LevelManager.GridWidth - 2;
+        level.Player.Y = LevelManager.GridHeight - 2;
+        level.Player.LifePoint = 100;
+        level.Player.MaxLifePoint = 100;
         return level;
     }
 }

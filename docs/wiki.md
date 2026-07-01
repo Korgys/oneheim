@@ -149,7 +149,7 @@ Règles de génération :
 - Si une statistique domine fortement, le système peut favoriser un bonus dans cette statistique.
 - Les valeurs augmentent avec la progression en pas.
 - Les objets sont tirés dans un pool de 9 objets, en évitant certains objets spécifiques aux familles d'ennemis présentes.
-- Une téléportation vers le camp peut être proposée si le joueur est loin du camp et qu'il existe une urgence : camp attaqué, PNJ présents au camp, ou joueur à 30 % de vie maximum ou moins.
+- Une téléportation vers le camp peut être proposée si le joueur est hors du camp et qu'il existe une urgence : joueur à 25 % de vie maximum ou moins, camp attaqué, PNJ blessé, ou boss vivant.
 
 ## Objets
 
