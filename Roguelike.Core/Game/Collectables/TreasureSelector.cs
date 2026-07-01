@@ -14,11 +14,13 @@ public static class TreasureSelector
     private static readonly Random _random = new();
     private const int _numberOfItemInPool = 9;
 
-    public static List<Treasure> GenerateBonusChoices(Player player, GameSettings settings)
+    public static List<Treasure> GenerateBonusChoices(Player player, GameSettings settings, LevelManager? level = null)
     {
         EnsureItemPoolInitialized();
 
         var types = Enum.GetValues<BonusType>().ToList();
+        bool offerCampTeleport = level?.ShouldOfferCampTeleportTreasure() == true;
+        if (!offerCampTeleport) types.Remove(BonusType.CampTeleport);
 
         // Avoid life refill if HP ratio >= 50%
         double hpRatio = player.MaxLifePoint > 0 ? (double)player.LifePoint / player.MaxLifePoint : 0;
@@ -63,7 +65,7 @@ public static class TreasureSelector
             ItemRarity? itemRarity = null;
             string desc = t.Type == BonusType.Item
                 ? FormatItemDescription((ItemId)t.Value, player, out itemRarity)
-                : $"+{t.Value} {Messages.ResourceManager.GetString(t.Type.ToString()) ?? t.Type.ToString()}";
+                : FormatBonusDescription(t);
 
             var rarity = GetRarityForBonus(t.Type, t.Value, player, itemRarity);
             list.Add(new TreasureOptionView
@@ -82,9 +84,10 @@ public static class TreasureSelector
     public static Treasure ChooseWithPicker(
         Player player,
         GameSettings settings,
-        ITreasurePicker picker)
+        ITreasurePicker picker,
+        LevelManager? level = null)
     {
-        var choices = GenerateBonusChoices(player, settings);
+        var choices = GenerateBonusChoices(player, settings, level);
         var views = BuildOptionViews(choices, player);
 
         var ctx = new TreasurePickerContext
@@ -98,7 +101,7 @@ public static class TreasureSelector
         return choices[idx];
     }
 
-    public static string ApplyBonus(Treasure bonus, Player player, GameSettings settings, IInventoryUI ui) =>
+    public static string ApplyBonus(Treasure bonus, Player player, GameSettings settings, IInventoryUI ui, LevelManager? level = null) =>
         bonus.Type switch
         {
             BonusType.LifePoint => ApplyLifePointBonus(player, bonus.Value),
@@ -107,6 +110,7 @@ public static class TreasureSelector
             BonusType.Armor => ApplyStatBonus(player, nameof(player.Armor), bonus.Value),
             BonusType.Speed => ApplyStatBonus(player, nameof(player.Speed), bonus.Value),
             BonusType.Vision => ApplyStatBonus(player, nameof(player.Vision), bonus.Value),
+            BonusType.CampTeleport => ApplyCampTeleportBonus(level),
             BonusType.Item => ApplyItemBonus(player, settings, (ItemId)bonus.Value, ui),
             _ => "Unknown bonus type"
         };
@@ -161,6 +165,9 @@ public static class TreasureSelector
                     if (valid.Count == 0) return -1;
                     return (int)valid[_random.Next(valid.Count)];
                 }
+
+            case BonusType.CampTeleport:
+                return 1;
 
             case BonusType.Vision:
                 {
@@ -241,6 +248,14 @@ public static class TreasureSelector
         return $"{item.Name} : {item.GetEffectDescription(displayValue)}";
     }
 
+    private static string FormatBonusDescription(Treasure treasure)
+    {
+        var label = Messages.ResourceManager.GetString(treasure.Type.ToString()) ?? treasure.Type.ToString();
+        return treasure.Type == BonusType.CampTeleport
+            ? label
+            : $"+{treasure.Value} {label}";
+    }
+
     private static ItemRarity GetRarityForBonus(BonusType type, int value, Player player, ItemRarity? fromItem)
     {
         if (type == BonusType.Item && fromItem.HasValue) return fromItem.Value;
@@ -258,6 +273,8 @@ public static class TreasureSelector
             BonusType.MaxLifePoint => MapByRatio(value, player.MaxLifePoint),
 
             BonusType.LifePoint => MapHealRarity(value, player),
+
+            BonusType.CampTeleport => ItemRarity.Rare,
 
             _ => value switch // STR / ARM / SPD
             {
@@ -323,6 +340,14 @@ public static class TreasureSelector
 
         string label = Messages.ResourceManager.GetString(statName) ?? statName;
         return $"+{value} {label}";
+    }
+
+    private static string ApplyCampTeleportBonus(LevelManager? level)
+    {
+        if (level?.TeleportPlayerToBaseCamp() == true)
+            return Messages.Get("TeleportedToBaseCamp");
+
+        return Messages.Get("NoBaseCampToDefend");
     }
 
     private static string ApplyItemBonus(Player p, GameSettings settings, ItemId itemId, IInventoryUI ui)

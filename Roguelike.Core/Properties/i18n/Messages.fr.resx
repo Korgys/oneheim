@@ -279,6 +279,9 @@
   <data name="CombatOccurred" xml:space="preserve">
     <value>Un combat a eu lieu !</value>
   </data>
+  <data name="CampTeleport" xml:space="preserve">
+    <value>Téléportation au camp</value>
+  </data>
   <data name="Cultist" xml:space="preserve">
     <value>Cultiste de la viande fraîche</value>
   </data>
@@ -772,7 +775,10 @@
     <value>Vous êtes passé niveau {0} !</value>
   </data>
   <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
-    <value>Vous avez survécu à un coup fatal avec votre talisman mais celui-ci s'est épuisé.</value>
+    <value>Votre talisman vous a sauvé d'un coup fatal et vous a téléporté au camp.</value>
+  </data>
+  <data name="TeleportedToBaseCamp" xml:space="preserve">
+    <value>Vous vous téléportez au camp.</value>
   </data>
   <data name="YouTalkedWith" xml:space="preserve">
     <value>Vous avez parlé à {0}.</value>

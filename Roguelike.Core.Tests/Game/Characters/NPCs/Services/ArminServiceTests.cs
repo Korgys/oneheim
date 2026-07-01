@@ -103,6 +103,22 @@ public class ArminServiceTests
     }
 
     [TestMethod]
+    public void RepairAction_RepairsFiveHpPerGold()
+    {
+        var lvl = NewLevel(p: new Player { Gold = 2 }, camp: NewCamp(0, 20));
+        var svc = new ArminService(lvl);
+
+        Assert.AreEqual(10, svc.RepairAmount);
+        Assert.AreEqual(2, svc.RepairCost);
+
+        var msg = svc.RepairAction();
+
+        Assert.AreEqual(10, lvl.Structures.Last().Hp);
+        Assert.AreEqual(0, lvl.Player.Gold);
+        StringAssert.Contains(msg, "10");
+    }
+
+    [TestMethod]
     public void PickOther_TogglesByInteractionFlag()
     {
         var lvl = NewLevel();
@@ -175,13 +191,16 @@ public class ArminServiceTests
             }
         };
         if (camp != null)
+        {
+            lvl.Structures.Clear();
             lvl.Structures.Add(camp);
+        }
         return lvl;
     }
 
     private static Structure NewCamp(int hp, int max)
     {
-        var structure = new Structure("", 0, 0, [ "X" ], new HashSet<(int x, int y)>(), max);
+        var structure = new Structure(Messages.BaseCamp, 0, 0, [ "X" ], new HashSet<(int x, int y)>(), max);
         structure.Hp = hp;
         return structure;
     }

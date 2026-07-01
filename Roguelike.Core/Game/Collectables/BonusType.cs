@@ -8,5 +8,6 @@ public enum BonusType
     Armor,
     Speed,
     Vision,
+    CampTeleport,
     Item
 }

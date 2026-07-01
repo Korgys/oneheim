@@ -91,6 +91,17 @@ public class TreasureSelectorTests
             }, views);
     }
 
+    [TestMethod]
+    public void BuildOptionViews_CampTeleport_HasNonNumericDescription()
+    {
+        var views = TreasureSelector.BuildOptionViews(
+            new[] { new Treasure { Type = BonusType.CampTeleport, Value = 1 } },
+            NewPlayer());
+
+        Assert.AreEqual(ItemRarity.Rare, views[0].Rarity);
+        Assert.IsFalse(views[0].Description.StartsWith("+", StringComparison.Ordinal));
+    }
+
 
     [TestMethod]
     [DoNotParallelize]
@@ -282,6 +293,44 @@ public class TreasureSelectorTests
 
         Assert.AreEqual(3, p.Inventory.Count);
         Assert.IsFalse(p.Inventory.Any(i => i.Id == incoming));
+    }
+
+    [TestMethod]
+    public void GenerateBonusChoices_CanOfferCampTeleport_WhenPlayerIsFarAndAtRisk()
+    {
+        var level = new LevelManager(new GameSettings());
+        level.Player.X = LevelManager.GridWidth - 2;
+        level.Player.Y = LevelManager.GridHeight - 2;
+        level.Player.LifePoint = 10;
+        level.Player.MaxLifePoint = 100;
+
+        for (int i = 0; i < 100; i++)
+        {
+            var choices = TreasureSelector.GenerateBonusChoices(level.Player, new GameSettings(), level);
+            if (choices.Any(t => t.Type == BonusType.CampTeleport))
+                return;
+        }
+
+        Assert.Fail("Expected camp teleport to be eligible in treasure choices.");
+    }
+
+    [TestMethod]
+    public void ApplyBonus_CampTeleport_MovesPlayerInsideBaseCamp()
+    {
+        var level = new LevelManager(new GameSettings());
+        level.Player.X = LevelManager.GridWidth - 2;
+        level.Player.Y = LevelManager.GridHeight - 2;
+
+        var msg = TreasureSelector.ApplyBonus(
+            new Treasure { Type = BonusType.CampTeleport, Value = 1 },
+            level.Player,
+            new GameSettings(),
+            new FakeInventoryUI(0),
+            level);
+
+        Assert.IsFalse(string.IsNullOrWhiteSpace(msg));
+        Assert.IsTrue(level.Structures.First(s => s.Name == Roguelike.Core.Properties.i18n.Messages.BaseCamp)
+            .IsInterior(level.Player.X, level.Player.Y));
     }
 
     private static Player NewPlayer(

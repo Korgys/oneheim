@@ -54,4 +54,22 @@ public class NpcSpawnSystemTests
         Assert.IsNotNull(ylva.Root);
         Assert.IsTrue(ylva.Root.Options.Any(o => o.Action != null));
     }
+
+    [TestMethod]
+    public void Update_SpawnsNpcsInsideBaseCamp()
+    {
+        var settings = new GameSettings();
+        var level = new LevelManager(settings);
+        var ctx = new TurnContext(level, settings, new DifficultyManager(settings.Difficulty));
+        var system = new NpcSpawnSystem();
+        var baseCamp = level.Structures.First(s => s.Name == Roguelike.Core.Properties.i18n.Messages.BaseCamp);
+
+        foreach (var step in new[] { 66, 166, 350, 450, 550 })
+        {
+            level.Player.Steps = step;
+            system.Update(ctx);
+        }
+
+        Assert.IsTrue(level.Npcs.All(n => baseCamp.IsInterior(n.X, n.Y)));
+    }
 }

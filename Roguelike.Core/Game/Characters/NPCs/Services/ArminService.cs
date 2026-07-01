@@ -19,7 +19,7 @@ public sealed class ArminService
     public ArminService(LevelManager level) => _level = level;
 
     private Player Player => _level.Player;
-    private Structure? BaseCamp => _level.Structures.FirstOrDefault();
+    private Structure? BaseCamp => _level.Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
 
     public bool CanHealNow =>
         Player.LifePoint < Player.MaxLifePoint &&
@@ -60,8 +60,8 @@ public sealed class ArminService
         BaseCamp.Hp < BaseCamp.MaxHp &&
         RepairAmount > 0;
     public int RepairAmount =>
-        BaseCamp is null ? 0 : Math.Min(Player.Gold, MissingCampHp);
-    public int RepairCost => RepairAmount; // 1 gold = 1 HP
+        BaseCamp is null ? 0 : Math.Min(Player.Gold * 5, MissingCampHp);
+    public int RepairCost => (int)Math.Ceiling(RepairAmount / 5m); // 1 gold = 5 HP
     public string RepairAction()
     {
         if (BaseCamp is null) return Messages.NoCampToRepair;

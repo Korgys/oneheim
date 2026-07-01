@@ -46,7 +46,7 @@ Les pas du joueur pilotent la progression de la partie.
 | 1515 | Troisième boss. |
 | Après 1515 | La partie se termine quand il n'y a plus de boss actif. |
 
-Le niveau de menace est basé sur les pas : `niveau = max(1, pas / 100)`. Les ennemis sont sélectionnés dans des tables pondérées adaptées au niveau courant et aux familles d'ennemis de la partie.
+Le niveau de menace est basé sur les pas : `niveau = max(1, pas / 100)`. Les ennemis sont sélectionnés dans des tables pondérées adaptées au niveau courant et aux familles d'ennemis de la partie. Les ennemis de niveau 2 ne sont disponibles qu'à partir de la deuxième vague, soit à 200 pas.
 
 ## Familles de monstres
 
@@ -127,6 +127,8 @@ Les boss apparaissent aux paliers 515, 1015 et 1515 pas. À chaque palier, le je
 
 Omana permet de connaître le prochain boss à venir. Les boss sont également une menace directe pour le camp : un boss adjacent aux murs suffit à considérer le camp comme attaqué.
 
+Tant qu'un boss est vivant sur la carte, les déplacements du joueur ne décomptent plus de pas. Le cycle jour/nuit, les vagues et les paliers de progression restent donc en pause jusqu'à la mort du boss.
+
 ## Coffres, trésors et bonus
 
 Les trésors proposent jusqu'à 3 choix. Un choix peut être :
@@ -137,6 +139,7 @@ Les trésors proposent jusqu'à 3 choix. Un choix peut être :
 - armure (`Armor`) ;
 - vitesse (`Speed`) ;
 - vision (`Vision`) ;
+- téléportation au camp (`CampTeleport`) ;
 - objet (`Item`).
 
 Règles de génération :
@@ -146,6 +149,7 @@ Règles de génération :
 - Si une statistique domine fortement, le système peut favoriser un bonus dans cette statistique.
 - Les valeurs augmentent avec la progression en pas.
 - Les objets sont tirés dans un pool de 9 objets, en évitant certains objets spécifiques aux familles d'ennemis présentes.
+- Une téléportation vers le camp peut être proposée si le joueur est loin du camp et qu'il existe une urgence : camp attaqué, PNJ présents au camp, ou joueur à 30 % de vie maximum ou moins.
 
 ## Objets
 
@@ -215,6 +219,7 @@ Les raretés utilisées sont :
 - `GlassesOfClairvoyance` peut relever la vision du joueur.
 - `HawkEye` peut améliorer la qualité d'un bonus de vision.
 - `LuckyMillorLeftHand` peut ajouter +1 à un bonus de statistique.
+- `TalismanOfTheLastBreath` annule le combat quand il sauve le joueur d'un coup fatal, puis téléporte le joueur au camp avec un message dédié.
 
 ## PNJ
 
@@ -242,6 +247,8 @@ Apparaît à partir du pas 450. Elle propose un système de pari pour obtenir de
 
 Apparaît à partir du pas 550, après le premier boss et seulement si aucun boss n'est actif. Elle permet d'améliorer l'équipement.
 
+Les PNJ de service apparaissent à l'intérieur du camp de base. Si aucune case libre n'est disponible dans le camp, le PNJ n'est pas placé à l'extérieur. Les mercenaires recrutés via Eber sont l'exception : ils sont déployés autour du camp.
+
 ## Camp de base
 
 Le camp de base est une structure centrale avec 1000 points de vie. Il peut être attaqué par les ennemis.
@@ -252,6 +259,8 @@ Le camp est considéré sous attaque si :
 - ou un boss est adjacent à un mur.
 
 Les ennemis déjà à l'intérieur du camp ne comptent pas pour la détection d'attaque extérieure.
+
+Armin peut réparer le camp au tarif de 1 pièce d'or pour 5 points de vie restaurés.
 
 ## Mercenaires
 

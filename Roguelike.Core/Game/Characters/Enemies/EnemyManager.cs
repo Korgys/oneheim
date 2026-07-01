@@ -135,6 +135,11 @@ public sealed class EnemyManager
                     CombatMessage = string.Format(Messages.YouWereKilledBy, report.EnemyName, report.EnemyLevel);
                     break;
                 }
+                if (report.PlayerTeleportedToCamp)
+                {
+                    CombatMessage = Messages.YouSurvivedAFatalBlowWithYourTalisman;
+                    break;
+                }
             }
 
             if (player.LifePoint <= 0)

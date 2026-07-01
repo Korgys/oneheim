@@ -58,6 +58,7 @@ public sealed class CombatManager
 
         int turn = 1;   // each action
         int round = 1;  // every two actions (player + enemy) => 1 round
+        bool playerTeleportedToCamp = false;
 
         // Main loop
         while (player.LifePoint > 0 && enemy.LifePoint > 0)
@@ -85,6 +86,8 @@ public sealed class CombatManager
                     {
                         _fightLog.Enqueue(Messages.YouSurvivedAFatalBlowWithYourTalisman);
                         TrimLog();
+                        playerTeleportedToCamp = _level.TeleportPlayerToBaseCamp();
+                        break;
                     }
                     else if (player.LifePoint <= 0)
                     {
@@ -114,7 +117,7 @@ public sealed class CombatManager
 
         // Build report (reward if player survived)
         int gold = 0, xp = 0;
-        if (player.LifePoint > 0)
+        if (player.LifePoint > 0 && !playerTeleportedToCamp)
         {
             gold = enemy.GetGoldValue();
             xp = enemy.GetXpValue();
@@ -151,6 +154,7 @@ public sealed class CombatManager
             EnemyLevel: enemy.Level,
             PlayerDied: player.LifePoint <= 0,
             EnemyDied: enemy.LifePoint <= 0,
+            PlayerTeleportedToCamp: playerTeleportedToCamp,
             Gold: gold,
             Xp: xp,
             Log: _fightLog.ToArray()
@@ -301,6 +305,7 @@ public readonly record struct CombatReport(
     int EnemyLevel,
     bool PlayerDied,
     bool EnemyDied,
+    bool PlayerTeleportedToCamp,
     int Gold,
     int Xp,
     IReadOnlyList<string> Log);

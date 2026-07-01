@@ -280,6 +280,9 @@ I started rebuilding the village recently, but the surrounding area has become v
   <data name="CombatOccurred" xml:space="preserve">
     <value>Combat occurred!</value>
   </data>
+  <data name="CampTeleport" xml:space="preserve">
+    <value>Teleport to base camp</value>
+  </data>
   <data name="Cultist" xml:space="preserve">
     <value>Cultist of the fresh meat</value>
   </data>
@@ -773,7 +776,10 @@ I started rebuilding the village recently, but the surrounding area has become v
     <value>You leveled up to level {0} !</value>
   </data>
   <data name="YouSurvivedAFatalBlowWithYourTalisman" xml:space="preserve">
-    <value>You survived a fatal blow with your talisman but it has run out for this combat.</value>
+    <value>Your talisman saved you from a fatal blow and teleported you back to camp.</value>
+  </data>
+  <data name="TeleportedToBaseCamp" xml:space="preserve">
+    <value>You teleport back to base camp.</value>
   </data>
   <data name="YouTalkedWith" xml:space="preserve">
     <value>You talked with {0}.</value>

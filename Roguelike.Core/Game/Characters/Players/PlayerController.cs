@@ -1,5 +1,6 @@
 ﻿using Roguelike.Core.Configuration;
 using Roguelike.Core.Game.Abstractions;
+using Roguelike.Core.Game.Characters.Enemies.Bosses;
 using Roguelike.Core.Game.Collectables;
 using Roguelike.Core.Game.Collectables.Items;
 using Roguelike.Core.Game.Levels;
@@ -133,7 +134,7 @@ namespace Roguelike.Core.Game.Characters.Players
                 bool foughtEnemy = CheckEnemyUnderPlayer();     // may set GameMessage
 
                 // Do not increment steps if inside any structure or if chest/ combat consumed the turn
-                if (!insideStructure && !lootedChest && !foughtEnemy)
+                if (!insideStructure && !lootedChest && !foughtEnemy && !_level.Enemies.Any(e => e is Boss))
                 {
                     // StopWatch item: skip increment on given frequency
                     var stopWatch = _level.Player.Inventory.FirstOrDefault(i => i.Id == ItemId.StopWatch);
@@ -162,10 +163,10 @@ namespace Roguelike.Core.Game.Characters.Players
             if (treasure == null) return false;
 
             // Generate & pick using the UI-agnostic picker
-            var selected = TreasureSelector.ChooseWithPicker(player, _settings, _treasurePicker);
+            var selected = TreasureSelector.ChooseWithPicker(player, _settings, _treasurePicker, _level);
 
             // Apply the bonus and set feedback
-            GameMessage = TreasureSelector.ApplyBonus(selected, player, _settings, _inventoryUi);
+            GameMessage = TreasureSelector.ApplyBonus(selected, player, _settings, _inventoryUi, _level);
             if (_level.DayCycle == DayCycle.Night && !_level.Structures.Any(s => s.IsInterior(player.X, player.Y)))
             {
                 const int nightGoldBonus = 5;
@@ -190,6 +191,10 @@ namespace Roguelike.Core.Game.Characters.Players
             {
                 GameMessage = string.Format(Messages.YouWereKilledBy, report.EnemyName, report.EnemyLevel);
                 IsGameEnded = true;
+            }
+            else if (report.PlayerTeleportedToCamp)
+            {
+                GameMessage = Messages.YouSurvivedAFatalBlowWithYourTalisman;
             }
             else
             {

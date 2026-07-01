@@ -58,12 +58,12 @@ public static partial class NpcDialogues
                 int price = GetCurrentPrice();
                 if (player.Gold < price) return Messages.YouDoNotHaveEnoughGold;
 
-                var chosen = TreasureSelector.ChooseWithPicker(player, settings, picker);
+                var chosen = TreasureSelector.ChooseWithPicker(player, settings, picker, level);
 
                 player.Gold -= price;
                 level.ChestPrice = (int)(level.ChestPrice * 1.06m);
                 hasPurchased = true;
-                var msg = TreasureSelector.ApplyBonus(chosen, player, settings, inventoryUI);
+                var msg = TreasureSelector.ApplyBonus(chosen, player, settings, inventoryUI, level);
 
                 return $"{Messages.Purchased}: {msg}\n{Messages.ChestPriceHasIncreased}";
             },

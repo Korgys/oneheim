@@ -94,39 +94,59 @@ public class LevelManager
 
     public void PlaceNpc(NpcId id)
     {
-        // Try inside first if a structure exists
-        var inside = FindFreeTile(preferInterior: true);
-        var (x, y) = inside ?? FindFreeTile(preferInterior: false) ?? (GridWidth / 2, GridHeight / 2);
-        Npcs.Add(NpcFactory.CreateNpc(id, x, y));
+        if (TryFindFreeBaseCampInterior(out var x, out var y))
+            Npcs.Add(NpcFactory.CreateNpc(id, x, y));
     }
 
-    private (int x, int y)? FindFreeTile(bool preferInterior)
+    public bool TeleportPlayerToBaseCamp()
     {
-        var tries = 200;
-        var rnd = _random; // assume you already have _random
-        var s = Structures.FirstOrDefault();
+        if (!TryFindFreeBaseCampInterior(out var x, out var y))
+            return false;
 
-        while (tries-- > 0)
+        Player.X = x;
+        Player.Y = y;
+        return true;
+    }
+
+    public bool IsPlayerFarFromBaseCamp(int minDistance = 12)
+    {
+        var baseCamp = BaseCamp;
+        if (baseCamp == null) return false;
+
+        int centerX = baseCamp.X + baseCamp.Width / 2;
+        int centerY = baseCamp.Y + baseCamp.Height / 2;
+        return Math.Abs(Player.X - centerX) + Math.Abs(Player.Y - centerY) >= minDistance;
+    }
+
+    public bool ShouldOfferCampTeleportTreasure()
+    {
+        if (!IsPlayerFarFromBaseCamp()) return false;
+
+        bool playerLowLife = Player.MaxLifePoint > 0 && Player.LifePoint * 100 <= Player.MaxLifePoint * 30;
+        return IsBaseCampUnderAttack() || Npcs.Count > 1 || playerLowLife;
+    }
+
+    private Structure? BaseCamp => Structures.FirstOrDefault(s => s.Name == Messages.BaseCamp);
+
+    private bool TryFindFreeBaseCampInterior(out int x, out int y)
+    {
+        var baseCamp = BaseCamp;
+        if (baseCamp != null)
         {
-            int x = rnd.Next(1, GridWidth - 1);
-            int y = rnd.Next(1, GridHeight - 1);
+            var tiles = GetInteriorTiles(baseCamp)
+                .Where(t => !baseCamp.EntranceTiles.Any(e => e.x == t.x && e.y == t.y) && !IsOccupiedByCharacterOrTreasure(t.x, t.y))
+                .OrderBy(_ => _random.Next())
+                .ToList();
 
-            if (s != null && s.EntranceTiles.Any(e => e.x == x && e.y == y)) continue; // avoid entrances
-
-            bool inInterior = s != null && s.IsInterior(x, y);
-
-            if (preferInterior && s != null && !inInterior) continue;
-            if (!preferInterior && s != null && s.Contains(x, y)) continue; // avoid walls when outside
-
-            bool blocked =
-                Enemies.Any(e => e.X == x && e.Y == y) ||
-                Treasures.Any(t => t.X == x && t.Y == y) ||
-                Npcs.Any(n => n.X == x && n.Y == y) ||
-                x <= 0 || x >= GridWidth - 1 || y <= 0 || y >= GridHeight - 1;
-
-            if (!blocked) return (x, y);
+            if (tiles.Count > 0)
+            {
+                (x, y) = tiles[0];
+                return true;
+            }
         }
-        return null;
+
+        x = y = -1;
+        return false;
     }
 
     public void PlaceTreasures(int count)
@@ -329,6 +349,9 @@ public class LevelManager
         return false;
     }
 
+    private bool IsOccupiedByCharacterOrTreasure(int x, int y) =>
+        IsOccupied(x, y) || Npcs.Any(n => n.X == x && n.Y == y);
+
     /// <summary>
     /// Initialize the level with grid, structures, npcs, treasures, player, etc.
     /// </summary>
@@ -399,7 +422,7 @@ public class LevelManager
         foreach (var tile in interior.OrderBy(_ => _random.Next()).Take(2))
             Treasures.Add(new Treasure { X = tile.x, Y = tile.y });
 
-        int level = Math.Max(2, Player.Level + 1);
+        int level = Player.Steps < 200 ? 1 : Math.Max(2, Player.Level + 1);
         var enemyBag = EnemyBags.GetByLevelAndType(level, EnemyTypes);
         foreach (var tile in interior.OrderBy(_ => _random.Next()).Take(2))
         {
