@@ -186,5 +186,5 @@ public sealed class EnemyManager
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsInside(int x, int y)
-        => x > 0 && y > 0; // caller already knows grid bounds
+        => (uint)x < LevelManager.GridWidth && (uint)y < LevelManager.GridHeight;
 }

@@ -186,9 +186,10 @@ public class LevelManager
         var grolMokbarRing = Player.Inventory.FirstOrDefault(i => i.Id == ItemId.GrolMokbarRing);
         var talismanOfPeace = Player.Inventory.FirstOrDefault(i => i.Id == ItemId.TalismanOfPeace);
         if (grolMokbarRing != null) variance += grolMokbarRing.Value;
-        if (talismanOfPeace != null) variance = Math.Max(1, variance - talismanOfPeace.Value);
+        if (talismanOfPeace != null) variance -= talismanOfPeace.Value;
 
-        for (int i = 0; i < count + variance; i++)
+        int enemiesToPlace = Math.Max(0, count + variance);
+        for (int i = 0; i < enemiesToPlace; i++)
         {
             if (!TryFindEnemySpawnTile(out int x, out int y, false))
                 break;
